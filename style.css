@@ -107,3 +107,62 @@ nav ul li {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+/* Whoami Page Background */
+.whoami-page {
+  background-image: url('images/whoamibackground.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f1f1f1;
+  margin: 0;
+  padding: 0;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75); /* dark overlay for readability */
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+header h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #00c6ff;
+  text-shadow: 1px 1px 3px #000;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+  background-color: rgba(20, 20, 20, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+h2 {
+  margin-top: 2rem;
+  color: #00e0ff;
+}
+
+ul {
+  padding-left: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
