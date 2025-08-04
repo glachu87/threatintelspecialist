@@ -28,3 +28,37 @@ nav a {
   text-decoration: none;
   font-weight: bold;
 }
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  color: #1a1a1a;
+}
+header {
+  background-color: #005b96;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+nav li {
+  margin: 0 1rem;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+main {
+  padding: 2rem;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #e0e0e0;
+}
