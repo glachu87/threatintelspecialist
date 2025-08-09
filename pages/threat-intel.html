@@ -23,12 +23,21 @@
       height: 100vh;
     }
     .sidebar {
-      width: 220px;
+      width: 240px;
       background: var(--panel);
       padding: 1rem;
       display: flex;
       flex-direction: column;
       border-right: 1px solid rgba(255,255,255,0.1);
+      align-items: center;
+    }
+    .logo-link {
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .logo {
+      width: 140px;
+      height: auto;
     }
     .sidebar h2 {
       font-size: 1.2rem;
@@ -36,7 +45,8 @@
       text-align: center;
       color: var(--accent2);
     }
-    .sidebar a {
+    .sidebar a.menu-link {
+      width: 100%;
       color: var(--text);
       text-decoration: none;
       padding: 0.6rem 0.8rem;
@@ -44,9 +54,10 @@
       margin-bottom: 0.5rem;
       display: block;
       transition: background 0.2s;
+      text-align: center;
     }
-    .sidebar a:hover,
-    .sidebar a.active {
+    .sidebar a.menu-link:hover,
+    .sidebar a.menu-link.active {
       background: rgba(96,165,250,0.2);
     }
     .main {
@@ -90,11 +101,17 @@
 </head>
 <body>
   <aside class="sidebar">
+    <!-- Logo -->
+    <a href="/index.html" class="logo-link">
+      <img src="/images/TIS_Logo.png" alt="Threat Intel Specialist Logo" class="logo">
+    </a>
+
     <h2>Threat Feeds</h2>
-    <a href="#" id="link-cisa" class="active" onclick="showFeed('cisa')">CISA Advisories</a>
-    <a href="#" id="link-ncsc" onclick="showFeed('ncsc')">UK NCSC</a>
-    <a href="#" id="link-vt" onclick="showFeed('virustotal')">VirusTotal</a>
+    <a href="#" id="link-cisa" class="menu-link active" onclick="showFeed('cisa')">CISA Advisories</a>
+    <a href="#" id="link-ncsc" class="menu-link" onclick="showFeed('ncsc')">UK NCSC</a>
+    <a href="#" id="link-vt" class="menu-link" onclick="showFeed('virustotal')">VirusTotal</a>
   </aside>
+
   <main class="main">
     <div id="feed-container">
       <p>Select a feed from the left menu to begin.</p>
@@ -152,7 +169,7 @@
       });
     }
 
-    // Load CISA by default on page load
+    // Load CISA by default
     window.addEventListener('DOMContentLoaded', () => showFeed('cisa'));
   </script>
 </body>
