@@ -1,0 +1,64 @@
+name: Fetch CISA feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *' # runs every hour; change to daily if you prefer
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests feedparser
+
+      - name: Fetch CISA Advisories
+        run: |
+          python - <<'PY'
+          import os, json, requests, feedparser, datetime, subprocess
+
+          outdir = os.path.join(os.getcwd(), 'feeds', 'cisa')
+          os.makedirs(outdir, exist_ok=True)
+
+          feed_url = 'https://www.cisa.gov/cybersecurity-advisories/all.xml'
+          r = requests.get(feed_url, timeout=30)
+          r.raise_for_status()
+
+          parsed = feedparser.parse(r.content)
+          items = []
+          for e in parsed.entries[:10]:
+              items.append({
+                  'title': e.get('title', ''),
+                  'link': e.get('link', ''),
+                  'published': e.get('published', ''),
+                  'summary': e.get('summary', '')
+              })
+
+          out_data = {
+              'source': feed_url,
+              'fetched_at': datetime.datetime.utcnow().isoformat()+'Z',
+              'items': items
+          }
+
+          out_file = os.path.join(outdir, 'advisories.json')
+          with open(out_file, 'w') as f:
+              json.dump(out_data, f, indent=2)
+
+          subprocess.run(['git', 'config', 'user.email', 'action@github.com'], check=True)
+          subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
+          subprocess.run(['git', 'add', 'feeds/cisa/advisories.json'], check=True)
+          changed = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True).stdout.strip()
+          if changed:
+              subprocess.run(['git', 'commit', '-m', 'Update CISA feed'], check=True)
+              subprocess.run(['git', 'push'], check=True)
+          else:
+              print("No changes to commit.")
+          PY

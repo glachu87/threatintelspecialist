@@ -1,14 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NYCC5SQJNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<h2>Latest CISA Cybersecurity Advisories</h2>
+<div id="cisa-feed">Loading...</div>
 
-  gtag('config', 'G-NYCC5SQJNN');
+<script>
+async function loadCisaFeed() {
+  const container = document.getElementById('cisa-feed');
+  try {
+    const res = await fetch('/feeds/cisa/advisories.json');
+    if (!res.ok) throw new Error('Failed to fetch feed');
+    const data = await res.json();
+
+    container.innerHTML = data.items.map(item => `
+      <div style="margin-bottom: 1em;">
+        <a href="${item.link}" target="_blank" style="font-weight: bold;">
+          ${item.title}
+        </a><br>
+        <small>${item.published}</small>
+        <p>${item.summary}</p>
+      </div>
+    `).join('');
+  } catch (err) {
+    container.innerHTML = 'Error loading CISA feed.';
+    console.error(err);
+  }
+}
+
+loadCisaFeed();
 </script>
-</head>
-</html>
