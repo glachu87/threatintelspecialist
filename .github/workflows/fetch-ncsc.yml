@@ -1,0 +1,83 @@
+name: Fetch NCSC feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Fetch NCSC advisories
+        run: |
+          python - <<'PY'
+          import os, json, datetime, requests
+          from bs4 import BeautifulSoup
+
+          outdir = os.path.join(os.getcwd(), 'feeds', 'ncsc')
+          os.makedirs(outdir, exist_ok=True)
+
+          url = "https://www.ncsc.gov.uk/section/keep-up-to-date/advisories"
+          r = requests.get(url, timeout=30)
+          r.raise_for_status()
+          soup = BeautifulSoup(r.text, 'html.parser')
+
+          advisories = []
+          for item in soup.select('.hub-item'):
+              title_tag = item.select_one('.heading a')
+              date_tag = item.select_one('.date')
+              link = title_tag['href'] if title_tag else ''
+              if link and not link.startswith('http'):
+                  link = "https://www.ncsc.gov.uk" + link
+              advisories.append({
+                  "title": title_tag.get_text(strip=True) if title_tag else '',
+                  "link": link,
+                  "published": date_tag.get_text(strip=True) if date_tag else '',
+                  "vendor": "NCSC UK",
+                  "affected_products": "",
+                  "release_date": date_tag.get_text(strip=True) if date_tag else '',
+                  "executive_summary": "",
+                  "risk_evaluation": "",
+                  "vulnerability_overview": "",
+                  "mitigations": ""
+              })
+
+          out_data = {
+              "source": url,
+              "fetched_at": datetime.datetime.utcnow().isoformat() + 'Z',
+              "items": advisories
+          }
+
+          with open(os.path.join(outdir, 'advisories.json'), 'w') as f:
+              json.dump(out_data, f, indent=2)
+
+          import subprocess
+          subprocess.run(['git', 'config', 'user.email', 'action@github.com'], check=True)
+          subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
+          subprocess.run(['git', 'add', 'feeds/ncsc/advisories.json'], check=True)
+          changed = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True).stdout.strip()
+          if changed:
+              subprocess.run(['git', 'commit', '-m', 'Update NCSC feed'], check=True)
+              subprocess.run(['git', 'push'], check=True)
+          else:
+              print("No changes to commit.")
+          PY

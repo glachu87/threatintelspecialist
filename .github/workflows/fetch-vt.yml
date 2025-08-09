@@ -1,0 +1,81 @@
+name: Fetch VirusTotal feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch VirusTotal feed
+        env:
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os, json, datetime, requests
+
+          outdir = os.path.join(os.getcwd(), 'feeds', 'vt')
+          os.makedirs(outdir, exist_ok=True)
+
+          headers = {"x-apikey": os.environ["VT_API_KEY"]}
+          url = "https://www.virustotal.com/api/v3/intelligence/search?query=type:apk+fs:2024-01-01+size:small&limit=10"
+
+          r = requests.get(url, headers=headers, timeout=30)
+          r.raise_for_status()
+          data = r.json()
+
+          advisories = []
+          for item in data.get('data', []):
+              attrs = item.get('attributes', {})
+              advisories.append({
+                  "title": attrs.get('meaningful_name', 'No Title'),
+                  "link": f"https://www.virustotal.com/gui/file/{item.get('id', '')}",
+                  "published": datetime.datetime.utcfromtimestamp(attrs.get('first_submission_date', 0)).isoformat() + 'Z',
+                  "vendor": "VirusTotal",
+                  "affected_products": attrs.get('type_description', ''),
+                  "release_date": "",
+                  "executive_summary": "",
+                  "risk_evaluation": "",
+                  "vulnerability_overview": "",
+                  "mitigations": ""
+              })
+
+          out_data = {
+              "source": url,
+              "fetched_at": datetime.datetime.utcnow().isoformat() + 'Z',
+              "items": advisories
+          }
+
+          with open(os.path.join(outdir, 'advisories.json'), 'w') as f:
+              json.dump(out_data, f, indent=2)
+
+          import subprocess
+          subprocess.run(['git', 'config', 'user.email', 'action@github.com'], check=True)
+          subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
+          subprocess.run(['git', 'add', 'feeds/vt/advisories.json'], check=True)
+          changed = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True).stdout.strip()
+          if changed:
+              subprocess.run(['git', 'commit', '-m', 'Update VirusTotal feed'], check=True)
+              subprocess.run(['git', 'push'], check=True)
+          else:
+              print("No changes to commit.")
+          PY
