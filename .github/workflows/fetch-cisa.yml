@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 * * * *' # runs every hour; change to daily if you prefer
-
+permissions:
+  contents: write  # ✅ This allows committing & pushing changes
 jobs:
   fetch:
     runs-on: ubuntu-latest
