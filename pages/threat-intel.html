@@ -1,5 +1,8 @@
 <h2>Latest CISA Cybersecurity Advisories</h2>
-<div id="cisa-feed">Loading...</div>
+<section class="feed-section">
+  <h2>CISA Cybersecurity Advisories</h2>
+  <div id="cisa-feed" class="feed-container">Loading...</div>
+</section>
 
 <script>
 async function loadCisaFeed() {
@@ -10,19 +13,22 @@ async function loadCisaFeed() {
     const data = await res.json();
 
     container.innerHTML = data.items.map(item => `
-      <div style="margin-bottom: 1em;">
-        <a href="${item.link}" target="_blank" style="font-weight: bold;">
-          ${item.title}
-        </a><br>
-        <small>${item.published}</small>
+      <div class="feed-card">
+        <h4><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h4>
+        <time>${item.published}</time>
         <p>${item.summary}</p>
       </div>
     `).join('');
   } catch (err) {
-    container.innerHTML = 'Error loading CISA feed.';
+    container.innerHTML = '<p>Error loading CISA feed.</p>';
     console.error(err);
   }
 }
 
 loadCisaFeed();
 </script>
+
+<section class="feed-section">
+  <h2>NCSC Threat Advisories</h2>
+  <div id="cisa-feed" class="feed-container">Loading...</div>
+</section>
