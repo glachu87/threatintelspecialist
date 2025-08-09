@@ -277,3 +277,46 @@ body.threat-intel-page {
   width: auto;
   margin-right: 10px;
 }
+
+/* Mobile-first responsive nav */
+nav {
+  background-color: rgba(0, 0, 50, 0.6);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 50, 0.95);
+    position: absolute;
+    top: 60px; /* height of header */
+    right: 0;
+    width: 200px;
+    padding: 0;
+  }
+
+  nav ul.showing {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+}
