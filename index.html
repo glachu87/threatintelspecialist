@@ -1,363 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NYCC5SQJNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threat Intel Specialist</title>
+  <link rel="stylesheet" href="style.css">
 
-  gtag('config', 'G-NYCC5SQJNN');
-</script>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Threat Intel</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <meta charset="UTF-8" />
-  <title>Threat Intel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Inline page-specific styles to avoid conflicts with existing style.css -->
   <style>
-    :root{
-      --bg1:#0f172a; --bg2:#0b1220; --panel:#111827; --muted:#9ca3af; --accent:#60a5fa; --accent-2:#22d3ee;
-      --text:#e5e7eb; --white:#fff;
+    /* ===== Navigation fixes ===== */
+    nav {
+      background: rgba(0, 0, 50, 0.6);
+      position: relative;
     }
-    *{box-sizing:border-box}
-    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--text); background:linear-gradient(180deg,var(--bg1),var(--bg2));}
-    a{color:inherit}
-
-    /* Top bar */
-    .nav{
-      position:sticky; top:0; z-index:10;
-      background:rgba(2,6,23,.7); backdrop-filter:saturate(140%) blur(6px);
-      border-bottom:1px solid rgba(255,255,255,.06);
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
-    .nav-inner{max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 16px;}
-    .brand{font-weight:800; letter-spacing:.3px;}
-    .menu{display:flex; gap:14px; margin-left:auto; flex-wrap:wrap}
-    .menu a{padding:8px 10px; border-radius:8px; text-decoration:none; color:var(--text)}
-    .menu a:hover{background:rgba(255,255,255,.06)}
-    .menu .dropdown{position:relative}
-    .menu .dropdown:hover .dropdown-list{display:block}
-    .dropdown-list{
-      display:none; position:absolute; top:100%; left:0; background:var(--panel);
-      border:1px solid rgba(255,255,255,.08); border-radius:10px; min-width:220px; padding:8px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+    nav ul li {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin: 0 15px;
     }
-    .dropdown-list a{display:block; padding:10px 12px; border-radius:8px}
-    .dropdown-list a:hover{background:rgba(255,255,255,.06)}
-
-    /* Hero */
-    .hero{
-      position:relative; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.06);
-      background:
-        radial-gradient(1200px 500px at 20% 0%, rgba(96,165,250,.10), transparent 60%),
-        radial-gradient(1000px 400px at 80% 10%, rgba(34,211,238,.10), transparent 60%);
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 8px;
     }
-    .hero-inner{max-width:1200px; margin:0 auto; padding:72px 16px 52px; display:grid; gap:22px}
-    .kicker{color:var(--accent-2); font-weight:700; letter-spacing:.2em; text-transform:uppercase; font-size:.8rem}
-    h1{margin:0; font-size:clamp(1.8rem,3.2vw,2.6rem); line-height:1.15}
-    .subtitle{color:var(--muted); max-width:800px}
-    .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .pill{font-size:.9rem; color:var(--text); text-decoration:none; border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:8px 12px; background:rgba(17,24,39,.7)}
-    .pill:hover{background:rgba(255,255,255,.06)}
+    nav ul li a.cta-button {
+      background-color: #2563eb;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      line-height: normal;
+    }
+    nav ul li a.cta-button:hover {
+      background-color: #1d4ed8;
+    }
 
-    /* Sections */
-    .section{max-width:1200px; margin:0 auto; padding:28px 16px}
-    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
-    .card{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px;
-          box-shadow:0 8px 28px rgba(0,0,0,.25); transition:transform .15s ease, box-shadow .15s ease;}
-    .card:hover{transform:translateY(-3px); box-shadow:0 14px 36px rgba(0,0,0,.35)}
-    .card h3{margin:0 0 6px}
-    .muted{color:var(--muted)}
-    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1220}
-    .btn.primary{background:linear-gradient(90deg, #3b82f6, #06b6d4); color:var(--white); border:none}
-    .btn:hover{filter:brightness(1.05)}
+    /* Dropdown styling */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      background-color: rgba(0, 0, 50, 0.95);
+      min-width: 180px;
+      z-index: 1000;
+      padding: 0;
+    }
+    .dropdown-content li {
+      display: block;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      background-color: #444;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-    /* Latest advisories */
-    .feed-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px}
-    .feed-card{background:#0b1220; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px}
-    .feed-card h4{margin:0 0 6px; font-size:1rem}
-    .feed-card a{color:#93c5fd; text-decoration:none}
-    .feed-card a:hover{text-decoration:underline}
-    .feed-card time{display:block; color:var(--muted); font-size:.85rem; margin-bottom:6px}
-    .feed-footer{margin-top:10px}
-    .feed-footer a{color:#22d3ee; text-decoration:none}
+    /* ===== Mobile Styles ===== */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
 
-    /* Footer */
-    footer{border-top:1px solid rgba(255,255,255,.06); color:var(--muted)}
-    .footer-inner{max-width:1200px; margin:0 auto; padding:22px 16px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between}
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background-color: rgba(0, 0, 50, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 220px;
+        display: none;
+      }
+      nav ul.showing {
+        display: flex;
+      }
+      nav ul li {
+        margin: 0;
+        width: 100%;
+      }
+      nav ul li a {
+        padding: 12px;
+        width: 100%;
+      }
+      /* Mobile dropdown behavior */
+      .dropdown-content {
+        position: static;
+        display: none;
+        background: rgba(0, 0, 50, 0.9);
+      }
+      .dropdown.open .dropdown-content {
+        display: block;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Logo scaling */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   </style>
 </head>
+
 <body>
+  <header>
+    <a href="index.html"><img src="images/TIS_Logo.png" alt="Threat Intel Specialist Logo" style="height:80px;width:auto;"></a>
+    <h1>Threat Intel Specialist</h1>
+  </header>
 
-  <!-- Top navigation -->
-  <header class="nav">
-  <div class="nav-inner">
-    <a href="/index.html" class="logo-link">
-      <img src="/images/TIS_Logo.png" alt="Threat Intel Specialist Logo" class="logo">
-    </a>
-    <div class="brand">Threat Intel</div>
-    <nav class="menu">
-      <a href="/index.html">Home</a>
-      <a href="/pages/threat-intel.html">Threat Intelligence</a>
-      <a href="/pages/whoami.html">Whoami</a>
-      <a href="/pages/services.html">Services</a>
-      <div class="dropdown">
-        <a href="#">Cyber Training ▾</a>
-        <div class="dropdown-list">
-          <a href="/pages/training/xss.html">XSS</a>
-          <a href="/pages/training/csrf.html">CSRF</a>
-          <a href="/pages/training/clickjacking.html">Click-Jacking</a>
-          <a href="/pages/training/sql-injection.html">SQL Injection</a>
-        </div>
-      </div>
-      <a href="/pages/posts.html">Posts</a>
-    </nav>
-  </div>
-</header>
+  <nav>
+    <button class="menu-toggle" id="menuToggle">&#9776;</button>
+    <ul id="menu">
+      <li><a href="pages/threat-intel.html">Threat Intelligence</a></li>
+      <li><a href="pages/whoami.html">Whoami</a></li>
+      <li class="dropdown">
+        <a href="#">Services ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="pages/service1.html">Service 1</a></li>
+          <li><a href="pages/service2.html">Service 2</a></li>
+        </ul>
+      </li>
+      <li><a href="pages/posts.html">Posts</a></li>
+      <li><a href="pages/cyber-training.html" class="cta-button">Cyber Training</a></li>
+    </ul>
+  </nav>
 
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="kicker">Welcome to Threat Intel world</div>
-      <h1>Track emerging threats. Understand the risk. Take action.</h1>
-      <p class="subtitle">
-        Explore the latest cyber threats, analysis, mitigation strategies and professional training to protect digital infrastructure.
-      </p>
-      <div class="pills">
-        <a class="pill" href="/pages/threat-intel.html#cisa">CISA Advisories</a>
-        <a class="pill" href="/pages/threat-intel.html#ncsc">UK NCSC</a>
-        <a class="pill" href="/pages/threat-intel.html#vt">VirusTotal</a>
-        <a class="pill" href="/pages/services.html">Services</a>
-        <a class="pill" href="/pages/whoami.html">Whoami</a>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="/pages/threat-intel.html">View Threat Feeds</a>
-        <a class="btn" href="/pages/posts.html">Read Posts</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Highlights -->
-  <section class="section">
-    <div class="cards">
-      <article class="card">
-        <h3>Threat Intelligence</h3>
-        <p class="muted">Centralized feeds from CISA, UK NCSC, VirusTotal and more—updated automatically.</p>
-      </article>
-      <article class="card">
-        <h3>Training</h3>
-        <p class="muted">Hands-on content covering XSS, CSRF, Click-Jacking, SQL Injection and other core topics.</p>
-      </article>
-      <article class="card">
-        <h3>Services</h3>
-        <p class="muted">Advisory, threat modeling, and security assessments tailored to your environment.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Latest advisories (auto from your JSON) -->
-  <section class="section">
-    <h2 style="margin:0 0 12px">Latest CISA Advisories</h2>
-    <div id="latest-feed" class="feed-grid">
-      <!-- populated by JS -->
-    </div>
-    <div class="feed-footer">
-      <a href="/pages/threat-intel.html">See all feeds →</a>
-    </div>
-  </section>
+  <main>
+    <section>
+      <h2>Welcome to Threat Intel Specialist</h2>
+      <p>Your source for curated threat intelligence, cybersecurity news, and actionable insights to help protect your digital assets.</p>
+    </section>
+  </main>
 
   <footer>
-    <div class="footer-inner">
-      <div>© 2025 ThreatIntelSpecialist.com</div>
-      <div><a href="/pages/whoami.html" style="color:inherit; text-decoration:none">About</a></div>
-    </div>
+    <p>&copy; 2025 Threat Intel Specialist. All rights reserved.</p>
   </footer>
 
-  <!-- Tiny script to preview top 5 CISA items on the home page -->
+  <!-- Mobile menu toggle script -->
   <script>
-    (async function(){
-      try{
-        const res = await fetch('/feeds/cisa/advisories.json', {cache:'no-store'});
-        if(!res.ok) return;
-        const data = await res.json();
-        const items = (data.items || []).slice(0,5);
-        const container = document.getElementById('latest-feed');
-        container.innerHTML = items.map(it => `
-          <article class="feed-card">
-            <h4><a href="${it.link}" target="_blank" rel="noopener">${it.title || 'Untitled advisory'}</a></h4>
-            <time>${it.published ? it.published : ''}</time>
-            <p class="muted">${(it.executive_summary || it.summary || '').toString().slice(0,180)}${(it.executive_summary || it.summary || '').length>180?'…':''}</p>
-          </article>
-        `).join('');
-      }catch(e){
-        console.warn('CISA preview failed', e);
-      }
-    })();
-  </script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
 
-  <!-- === Threat Intel Chat (floating widget) === -->
-<style>
-  .ti-chat-launcher{
-    position:fixed; right:20px; bottom:20px; z-index:60;
-    display:flex; align-items:center; gap:10px;
-    background:linear-gradient(90deg,#3b82f6,#06b6d4); color:#fff;
-    border:none; border-radius:999px; padding:10px 14px; cursor:pointer;
-    box-shadow:0 10px 30px rgba(0,0,0,.35); font-weight:600;
-  }
-  .ti-chat-panel{
-    position:fixed; right:20px; bottom:80px; z-index:60; width:340px; max-height:70vh;
-    background:#0b1220; color:#e5e7eb; border:1px solid rgba(255,255,255,.1);
-    border-radius:14px; box-shadow:0 16px 50px rgba(0,0,0,.45); display:none; overflow:hidden;
-  }
-  .ti-chat-header{
-    display:flex; align-items:center; justify-content:space-between; gap:8px;
-    padding:10px 12px; background:#111827; border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .ti-chat-title{display:flex; align-items:center; gap:8px; font-weight:800}
-  .ti-chat-title img{height:20px; width:auto}
-  .ti-chat-close{
-    background:transparent; border:none; color:#e5e7eb; font-size:18px; cursor:pointer;
-  }
-  .ti-chat-messages{height:48vh; overflow-y:auto; padding:12px; background:#0b1220}
-  .ti-msg{max-width:85%; padding:8px 10px; border-radius:10px; margin:6px 0; font-size:.95rem; line-height:1.35}
-  .ti-user{background:#2563eb; color:#fff; margin-left:auto}
-  .ti-bot{background:#1f2937; color:#e5e7eb; margin-right:auto}
-  .ti-src{font-size:.8rem; color:#60a5fa; margin:6px 0 2px}
-  .ti-chat-input{display:flex; gap:8px; padding:10px; background:#111827; border-top:1px solid rgba(255,255,255,.08)}
-  .ti-chat-input input{
-    flex:1; background:#0b1220; color:#e5e7eb; border:1px solid rgba(255,255,255,.12);
-    border-radius:10px; padding:10px;
-  }
-  .ti-chat-input button{
-    background:#2563eb; color:#fff; border:none; border-radius:10px; padding:10px 12px; cursor:pointer;
-  }
-  .ti-link{color:#93c5fd; text-decoration:none}
-  .ti-link:hover{text-decoration:underline}
-</style>
-
-<button class="ti-chat-launcher" id="tiOpenChat" aria-label="Open Threat Intel Chat">
-  🔎 Threat Intel Chat
-</button>
-
-<div class="ti-chat-panel" id="tiChatPanel" role="dialog" aria-label="Threat Intel Chat" aria-modal="true">
-  <div class="ti-chat-header">
-    <div class="ti-chat-title">
-      <img src="/images/TIS_Logo.png" alt="TIS logo">
-      <span>Threat Intel Chat</span>
-    </div>
-    <button class="ti-chat-close" id="tiCloseChat" aria-label="Close">✕</button>
-  </div>
-  <div class="ti-chat-messages" id="tiMessages"></div>
-  <div class="ti-chat-input">
-    <input id="tiInput" type="text" placeholder="Type a product/software name…" />
-    <button id="tiSend">Send</button>
-  </div>
-</div>
-
-<script>
-(function(){
-  const openBtn = document.getElementById('tiOpenChat');
-  const panel   = document.getElementById('tiChatPanel');
-  const closeBtn= document.getElementById('tiCloseChat');
-  const msgs    = document.getElementById('tiMessages');
-  const input   = document.getElementById('tiInput');
-  const sendBtn = document.getElementById('tiSend');
-
-  let allFeeds = [];
-  let feedsLoaded = false;
-
-  function addMsg(html, who='bot'){
-    const div = document.createElement('div');
-    div.className = `ti-msg ${who==='user'?'ti-user':'ti-bot'}`;
-    div.innerHTML = html;
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  async function loadFeeds() {
-    if (feedsLoaded) return;
-    addMsg('Loading latest advisories from CISA, UK NCSC, and VirusTotal…');
-    try {
-      const [cisa, ncsc, vt] = await Promise.all([
-        fetch('/feeds/cisa/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
-        fetch('/feeds/ncsc/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
-        fetch('/feeds/vt/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
-      ]);
-      if (cisa?.items) allFeeds = allFeeds.concat(cisa.items.map(i => ({...i, source:'CISA'})));
-      if (ncsc?.items) allFeeds = allFeeds.concat(ncsc.items.map(i => ({...i, source:'UK NCSC'})));
-      if (vt?.items)   allFeeds = allFeeds.concat(vt.items.map(i => ({...i, source:'VirusTotal'})));
-      feedsLoaded = true;
-      addMsg('Feeds loaded. Ask me about a product or software (e.g., “Cisco ASA”, “OpenSSL”, “Windows Server”).');
-    } catch(e){
-      addMsg('Failed to load one or more feeds. Try again in a minute.');
-    }
-  }
-
-  function search(query){
-    const q = query.toLowerCase();
-    return allFeeds.filter(item => {
-      const hay = [
-        item.title, item.vendor, item.affected_products,
-        item.executive_summary, item.vulnerability_overview
-      ].filter(Boolean).join(' ').toLowerCase();
-      return hay.includes(q);
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('showing');
     });
-  }
 
-  function formatResult(item){
-    const fields = [
-      ['Vendor', item.vendor || 'N/A'],
-      ['Affected products/systems', item.affected_products || 'N/A'],
-      ['Release date', item.release_date || item.published || 'N/A'],
-      ['CVSS v4 score', item.cvss_v4 || 'N/A'],
-      ['Executive summary', item.executive_summary || item.summary || 'N/A'],
-      ['Risk evaluation', item.risk_evaluation || 'N/A'],
-      ['Vulnerability overview', item.vulnerability_overview || 'N/A'],
-      ['Mitigations', item.mitigations || 'N/A'],
-    ].map(([k,v]) => `<strong>${k}:</strong> ${v}`).join('<br>');
-
-    return `
-      <div class="ti-src">[${item.source}]</div>
-      <a class="ti-link" href="${item.link}" target="_blank" rel="noopener">${item.title || 'Advisory'}</a><br>
-      ${fields}
-    `;
-  }
-
-  function handleSend(){
-    const query = input.value.trim();
-    if(!query) return;
-    addMsg(query, 'user');
-    input.value = '';
-    if (!feedsLoaded){
-      addMsg('Hold on—still loading feeds. Try again in a few seconds.');
-      return;
-    }
-    const results = search(query);
-    if (!results.length){
-      addMsg(`No advisories found mentioning “${query}”.`);
-      return;
-    }
-    const top = results.slice(0,8).map(formatResult).join('<hr style="border:0;border-top:1px solid rgba(255,255,255,.1);margin:8px 0">');
-    addMsg(`<strong>Found ${results.length} matching advisories.</strong><br><br>${top}`);
-  }
-
-  // open/close
-  openBtn.addEventListener('click', ()=>{ panel.style.display='block'; loadFeeds(); input.focus(); });
-  closeBtn.addEventListener('click', ()=>{ panel.style.display='none'; });
-  sendBtn.addEventListener('click', handleSend);
-  input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') handleSend(); });
-})();
-</script>
-<!-- === /Threat Intel Chat === -->
-
+    // Handle mobile dropdown toggle
+    document.querySelectorAll('.dropdown > a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const parent = link.parentElement;
+          parent.classList.toggle('open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
