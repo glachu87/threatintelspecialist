@@ -15,40 +15,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Threat Intel Specialist</title>
   <link rel="stylesheet" href="style.css" />
+
+  <meta charset="UTF-8" />
+  <title>Threat Intel Specialist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Inline page-specific styles to avoid conflicts with existing style.css -->
+  <style>
+    :root{
+      --bg1:#0f172a; --bg2:#0b1220; --panel:#111827; --muted:#9ca3af; --accent:#60a5fa; --accent-2:#22d3ee;
+      --text:#e5e7eb; --white:#fff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--text); background:linear-gradient(180deg,var(--bg1),var(--bg2));}
+    a{color:inherit}
+
+    /* Top bar */
+    .nav{
+      position:sticky; top:0; z-index:10;
+      background:rgba(2,6,23,.7); backdrop-filter:saturate(140%) blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 16px;}
+    .brand{font-weight:800; letter-spacing:.3px;}
+    .menu{display:flex; gap:14px; margin-left:auto; flex-wrap:wrap}
+    .menu a{padding:8px 10px; border-radius:8px; text-decoration:none; color:var(--text)}
+    .menu a:hover{background:rgba(255,255,255,.06)}
+    .menu .dropdown{position:relative}
+    .menu .dropdown:hover .dropdown-list{display:block}
+    .dropdown-list{
+      display:none; position:absolute; top:100%; left:0; background:var(--panel);
+      border:1px solid rgba(255,255,255,.08); border-radius:10px; min-width:220px; padding:8px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    .dropdown-list a{display:block; padding:10px 12px; border-radius:8px}
+    .dropdown-list a:hover{background:rgba(255,255,255,.06)}
+
+    /* Hero */
+    .hero{
+      position:relative; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.06);
+      background:
+        radial-gradient(1200px 500px at 20% 0%, rgba(96,165,250,.10), transparent 60%),
+        radial-gradient(1000px 400px at 80% 10%, rgba(34,211,238,.10), transparent 60%);
+    }
+    .hero-inner{max-width:1200px; margin:0 auto; padding:72px 16px 52px; display:grid; gap:22px}
+    .kicker{color:var(--accent-2); font-weight:700; letter-spacing:.2em; text-transform:uppercase; font-size:.8rem}
+    h1{margin:0; font-size:clamp(1.8rem,3.2vw,2.6rem); line-height:1.15}
+    .subtitle{color:var(--muted); max-width:800px}
+    .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .pill{font-size:.9rem; color:var(--text); text-decoration:none; border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:8px 12px; background:rgba(17,24,39,.7)}
+    .pill:hover{background:rgba(255,255,255,.06)}
+
+    /* Sections */
+    .section{max-width:1200px; margin:0 auto; padding:28px 16px}
+    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+    .card{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px;
+          box-shadow:0 8px 28px rgba(0,0,0,.25); transition:transform .15s ease, box-shadow .15s ease;}
+    .card:hover{transform:translateY(-3px); box-shadow:0 14px 36px rgba(0,0,0,.35)}
+    .card h3{margin:0 0 6px}
+    .muted{color:var(--muted)}
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1220}
+    .btn.primary{background:linear-gradient(90deg, #3b82f6, #06b6d4); color:var(--white); border:none}
+    .btn:hover{filter:brightness(1.05)}
+
+    /* Latest advisories */
+    .feed-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px}
+    .feed-card{background:#0b1220; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px}
+    .feed-card h4{margin:0 0 6px; font-size:1rem}
+    .feed-card a{color:#93c5fd; text-decoration:none}
+    .feed-card a:hover{text-decoration:underline}
+    .feed-card time{display:block; color:var(--muted); font-size:.85rem; margin-bottom:6px}
+    .feed-footer{margin-top:10px}
+    .feed-footer a{color:#22d3ee; text-decoration:none}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.06); color:var(--muted)}
+    .footer-inner{max-width:1200px; margin:0 auto; padding:22px 16px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between}
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Threat Intelligence</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pages/threat-intel.html">Threat Intelligence</a></li>
-        <li><a href="pages/whoami.html">Whoami</a></li>
-        <li><a href="pages/services.html">Services</a></li>
-        <li class="dropdown">
-          <a href="pages/training.html">Cyber Training</a>
-          <ul class="dropdown-content">
-            <li><a href="pages/training/xss.html">XSS</a></li>
-            <li><a href="pages/training/csrf.html">CSRF</a></li>
-            <li><a href="pages/training/clickjacking.html">Click-Jacking</a></li>
-            <li><a href="pages/training/sql-injection.html">SQL Injection</a></li>
-          </ul>
-        </li>
-        <li><a href="posts/posts.html">Posts</a></li>
-      </ul>
-    </nav>
+
+  <!-- Top navigation -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">Threat Intel Specialist</div>
+      <nav class="menu">
+        <a href="/">Home</a>
+        <a href="/pages/threat-intel.html">Threat Intelligence</a>
+        <a href="/pages/whoami.html">Whoami</a>
+        <a href="/pages/services.html">Services</a>
+        <div class="dropdown">
+          <a href="#">Cyber Training ▾</a>
+          <div class="dropdown-list">
+            <a href="/pages/training/xss.html">XSS</a>
+            <a href="/pages/training/csrf.html">CSRF</a>
+            <a href="/pages/training/clickjacking.html">Click-Jacking</a>
+            <a href="/pages/training/sql-injection.html">SQL Injection</a>
+          </div>
+        </div>
+        <a href="/pages/posts.html">Posts</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <img src="images/cybersecurity.png" alt="Cybersecurity" style="width:100%; max-height:400px; object-fit:cover;">
-      <h2>Welcome to Threat Intel world</h2>
-      <p>Explore the latest cyber threats, analysis, mitigation strategies and professional training to protect digital infrastructure.</p>
-    </section>
-  </main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="kicker">Welcome to Threat Intel world</div>
+      <h1>Track emerging threats. Understand the risk. Take action.</h1>
+      <p class="subtitle">
+        Explore the latest cyber threats, analysis, mitigation strategies and professional training to protect digital infrastructure.
+      </p>
+      <div class="pills">
+        <a class="pill" href="/pages/threat-intel.html#cisa">CISA Advisories</a>
+        <a class="pill" href="/pages/threat-intel.html#ncsc">UK NCSC</a>
+        <a class="pill" href="/pages/threat-intel.html#vt">VirusTotal</a>
+        <a class="pill" href="/pages/services.html">Services</a>
+        <a class="pill" href="/pages/whoami.html">Whoami</a>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="/pages/threat-intel.html">View Threat Feeds</a>
+        <a class="btn" href="/pages/posts.html">Read Posts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="section">
+    <div class="cards">
+      <article class="card">
+        <h3>Threat Intelligence</h3>
+        <p class="muted">Centralized feeds from CISA, UK NCSC, VirusTotal and more—updated automatically.</p>
+      </article>
+      <article class="card">
+        <h3>Training</h3>
+        <p class="muted">Hands-on content covering XSS, CSRF, Click-Jacking, SQL Injection and other core topics.</p>
+      </article>
+      <article class="card">
+        <h3>Services</h3>
+        <p class="muted">Advisory, threat modeling, and security assessments tailored to your environment.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Latest advisories (auto from your JSON) -->
+  <section class="section">
+    <h2 style="margin:0 0 12px">Latest CISA Advisories</h2>
+    <div id="latest-feed" class="feed-grid">
+      <!-- populated by JS -->
+    </div>
+    <div class="feed-footer">
+      <a href="/pages/threat-intel.html">See all feeds →</a>
+    </div>
+  </section>
 
   <footer>
-    <p>&copy; 2025 ThreatIntelSpecialist.com</p>
+    <div class="footer-inner">
+      <div>© 2025 ThreatIntelSpecialist.com</div>
+      <div><a href="/pages/whoami.html" style="color:inherit; text-decoration:none">About</a></div>
+    </div>
   </footer>
+
+  <!-- Tiny script to preview top 5 CISA items on the home page -->
+  <script>
+    (async function(){
+      try{
+        const res = await fetch('/feeds/cisa/advisories.json', {cache:'no-store'});
+        if(!res.ok) return;
+        const data = await res.json();
+        const items = (data.items || []).slice(0,5);
+        const container = document.getElementById('latest-feed');
+        container.innerHTML = items.map(it => `
+          <article class="feed-card">
+            <h4><a href="${it.link}" target="_blank" rel="noopener">${it.title || 'Untitled advisory'}</a></h4>
+            <time>${it.published ? it.published : ''}</time>
+            <p class="muted">${(it.executive_summary || it.summary || '').toString().slice(0,180)}${(it.executive_summary || it.summary || '').length>180?'…':''}</p>
+          </article>
+        `).join('');
+      }catch(e){
+        console.warn('CISA preview failed', e);
+      }
+    })();
+  </script>
 </body>
 </html>
