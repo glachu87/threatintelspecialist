@@ -1,3 +1,4 @@
+/* ===== Base Styles ===== */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,52 +29,6 @@ nav a {
   text-decoration: none;
   font-weight: bold;
 }
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #f5f7fa;
-  margin: 0;
-  color: #1a1a1a;
-}
-header {
-  background-color: #005b96;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-}
-nav li {
-  margin: 0 1rem;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-main {
-  padding: 2rem;
-}
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #e0e0e0;
-}
-/* Base menu style */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 15px;
-}
-
-nav ul li {
-  position: relative;
-}
 
 /* Dropdown menu */
 .dropdown-content {
@@ -103,10 +58,10 @@ nav ul li {
   background-color: #444;
 }
 
-/* Show dropdown on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 /* Whoami Page Background */
 .whoami-page {
   background-image: url('images/whoamibackground.png');
@@ -120,7 +75,7 @@ nav ul li {
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.75); /* dark overlay for readability */
+  background-color: rgba(0, 0, 0, 0.75);
   padding: 2rem;
   min-height: 100vh;
 }
@@ -166,54 +121,63 @@ ul {
 ul li {
   margin-bottom: 0.5rem;
 }
-body {
-  background: linear-gradient(180deg, #f4f7fa, #e9edf2);
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #222;
+
+/* ===== Threat Intel Page Foundation ===== */
+body.threat-intel-page {
+  background: linear-gradient(180deg, #0f172a, #0b1220);
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.feed-page {
+  padding: 20px;
+}
+
+/* Section headings */
 .feed-section {
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .feed-section h2 {
-  font-size: 1.8rem;
-  border-bottom: 3px solid #0078d7;
+  font-size: 1.6rem;
+  color: #60a5fa;
+  border-bottom: 2px solid #1e293b;
   padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-  color: #0078d7;
+  margin-bottom: 1rem;
 }
 
+/* Grid of cards */
 .feed-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
 }
 
+/* Card style */
 .feed-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .feed-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0px 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.45);
 }
 
 .feed-card h4 {
-  margin: 0 0 0.5rem;
-  font-size: 1.2rem;
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
 }
 
 .feed-card h4 a {
-  color: #0078d7;
+  color: #93c5fd;
   text-decoration: none;
 }
 
@@ -222,58 +186,14 @@ body {
 }
 
 .feed-card time {
-  font-size: 0.85rem;
-  color: #666;
-}
-
-.feed-card p {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  margin-top: 0.5rem;
-}
-/* === Threat Intel Feed Styles === */
-.feed-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-  margin: 40px auto;
-  max-width: 1200px;
-  padding: 10px;
-}
-
-.feed-card {
-  background: #1e1e2f; /* dark card background */
-  color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.feed-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.feed-card h4 {
-  margin-top: 0;
-  font-size: 1.1rem;
-  color: #00c6ff; /* highlight link color */
-}
-
-.feed-card h4 a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.feed-card time {
   display: block;
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-  color: #bbb;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 8px;
 }
 
 .feed-card p {
-  font-size: 0.9rem;
-  line-height: 1.4;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
 }
