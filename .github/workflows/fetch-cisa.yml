@@ -4,8 +4,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 * * * *' # runs every hour; change to daily if you prefer
+
 permissions:
-  contents: write  # ✅ This allows committing & pushing changes
+  contents: write  # Allows committing & pushing changes
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -13,20 +15,26 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          persist-credentials: true   # ✅ ensures token is kept
+          persist-credentials: true
           fetch-depth: 0
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests feedparser
+        run: |
+          pip install requests feedparser beautifulsoup4
 
-      - name: Fetch CISA Advisories
+      - name: Fetch CISA feeds and commit if changed
+        env:
+          TZ: 'UTC'
         run: |
           python - <<'PY'
-          import os, json, requests, feedparser, datetime, subprocess
+          import os, json, datetime, subprocess, requests
+          from bs4 import BeautifulSoup
+          import feedparser
 
           outdir = os.path.join(os.getcwd(), 'feeds', 'cisa')
           os.makedirs(outdir, exist_ok=True)
@@ -34,25 +42,72 @@ jobs:
           feed_url = 'https://www.cisa.gov/cybersecurity-advisories/all.xml'
           r = requests.get(feed_url, timeout=30)
           r.raise_for_status()
-
           parsed = feedparser.parse(r.content)
-          items = []
-          for e in parsed.entries[:10]:
-              items.append({
-                  'title': e.get('title', ''),
-                  'link': e.get('link', ''),
-                  'published': e.get('published', ''),
-                  'summary': e.get('summary', '')
+
+          advisories = []
+
+          def scrape_details(url):
+              details = {
+                  "vendor": "N/A",
+                  "affected_products": "N/A",
+                  "release_date": "N/A",
+                  "cvss_v4": "N/A",
+                  "executive_summary": "N/A",
+                  "risk_evaluation": "N/A",
+                  "vulnerability_overview": "N/A",
+                  "mitigations": "N/A"
+              }
+              try:
+                  resp = requests.get(url, timeout=30)
+                  resp.raise_for_status()
+                  soup = BeautifulSoup(resp.text, 'html.parser')
+
+                  # Release date
+                  date_tag = soup.find('div', class_='published-date')
+                  if date_tag:
+                      details["release_date"] = date_tag.get_text(strip=True)
+
+                  # Sections (CISA advisories have headings like <h2>Executive Summary</h2>)
+                  current_section = None
+                  for el in soup.select('h2, h3, p, li'):
+                      if el.name in ['h2', 'h3']:
+                          current_section = el.get_text(strip=True).lower()
+                      elif el.name in ['p', 'li'] and current_section:
+                          text = el.get_text(strip=True)
+                          if 'vendor' in current_section:
+                              details["vendor"] = text
+                          elif 'affected' in current_section:
+                              details["affected_products"] += (" " if details["affected_products"] != "N/A" else "") + text
+                          elif 'executive summary' in current_section:
+                              details["executive_summary"] += (" " if details["executive_summary"] != "N/A" else "") + text
+                          elif 'risk evaluation' in current_section:
+                              details["risk_evaluation"] += (" " if details["risk_evaluation"] != "N/A" else "") + text
+                          elif 'vulnerability overview' in current_section:
+                              details["vulnerability_overview"] += (" " if details["vulnerability_overview"] != "N/A" else "") + text
+                          elif 'mitigations' in current_section:
+                              details["mitigations"] += (" " if details["mitigations"] != "N/A" else "") + text
+                          elif 'cvss' in current_section:
+                              details["cvss_v4"] = text
+              except Exception as e:
+                  print(f"Error scraping {url}: {e}")
+              return details
+
+          for entry in parsed.entries:
+              details = scrape_details(entry.link)
+              advisories.append({
+                  "title": entry.title,
+                  "link": entry.link,
+                  "published": entry.published if hasattr(entry, 'published') else '',
+                  **details
               })
 
           out_data = {
-              'source': feed_url,
-              'fetched_at': datetime.datetime.utcnow().isoformat()+'Z',
-              'items': items
+              "source": feed_url,
+              "fetched_at": datetime.datetime.utcnow().isoformat() + 'Z',
+              "items": advisories
           }
 
-          out_file = os.path.join(outdir, 'advisories.json')
-          with open(out_file, 'w') as f:
+          with open(os.path.join(outdir, 'advisories.json'), 'w') as f:
               json.dump(out_data, f, indent=2)
 
           subprocess.run(['git', 'config', 'user.email', 'action@github.com'], check=True)
@@ -60,7 +115,7 @@ jobs:
           subprocess.run(['git', 'add', 'feeds/cisa/advisories.json'], check=True)
           changed = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True).stdout.strip()
           if changed:
-              subprocess.run(['git', 'commit', '-m', 'Update CISA feed'], check=True)
+              subprocess.run(['git', 'commit', '-m', 'Update CISA feed with details'], check=True)
               subprocess.run(['git', 'push'], check=True)
           else:
               print("No changes to commit.")
