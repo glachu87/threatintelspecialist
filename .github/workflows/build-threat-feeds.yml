@@ -1,0 +1,33 @@
+name: Build Threat Feeds Index
+
+on:
+  schedule:
+    - cron: "17 2 * * *"   # 02:17 UTC daily
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install feedparser requests pandas python-dateutil
+
+      - name: Build index
+        run: python scripts/build_index.py
+
+      - name: Commit and push index
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/data/index.json
+          git commit -m "chore: update threat intel index"
+          git push

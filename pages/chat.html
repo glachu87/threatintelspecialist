@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Threat Intel Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+}
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: auto;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background: #1e293b;
+}
+.message {
+  margin-bottom: 1rem;
+  max-width: 80%;
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+.user {
+  background: #2563eb;
+  align-self: flex-end;
+}
+.bot {
+  background: #374151;
+  align-self: flex-start;
+}
+.chat-input {
+  display: flex;
+  background: #111827;
+  padding: 0.5rem;
+}
+.chat-input input {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+}
+.chat-input button {
+  margin-left: 0.5rem;
+  background: #2563eb;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.source-label {
+  font-size: 0.85rem;
+  color: #60a5fa;
+  margin-bottom: 0.3rem;
+}
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type a product name to check..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+let allFeeds = [];
+
+// Load all feeds
+Promise.all([
+  fetch('/feeds/cisa/advisories.json').then(r => r.json()).catch(() => null),
+  fetch('/feeds/ncsc/advisories.json').then(r => r.json()).catch(() => null),
+  fetch('/feeds/vt/advisories.json').then(r => r.json()).catch(() => null)
+]).then(([cisa, ncsc, vt]) => {
+  if (cisa?.items) {
+    allFeeds = allFeeds.concat(cisa.items.map(i => ({...i, source: 'CISA'})));
+  }
+  if (ncsc?.items) {
+    allFeeds = allFeeds.concat(ncsc.items.map(i => ({...i, source: 'UK NCSC'})));
+  }
+  if (vt?.items) {
+    allFeeds = allFeeds.concat(vt.items.map(i => ({...i, source: 'VirusTotal'})));
+  }
+  console.log(`Loaded ${allFeeds.length} advisories from all feeds`);
+});
+
+function addMessage(text, sender) {
+  const msg = document.createElement('div');
+  msg.classList.add('message', sender);
+  msg.innerHTML = text;
+  document.getElementById('chatMessages').appendChild(msg);
+  document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+}
+
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const query = input.value.trim();
+  if (!query) return;
+
+  // Show user's message
+  addMessage(query, 'user');
+  input.value = '';
+
+  // Search advisories
+  const matches = allFeeds.filter(item =>
+    (item.affected_products && item.affected_products.toLowerCase().includes(query.toLowerCase())) ||
+    (item.title && item.title.toLowerCase().includes(query.toLowerCase())) ||
+    (item.executive_summary && item.executive_summary.toLowerCase().includes(query.toLowerCase()))
+  );
+
+  if (matches.length > 0) {
+    let reply = `<strong>Found ${matches.length} advisories mentioning "${query}":</strong><br>`;
+    matches.forEach(m => {
+      reply += `<div class="source-label">[${m.source}]</div>`;
+      reply += `🔹 <a href="${m.link}" target="_blank" style="color:#60a5fa">${m.title}</a><br>`;
+      reply += `<em>Vendor:</em> ${m.vendor || 'N/A'}<br>`;
+      reply += `<em>Release date:</em> ${m.release_date || m.published || 'N/A'}<br><br>`;
+    });
+    addMessage(reply, 'bot');
+  } else {
+    addMessage(`No advisories found for "${query}".`, 'bot');
+  }
+}
+</script>
+
+</body>
+</html>
