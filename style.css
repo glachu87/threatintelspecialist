@@ -324,3 +324,71 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* --- Mobile enhancements (non-destructive) --- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: white;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  /* Turn the horizontal menu into a slide-down panel */
+  .nav-inner { position: relative; }
+  .menu-toggle { display: block; }
+
+  /* Your .menu is currently a flex row of <a>’s and a .dropdown
+     We'll stack it and pin it to the header on mobile */
+  .nav .menu {
+    display: none;                 /* hide by default */
+    position: absolute;
+    top: 100%;
+    right: 12px;
+    left: 12px;
+    background: rgba(0, 0, 50, 0.95);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 10px;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+  }
+  .nav .menu.open { display: flex; }
+
+  .nav .menu a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+  }
+  .nav .menu a:hover {
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Dropdown in mobile: make its panel static and toggleable */
+  .nav .menu .dropdown { position: static; }
+  .nav .menu .dropdown .dropdown-list {
+    position: static;
+    display: none;                 /* hidden until opened */
+    background: rgba(0, 0, 50, 0.85);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 6px;
+    margin: 4px 0 0 0;
+  }
+  .nav .menu .dropdown.open .dropdown-list { display: block; }
+
+  .nav .menu .dropdown .dropdown-list a {
+    padding: 8px 10px;
+    border-radius: 4px;
+  }
+  .nav .menu .dropdown .dropdown-list a:hover {
+    background: rgba(255,255,255,0.08);
+  }
+}

@@ -97,13 +97,18 @@
 <body>
 
   <!-- Top navigation -->
-  <header class="nav">
+<header class="nav">
   <div class="nav-inner">
     <a href="/index.html" class="logo-link">
       <img src="/images/TIS_Logo.png" alt="Threat Intel Specialist Logo" class="logo">
     </a>
     <div class="brand">Threat Intel</div>
-    <nav class="menu">
+
+    <!-- Add this button -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+    <!-- Give your existing menu an id -->
+    <nav class="menu" id="menu">
       <a href="/index.html">Home</a>
       <a href="/pages/threat-intel.html">Threat Intelligence</a>
       <a href="/pages/whoami.html">Whoami</a>
@@ -121,6 +126,7 @@
     </nav>
   </div>
 </header>
+
 
 
   <!-- Hero -->
@@ -360,6 +366,23 @@
 <script>
   document.getElementById('menuToggle').addEventListener('click', function() {
     document.getElementById('menu').classList.toggle('showing');
+  });
+</script>
+<script>
+  // Toggle the whole menu
+  document.getElementById('menuToggle').addEventListener('click', function () {
+    document.getElementById('menu').classList.toggle('open');
+  });
+
+  // Make the dropdown tap-to-open on mobile (<=768px)
+  Array.from(document.querySelectorAll('.menu .dropdown > a')).forEach(link => {
+    link.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const parent = link.parentElement;
+        parent.classList.toggle('open');
+      }
+    });
   });
 </script>
 </body>
