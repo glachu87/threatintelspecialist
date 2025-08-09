@@ -1,39 +1,216 @@
-<body class="whoami-page">
-  <div class="overlay">
-    <header>
-      <h1>Whoami</h1>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Whoami · Threat Intel Specialist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About Threat Intel Specialist: experience, skills, certifications, and focus areas." />
 
-    <main>
-      <section>
-        <p>
-          I’m a cybersecurity professional with deep expertise in operational technology (OT) and IT cybersecurity risk management. I hold <strong>CISSP</strong>, <strong>IEC 62443 Cybersecurity Expert</strong> and <strong>CCSP</strong> certifications, and my work spans across sectors like life sciences, pharmaceuticals, and energy.
-        </p>
-        <p>
-          I’ve supported OT risk assessments and aligned security programs with <strong>IEC 62443</strong> standards.
-        </p>
-        <p>
-          This site, <strong>ThreatIntelSpecialist.com</strong>, is where I share my knowledge, insights, and tooling related to cybersecurity threats, prevention methods, and cyber training. Whether you're a security leader or a hands-on analyst, I aim to make threat intelligence accessible and actionable.
-        </p>
-      </section>
+  <style>
+    :root{
+      --bg1:#0f172a; --bg2:#0b1220; --panel:#0b1220; --panel-2:#111827; --muted:#9ca3af; --accent:#60a5fa; --accent-2:#22d3ee; --text:#e5e7eb; --white:#fff;
+      --ring: rgba(96,165,250,.25);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--text); background:linear-gradient(180deg,var(--bg1),var(--bg2));}
+    a{color:inherit}
 
-      <section>
-        <h2>What You'll Find Here</h2>
-        <ul>
-          <li>Cyber threat intelligence posts and analysis</li>
-          <li>Training resources and guides</li>
-          <li>Threat detection and prevention techniques</li>
-        </ul>
-      </section>
+    /* Top bar (same vibe as home) */
+    .nav{position:sticky; top:0; z-index:10; background:rgba(2,6,23,.7); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 16px;}
+    .logo-link{display:flex; align-items:center; text-decoration:none}
+    .logo{height:40px; width:auto; margin-right:8px}
+    .brand{font-weight:800; letter-spacing:.3px;}
+    .menu{display:flex; gap:14px; margin-left:auto; flex-wrap:wrap}
+    .menu a{padding:8px 10px; border-radius:8px; text-decoration:none; color:var(--text)}
+    .menu a:hover{background:rgba(255,255,255,.06)}
+    .dropdown{position:relative}
+    .dropdown-list{display:none; position:absolute; top:100%; left:0; background:var(--panel-2); border:1px solid rgba(255,255,255,.08); border-radius:10px; min-width:220px; padding:8px; box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .dropdown:hover .dropdown-list{display:block}
+    .dropdown-list a{display:block; padding:10px 12px; border-radius:8px}
+    .dropdown-list a:hover{background:rgba(255,255,255,.06)}
 
-      <section>
-        <h2>Contact</h2>
-        <p>Feel free to reach out through the contact form (coming soon).</p>
-      </section>
-    </main>
+    /* Hero */
+    .hero{
+      position:relative; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.06);
+      background:
+        radial-gradient(1200px 500px at 20% 0%, rgba(96,165,250,.10), transparent 60%),
+        radial-gradient(1000px 400px at 80% 10%, rgba(34,211,238,.10), transparent 60%);
+    }
+    .hero-inner{max-width:1200px; margin:0 auto; padding:60px 16px 40px; display:grid; grid-template-columns: 1fr; gap:18px}
+    .kicker{color:var(--accent-2); font-weight:700; letter-spacing:.2em; text-transform:uppercase; font-size:.8rem}
+    h1{margin:0; font-size:clamp(1.8rem,3.2vw,2.6rem); line-height:1.15}
+    .subtitle{color:var(--muted); max-width:900px}
 
-    <footer>
-      <p>&copy; 2025 ThreatIntelSpecialist.com</p>
-    </footer>
-  </div>
+    /* Page sections */
+    .section{max-width:1200px; margin:0 auto; padding:26px 16px}
+    .two-col{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px}
+
+    /* Panels / cards */
+    .card{background:var(--panel-2); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px;
+          box-shadow:0 8px 28px rgba(0,0,0,.25);}
+    .card h2{margin:0 0 10px; font-size:1.3rem}
+    .muted{color:var(--muted)}
+
+    /* Bullets & list chips */
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .chip{border:1px solid rgba(255,255,255,.14); background:#0b1220; padding:8px 10px; border-radius:10px; font-size:.92rem}
+
+    /* Timeline */
+    .timeline{position:relative; padding-left:20px}
+    .timeline::before{content:""; position:absolute; left:6px; top:0; bottom:0; width:2px; background:rgba(255,255,255,.12)}
+    .t-item{position:relative; margin:14px 0 14px 0; padding-left:10px}
+    .t-item::before{content:""; position:absolute; left:-1px; top:6px; width:10px; height:10px; border-radius:999px; background:var(--accent)}
+    .t-title{font-weight:700}
+    .t-meta{font-size:.9rem; color:var(--muted)}
+
+    /* Table for quick facts */
+    .facts{width:100%; border-collapse:collapse; margin-top:6px}
+    .facts th{width:220px; text-align:left; padding:10px; background:#1f2937; color:var(--text); border-bottom:1px solid rgba(255,255,255,.06)}
+    .facts td{padding:10px; background:#0b1220; color:#d1d5db; border-bottom:1px solid rgba(255,255,255,.06)}
+
+    /* CTA */
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1220}
+    .btn.primary{background:linear-gradient(90deg,#3b82f6,#06b6d4); color:var(--white); border:none}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.06); color:var(--muted)}
+    .footer-inner{max-width:1200px; margin:0 auto; padding:22px 16px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between}
+  </style>
+</head>
+<body>
+
+  <!-- Top navigation with your logo -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="logo-link">
+        <img src="/images/TIS_Logo.png" alt="Threat Intel Specialist Logo" class="logo">
+      </a>
+      <div class="brand"><a href="/index.html" style="text-decoration:none">Threat Intel Specialist</a></div>
+      <nav class="menu">
+        <a href="/index.html">Home</a>
+        <a href="/pages/threat-intel.html">Threat Intelligence</a>
+        <a href="/pages/whoami.html">Whoami</a>
+        <a href="/pages/services.html">Services</a>
+        <div class="dropdown">
+          <a href="#">Cyber Training ▾</a>
+          <div class="dropdown-list">
+            <a href="/pages/training/xss.html">XSS</a>
+            <a href="/pages/training/csrf.html">CSRF</a>
+            <a href="/pages/training/clickjacking.html">Click-Jacking</a>
+            <a href="/pages/training/sql-injection.html">SQL Injection</a>
+          </div>
+        </div>
+        <a href="/pages/posts.html">Posts</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="kicker">Whoami</div>
+      <h1>Senior Threat Intelligence & OT Cyber Risk Specialist</h1>
+      <p class="subtitle">
+        I analyze cyber-physical risks, track emerging threats, and turn intelligence into decisions.
+        Certified <strong>CISSP</strong> and <strong>CCSP</strong>, with hands-on experience across OT security, IEC 62443, and threat-led defense.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="/pages/threat-intel.html">See Threat Feeds</a>
+        <a class="btn" href="/pages/services.html">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Quick Facts -->
+  <section class="section two-col">
+    <article class="card">
+      <h2>About</h2>
+      <p class="muted">
+        I focus on critical infrastructure protection and actionable intel for defenders. Recent projects include:
+        OT risk assessments aligned to <strong>IEC 62443</strong>, training senior leadership on identity and OT security,
+        and building automated intel pipelines for faster response.
+      </p>
+      <div class="chips">
+        <span class="chip">Threat Intelligence</span>
+        <span class="chip">OT/ICS Security</span>
+        <span class="chip">IEC 62443</span>
+        <span class="chip">Cloud Security</span>
+        <span class="chip">Detection Engineering</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Quick Facts</h2>
+      <table class="facts">
+        <tr><th>Certifications</th><td>CISSP, CCSP</td></tr>
+        <tr><th>Recent Work</th><td>OT risk assessment for new facility (M&A), Senior IDAM director training</td></tr>
+        <tr><th>Focus Areas</th><td>Substation devices, transmission systems, cyber-physical risk</td></tr>
+        <tr><th>Interests</th><td>Threat intel automation, structured advisories, KEV monitoring</td></tr>
+      </table>
+    </article>
+  </section>
+
+  <!-- Skills -->
+  <section class="section">
+    <div class="card">
+      <h2>Core Skills</h2>
+      <div class="chips">
+        <span class="chip">Malware & TTP Analysis</span>
+        <span class="chip">CISA / NCSC Feeds</span>
+        <span class="chip">MITRE ATT&CK Mapping</span>
+        <span class="chip">STIX/TAXII (AIS)</span>
+        <span class="chip">IEC 62443 Assessments</span>
+        <span class="chip">SIEM & Detection Content</span>
+        <span class="chip">AWS Security</span>
+        <span class="chip">Python Automation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Timeline (example placeholders—edit as you like) -->
+  <section class="section two-col">
+    <article class="card">
+      <h2>Experience Timeline</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-title">Senior OT Cyber Risk Analyst</div>
+          <div class="t-meta">2025 — Present</div>
+          <div class="muted">Leading risk assessments and threat modeling for OT environments; integrating live advisories into decision workflows.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-title">Threat Intelligence Specialist</div>
+          <div class="t-meta">2023 — 2025</div>
+          <div class="muted">Automated intel feeds, built dashboards, and delivered executive-ready analysis for remediation.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-title">Security Engineer</div>
+          <div class="t-meta">Earlier</div>
+          <div class="muted">Detection engineering, cloud controls, and incident response support.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Certifications</h2>
+      <div class="chips">
+        <span class="chip">CISSP</span>
+        <span class="chip">CCSP</span>
+        <!-- Add more as needed -->
+      </div>
+      <div class="cta" style="margin-top:12px">
+        <a class="btn" href="/pages/services.html">Work with me</a>
+        <a class="btn" href="/pages/posts.html">Read posts</a>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 2025 ThreatIntelSpecialist.com</div>
+      <div><a href="/index.html" style="color:inherit; text-decoration:none">Home</a></div>
+    </div>
+  </footer>
 </body>
+</html>
