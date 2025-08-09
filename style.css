@@ -266,3 +266,14 @@ body.threat-intel-page {
 .advisory-table tr:nth-child(even) td {
   background: #1e293b;
 }
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo {
+  height: 40px; /* Adjust for desired size */
+  width: auto;
+  margin-right: 10px;
+}
