@@ -7,47 +7,24 @@
   <!-- Use absolute path so it works from /pages/ -->
   <link rel="stylesheet" href="/style.css" />
 </head>
-<body>
+<body class="threat-intel-page">
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li><a href="#" onclick="showFeed('cisa')">CISA Advisories</a></li>
+        <li><a href="#" onclick="showFeed('ncsc')">UK NCSC</a></li>
+        <li><a href="#" onclick="showFeed('virustotal')">VirusTotal</a></li>
+      </ul>
+    </nav>
 
-  <main class="feed-page">
-    <section class="feed-section">
-      <h2>CISA Cybersecurity Advisories</h2>
-      <div id="cisa-feed" class="feed-container">Loading...</div>
-    </section>
+    <main class="content">
+      <div id="feed-content">
+        <h2>Select a feed from the left menu</h2>
+      </div>
+    </main>
+  </div>
 
-    <!-- Reserve space for other feeds (UK NCSC, VirusTotal, etc.) -->
-    <section class="feed-section">
-      <h2>UK NCSC Threat Advisories</h2>
-      <div id="ukncsc-feed" class="feed-container">Coming soon…</div>
-    </section>
-
-    <section class="feed-section">
-      <h2>VirusTotal Community / Blog</h2>
-      <div id="vt-feed" class="feed-container">Coming soon…</div>
-    </section>
-  </main>
-
-  <script>
-  async function loadCisaFeed() {
-    const container = document.getElementById('cisa-feed');
-    try {
-      const res = await fetch('/feeds/cisa/advisories.json');
-      if (!res.ok) throw new Error('Failed to fetch feed');
-      const data = await res.json();
-
-      container.innerHTML = data.items.map(item => `
-        <article class="feed-card">
-          <h4><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h4>
-          <time>${item.published || ''}</time>
-          <p>${item.summary || ''}</p>
-        </article>
-      `).join('');
-    } catch (err) {
-      console.error(err);
-      container.innerHTML = '<p>Error loading CISA feed.</p>';
-    }
-  }
-  loadCisaFeed();
-  </script>
+  <script src="/js/feeds.js"></script>
 </body>
+
 </html>
