@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-08-15T18:27:51.461406Z",
+  "fetched_at": "2025-08-15T19:14:41.868603Z",
   "items": [
     {
       "title": "Siemens COMOS",
@@ -85,7 +85,7 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-226-28",
       "published": "Thu, 14 Aug 25 12:00:00 +0000",
       "vendor": "Rockwell Automation",
-      "affected_products": "N/AThe following versions of Rockwell Automation ControlLogix Ethernet Modules are affected: 1756-EN2T/D: Version 11.004 or below 1756-EN2F/C: Version 11.004 or below 1756-EN2TR/C: Version 11.004 or below 1756-EN3TR/B: Version 11.004 or below 1756-EN2TP/A: Version 11.004 or below",
+      "affected_products": "N/AThe following versions of Rockwell Automation ControlLogix Ethernet Modules are affected: 1756-EN2T/D: Version 11.004 and prior 1756-EN2F/C: Version 11.004 and prior 1756-EN2TR/C: Version 11.004 and prior 1756-EN3TR/B: Version 11.004 and prior 1756-EN2TP/A: Version 11.004 and prior",
       "release_date": "N/A",
       "cvss_v4": "N/A",
       "executive_summary": "N/ACVSS v4 9.3 ATTENTION: Exploitable remotely/low attack complexity Vendor: Rockwell Automation Equipment: ControlLogix Ethernet Modules Vulnerability: Initialization of a Resource with an Insecure Default",
