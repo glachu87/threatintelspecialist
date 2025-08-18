@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-08-18T15:21:10.830123Z",
+  "fetched_at": "2025-08-18T16:25:09.491799Z",
   "items": [
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/08/18/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Mon, 18 Aug 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "Siemens COMOS",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-226-02",
@@ -248,19 +261,6 @@
       "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an attacker with a legitimate, highly privileged account on the web interface to upload arbitrary files onto the filesystem of the devices.",
       "vulnerability_overview": "N/AThe affected devices do not properly enforce the restriction of files that can be uploaded from the web interface. This could allow an authenticated remote attacker with high privileges in the web interface to upload arbitrary files. CVE-2025-33023has been assigned to this vulnerability. A CVSS v3.1 base score of 4.1 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:L/A:N). A CVSS v4 score has also been calculated forCVE-2025-33023. A base score of 5.1 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:N/PR:H/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N).",
       "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: All affected products: Currently no fix is available All affected products: Restrict highly privileged access to the web interface to authorized and trusted personnel only As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-665108 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
-    },
-    {
-      "title": "CISA Releases Thirty-Two Industrial Control Systems Advisories",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/08/14/cisa-releases-thirty-two-industrial-control-systems-advisories",
-      "published": "Thu, 14 Aug 25 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
     },
     {
       "title": "Siemens Engineering Platforms",
