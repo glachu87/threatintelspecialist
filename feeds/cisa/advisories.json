@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-08-19T11:15:52.738064Z",
+  "fetched_at": "2025-08-19T12:39:36.923221Z",
   "items": [
     {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
@@ -228,7 +228,7 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-226-25",
       "published": "Thu, 14 Aug 25 12:00:00 +0000",
       "vendor": "Rockwell Automation",
-      "affected_products": "N/AThe following versions of Rockwell Automation Micro800 are affected: PLC Micro820 LC20: All versions prior to V14.011 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693) PLC Micro850 LC50: All versions prior to V12.013 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693) PLC Micro870 LC70: All versions prior to V12.013 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693) PLC Micro850 L50E: Versions V20.011 through V22.011 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693, CVE-2023-7693) PLC Micro870 L70E: Versions V20.011 through V22.011 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693, CVE-2023-7693)",
+      "affected_products": "N/AThe following versions of Rockwell Automation Micro800 are affected: PLC Micro820 LC20: All versions prior to V14.011 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693) PLC Micro850 LC50: All versions prior to V12.013 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693) PLC Micro870 LC70: All versions prior to V12.013 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693) PLC Micro850 L50E: Versions V20.011 through V22.011 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693, CVE-2025-7693) PLC Micro870 L70E: Versions V20.011 through V22.011 (CVE-2023-48691, CVE-2023-48692, CVE-2023-48693, CVE-2025-7693)",
       "release_date": "N/A",
       "cvss_v4": "N/A",
       "executive_summary": "N/ACVSS v4 9.3 ATTENTION:Exploitable remotely/low attack complexity Vendor:Rockwell Automation Equipment:Micro800 Vulnerabilities:Dependency on Vulnerable Third-Party Component, Improper Input Validation",
