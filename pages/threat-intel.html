@@ -110,6 +110,7 @@
     <a href="#" id="link-cisa" class="menu-link active" onclick="showFeed('cisa')">CISA Advisories</a>
     <a href="#" id="link-ncsc" class="menu-link" onclick="showFeed('ncsc')">UK NCSC</a>
     <a href="#" id="link-vt" class="menu-link" onclick="showFeed('virustotal')">VirusTotal</a>
+    <a href="#" id="link-google" class="menu-link" onclick="showFeed('google')">Google threat intel</a>
   </aside>
 
   <main class="main">
@@ -119,58 +120,98 @@
   </main>
 
   <script>
-    const links = {
-      cisa: document.getElementById('link-cisa'),
-      ncsc: document.getElementById('link-ncsc'),
-      virustotal: document.getElementById('link-vt')
-    };
+  const links = {
+    cisa: document.getElementById('link-cisa'),
+    ncsc: document.getElementById('link-ncsc'),
+    virustotal: document.getElementById('link-vt'),
+    google: document.getElementById('link-google')
+  };
 
-    function setActive(feed) {
-      Object.values(links).forEach(el => el.classList.remove('active'));
-      links[feed].classList.add('active');
-    }
+  function setActive(feed) {
+    // Remove active from all, add to the one that exists
+    Object.values(links).forEach(el => el && el.classList.remove('active'));
+    if (links[feed]) links[feed].classList.add('active');
+  }
 
-    async function showFeed(feed) {
-      setActive(feed);
-      const container = document.getElementById('feed-container');
-      container.innerHTML = `<p>Loading ${feed.toUpperCase()} feed...</p>`;
+  async function showFeed(feed) {
+    setActive(feed);
+    const container = document.getElementById('feed-container');
+    container.innerHTML = `<p>Loading ${feed.toUpperCase()} feed...</p>`;
 
-      if (feed === 'cisa') {
-        try {
-          const res = await fetch('/feeds/cisa/advisories.json');
-          if (!res.ok) throw new Error('Failed to fetch feed');
-          const data = await res.json();
-          renderCisa(data, container);
-        } catch (e) {
-          container.innerHTML = `<p>Error loading CISA feed.</p>`;
-        }
-      } else {
-        container.innerHTML = `<p>${feed.toUpperCase()} feed coming soon!</p>`;
+    if (feed === 'cisa') {
+      try {
+        const res = await fetch('/feeds/cisa/advisories.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch feed');
+        const data = await res.json();
+        renderCisa(data, container);
+      } catch (e) {
+        console.error(e);
+        container.innerHTML = `<p>Error loading CISA feed.</p>`;
       }
+    } else if (feed === 'google') {
+      try {
+        const res = await fetch('/feeds/threatintel/google_feed.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch feed');
+        const data = await res.json();
+        renderGoogle(data, container);
+      } catch (e) {
+        console.error(e);
+        container.innerHTML = `<p>Error loading Google threat intel feed.</p>`;
+      }
+    } else {
+      container.innerHTML = `<p>${feed.toUpperCase()} feed coming soon!</p>`;
     }
+  }
 
-    function renderCisa(data, container) {
-      container.innerHTML = '<div class="content-title">CISA Cybersecurity Advisories</div>';
-      data.items.forEach(item => {
-        container.innerHTML += `
-          <div class="feed-card">
-            <h3>${item.title || 'No Title'}</h3>
-            <table class="feed-table">
-              <tr><th>Vendor</th><td>${item.vendor || 'N/A'}</td></tr>
-              <tr><th>Affected Products</th><td>${item.affected_products || 'N/A'}</td></tr>
-              <tr><th>Release Date</th><td>${item.release_date || item.published || 'N/A'}</td></tr>
-              <tr><th>CVSS v4</th><td>${item.cvss_v4 || 'N/A'}</td></tr>
-              <tr><th>Summary</th><td>${item.executive_summary || item.summary || 'N/A'}</td></tr>
-              <tr><th>Risk</th><td>${item.risk_evaluation || 'N/A'}</td></tr>
-              <tr><th>Overview</th><td>${item.vulnerability_overview || 'N/A'}</td></tr>
-              <tr><th>Mitigations</th><td>${item.mitigations || 'N/A'}</td></tr>
-            </table>
-          </div>`;
-      });
+  function renderCisa(data, container) {
+    container.innerHTML = '<div class="content-title">CISA Cybersecurity Advisories</div>';
+    (data.items || []).forEach(item => {
+      container.innerHTML += `
+        <div class="feed-card">
+          <h3>${item.title || 'No Title'}</h3>
+          <table class="feed-table">
+            <tr><th>Vendor</th><td>${item.vendor || 'N/A'}</td></tr>
+            <tr><th>Affected Products</th><td>${item.affected_products || 'N/A'}</td></tr>
+            <tr><th>Release Date</th><td>${item.release_date || item.published || 'N/A'}</td></tr>
+            <tr><th>CVSS v4</th><td>${item.cvss_v4 || 'N/A'}</td></tr>
+            <tr><th>Summary</th><td>${item.executive_summary || item.summary || 'N/A'}</td></tr>
+            <tr><th>Risk</th><td>${item.risk_evaluation || 'N/A'}</td></tr>
+            <tr><th>Overview</th><td>${item.vulnerability_overview || 'N/A'}</td></tr>
+            <tr><th>Mitigations</th><td>${item.mitigations || 'N/A'}</td></tr>
+          </table>
+        </div>`;
+    });
+  }
+
+  // New: simple reader for the Google feed snapshot
+  function renderGoogle(data, container) {
+    const items = (data.items || []);
+    container.innerHTML = '<div class="content-title">Google Threat Intelligence</div>';
+    if (!items.length) {
+      container.innerHTML += '<p>No items found.</p>';
+      return;
     }
+    const fmtDate = s => {
+      const d = new Date(s);
+      return isNaN(d) ? (s || '') : d.toLocaleString();
+    };
+    items.slice(0, 20).forEach(it => {
+      const title = it.title || 'Untitled';
+      const link = it.link || '#';
+      const date = fmtDate(it.pubDate);
+      const desc = (it.description || '').slice(0, 400);
 
-    // Load CISA by default
-    window.addEventListener('DOMContentLoaded', () => showFeed('cisa'));
-  </script>
+      container.innerHTML += `
+        <div class="feed-card">
+          <h3><a href="${link}" target="_blank" rel="noopener">${title}</a></h3>
+          <div style="color: var(--muted); margin-bottom: .5rem;">${date}</div>
+          <div>${desc}</div>
+        </div>`;
+    });
+  }
+
+  // Load CISA by default
+  window.addEventListener('DOMContentLoaded', () => showFeed('cisa'));
+</script>
 </body>
 </html>
