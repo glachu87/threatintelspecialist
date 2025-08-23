@@ -1,0 +1,73 @@
+name: Fetch ThreatIntel RSS
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # hourly (UTC)
+  workflow_dispatch:      # allow manual run from Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  build-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch & convert RSS to JSON
+        run: |
+          python - << 'PY'
+          import json, urllib.request, xml.etree.ElementTree as ET, os, re, datetime
+          FEED_URL = "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v"
+          with urllib.request.urlopen(FEED_URL, timeout=30) as r:
+              xml = r.read()
+          root = ET.fromstring(xml)
+
+          channel = root.find("channel")
+          items = []
+          if channel is not None:
+              for it in channel.findall("item"):
+                  def text(tag):
+                      el = it.find(tag)
+                      return el.text.strip() if el is not None and el.text else ""
+                  title = text("title")
+                  link = text("link")
+                  pub = text("pubDate")
+                  desc = text("description")
+                  desc_plain = re.sub(r"<[^>]+>", "", desc or "").strip()
+                  items.append({
+                      "title": title,
+                      "link": link,
+                      "pubDate": pub,
+                      "description": desc_plain[:1000]
+                  })
+          out = {
+              "source": FEED_URL,
+              "fetched_at": datetime.datetime.utcnow().isoformat()+"Z",
+              "count": len(items),
+              "items": items[:50]
+          }
+
+          os.makedirs("feeds/threatintel", exist_ok=True)
+          with open("feeds/threatintel/google_feed.json", "w", encoding="utf-8") as f:
+              json.dump(out, f, ensure_ascii=False, indent=2)
+          print("Wrote feeds/threatintel/google_feed.json with", len(items), "items")
+          PY
+
+      - name: Commit changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add feeds/threatintel/google_feed.json
+            git commit -m "chore: update ThreatIntel RSS snapshot"
+            git push
+          else
+            echo "No changes to commit."
+          fi
