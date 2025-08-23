@@ -97,6 +97,19 @@
       margin-bottom: 1rem;
       color: var(--accent);
     }
+
+    /* NEW: make feed links match CISA accent color */
+    .feed-card a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    .feed-card a:visited {
+      color: var(--accent2);
+    }
+    .feed-card a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -183,7 +196,7 @@
     });
   }
 
-  // New: simple reader for the Google feed snapshot
+  // Simple reader for the Google feed snapshot
   function renderGoogle(data, container) {
     const items = (data.items || []);
     container.innerHTML = '<div class="content-title">Google Threat Intelligence</div>';
@@ -212,6 +225,6 @@
 
   // Load CISA by default
   window.addEventListener('DOMContentLoaded', () => showFeed('cisa'));
-</script>
+  </script>
 </body>
 </html>
