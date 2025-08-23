@@ -23,7 +23,11 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install requests feedparser python-dotenv
+          fi
 
       - name: Pull feeds -> feeds/
         env:
