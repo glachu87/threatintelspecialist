@@ -1,0 +1,33 @@
+name: Build Actionable Intelligence
+on:
+  push:
+    paths:
+      - 'feeds/**'
+  workflow_dispatch: {}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas python-dateutil
+      - name: Generate actionable intelligence
+        run: |
+          python scripts/make_actionable.py
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B actionable-intel-update
+          git add actionable/actionable_intelligence.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update actionable intelligence"
+            git push -u origin actionable-intel-update --force
+          fi
