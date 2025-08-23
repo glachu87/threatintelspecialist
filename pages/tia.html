@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Threat Intelligence Advisory – {{ADVISORY_ID}}</title>
+  <meta name="description" content="Actionable cyber threat intelligence advisory with executive summary, MITRE ATT&CK mapping, IOCs, and recommended actions." />
+  <!-- Open Graph / Twitter for rich sharing -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Threat Intelligence Advisory – {{ADVISORY_ID}}" />
+  <meta property="og:description" content="Actionable advisory with IOCs and mitigations." />
+  <meta property="og:url" content="https://www.threatintelspecialist.com/posts/{{SLUG}}" />
+  <meta name="twitter:card" content="summary" />
+
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #0f131a;
+      --text: #e6edf3;
+      --muted: #95a1b2;
+      --accent: #4da3ff;
+      --good: #3fb950;
+      --warn: #d29922;
+      --bad: #f85149;
+      --border: #1f2630;
+      --code: #0a0e14;
+    }
+
+    html { color-scheme: dark; }
+    body {
+      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg); color: var(--text);
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 24px; }
+    header {
+      display: grid; gap: 8px; margin-bottom: 20px;
+      border-bottom: 1px solid var(--border); padding-bottom: 16px;
+    }
+    .badge { display: inline-block; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 12px; }
+    h1 { font-size: 28px; line-height: 1.25; margin: 2px 0 8px; }
+    h2 { font-size: 20px; margin: 26px 0 10px; }
+    h3 { font-size: 16px; margin: 18px 0 8px; color: var(--muted); }
+    p { margin: 8px 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .meta { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+    .grid { display: grid; gap: 12px; }
+    .twocol { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 900px) { .twocol { grid-template-columns: 2fr 1fr; } }
+    .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 12px; text-align: center; }
+    .kpi .label { color: var(--muted); font-size: 12px; }
+    .kpi .value { font-size: 20px; font-weight: 600; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid var(--border); padding: 10px 8px; vertical-align: top; }
+    th { text-align: left; color: var(--muted); font-weight: 600; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; background: var(--code); color: #d1eaff; padding: 2px 6px; border-radius: 6px; }
+    pre { padding: 12px; overflow: auto; }
+
+    .chip { display:inline-block; border:1px solid var(--border); padding:4px 8px; border-radius:999px; font-size:12px; color:var(--muted); margin:2px 4px 2px 0; }
+    .severity { font-weight: 700; }
+    .sev-high { color: var(--bad); }
+    .sev-med { color: var(--warn); }
+    .sev-low { color: var(--good); }
+
+    .toolbar { display:flex; gap:8px; flex-wrap:wrap; }
+    .btn { background: var(--panel); border:1px solid var(--border); color: var(--text); padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600; }
+    .btn:hover { filter:brightness(1.1); }
+    .search { flex:1; min-width:220px; }
+    .search input { width:100%; padding:8px 10px; border-radius:10px; border:1px solid var(--border); background: var(--code); color: var(--text); }
+
+    footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
+    .muted { color: var(--muted); }
+
+    /* Print-friendly */
+    @media print {
+      body { background: #fff; color: #000; }
+      .btn, .toolbar, .badge { display: none !important; }
+      .panel, .kpi { border-color: #aaa; }
+      a { color: #000; text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" itemscope itemtype="https://schema.org/Article">
+    <header>
+      <span class="badge">Threat Intelligence Advisory</span>
+      <h1 itemprop="headline">{{TITLE}} – {{ADVERSARY_OR_CAMPAIGN}}</h1>
+      <div class="meta">
+        <span><strong>ID:</strong> <span itemprop="identifier">{{ADVISORY_ID}}</span></span>
+        <span>•</span>
+        <span><strong>Date:</strong> <time itemprop="datePublished" datetime="{{ISO_DATE}}">{{HUMAN_DATE}}</time></span>
+        <span>•</span>
+        <span><strong>Sector Focus:</strong> {{SECTORS}}</span>
+        <span>•</span>
+        <span><strong>Severity:</strong> <span class="severity {{SEVERITY_CLASS}}">{{SEVERITY}}</span></span>
+      </div>
+      <div class="toolbar">
+        <div class="search"><input id="search" type="search" placeholder="Filter IOCs (hash, domain, IP, URL)…" aria-label="Filter IOCs" /></div>
+        <button class="btn" onclick="copyIOCs()" title="Copy IOC table as CSV">Copy IOCs (CSV)</button>
+        <button class="btn" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="panel" itemprop="description">
+      <h2>Executive Summary</h2>
+      <p>{{EXEC_SUMMARY}}</p>
+      <div class="kpis" aria-label="Key points">
+        <div class="kpi"><div class="label">Exploitation</div><div class="value">{{EXPLOITATION_STATUS}}</div></div>
+        <div class="kpi"><div class="label">Primary Vector</div><div class="value">{{PRIMARY_VECTOR}}</div></div>
+        <div class="kpi"><div class="label">Industries Impacted</div><div class="value">{{IMPACTED_INDUSTRIES}}</div></div>
+      </div>
+    </section>
+
+    <div class="twocol">
+      <main class="grid" itemprop="articleBody">
+        <!-- Threat Details -->
+        <section class="panel">
+          <h2>Threat Details</h2>
+          <p><strong>Threat / Campaign:</strong> {{ADVERSARY_OR_CAMPAIGN}}</p>
+          <p><strong>Targets:</strong> {{TARGETS}}</p>
+          <p><strong>Attack Vector:</strong> {{ATTACK_VECTOR}}</p>
+
+          <h3>MITRE ATT&CK Mapping</h3>
+          <div id="mitre-chips">
+            <!-- Example chips; replace with your techniques -->
+            <!-- <span class="chip" title="Initial Access">T1566.001 Phishing: Spearphishing Attachment</span> -->
+            {{MITRE_CHIPS}}
+          </div>
+        </section>
+
+        <!-- IOCs -->
+        <section class="panel">
+          <h2>Indicators of Compromise (IOCs)</h2>
+          <table id="ioc-table" aria-describedby="ioc-help">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Source</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Repeat <tr> per IOC -->
+              <!-- <tr><td>SHA256</td><td><code>8f4a7e…bd93f2c2e</code></td><td>VirusTotal</td><td>Malicious file</td></tr> -->
+              {{IOC_ROWS}}
+            </tbody>
+          </table>
+          <p id="ioc-help" class="muted">Tip: Use the search box above to filter IOCs. Click "Copy IOCs (CSV)" to copy the table.</p>
+        </section>
+
+        <!-- Vulnerabilities -->
+        <section class="panel">
+          <h2>Vulnerabilities / Exploitation Notes</h2>
+          <table>
+            <thead><tr><th>CVE</th><th>CVSS</th><th>Status</th><th>Notes</th></tr></thead>
+            <tbody>
+              <!-- <tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-12345">CVE-2025-12345</a></td><td>9.1</td><td>Exploited in the wild</td><td>Macro bypass</td></tr> -->
+              {{VULN_ROWS}}
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Recommended Actions -->
+        <section class="panel">
+          <h2>Recommended Actions</h2>
+          <h3>For IT/OT Security Teams</h3>
+          <ul>
+            {{ACTIONS_TECH}}
+          </ul>
+          <h3>For Executives / Management</h3>
+          <ul>
+            {{ACTIONS_EXEC}}
+          </ul>
+        </section>
+
+        <!-- References -->
+        <section class="panel">
+          <h2>References</h2>
+          <ol>
+            <!-- <li><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">CISA KEV Catalog</a></li> -->
+            {{REFERENCES}}
+          </ol>
+        </section>
+      </main>
+
+      <aside class="grid">
+        <!-- Metadata / Tags -->
+        <section class="panel">
+          <h2>Metadata</h2>
+          <p><strong>Sources:</strong> {{SOURCES}}</p>
+          <p><strong>Confidence:</strong> {{CONFIDENCE}}</p>
+          <p><strong>TLP:</strong> {{TLP_LEVEL}}</p>
+          <p><strong>Author:</strong> {{AUTHOR}}</p>
+          <p><strong>Revision:</strong> {{REVISION}}</p>
+          <h3>Tags</h3>
+          <p>{{TAGS}}</p>
+        </section>
+
+        <!-- Embeds / Widgets -->
+        <section class="panel">
+          <h2>Related Artifacts</h2>
+          <p class="muted">Optional iframe embeds (e.g., VirusTotal widget links, Graphs, dashboards).</p>
+          <!-- Example: <iframe src="{{VT_WIDGET_URL}}" style="width:100%;height:420px;border:0;border-radius:10px"></iframe> -->
+          {{EMBEDS}}
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      <p>© {{YEAR}} ThreatIntelSpecialist.com. This advisory is provided "as is" without warranty. Use at your own risk. Respect TLP and licensing of upstream sources.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Simple IOC filter
+    const search = document.getElementById('search');
+    const table = document.getElementById('ioc-table');
+    search?.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(r => {
+        const txt = r.innerText.toLowerCase();
+        r.style.display = txt.includes(q) ? '' : 'none';
+      });
+    });
+
+    // Copy IOCs as CSV
+    function copyIOCs() {
+      const rows = [...document.querySelectorAll('#ioc-table tr')];
+      const csv = rows.map(r => [...r.children].map(td => '"' + td.innerText.replace(/"/g, '""') + '"').join(',')).join('\n');
+      navigator.clipboard.writeText(csv).then(() => {
+        alert('IOC table copied to clipboard as CSV');
+      }).catch(() => alert('Copy failed'));
+    }
+
+    // Helper to set severity class from text if placeholders are replaced dynamically
+    (function setSeverityClass(){
+      const el = document.querySelector('.severity');
+      if(!el) return;
+      const t = el.textContent?.toLowerCase() || '';
+      el.classList.remove('sev-high','sev-med','sev-low');
+      if(t.includes('high') || t.includes('critical')) el.classList.add('sev-high');
+      else if(t.includes('medium')) el.classList.add('sev-med');
+      else el.classList.add('sev-low');
+    })();
+  </script>
+</body>
+</html>
