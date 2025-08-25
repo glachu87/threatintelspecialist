@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-08-25T15:24:41.793584Z",
+  "fetched_at": "2025-08-25T16:29:08.905374Z",
   "count": 20,
   "items": [
+    {
+      "title": "Deception in Depth: PRC-Nexus Espionage Campaign Hijacks Web Traffic to Target Diplomats",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/prc-nexus-espionage-targets-diplomats/",
+      "pubDate": "Mon, 25 Aug 2025 14:00:00 +0000",
+      "description": "Written by: Patrick Whitsell\n\nIn March 2025, Google Threat Intelligence Group (GTIG) identified a complex, multifaceted campaign attributed to the PRC-nexus threat actor UNC6384. The campaign targeted diplomats in Southeast Asia and other entities globally. GTIG assesses this was likely in support of cyber espionage operations aligned with the strategic interests of the People's Republic of China (PRC). \nThe campaign hijacks target web traffic, using a captive portal redirect, to deliver a digitally signed downloader that GTIG tracks as STATICPLUGIN. This ultimately led to the in-memory deployment of the backdoor SOGU.SEC (also known as PlugX). This multi-stage attack chain leverages advanced social engineering including valid code signing certificates, an adversary-in-the-middle (AitM) attack, and indirect execution techniques to evade detection.\nGoogle is actively protecting our users and customers from this threat. We sent government-backed attacker alerts to all Gmail and Workspace"
+    },
     {
       "title": "A Cereal Offender: Analyzing the CORNFLAKE.V3 Backdoor",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/analyzing-cornflake-v3-backdoor/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/session-stealing-browser-in-the-middle/",
       "pubDate": "Mon, 17 Mar 2025 05:00:00 +0000",
       "description": "Written by: Truman Brown, Emily Astranova, Steven Karschnia, Jacob Paullus, Nick McClendon, Chris Higgins\n\nExecutive Summary\n\n\nThe Rise of Browser in the Middle (BitM): BitM attacks offer a streamlined approach, allowing attackers to quickly compromise sessions across various web applications.\n\n\nMFA Remains Crucial, But Not Invulnerable: Multi-factor authentication (MFA) is a vital security measure, yet sophisticated social engineering tactics now effectively bypass it by targeting session tokens.\n\n\nStrong Defenses Are Imperative: To counter these threats, organizations must implement robust defenses, including hardware-based MFA, client certificates, and FIDO2.\n\n\nSocial Engineering and Multi-Factor Authentication\nSocial engineering campaigns pose a significant threat to organizations and businesses as they capitalize on human vulnerabilities by exploiting cognitive biases and weaknesses in security awareness. During a social engineering campaign, a red team operator typically targets "
-    },
-    {
-      "title": "Ghost in the Router: China-Nexus Espionage Actor UNC3886 Targets Juniper Routers",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/china-nexus-espionage-targets-juniper-routers/",
-      "pubDate": "Tue, 11 Mar 2025 20:00:00 +0000",
-      "description": "Written by: Lukasz Lamparski, Punsaen Boonyakarn, Shawn Chew, Frank Tse, Jakub Jozwiak, Mathew Potaczek, Logeswaran Nadarajan, Nick Harbour, Mustafa Nasser\n\nIntroduction\nIn mid 2024, Mandiant discovered threat actors deployed custom backdoors on Juniper Networks’ Junos OS routers. Mandiant attributed these backdoors to the China-nexus espionage group, UNC3886. Mandiant uncovered several TINYSHELL-based backdoors operating on Juniper Networks’ Junos OS routers. The backdoors had varying custom capabilities, including active and passive backdoor functions, as well as an embedded script that disables logging mechanisms on the target device.\nMandiant worked with Juniper Networks to investigate this activity and observed that the affected Juniper MX routers were running end-of-life hardware and software. Mandiant recommends that organizations upgrade their Juniper devices to the latest images released by Juniper Networks, which includes mitigations and updated signatures for the Juniper Mal"
     }
   ]
 }
