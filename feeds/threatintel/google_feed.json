@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-08-26T16:27:31.004308Z",
+  "fetched_at": "2025-08-26T17:19:39.142920Z",
   "count": 20,
   "items": [
+    {
+      "title": "Widespread Data Theft Targets Salesforce Instances via Salesloft Drift",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift/",
+      "pubDate": "Tue, 26 Aug 2025 14:00:00 +0000",
+      "description": "Written by: Austin Larsen, Matt Lin, Tyler McLellan, Omar ElAhdan\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) is issuing an advisory to alert organizations about a widespread data theft campaign, carried out by the actor tracked as UNC6395. Beginning as early as Aug. 8, 2025 through at least Aug. 18, 2025, the actor targeted Salesforce customer instances through compromised OAuth tokens associated with the Salesloft Drift third-party application.\nThe actor systematically exported large volumes of data from numerous corporate Salesforce instances. GTIG assesses the primary intent of the threat actor is to harvest credentials. After the data was exfiltrated, the actor searched through the data to look for secrets that could be potentially used to compromise victim environments. GTIG observed UNC6395 targeting sensitive credentials such as Amazon Web Services (AWS) access keys (AKIA), passwords, and Snowflake-related access tokens. UNC6395 demonstrated operational security awar"
+    },
     {
       "title": "Deception in Depth: PRC-Nexus Espionage Campaign Hijacks Web Traffic to Target Diplomats",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/prc-nexus-espionage-targets-diplomats/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/dprk-it-workers-expanding-scope-scale/",
       "pubDate": "Tue, 01 Apr 2025 12:00:00 +0000",
       "description": "Written by: Jamie Collier\n\nSince our September 2024 report outlining the Democratic People's Republic of Korea (DPRK) IT worker threat, the scope and scale of their operations has continued to expand. These individuals pose as legitimate remote workers to infiltrate companies and generate revenue for the regime. This places organizations that hire DPRK IT workers at risk of espionage, data theft, and disruption.\nIn collaboration with partners, Google Threat Intelligence Group (GTIG) has identified an increase of active operations in Europe, confirming the threat's expansion beyond the United States. This growth is coupled with evolving tactics, such as intensified extortion campaigns and the move to conduct operations within corporate virtualized infrastructure. \nOn The March: IT Workers Expand Globally with a Focus on Europe\nDPRK IT workers' activity across multiple countries now establishes them as a global threat. While the United States remains a key target, over the past months, D"
-    },
-    {
-      "title": "BitM Up! Session Stealing in Seconds Using the Browser-in-the-Middle Technique",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/session-stealing-browser-in-the-middle/",
-      "pubDate": "Mon, 17 Mar 2025 05:00:00 +0000",
-      "description": "Written by: Truman Brown, Emily Astranova, Steven Karschnia, Jacob Paullus, Nick McClendon, Chris Higgins\n\nExecutive Summary\n\n\nThe Rise of Browser in the Middle (BitM): BitM attacks offer a streamlined approach, allowing attackers to quickly compromise sessions across various web applications.\n\n\nMFA Remains Crucial, But Not Invulnerable: Multi-factor authentication (MFA) is a vital security measure, yet sophisticated social engineering tactics now effectively bypass it by targeting session tokens.\n\n\nStrong Defenses Are Imperative: To counter these threats, organizations must implement robust defenses, including hardware-based MFA, client certificates, and FIDO2.\n\n\nSocial Engineering and Multi-Factor Authentication\nSocial engineering campaigns pose a significant threat to organizations and businesses as they capitalize on human vulnerabilities by exploiting cognitive biases and weaknesses in security awareness. During a social engineering campaign, a red team operator typically targets "
     }
   ]
 }
