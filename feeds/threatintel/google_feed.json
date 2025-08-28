@@ -1,6 +1,6 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-08-28T18:31:45.109223Z",
+  "fetched_at": "2025-08-28T19:17:51.129969Z",
   "count": 20,
   "items": [
     {
@@ -55,7 +55,7 @@
       "title": "What’s in an ASP? Creative Phishing Attack on Prominent Academics and Critics of Russia",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/creative-phishing-academics-critics-of-russia/",
       "pubDate": "Wed, 18 Jun 2025 14:00:00 +0000",
-      "description": "Written by: Gabby Roncone, Wesley Shields\n\nUPDATE (July 10): In late June 2025, Google Threat Intelligence Group (GTIG) discovered continued UNC6293 operations that demonstrate an evolution in the group’s tradecraft. Using similar lure themes as previously observed activity, UNC6293 continued the ASP phishing campaign against prominent academics, critics of Russia, and journalists using different ASP names, potentially as a response to our publication of their tradecraft. In a different campaign, UNC6293 sought to convince targets to link an attacker-controlled device to their Microsoft O365 account through Microsoft’s device code authentication flow.\nIn an attempt to continue the ASP campaign, UNC6293 attempted to re-establish contact with specific individuals that had previously engaged with the initial phishing attempts. GTIG observed UNC6293 creating multiple new accounts with similar usernames to ones used previously and already disabled. UNC6293 also used different ASP names in t"
+      "description": "Written by: Gabby Roncone, Wesley Shields\n\nUPDATE (July 10)\nIn late June 2025, Google Threat Intelligence Group (GTIG) discovered continued UNC6293 operations that demonstrate an evolution in the group’s tradecraft. Using similar lure themes as previously observed activity, UNC6293 continued the ASP phishing campaign against prominent academics, critics of Russia, and journalists using different ASP names, potentially as a response to our publication of their tradecraft. In a different campaign, UNC6293 sought to convince targets to link an attacker-controlled device to their Microsoft O365 account through Microsoft’s device code authentication flow.\nIn an attempt to continue the ASP campaign, UNC6293 attempted to re-establish contact with specific individuals that had previously engaged with the initial phishing attempts. GTIG observed UNC6293 creating multiple new accounts with similar usernames to ones used previously and already disabled. UNC6293 also used different ASP names in th"
     },
     {
       "title": "Hello, Operator? A Technical Analysis of Vishing Threats",
@@ -67,7 +67,7 @@
       "title": "The Cost of a Call: From Voice Phishing to Data Extortion",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/voice-phishing-data-extortion/",
       "pubDate": "Wed, 04 Jun 2025 14:00:00 +0000",
-      "description": "Update (August 8):  Google has completed its email notifications to those affected by this incident.Update (August 8):  Emails are actively being sent to those affected by this incident. Another update will be posted here once these alerts have been issued.\nUpdate (August 5): In June, one of Google’s corporate Salesforce instances was impacted by similar UNC6040 activity described in this post. Google responded to the activity, performed an impact analysis and began mitigations. The instance was used to store contact information and related notes for small and medium businesses. Analysis revealed that data was retrieved by the threat actor during a small window of time before the access was cut off. The data retrieved by the threat actor was confined to basic and largely publicly available business information, such as business names and contact details.\nUNC6240\nGoogle Threat Intelligence Group (GTIG) tracks the extortion activities following UNC6040 intrusions, sometimes several month"
+      "description": "Update (August 8): Google has completed its email notifications to those affected by this incident.\nUpdate (August 8): Emails are actively being sent to those affected by this incident. Another update will be posted here once these alerts have been issued.\nUpdate (August 5)\nIn June, one of Google’s corporate Salesforce instances was impacted by similar UNC6040 activity described in this post. Google responded to the activity, performed an impact analysis and began mitigations. The instance was used to store contact information and related notes for small and medium businesses. Analysis revealed that data was retrieved by the threat actor during a small window of time before the access was cut off. The data retrieved by the threat actor was confined to basic and largely publicly available business information, such as business names and contact details.\nUNC6240\nGoogle Threat Intelligence Group (GTIG) tracks the extortion activities following UNC6040 intrusions, sometimes several months "
     },
     {
       "title": "Mark Your Calendar: APT41 Innovative Tactics",
