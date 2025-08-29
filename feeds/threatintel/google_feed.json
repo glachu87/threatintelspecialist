@@ -1,13 +1,13 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-08-29T22:19:47.577500Z",
+  "fetched_at": "2025-08-29T23:19:41.499791Z",
   "count": 20,
   "items": [
     {
       "title": "Widespread Data Theft Targets Salesforce Instances via Salesloft Drift",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift/",
       "pubDate": "Tue, 26 Aug 2025 14:00:00 +0000",
-      "description": "Written by: Austin Larsen, Matt Lin, Tyler McLellan, Omar ElAhdan\n\nUpdate (August 28)\nBased on new information identified by GTIG, the scope of this compromise is not exclusive to the Salesforce integration with Salesloft Drift and impacts other integrations. We now advise all Salesloft Drift customers to treat any and all authentication tokens stored in or connected to the Drift platform as potentially compromised.\nOn August 28, 2025, our investigation confirmed that the actor also compromised OAuth tokens for the \"Drift Email\" integration. On August 9, 2025, a threat actor used these tokens to access email from a very small number of Google Workspace accounts. The only accounts that were potentially accessed were those that had been specifically configured to integrate with Salesloft; the actor would not have been able to access any other accounts on a customer's Workspace domain.\nIn response to these findings and to protect our customers, Google identified the impacted users, revoke"
+      "description": "Written by: Austin Larsen, Matt Lin, Tyler McLellan, Omar ElAhdan\n\nUpdate (August 28)\nBased on new information identified by GTIG, the scope of this compromise is not exclusive to the Salesforce integration with Salesloft Drift and impacts other integrations. We now advise all Salesloft Drift customers to treat any and all authentication tokens stored in or connected to the Drift platform as potentially compromised.\nOn August 28, 2025, our investigation confirmed that the actor also compromised OAuth tokens for the \"Drift Email\" integration. On August 9, 2025, a threat actor used these tokens to access email from a very small number of Google Workspace accounts. The only accounts that were potentially accessed were those that had been specifically configured to integrate with Salesloft Drift; the actor would not have been able to access any other accounts on a customer's Workspace domain.\nIn response to these findings and to protect our customers, Google identified the impacted users, "
     },
     {
       "title": "Deception in Depth: PRC-Nexus Espionage Campaign Hijacks Web Traffic to Target Diplomats",
