@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-09-03T16:22:02.653616Z",
+  "fetched_at": "2025-09-03T17:15:31.223935Z",
   "items": [
     {
       "title": "CISA, NSA, and Global Partners Release a Shared Vision of Software Bill of Materials (SBOM) Guidance",
@@ -19,20 +19,20 @@
       "title": "Delta Electronics EIP Builder",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-245-01",
       "published": "Tue, 02 Sep 25 12:00:00 +0000",
-      "vendor": "Delta Electronics",
-      "affected_products": "N/AThe following Delta Electronics products are affected: EIP Builder: Versions 1.11 and prior",
+      "vendor": "N/A",
+      "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 6.7 ATTENTION: Low attack complexity Vendor: Delta Electronics Equipment: EIP Builder Vulnerability: Improper Restriction of XML External Entity Reference",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an attacker to potentially process dangerous external entities, resulting in disclosure of sensitive information.",
-      "vulnerability_overview": "N/AThe affected product is vulnerable to an XML external entity vulnerability, which could allow an attacker to disclose sensitive information. CVE-2025-57704has been assigned to this vulnerability. A CVSS v3.1 base score of 5.5 has been calculated; the CVSS vector string is (AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N). A CVSS v4 score has also been calculated forCVE-2025-57704. A base score of 6.7 has been calculated; the CVSS vector string is (AV:L/AC:L/AT:N/PR:N/UI:A/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N).",
-      "mitigations": "N/ADelta Electronics recommends users updating toV1.12. For more information refer to Delta Electronics' security advisoryDelta-PCSA-2025-00013. Delta Electronics offers the following general recommendations: Do not click on untrusted Internet links or open unsolicited email attachments. Avoid exposing control systems and equipment to the Internet. Place systems and devices behind a firewall and isolate them from the business network. When remote access is required, use a secure access method, such as a virtual private network (VPN). If you have any product-related support concerns, find a contact from theDelta Electronics portal pagefor any information or materials you may require. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
     },
     {
       "title": "CISA Releases Four Industrial Control Systems Advisories",
       "link": "https://www.cisa.gov/news-events/alerts/2025/09/02/cisa-releases-four-industrial-control-systems-advisories",
       "published": "Tue, 02 Sep 25 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
