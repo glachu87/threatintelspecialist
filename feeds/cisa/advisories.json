@@ -1,9 +1,9 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-09-03T15:18:55.876469Z",
+  "fetched_at": "2025-09-03T16:22:02.653616Z",
   "items": [
     {
-      "title": "CISA, NSA, and Global Partners Release a Shared Vision for Software Bill of Materials (SBOM) Guidance",
+      "title": "CISA, NSA, and Global Partners Release a Shared Vision of Software Bill of Materials (SBOM) Guidance",
       "link": "https://www.cisa.gov/news-events/alerts/2025/09/03/cisa-nsa-and-global-partners-release-shared-vision-software-bill-materials-sbom-guidance",
       "published": "Wed, 03 Sep 25 12:00:00 +0000",
       "vendor": "N/A",
