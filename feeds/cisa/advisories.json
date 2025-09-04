@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-09-04T17:15:04.164236Z",
+  "fetched_at": "2025-09-04T18:25:03.189530Z",
   "items": [
+    {
+      "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/09/04/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+      "published": "Thu, 04 Sep 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "CISA Releases Five Industrial Control Systems Advisories",
       "link": "https://www.cisa.gov/news-events/alerts/2025/09/04/cisa-releases-five-industrial-control-systems-advisories",
@@ -341,6 +354,19 @@
       "mitigations": "N/AMitsubishi Electric Corporation advises that there are no plans to release a fixed version. Mitsubishi Electric recommends users take the following mitigation measures to minimize the risk of exploiting this vulnerability: Use a firewall or virtual private network (VPN), etc. to prevent unauthorized access when Internet access is required. Use within a LAN and block access from untrusted networks and hosts through firewalls. Use IP filter function to block access from untrusted hosts. For details on the IP filter function, please refer to themanualfor each product: \"13.1 IP Filter Function\" in the MELSEC iQ-F FX5 User's Manual (Communication). Restrict physical access to the affected products and the LAN connected by them. Mitsubishi Electric Corporation recommends users contact their local Mitsubishi Electricrepresentativewith questions. For more information, see Mitsubishi Electric'ssecurity advisory. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
     },
     {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/08/21/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Thu, 21 Aug 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "FUJIFILM Healthcare Americas Synapse Mobility",
       "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-233-01",
       "published": "Thu, 21 Aug 25 12:00:00 +0000",
@@ -365,32 +391,6 @@
       "risk_evaluation": "N/A",
       "vulnerability_overview": "N/A",
       "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/08/21/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Thu, 21 Aug 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Siemens Desigo CC Product Family and SENTRON Powermanager",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-231-01",
-      "published": "Tue, 19 Aug 25 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/ASiemens reports that the following products are affected: Desigo CC family V5.0: All versions Desigo CC family V5.1: All versions Desigo CC family V6: All versions Desigo CC family V7: All versions Desigo CC family V8: All versions SENTRON Powermanager V5: All versions SENTRON Powermanager V6: All versions SENTRON Powermanager V7: All versions SENTRON Powermanager V8: All versions",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v3 8.2 ATTENTION: Low attack complexity Vendor: Siemens Equipment: Desigo CC Product Family and SENTRON Powermanager Vulnerability: Least Privilege Violation",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow privilege escalation.",
-      "vulnerability_overview": "N/AWibu CodeMeter before 8.30a sometimes allows privilege escalation immediately after installation (before a logoff or reboot). For exploitation, there must have been an unprivileged installation with UAC, and the CodeMeter Control Center component must be installed, and the CodeMeter Control Center component must not have been restarted. In this scenario, the local user can navigate from Import License to a privileged instance of Windows Explorer. CVE-2025-47809has been assigned to this vulnerability. A CVSS v3.1 base score of 8.2 has been calculated; the CVSS vector string is (CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H).",
-      "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: Please follow below steps to update the WIBU CodeMeter : Uninstall the previous installed version of CodeMeter via Control Panel Install the CodeMeter V8.30a (Refer:https://www.wibu.com/us/support.html) Restart client/server after installation of CodeMeter For more details regarding the vulnerability in CodeMeter Runtime refer to: WIBU Systems Security Advisory WIBU-100120:https://www.wibu.com/support/security-advisories/wibu-100120.html As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-201595 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
     }
   ]
 }
