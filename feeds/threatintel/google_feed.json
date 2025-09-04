@@ -1,13 +1,13 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-09-03T23:18:42.959654Z",
+  "fetched_at": "2025-09-04T01:41:12.813390Z",
   "count": 20,
   "items": [
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/viewstate-deserialization-zero-day-vulnerability/",
       "pubDate": "Wed, 03 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Rommel Joven, Josh Fleischer, Joseph Sciuto, Andi Slok, Choon Kiat Ng\n\nIn a recent investigation, Mandiant Threat Defense discovered an active ViewState deserialization attack affecting Sitecore deployments leveraging sample machine keys that had been exposed in Sitecore deployment guides from 2017 and earlier. An attacker leveraged the exposed ASP.NET machine keys to perform remote code execution.\nMandiant worked directly with Sitecore to address this issue. Sitecore tracks this vulnerable configuration as CVE-2025-53690, which affects customers who deployed any version of multiple Sitecore products using sample keys exposed in publicly available deployment guides (specifically Sitecore XP 9.0 and Active Directory 1.4 and earlier versions). Sitecore has confirmed that its updated deployments automatically generate unique machine keys and that affected customers have been notified.\nRefer to Sitecore’s advisory for more information on which products are potentially impacted."
+      "description": "Written by: Rommel Joven, Josh Fleischer, Joseph Sciuto, Andi Slok, Choon Kiat Ng\n\nUpdate (September 3): This post was updated to include information about GoTokenTheft usage.\nIn a recent investigation, Mandiant Threat Defense discovered an active ViewState deserialization attack affecting Sitecore deployments leveraging a sample machine key that had been exposed in Sitecore deployment guides from 2017 and earlier. An attacker leveraged the exposed ASP.NET machine keys to perform remote code execution.\nMandiant worked directly with Sitecore to address this issue. Sitecore tracks this vulnerable configuration as CVE-2025-53690, which affects customers who deployed any version of multiple Sitecore products using the sample key exposed in publicly available deployment guides (specifically Sitecore XP 9.0 and Active Directory 1.4 and earlier versions). Sitecore has confirmed that its updated deployments automatically generate a unique machine key and that affected customers have been notif"
     },
     {
       "title": "Widespread Data Theft Targets Salesforce Instances via Salesloft Drift",
