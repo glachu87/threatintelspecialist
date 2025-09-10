@@ -1,6 +1,6 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-09-10T05:20:23.207389Z",
+  "fetched_at": "2025-09-10T06:32:35.820140Z",
   "count": 20,
   "items": [
     {
@@ -28,16 +28,16 @@
       "description": "Written by: Marco Galli\n\nWelcome to the Frontline Bulletin Series\nStraight from Mandiant Threat Defense, the \"Frontline Bulletin\" series brings you the latest on the most intriguing compromises we are seeing in the wild right now, equipping our community to understand and respond to the most compelling threats we observe. This edition dissects an infection involving two threat groups, UNC5518 and UNC5774, leading to the deployment of CORNFLAKE.V3.\nIntroduction\nSince June 2024, Mandiant Threat Defense has been tracking UNC5518, a financially motivated threat cluster compromising legitimate websites to serve fake CAPTCHA verification pages. This deceptive technique, known as ClickFix, lures website visitors into executing a downloader script which initiates a malware infection chain. UNC5518 appears to partner with clients or affiliates who use access obtained by the group to deploy additional malware.\nWhile the initial compromise and fake CAPTCHA deployment are orchestrated by UNC5518, "
     },
     {
-      "title": "From Help Desk to Hypervisor: Defending Your VMware vSphere Estate from UNC3944",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/defending-vsphere-from-unc3944/",
-      "pubDate": "Wed, 23 Jul 2025 14:00:00 +0000",
-      "description": "Introduction\nIn mid 2025, Google Threat Intelligence Group (GTIG) identified a sophisticated and aggressive cyber campaign targeting multiple industries, including retail, airline, and insurance. This was the work of UNC3944, a financially motivated threat group that has exhibited overlaps with public reporting of \"0ktapus,\" \"Octo Tempest,\" and \"Scattered Spider.\" Following public alerts from the Federal Bureau of Investigation (FBI), the group's targeting became clear. GTIG observed that the group was suspected of turning its ransomware and extortion operations to the U.S. retail sector. The campaign soon broadened further, with airline and transportation organizations in North America having also become targets.\nThe group's core tactics have remained consistent and do not rely on software exploits. Instead, they use a proven playbook centered on phone calls to an IT help desk. The actors are aggressive, creative, and particularly skilled at using social engineering to bypass even mat"
-    },
-    {
       "title": "Beyond Convenience: Exposing the Risks of VMware vSphere Active Directory Integration",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/vsphere-active-directory-integration-risks/",
       "pubDate": "Wed, 23 Jul 2025 14:00:00 +0000",
       "description": "Written by: Stuart Carrera, Brian Meyer\n\nExecutive Summary\nBroadcom's VMware vSphere product continues to be a top choice for private cloud virtualization, underpinning important systems and critical infrastructure. Far from losing its appeal, organizations still rely heavily on vSphere for its stability and control. Mandiant is also observing a clear trend where critical workloads are moving back from public cloud services to these on-premises vSphere environments, often driven by strategies that balance innovation with stability and the desire for more direct operational oversight.\nThe common practice of directly integrating vSphere with Microsoft Active Directory (AD), while simplifying administration tasks, creates an attack path frequently underestimated due to a misunderstanding of the inherent risks presented today. This configuration extends the AD attack surface directly to the hypervisor. From a threat actor's perspective, this integration constitutes a high-value opportunity"
+    },
+    {
+      "title": "From Help Desk to Hypervisor: Defending Your VMware vSphere Estate from UNC3944",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/defending-vsphere-from-unc3944/",
+      "pubDate": "Wed, 23 Jul 2025 14:00:00 +0000",
+      "description": "Introduction\nIn mid 2025, Google Threat Intelligence Group (GTIG) identified a sophisticated and aggressive cyber campaign targeting multiple industries, including retail, airline, and insurance. This was the work of UNC3944, a financially motivated threat group that has exhibited overlaps with public reporting of \"0ktapus,\" \"Octo Tempest,\" and \"Scattered Spider.\" Following public alerts from the Federal Bureau of Investigation (FBI), the group's targeting became clear. GTIG observed that the group was suspected of turning its ransomware and extortion operations to the U.S. retail sector. The campaign soon broadened further, with airline and transportation organizations in North America having also become targets.\nThe group's core tactics have remained consistent and do not rely on software exploits. Instead, they use a proven playbook centered on phone calls to an IT help desk. The actors are aggressive, creative, and particularly skilled at using social engineering to bypass even mat"
     },
     {
       "title": "Ongoing SonicWall Secure Mobile Access (SMA) Exploitation Campaign using the OVERSTEP Backdoor",
@@ -56,6 +56,12 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/securing-protection-relays-modern-substations/",
       "pubDate": "Mon, 30 Jun 2025 14:00:00 +0000",
       "description": "Written by: Seemant Bisht, Chris Sistrunk, Shishir Gupta, Anthony Candarini, Glen Chason, Camille Felx Leduc\n\nIntroduction — Why Securing Protection Relays Matters More Than Ever\nSubstations are critical nexus points in the power grid, transforming high-voltage electricity to ensure its safe and efficient delivery from power plants to millions of end-users. At the core of a modern substation lies the protection relay: an intelligent electronic device (IED) that plays a critical role in maintaining the stability of the power grid by continuously monitoring voltage, current, frequency, and phase angle. Upon detecting a fault, it instantly isolates the affected zone by tripping circuit breakers, thus preventing equipment damage, fire hazards, and cascading power outages.\nAs substations become more digitized, incorporating IEC 61850, Ethernet, USB, and remote interfaces, relays are no longer isolated devices, but networked elements in a broader SCADA network. While this enhances visibility"
+    },
+    {
+      "title": "Trix Shots: Remote Code Execution on Aviatrix Controller",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/remote-code-execution-aviatrix-controller/",
+      "pubDate": "Mon, 23 Jun 2025 14:00:00 +0000",
+      "description": "Written by: Louis Dion-Marcil\n\nThis blog post highlights a Mandiant Red Team case study simulating an “Initial Access Brokerage” approach that discovered two vulnerabilities on Aviatrix Controller, a Software-Defined Networking (SDN) utility that allows for the creation of links between different cloud vendors and regions:\n\n\nCVE-2025-2171: an administrator authentication bypass\n\n\nCVE-2025-2172: an authenticated command injection \n\n\nThe vulnerabilities affected Aviatrix Controller 7.2.5012 and prior versions and were patched in versions 8.0.0, 7.2.5090, and 7.1.4208. Thank you to the team at Aviatrix who took the reported security issues seriously and remediated them in a timely manner.\nThe Red Team successfully exploited a fully patched Aviatrix Controller via authentication bypass, unsafe file upload, and argument injection. The detailed attack chain is shown in Figure 1.\n\n\n\n\n\n\n\n  \n    \n      \n  \n\n    \n\n      \n      \n        \n        \n        \n        \n      \n        Figure 1: Exploit"
     },
     {
       "title": "What’s in an ASP? Creative Phishing Attack on Prominent Academics and Critics of Russia",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/windows-rogue-remote-desktop-protocol/",
       "pubDate": "Mon, 07 Apr 2025 10:00:00 +0000",
       "description": "Written by: Rohit Nambiar\n\nExecutive Summary\nIn October 2024, Google Threat Intelligence Group (GTIG) observed a novel phishing campaign targeting European government and military organizations that was attributed to a suspected Russia-nexus espionage actor we track as UNC5837. The campaign employed signed .rdp file attachments to establish Remote Desktop Protocol (RDP) connections from victims' machines. Unlike typical RDP attacks focused on interactive sessions, this campaign creatively leveraged resource redirection (mapping victim file systems to the attacker servers) and RemoteApps (presenting attacker-controlled applications to victims). Evidence suggests this campaign may have involved the use of an RDP proxy tool like PyRDP to automate malicious activities like file exfiltration and clipboard capture. This technique has been previously dubbed as “Rogue RDP.”\nThe campaign likely enabled attackers to read victim drives, steal files, capture clipboard data (including passwords), a"
-    },
-    {
-      "title": "Suspected China-Nexus Threat Actor Actively Exploiting Critical Ivanti Connect Secure Vulnerability (CVE-2025-22457)",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/china-nexus-exploiting-critical-ivanti-vulnerability/",
-      "pubDate": "Thu, 03 Apr 2025 14:00:00 +0000",
-      "description": "Written by: John Wolfram, Michael Edie, Jacob Thompson, Matt Lin, Josh Murchie\n\nOn Thursday, April 3, 2025, Ivanti disclosed a critical security vulnerability, CVE-2025-22457, impacting Ivanti Connect Secure (“ICS”) VPN appliances version 22.7R2.5 and earlier. CVE-2025-22457 is a buffer overflow vulnerability, and successful exploitation would result in remote code execution. Mandiant and Ivanti have identified evidence of active exploitation in the wild against ICS 9.X (end of life) and 22.7R2.5 and earlier versions. Ivanti and Mandiant encourage all customers to upgrade as soon as possible. \nThe earliest evidence of observed CVE-2025-22457 exploitation occurred in mid-March 2025. Following successful exploitation, we observed the deployment of two newly identified malware families, the TRAILBLAZE in-memory only dropper and the BRUSHFIRE passive backdoor. Additionally, deployment of the previously reported SPAWN ecosystem of malware attributed to UNC5221 was also observed. UNC5221 is "
     }
   ]
 }
