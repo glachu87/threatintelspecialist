@@ -1,6 +1,6 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-09-16T13:31:15.784297Z",
+  "fetched_at": "2025-09-16T14:22:09.269813Z",
   "count": 20,
   "items": [
     {
@@ -43,7 +43,7 @@
       "title": "Ongoing SonicWall Secure Mobile Access (SMA) Exploitation Campaign using the OVERSTEP Backdoor",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/sonicwall-secure-mobile-access-exploitation-overstep-backdoor/",
       "pubDate": "Wed, 16 Jul 2025 14:00:00 +0000",
-      "description": "Written by: Josh Goddard, Zander Work, Dimiter Andonov\n\nUPDATE (July 30): Added additional network IOC identified by Sonicwall as being associated with OVERSTEP. \nIntroduction\nGoogle Threat Intelligence Group (GTIG) has identified an ongoing campaign by a suspected financially-motivated threat actor we track as UNC6148, targeting fully patched end-of-life SonicWall Secure Mobile Access (SMA) 100 series appliances. GTIG assesses with high confidence that UNC6148 is leveraging credentials and one-time password (OTP) seeds stolen during previous intrusions, allowing them to regain access even after organizations have applied security updates. Evidence for the initial infection vector was limited, as the actor's malware is designed to selectively remove log entries, hindering forensic investigation; however, it is likely this was through the exploitation of known vulnerabilities.\nIn this new wave of activity, the actor has deployed a previously unknown persistent backdoor/user-mode rootkit"
+      "description": "Written by: Josh Goddard, Zander Work, Dimiter Andonov\n\nUPDATE (Sep 16): Clarified hunting guidance specifics surrounding ld.so.preload files.\nUPDATE (July 30): Added additional network IOC identified by Sonicwall as being associated with OVERSTEP. \n \nIntroduction\nGoogle Threat Intelligence Group (GTIG) has identified an ongoing campaign by a suspected financially-motivated threat actor we track as UNC6148, targeting fully patched end-of-life SonicWall Secure Mobile Access (SMA) 100 series appliances. GTIG assesses with high confidence that UNC6148 is leveraging credentials and one-time password (OTP) seeds stolen during previous intrusions, allowing them to regain access even after organizations have applied security updates. Evidence for the initial infection vector was limited, as the actor's malware is designed to selectively remove log entries, hindering forensic investigation; however, it is likely this was through the exploitation of known vulnerabilities.\nIn this new wave of ac"
     },
     {
       "title": "Isolated Recovery Environments: A Critical Layer in Modern Cyber Resilience",
