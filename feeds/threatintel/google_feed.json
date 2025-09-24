@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-09-24T14:19:55.269924Z",
+  "fetched_at": "2025-09-24T15:22:48.701164Z",
   "count": 20,
   "items": [
+    {
+      "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
+      "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fdcaaed3490&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+    },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/viewstate-deserialization-zero-day-vulnerability/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2025/",
       "pubDate": "Wed, 23 Apr 2025 14:00:00 +0000",
       "description": "One of the ways threat actors keep up with the constantly evolving cyber defense landscape is by raising the level of sophistication of their attacks. This trend can be seen across many of our engagements, particularly when responding to China-nexus groups. These actors have demonstrated the ability to create custom malware ecosystems, identify and use zero-day vulnerabilities in security and other appliances, leverage proxy networks akin to botnets, target edge devices and platforms that traditionally lack endpoint detection and response, and employ custom obfuscators in their malware. They take these extra steps to evade detection, stifle analysis, and ultimately stay on systems for longer periods of time. \nHowever, not all successful attacks are highly complex and technical. Many times attackers will take advantage of the opportunities that are made available to them. This includes using credentials stolen in infostealer operations to gain initial access. Mandiant has seen such a ri"
-    },
-    {
-      "title": "Windows Remote Desktop Protocol: Remote to Rogue",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/windows-rogue-remote-desktop-protocol/",
-      "pubDate": "Mon, 07 Apr 2025 10:00:00 +0000",
-      "description": "Written by: Rohit Nambiar\n\nExecutive Summary\nIn October 2024, Google Threat Intelligence Group (GTIG) observed a novel phishing campaign targeting European government and military organizations that was attributed to a suspected Russia-nexus espionage actor we track as UNC5837. The campaign employed signed .rdp file attachments to establish Remote Desktop Protocol (RDP) connections from victims' machines. Unlike typical RDP attacks focused on interactive sessions, this campaign creatively leveraged resource redirection (mapping victim file systems to the attacker servers) and RemoteApps (presenting attacker-controlled applications to victims). Evidence suggests this campaign may have involved the use of an RDP proxy tool like PyRDP to automate malicious activities like file exfiltration and clipboard capture. This technique has been previously dubbed as “Rogue RDP.”\nThe campaign likely enabled attackers to read victim drives, steal files, capture clipboard data (including passwords), a"
     }
   ]
 }
