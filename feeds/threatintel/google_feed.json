@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-10-09T14:22:53.596102Z",
+  "fetched_at": "2025-10-09T15:30:39.509643Z",
   "count": 20,
   "items": [
+    {
+      "title": "Oracle E-Business Suite Zero-Day Exploited in Widespread Extortion Campaign",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/oracle-ebusiness-suite-zero-day-exploitation/",
+      "pubDate": "Thu, 09 Oct 2025 14:00:00 +0000",
+      "description": "Written by: Peter Ukhanov, Genevieve Stark, Zander Work, Ashley Pearson, Josh Murchie, Austin Larsen\n\nIntroduction\nBeginning Sept. 29, 2025, Google Threat Intelligence Group (GTIG) and Mandiant began tracking a new, large-scale extortion campaign by a threat actor claiming affiliation with the CL0P extortion brand. The actor began sending a high volume of emails to executives at numerous organizations, alleging the theft of sensitive data from the victims' Oracle E-Business Suite (EBS) environments. On Oct. 2, 2025, Oracle reported that the threat actors may have exploited vulnerabilities that were patched in July 2025 and recommended that customers apply the latest critical patch updates. On Oct. 4, 2025, Oracle directed customers to apply emergency patches to address this vulnerability, reiterating their standing recommendation that customers stay current on all Critical Patch Updates.\nOur analysis indicates that the CL0P extortion campaign followed months of intrusion activity targe"
+    },
     {
       "title": "Cybercrime Observations from the Frontlines: UNC6040 Proactive Hardening Recommendations",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6040-proactive-hardening-recommendations/",
@@ -13,7 +19,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fd370346ee0&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f25e05e2790&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc3944-proactive-hardening-recommendations/",
       "pubDate": "Tue, 06 May 2025 14:00:00 +0000",
       "description": "Background\nUNC3944, which overlaps with public reporting on Scattered Spider, is a financially-motivated threat actor characterized by its persistent use of social engineering and brazen communications with victims. In early operations, UNC3944 largely targeted telecommunications-related organizations to support SIM swap operations. However, after shifting to ransomware and data theft extortion in early 2023, they impacted organizations in a broader range of industries. Since then, we have regularly observed UNC3944 conduct waves of targeting against a specific sector, such as financial services organizations in late 2023 and food services in May 2024. Notably, UNC3944 has also previously targeted prominent brands, possibly in an attempt to gain prestige and increased attention by news media.\nGoogle Threat Intelligence Group (GTIG) observed a decline in UNC3944 activity after 2024 law enforcement actions against individuals allegedly associated with the group. Threat actors will often "
-    },
-    {
-      "title": "Hello 0-Days, My Old Friend: A 2024 Zero-Day Exploitation Analysis",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/2024-zero-day-trends/",
-      "pubDate": "Tue, 29 Apr 2025 05:00:00 +0000",
-      "description": "Written by: Casey Charrier, James Sadowski, Clement Lecigne, Vlad Stolyarov\n\nExecutive Summary\nGoogle Threat Intelligence Group (GTIG) tracked 75 zero-day vulnerabilities exploited in the wild in 2024, a decrease from the number we identified in 2023 (98 vulnerabilities), but still an increase from 2022 (63 vulnerabilities). We divided the reviewed vulnerabilities into two main categories: end-user platforms and products (e.g., mobile devices, operating systems, and browsers) and enterprise-focused technologies, such as security software and appliances. \nVendors continue to drive improvements that make some zero-day exploitation harder, demonstrated by both dwindling numbers across multiple categories and reduced observed attacks against previously popular targets. At the same time, commercial surveillance vendors (CSVs) appear to be increasing their operational security practices, potentially leading to decreased attribution and detection.\nWe see zero-day exploitation targeting a grea"
     }
   ]
 }
