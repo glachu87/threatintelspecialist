@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-10-20T14:21:46.142361Z",
+  "fetched_at": "2025-10-20T15:23:22.337342Z",
   "count": 20,
   "items": [
+    {
+      "title": "To Be (A Robot) or Not to Be: New Malware Attributed to Russia State-Sponsored COLDRIVER",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/new-malware-russia-coldriver/",
+      "pubDate": "Mon, 20 Oct 2025 14:00:00 +0000",
+      "description": "Written by: Wesley Shields\n\nIntroduction \nCOLDRIVER, a Russian state-sponsored threat group known for targeting high profile individuals in NGOs, policy advisors and dissidents, swiftly shifted operations after the May 2025 public disclosure of its LOSTKEYS malware, operationalizing new malware families five days later. It is unclear how long COLDRIVER had this malware in development, but GTIG has not observed a single instance of LOSTKEYS since publication. Instead, GTIG has seen new malware used more aggressively than any other previous malware campaigns we have attributed to COLDRIVER (also known as UNC4057, Star Blizzard, and Callisto).\nThe new malware, which GTIG attributes directly to COLDRIVER, has undergone multiple iterations since discovery, indicating a rapidly increased development and operations tempo from COLDRIVER. It is a collection of related malware families connected via a delivery chain. GTIG seeks to build on details on a part of this infection chain released in a "
+    },
     {
       "title": "DPRK Adopts EtherHiding: Nation-State Malware Hiding on Blockchains",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/dprk-adopts-etherhiding/",
@@ -31,7 +37,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f8599694580&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7ff6d99a3340&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/apt41-innovative-tactics/",
       "pubDate": "Wed, 28 May 2025 14:00:00 +0000",
       "description": "Written by: Patrick Whitsell\n\nGoogle Threat Intelligence Group’s (GTIG) mission is to protect Google’s billions of users and Google’s multitude of products and services. In late October 2024, GTIG discovered an exploited government website hosting malware being used to target multiple other government entities. The exploited site delivered a malware payload, which we have dubbed “TOUGHPROGRESS”, that took advantage of Google Calendar for command and control (C2). Misuse of cloud services for C2 is a technique that many threat actors leverage in order to blend in with legitimate activity. \nWe assess with high confidence that this malware is being used by the PRC based actor APT41 (also tracked as HOODOO). APT41’s targets span the globe, including governments and organizations within the global shipping and logistics, media and entertainment, technology, and automotive sectors. \nOverview\nIn this blog post we analyze the malware delivery methods, technical details of the malware attack ch"
-    },
-    {
-      "title": "Text-to-Malware: How Cybercriminals Weaponize Fake AI-Themed Websites",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybercriminals-weaponize-fake-ai-websites/",
-      "pubDate": "Tue, 27 May 2025 05:00:00 +0000",
-      "description": "Written by: Diana Ion, Rommel Joven, Yash Gupta\n\nSince November 2024, Mandiant Threat Defense has been investigating an UNC6032 campaign that weaponizes the interest around AI tools, in particular those tools which can be used to generate videos based on user prompts. UNC6032 utilizes fake “AI video generator” websites to distribute malware leading to the deployment of payloads such as Python-based infostealers and several backdoors. Victims are typically directed to these fake websites via malicious social media ads that masquerade as legitimate AI video generator tools like Luma AI, Canva Dream Lab, and Kling AI, among others. Mandiant Threat Defense has identified thousands of UNC6032-linked ads that have collectively reached millions of users across various social media platforms like Facebook and LinkedIn. We suspect similar campaigns are active on other platforms as well, as cybercriminals consistently evolve tactics to evade detection and target multiple platforms to increase th"
     }
   ]
 }
