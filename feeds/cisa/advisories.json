@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-10-20T14:17:33.627279Z",
+  "fetched_at": "2025-10-20T15:18:53.306007Z",
   "items": [
+    {
+      "title": "CISA Adds Five Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/10/20/cisa-adds-five-known-exploited-vulnerabilities-catalog",
+      "published": "Mon, 20 Oct 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "Rockwell Automation FactoryTalk Linx",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-289-02",
@@ -159,8 +172,8 @@
       "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: All affected products: Do not open untrusted PRT files in affected applications Solid Edge SE2024: Update to V224.0 Update 14 orlater version Solid Edge SE2025: Update to V225.0 Update 6 orlater version As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage. For more information see the associated Siemens security advisory SSA-541582 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time. These vulnerabilities are not exploitable remotely."
     },
     {
-      "title": "CISA Directs Federal Agencies to Mitigate Vulnerabilities in F5 Devices",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-directs-federal-agencies-mitigate-vulnerabilities-f5-devices",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Wed, 15 Oct 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -172,8 +185,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "title": "CISA Directs Federal Agencies to Mitigate Vulnerabilities in F5 Devices",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/10/15/cisa-directs-federal-agencies-mitigate-vulnerabilities-f5-devices",
       "published": "Wed, 15 Oct 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -224,19 +237,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation Stratix",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-282-03",
-      "published": "Thu, 09 Oct 25 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
-      "affected_products": "N/AThe following version of Stratix 5700 is affected: Stratix 5700: Version v15.2(8)E7 and prior Stratix 5400: Version v15.2(8)E7 and prior Stratix 5410: Version v15.2(8)E7 and prior Stratix 5200: Version v17.17.01 and prior Stratix 5800: Version v17.17.01 and prior",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 6.3 ATTENTION:Exploitable remotely/Low attack complexity Vendor:Rockwell Automation Equipment:Stratix 5700, 5400, 5410, 5200, 5800 Vulnerability:Stack-based Buffer Overflow",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could result in arbitrary code execution.",
-      "vulnerability_overview": "N/AA third-party vulnerability exists in the affected products. The affected products use Cisco IOS XE Software which contains a vulnerability in the Simple Network Management Protocol (SNMP) subsystem. An authenticated, remote attacker with low privileges could cause a denial-of-Service (DoS) condition on an affected device running Cisco IOS Software or Cisco IOS XE Software. To cause the DoS, the attacker must have the SNMPv2c or earlier read-only community string or valid SNMPv3 user credentials. An authenticated, remote attacker with high privileges could execute code as the root user on an affected device running Cisco IOS XE Software. To execute code as the root user, the attacker must have the SNMPv1 or v2c read-only community string or valid SNMPv3 user credentials and administrative or privilege 15 credentials on the affected device. An attacker could exploit this vulnerability by sending a crafted SNMP packet to an affected device over IPv4 or IPv6 networks. This vulnerability is due to a stack overflow condition in the SNMP subsystem of the affected software. A successful exploit could allow a low-privileged attacker to cause the affected system to reload, resulting in a DoS condition, or allow a high-privileged attacker to execute arbitrary code as the root user and obtain full control of the affected system. CVE-2025-20352has been assigned to this vulnerability. A CVSS v3 base score of 7.7 has been calculated; the CVSS vector string is (AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:N/A:H). A CVSS v4 score has also been calculated forCVE-2025-20352. A base score of 6.3 has been calculated; the CVSS vector string is (AV:N/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:N/SC:N/SI:N/SA:H).",
-      "mitigations": "N/ARockwell Automation recommends users of the affected Stratix software implement workarounds fromCiscoand oursecurity best practices. For more information about this issue, see the advisory on theRockwell Automation security page. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
-    },
-    {
       "title": "CISA Releases Four Industrial Control Systems Advisories",
       "link": "https://www.cisa.gov/news-events/alerts/2025/10/09/cisa-releases-four-industrial-control-systems-advisories",
       "published": "Thu, 09 Oct 25 12:00:00 +0000",
@@ -276,22 +276,22 @@
       "mitigations": "N/ARockwell Automation recommends users take the following actions based on their situation. Users with an active Rockwell Automation Infrastructure Managed Service contract: Contact Rockwell Automation to discuss actions needed for remediation efforts Users without a Rockwell Automation managed services contract, refer to Cisco's workarounds below: Cisco's Workarounds Additionally, users of the affected software who are unable to upgrade to one of the corrected versions are encouraged to apply security best practices, where possible. Security Best Practices For more information about this issue, see the advisory on theRockwell Automation security page. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
     },
     {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/10/09/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "title": "Rockwell Automation Stratix",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-282-03",
       "published": "Thu, 09 Oct 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
+      "vendor": "Rockwell Automation",
+      "affected_products": "N/AThe following version of Stratix 5700 is affected: Stratix 5700: Version v15.2(8)E7 and prior Stratix 5400: Version v15.2(8)E7 and prior Stratix 5410: Version v15.2(8)E7 and prior Stratix 5200: Version v17.17.01 and prior Stratix 5800: Version v17.17.01 and prior",
       "release_date": "N/A",
       "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
+      "executive_summary": "N/ACVSS v4 6.3 ATTENTION:Exploitable remotely/Low attack complexity Vendor:Rockwell Automation Equipment:Stratix 5700, 5400, 5410, 5200, 5800 Vulnerability:Stack-based Buffer Overflow",
+      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could result in arbitrary code execution.",
+      "vulnerability_overview": "N/AA third-party vulnerability exists in the affected products. The affected products use Cisco IOS XE Software which contains a vulnerability in the Simple Network Management Protocol (SNMP) subsystem. An authenticated, remote attacker with low privileges could cause a denial-of-Service (DoS) condition on an affected device running Cisco IOS Software or Cisco IOS XE Software. To cause the DoS, the attacker must have the SNMPv2c or earlier read-only community string or valid SNMPv3 user credentials. An authenticated, remote attacker with high privileges could execute code as the root user on an affected device running Cisco IOS XE Software. To execute code as the root user, the attacker must have the SNMPv1 or v2c read-only community string or valid SNMPv3 user credentials and administrative or privilege 15 credentials on the affected device. An attacker could exploit this vulnerability by sending a crafted SNMP packet to an affected device over IPv4 or IPv6 networks. This vulnerability is due to a stack overflow condition in the SNMP subsystem of the affected software. A successful exploit could allow a low-privileged attacker to cause the affected system to reload, resulting in a DoS condition, or allow a high-privileged attacker to execute arbitrary code as the root user and obtain full control of the affected system. CVE-2025-20352has been assigned to this vulnerability. A CVSS v3 base score of 7.7 has been calculated; the CVSS vector string is (AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:N/A:H). A CVSS v4 score has also been calculated forCVE-2025-20352. A base score of 6.3 has been calculated; the CVSS vector string is (AV:N/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:N/SC:N/SI:N/SA:H).",
+      "mitigations": "N/ARockwell Automation recommends users of the affected Stratix software implement workarounds fromCiscoand oursecurity best practices. For more information about this issue, see the advisory on theRockwell Automation security page. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
     },
     {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/10/07/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Tue, 07 Oct 25 12:00:00 +0000",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/10/09/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Thu, 09 Oct 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -328,6 +328,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/10/07/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Tue, 07 Oct 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "CISA Adds Seven Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/10/06/cisa-adds-seven-known-exploited-vulnerabilities-catalog",
       "published": "Mon, 06 Oct 25 12:00:00 +0000",
@@ -354,32 +367,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Hitachi Energy MSM Product",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-275-02",
-      "published": "Thu, 02 Oct 25 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
-      "affected_products": "N/AHitachi Energy reports that the following products are affected: MSM: Versions 2.2.10 and prior",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v3 7.5 ATTENTION: Exploitable remotely/low attack complexity Vendor: Hitachi Energy Equipment: MSM Product Vulnerabilities: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'), Reachable Assertion",
-      "risk_evaluation": "N/ASuccessful exploitation of these vulnerabilities could allow HTML injection via the name parameter or an assertion failure in fuzz_binary_decode, resulting in a crash.",
-      "vulnerability_overview": "N/Agoform/formTest in EmbedThis GoAhead 2.5 allows HTML injection via the name parameter. CVE-2023-53155has been assigned to this vulnerability. A CVSS v3.1 base score of 7.2 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N). Open62541 v1.4.6 has an assertion failure in fuzz_binary_decode, which leads to a crash. CVE-2024-53429has been assigned to this vulnerability. A CVSS v3.1 base score of 7.5 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H).",
-      "mitigations": "N/AHitachi Energy recommends the following general mitigation factors: MSM is not intrinsically designed and intended to be directly connected to the internet. Disconnect the device from any internet-facing network. Hitachi Energy suggests adopting user access management and any state-of-the-art antivirus protection engines equipped with the latest signature rules on the computers that have installed and are operating the MSM Client application. As an example, use the operating system (OS) built-in user access management functionality, if supported, to limit the probability of unauthorized access followed by rogue commands via the MSM Client application. Hitachi Energy also recommends following the hardening guidelines published by\"The Center for Internet Security (CIS)\"to protect the host operating system of computers connected with MSM. This measure can help prevent the lateral movement of the attack vector into MSM via these connected devices. Some examples for Windows-based computers are listed below. CIS Microsoft Windows Desktop Benchmarks CIS Microsoft Windows Server Benchmarks Also follow the cybersecurity deployment recommendations as documented in section 3.9 of2GHV045871_2018-P-en-Modular Switchgear Monitoring (MSM) - C. Additionally, Hitachi Energy recommends hardening web browsers in accordance withCIS Critical Security Control 9: Email and Web Browser Protections. Recommended security practices and firewall configurations can help protect a process control network from attacks that originate from outside the network. Such practices include ensuring that process control systems are physically protected from direct access by unauthorized personnel, have no direct connections to the internet, and are separated from other networks by means of a firewall system that has a minimal number of ports exposed, and others that have to be evaluated case by case. Process control systems should not be used for internet surfing, instant messaging, or receiving e-mails. Portable computers and removable storage media should be carefully scanned for viruses before they are connected to a control system. Proper password policies and processes should be followed. For more information, see the associated Hitachi Energy security advisory8DBD000228 Open-Source Software Vulnerabilities in Hitachi Energy MSM Product. CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as virtual private networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time."
-    },
-    {
-      "title": "CISA Releases Two Industrial Control Systems Advisories",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/10/02/cisa-releases-two-industrial-control-systems-advisories",
-      "published": "Thu, 02 Oct 25 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "Raise3D Pro2 Series 3D Printers",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-275-01",
       "published": "Thu, 02 Oct 25 12:00:00 +0000",
@@ -391,6 +378,19 @@
       "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could result in data exfiltration and compromise of the target device.",
       "vulnerability_overview": "N/AAn unauthenticated debug port may allow access to the device file system. CVE-2025-10653has been assigned to this vulnerability. A CVSS v3 base score of 8.6 has been calculated; the CVSS vector string is (AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L). A CVSS v4 score has also been calculated forCVE-2025-10653. A base score of 8.8 has been calculated; the CVSS vector string is (AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:L/SC:N/SI:N/SA:N).",
       "mitigations": "N/ARaise3D confirmed this vulnerability exists in the Pro2 Series devices when developer mode is enabled. Raise3D is developing a patched version of the printer firmware; however, no release date has yet been provided. Raise3D recommends disabling developer mode if it is not required. Further information is available from Raise3D at theRaise3D Support Center CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
+    },
+    {
+      "title": "Hitachi Energy MSM Product",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-275-02",
+      "published": "Thu, 02 Oct 25 12:00:00 +0000",
+      "vendor": "Hitachi Energy",
+      "affected_products": "N/AHitachi Energy reports that the following products are affected: MSM: Versions 2.2.10 and prior",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/ACVSS v3 7.5 ATTENTION: Exploitable remotely/low attack complexity Vendor: Hitachi Energy Equipment: MSM Product Vulnerabilities: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'), Reachable Assertion",
+      "risk_evaluation": "N/ASuccessful exploitation of these vulnerabilities could allow HTML injection via the name parameter or an assertion failure in fuzz_binary_decode, resulting in a crash.",
+      "vulnerability_overview": "N/Agoform/formTest in EmbedThis GoAhead 2.5 allows HTML injection via the name parameter. CVE-2023-53155has been assigned to this vulnerability. A CVSS v3.1 base score of 7.2 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N). Open62541 v1.4.6 has an assertion failure in fuzz_binary_decode, which leads to a crash. CVE-2024-53429has been assigned to this vulnerability. A CVSS v3.1 base score of 7.5 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H).",
+      "mitigations": "N/AHitachi Energy recommends the following general mitigation factors: MSM is not intrinsically designed and intended to be directly connected to the internet. Disconnect the device from any internet-facing network. Hitachi Energy suggests adopting user access management and any state-of-the-art antivirus protection engines equipped with the latest signature rules on the computers that have installed and are operating the MSM Client application. As an example, use the operating system (OS) built-in user access management functionality, if supported, to limit the probability of unauthorized access followed by rogue commands via the MSM Client application. Hitachi Energy also recommends following the hardening guidelines published by\"The Center for Internet Security (CIS)\"to protect the host operating system of computers connected with MSM. This measure can help prevent the lateral movement of the attack vector into MSM via these connected devices. Some examples for Windows-based computers are listed below. CIS Microsoft Windows Desktop Benchmarks CIS Microsoft Windows Server Benchmarks Also follow the cybersecurity deployment recommendations as documented in section 3.9 of2GHV045871_2018-P-en-Modular Switchgear Monitoring (MSM) - C. Additionally, Hitachi Energy recommends hardening web browsers in accordance withCIS Critical Security Control 9: Email and Web Browser Protections. Recommended security practices and firewall configurations can help protect a process control network from attacks that originate from outside the network. Such practices include ensuring that process control systems are physically protected from direct access by unauthorized personnel, have no direct connections to the internet, and are separated from other networks by means of a firewall system that has a minimal number of ports exposed, and others that have to be evaluated case by case. Process control systems should not be used for internet surfing, instant messaging, or receiving e-mails. Portable computers and removable storage media should be carefully scanned for viruses before they are connected to a control system. Proper password policies and processes should be followed. For more information, see the associated Hitachi Energy security advisory8DBD000228 Open-Source Software Vulnerabilities in Hitachi Energy MSM Product. CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as virtual private networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time."
     }
   ]
 }
