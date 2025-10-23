@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-10-23T14:24:03.085727Z",
+  "fetched_at": "2025-10-23T15:24:26.264615Z",
   "count": 20,
   "items": [
+    {
+      "title": "Help Wanted: Vietnamese Actors Using Fake Job Posting Campaigns to Deliver Malware and Steal Credentials",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/vietnamese-actors-fake-job-posting-campaigns/",
+      "pubDate": "Thu, 23 Oct 2025 14:00:00 +0000",
+      "description": "Google Threat Intelligence Group (GTIG) is tracking a cluster of financially motivated threat actors operating from Vietnam that leverages fake job postings on legitimate platforms to target individuals in the digital advertising and marketing sectors. The actor effectively uses social engineering to deliver malware and phishing kits, ultimately aiming to compromise high-value corporate accounts, in order to hijack digital advertising accounts. GTIG tracks parts of this activity as UNC6229. \nThe activity targets remote digital advertising workers who have contract or part-time positions and may actively look for work while they currently have a job. The attack starts when a target downloads and executes malware or enters credentials into a phishing site. If the target falls victim while logged into a work computer with a personal account, or while using a personal device with access to company ads accounts, threat actors can gain access to those company accounts. Successful compromise "
+    },
     {
       "title": "Pro-Russia Information Operations Leverage Russian Drone Incursions into Polish Airspace",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/pro-russia-information-operations-drone-incursions/",
@@ -43,7 +49,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f7c5739e820&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f62208fffd0&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/technical-analysis-vishing-threats/",
       "pubDate": "Wed, 04 Jun 2025 15:00:00 +0000",
       "description": "Written by: Nick Guttilla\n\nIntroduction\nOrganizations are increasingly relying on diverse digital communication channels for essential business operations. The way employees interact with colleagues, access corporate resources, and especially, receive information technology (IT) support is often conducted through calls, chat platforms, and other remote technologies. While these various available methods enhance both efficiency and global accessibility, they also introduce an expanded attack surface that can pose a significant risk if overlooked. Prevalence of in-person social interactions has diminished and remote IT structures, such as an outsourced service desk, has normalized employees' engagement with external or less familiar personnel. As a result, threat actors continue to use social engineering tactics.\nVishing in the Wild: A Tale of Two Actors\nSocial engineering is the psychological manipulation of people into performing unsolicited actions or divulging confidential informatio"
-    },
-    {
-      "title": "The Cost of a Call: From Voice Phishing to Data Extortion",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/voice-phishing-data-extortion/",
-      "pubDate": "Wed, 04 Jun 2025 14:00:00 +0000",
-      "description": "Update (August 8): Google has completed its email notifications to those affected by this incident.\nUpdate (August 8): Emails are actively being sent to those affected by this incident. Another update will be posted here once these alerts have been issued.\nUpdate (August 5)\nIn June, one of Google’s corporate Salesforce instances was impacted by similar UNC6040 activity described in this post. Google responded to the activity, performed an impact analysis and began mitigations. The instance was used to store contact information and related notes for small and medium businesses. Analysis revealed that data was retrieved by the threat actor during a small window of time before the access was cut off. The data retrieved by the threat actor was confined to basic and largely publicly available business information, such as business names and contact details.\nUNC6240\nGoogle Threat Intelligence Group (GTIG) tracks the extortion activities following UNC6040 intrusions, sometimes several months "
     }
   ]
 }
