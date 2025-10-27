@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-10-27T12:40:06.450353Z",
+  "fetched_at": "2025-10-27T13:31:24.675919Z",
   "items": [
     {
       "title": "Microsoft Releases Out-of-Band Security Update to Mitigate Windows Server Update Service Vulnerability, CVE-2025-59287",
