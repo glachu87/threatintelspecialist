@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-10-28T17:21:32.447636Z",
+  "fetched_at": "2025-10-28T18:34:47.946813Z",
   "count": 20,
   "items": [
+    {
+      "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/privileged-account-monitoring/",
+      "pubDate": "Tue, 28 Oct 2025 14:00:00 +0000",
+      "description": "Written by: Bhavesh Dhake, Will Silverstone, Matthew Hitchcock, Aaron Fletcher\n\nThe Criticality of Privileged Access in Today's Threat Landscape\nPrivileged access stands as the most critical pathway for adversaries seeking to compromise sensitive systems and data. Its protection is not only a best practice, it is a fundamental imperative for organizational resilience. The increasing complexity of modern IT environments, exacerbated by rapid cloud migration, has led to a surge in both human and non-human identities, comprising privileged accounts and virtual systems [compute workloads such as virtual machines (VMs), containers, and serverless functions, plus their control planes], significantly expanding the overall attack surface. This environment presents escalating challenges in identity and access management, cross-platform system security, and effective staffing, making the establishment and maintenance of a robust security posture increasingly challenging.\nThe threat landscape is "
+    },
     {
       "title": "Help Wanted: Vietnamese Actors Using Fake Job Posting Campaigns to Deliver Malware and Steal Credentials",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/vietnamese-actors-fake-job-posting-campaigns/",
@@ -49,7 +55,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fee904a30a0&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fea46e83a60&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/creative-phishing-academics-critics-of-russia/",
       "pubDate": "Wed, 18 Jun 2025 14:00:00 +0000",
       "description": "Written by: Gabby Roncone, Wesley Shields\n\nUPDATE (July 10)\nIn late June 2025, Google Threat Intelligence Group (GTIG) discovered continued UNC6293 operations that demonstrate an evolution in the group’s tradecraft. Using similar lure themes as previously observed activity, UNC6293 continued the ASP phishing campaign against prominent academics, critics of Russia, and journalists using different ASP names, potentially as a response to our publication of their tradecraft. In a different campaign, UNC6293 sought to convince targets to link an attacker-controlled device to their Microsoft 365 account through Microsoft’s device code authentication flow.\nIn an attempt to continue the ASP campaign, UNC6293 attempted to re-establish contact with specific individuals that had previously engaged with the initial phishing attempts. GTIG observed UNC6293 creating multiple new accounts with similar usernames to ones used previously and already disabled. UNC6293 also used different ASP names in thi"
-    },
-    {
-      "title": "Hello, Operator? A Technical Analysis of Vishing Threats",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/technical-analysis-vishing-threats/",
-      "pubDate": "Wed, 04 Jun 2025 15:00:00 +0000",
-      "description": "Written by: Nick Guttilla\n\nIntroduction\nOrganizations are increasingly relying on diverse digital communication channels for essential business operations. The way employees interact with colleagues, access corporate resources, and especially, receive information technology (IT) support is often conducted through calls, chat platforms, and other remote technologies. While these various available methods enhance both efficiency and global accessibility, they also introduce an expanded attack surface that can pose a significant risk if overlooked. Prevalence of in-person social interactions has diminished and remote IT structures, such as an outsourced service desk, has normalized employees' engagement with external or less familiar personnel. As a result, threat actors continue to use social engineering tactics.\nVishing in the Wild: A Tale of Two Actors\nSocial engineering is the psychological manipulation of people into performing unsolicited actions or divulging confidential informatio"
     }
   ]
 }
