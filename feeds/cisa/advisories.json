@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-10-28T18:28:33.215305Z",
+  "fetched_at": "2025-10-28T19:15:17.314316Z",
   "items": [
     {
       "title": "Schneider Electric EcoStruxure",
@@ -33,7 +33,7 @@
       "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-301-01",
       "published": "Tue, 28 Oct 25 12:00:00 +0000",
       "vendor": "N/A",
-      "affected_products": "N/AThe following Vertikal Systems service was affected: Hospital Manager Backend Services: Setpember 19, 2025 and prior",
+      "affected_products": "N/AThe following Vertikal Systems service was affected: Hospital Manager Backend Services: September 19, 2025 and prior",
       "release_date": "N/A",
       "cvss_v4": "N/A",
       "executive_summary": "N/ACVSS v4 8.7 ATTENTION: Exploitable remotely/low attack complexity Vendor: Vertikal Systems Equipment: Hospital Manager Backend Services Vulnerabilities: Exposure of Sensitive System Information to an Unauthorized Control Sphere, Generation of Error Message Containing Sensitive Information",
