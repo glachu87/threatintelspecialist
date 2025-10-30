@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-10-30T12:38:49.176898Z",
+  "fetched_at": "2025-10-30T13:29:49.211192Z",
   "items": [
     {
       "title": "Schneider Electric EcoStruxure",
@@ -254,7 +254,7 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-294-01",
       "published": "Tue, 21 Oct 25 12:00:00 +0000",
       "vendor": "Rockwell Automation",
-      "affected_products": "N/AThe following versions of 1783-NATR are affected: 1783-NATR: All versions prior to 1.006",
+      "affected_products": "N/AThe following versions of 1783-NATR are affected: 1783-NATR: Version 1.006 and prior",
       "release_date": "N/A",
       "cvss_v4": "N/A",
       "executive_summary": "N/ACVSS v4 9.9 ATTENTION:Exploitable remotely/low attack complexity Vendor:Rockwell Automation Equipment:1783-NATR Vulnerabilities:Missing Authentication for Critical Function, Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'), Cross-Site Request Forgery (CSRF)",
