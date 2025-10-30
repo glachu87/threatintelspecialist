@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-10-30T13:29:49.211192Z",
+  "fetched_at": "2025-10-30T14:19:17.086044Z",
   "items": [
     {
       "title": "Schneider Electric EcoStruxure",
@@ -267,7 +267,7 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-294-02",
       "published": "Tue, 21 Oct 25 12:00:00 +0000",
       "vendor": "Rockwell Automation",
-      "affected_products": "N/AThe following versions of Compact GuardLogix 5370 are affected: Compact GuardLogix 5370: All versions prior to 30.012",
+      "affected_products": "N/AThe following versions of Compact GuardLogix 5370 are affected: Compact GuardLogix 5370: Version 30.012 and prior",
       "release_date": "N/A",
       "cvss_v4": "N/A",
       "executive_summary": "N/ACVSS v4 8.7 ATTENTION:Exploitable remotely/low attack complexity Vendor:Rockwell Automation Equipment:Compact GuardLogix 5370 Vulnerability:Uncaught Exception",
