@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-11-04T13:35:56.516584Z",
+  "fetched_at": "2025-11-04T14:24:09.959862Z",
   "count": 20,
   "items": [
+    {
+      "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
+      "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f3e5b322490&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+    },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/privileged-account-monitoring/",
@@ -55,7 +61,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f3e43e551f0&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f3e43a44b80&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/remote-code-execution-aviatrix-controller/",
       "pubDate": "Mon, 23 Jun 2025 14:00:00 +0000",
       "description": "Written by: Louis Dion-Marcil\n\nThis blog post highlights a Mandiant Red Team case study simulating an “Initial Access Brokerage” approach that discovered two vulnerabilities on Aviatrix Controller, a Software-Defined Networking (SDN) utility that allows for the creation of links between different cloud vendors and regions:\n\n\nCVE-2025-2171: an administrator authentication bypass\n\n\nCVE-2025-2172: an authenticated command injection \n\n\nThe vulnerabilities affected Aviatrix Controller 7.2.5012 and prior versions and were patched in versions 8.0.0, 7.2.5090, and 7.1.4208. Thank you to the team at Aviatrix who took the reported security issues seriously and remediated them in a timely manner.\nThe Red Team successfully exploited a fully patched Aviatrix Controller via authentication bypass, unsafe file upload, and argument injection. The detailed attack chain is shown in Figure 1.\n\n\n\n\n\n\n\n  \n    \n      \n  \n\n    \n\n      \n      \n        \n        \n        \n        \n      \n        Figure 1: Exploit"
-    },
-    {
-      "title": "What’s in an ASP? Creative Phishing Attack on Prominent Academics and Critics of Russia",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/creative-phishing-academics-critics-of-russia/",
-      "pubDate": "Wed, 18 Jun 2025 14:00:00 +0000",
-      "description": "Written by: Gabby Roncone, Wesley Shields\n\nUPDATE (July 10)\nIn late June 2025, Google Threat Intelligence Group (GTIG) discovered continued UNC6293 operations that demonstrate an evolution in the group’s tradecraft. Using similar lure themes as previously observed activity, UNC6293 continued the ASP phishing campaign against prominent academics, critics of Russia, and journalists using different ASP names, potentially as a response to our publication of their tradecraft. In a different campaign, UNC6293 sought to convince targets to link an attacker-controlled device to their Microsoft 365 account through Microsoft’s device code authentication flow.\nIn an attempt to continue the ASP campaign, UNC6293 attempted to re-establish contact with specific individuals that had previously engaged with the initial phishing attempts. GTIG observed UNC6293 creating multiple new accounts with similar usernames to ones used previously and already disabled. UNC6293 also used different ASP names in thi"
     }
   ]
 }
