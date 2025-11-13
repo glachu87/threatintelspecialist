@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2025-11-13T15:25:32.518937Z",
+  "fetched_at": "2025-11-13T16:29:28.809973Z",
   "count": 20,
   "items": [
+    {
+      "title": "Time Travel Triage: An Introduction to Time Travel Debugging using a .NET Process Hollowing Case Study",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/time-travel-debugging-using-net-process-hollowing/",
+      "pubDate": "Thu, 13 Nov 2025 14:00:00 +0000",
+      "description": "Written by: Josh Stroschein, Jae Young Kim\n\nThe prevalence of obfuscation and multi-stage layering in today’s malware often forces analysts into tedious and manual debugging sessions. For instance, the primary challenge of analyzing pervasive commodity stealers like AgentTesla isn’t identifying the malware, but quickly cutting through the obfuscated delivery chain to get to the final payload.\nUnlike traditional live debugging, Time Travel Debugging (TTD) captures a deterministic, shareable record of a program's execution. Leveraging TTD's powerful data model and time travel capabilities allow us to efficiently pivot to the key execution events that lead to the final payload.\nThis post introduces all of the basics of WinDbg and TTD necessary to start incorporating TTD into your analysis. We demonstrate why it deserves to be a part of your toolkit by walking through an obfuscated multi-stage .NET dropper that performs process hollowing.\nWhat is Time Travel Debugging?\nTime Travel Debuggin"
+    },
     {
       "title": "No Place Like Localhost: Unauthenticated Remote Access via Triofox Vulnerability CVE-2025-12480",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/triofox-vulnerability-cve-2025-12480/",
@@ -19,7 +25,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f1155979130&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f067c09f490&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -73,7 +79,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f11389965b0&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f067f974190&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/sonicwall-secure-mobile-access-exploitation-overstep-backdoor/",
       "pubDate": "Wed, 16 Jul 2025 14:00:00 +0000",
       "description": "Written by: Josh Goddard, Zander Work, Dimiter Andonov\n\nUPDATE (Sep 16): Clarified hunting guidance specifics surrounding ld.so.preload files.\nUPDATE (July 30): Added additional network IOC identified by Sonicwall as being associated with OVERSTEP. \n \nIntroduction\nGoogle Threat Intelligence Group (GTIG) has identified an ongoing campaign by a suspected financially-motivated threat actor we track as UNC6148, targeting fully patched end-of-life SonicWall Secure Mobile Access (SMA) 100 series appliances. GTIG assesses with high confidence that UNC6148 is leveraging credentials and one-time password (OTP) seeds stolen during previous intrusions, allowing them to regain access even after organizations have applied security updates. Evidence for the initial infection vector was limited, as the actor's malware is designed to selectively remove log entries, hindering forensic investigation; however, it is likely this was through the exploitation of known vulnerabilities.\nIn this new wave of ac"
-    },
-    {
-      "title": "Isolated Recovery Environments: A Critical Layer in Modern Cyber Resilience",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/isolated-recovery-environments-modern-cyber-resilience/",
-      "pubDate": "Mon, 07 Jul 2025 14:00:00 +0000",
-      "description": "Written by: Jaysn Rye\n\nExecutive Summary\nAs adversaries grow faster, stealthier, and more destructive, traditional recovery strategies are increasingly insufficient. Mandiant's M-Trends 2025 report reinforces this shift, highlighting that ransomware operators now routinely target not just production systems but also backups. This evolution demands that organizations re-evaluate their resilience posture. One approach gaining traction is the implementation of an isolated recovery environment (IRE)—a secure, logically separated environment built to enable reliable recovery even when an organization's primary network has been compromised.\nThis blog post outlines why IREs matter, how they differ from conventional disaster recovery strategies, and what practical steps enterprises can take to implement them effectively.\nThe Backup Blind Spot\nMost organizations assume that regular backups equal resilience; however, that assumption doesn't hold up against today's threat landscape. Ransomware ac"
     }
   ]
 }
