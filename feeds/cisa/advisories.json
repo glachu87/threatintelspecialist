@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-11-18T20:22:50.485618Z",
+  "fetched_at": "2025-11-18T22:18:48.399904Z",
   "items": [
     {
       "title": "Shelly Pro 3EM",
@@ -14,6 +14,19 @@
       "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could result in a denial-of-service condition.",
       "vulnerability_overview": "N/ABy sending a specially crafted Modbus request, an attacker can direct the device to access an illegal data address without standard error handling, causing the device to reboot and leading to a denial-of-service condition. CVE-2025-12056has been assigned to this vulnerability. A CVSS v3 base score of 7.4 has been calculated; the CVSS vector string is (AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H). A CVSS v4 score has also been calculated forCVE-2025-12056. A base score of 8.3 has been calculated; the CVSS vector string is (AV:A/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H).",
       "mitigations": "N/AShelly did not respond to CISA's attempts at coordination. Users of Shelly Pro 3EM devices are encouraged tocontact Shellyand keep their systems up to date. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
+    },
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/11/18/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Tue, 18 Nov 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
     },
     {
       "title": "Schneider Electric PowerChute Serial Shutdown",
@@ -370,19 +383,6 @@
       "title": "Update: Implementation Guidance for Emergency Directive on Cisco ASA and Firepower Device Vulnerabilities",
       "link": "https://www.cisa.gov/news-events/alerts/2025/11/12/update-implementation-guidance-emergency-directive-cisco-asa-and-firepower-device-vulnerabilities",
       "published": "Wed, 12 Nov 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/11/10/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Mon, 10 Nov 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
