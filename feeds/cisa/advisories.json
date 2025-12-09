@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-12-09T19:14:48.037847Z",
+  "fetched_at": "2025-12-09T20:20:05.045256Z",
   "items": [
     {
       "title": "Festo LX Appliance",
@@ -27,6 +27,19 @@
       "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could result in information disclosure including capture of camera account credentials.",
       "vulnerability_overview": "N/AA malicious actor can access camera configuration information, including account credentials, without authenticating when accessing a vulnerable URL. CVE-2025-13607has been assigned to this vulnerability. A CVSS v3 base score of 9.4 has been calculated; the CVSS vector string is (AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L). A CVSS v4 score has also been calculated forCVE-2025-13607. A base score of 9.3 has been calculated; the CVSS vector string is (AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:L/SC:N/SI:N/SA:N).",
       "mitigations": "N/ASecurus CCTV and Sparsh Securitech did not respond to CISA's requests for coordination. Users of cameras from these vendors are encouraged to reach out to their respective customer service representatives to see if their specific model of camera is affected. Securus CCTV:sales@securuscctv.comor use the form athttps://www.securuscctv.com/contactus Sparsh Securitech:info@sparshsecuritech.comor use the form athttps://www.sparshsecuritech.com/contact-us D-Link has released a security advisory and a software update for the affected camera model. Please visit thisD-Link Security Announcementfor further information. D-Link strongly urges all users to install the relevant updates and regularly check for further updates. After downloading the software update, it is essential to ALWAYS validate its success by comparing the software version on your product interface to the software update version. The model number listed in this advisory is known only for D-Link India Limited. Users of cameras produced by the other listed vendors are encouraged to evaluate this vulnerability within their environment. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
+    },
+    {
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/09/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "published": "Tue, 09 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
     },
     {
       "title": "CISA Releases Three Industrial Control Systems Advisories",
@@ -313,19 +326,6 @@
       "risk_evaluation": "N/A",
       "vulnerability_overview": "N/A",
       "mitigations": "N/A"
-    },
-    {
-      "title": "Ashlar-Vellum Cobalt, Xenon, Argon, Lithium, Cobalt Share",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-329-01",
-      "published": "Tue, 25 Nov 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/AThe following Ashlar-Vellum products are affected: Cobalt: Versions 12.6.1204.207 and prior Xenon: Versions 12.6.1204.207 and prior Argon: Versions 12.6.1204.207 and prior Lithium: Versions 12.6.1204.207 and prior Cobalt Share: Versions 12.6.1204.207 and prior",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 8.4 ATTENTION: Low attack complexity Vendor: Ashlar-Vellum Equipment: Cobalt, Xenon, Argon, Lithium, Cobalt Share Vulnerabilities: Out-of-Bounds Write, Heap-based Buffer Overflow",
-      "risk_evaluation": "N/ASuccessful exploitation of these vulnerabilities could allow an attacker to disclose information or execute arbitrary code.",
-      "vulnerability_overview": "N/AAn Out-of-Bounds Write vulnerability is present in Ashlar-Vellum Cobalt, Xenon, Argon, Lithium, and Cobalt Share versions 12.6.1204.207 and prior that could allow an attacker to disclose information or execute arbitrary code. CVE-2025-65084has been assigned to this vulnerability. A CVSS v3.1 base score of 7.8 has been calculated; the CVSS vector string is (AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-65084. A base score of 8.4 has been calculated; the CVSS vector string is (AV:L/AC:L/AT:N/PR:N/UI:A/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N). A Heap-based Buffer Overflow vulnerability is present in Ashlar-Vellum Cobalt, Xenon, Argon, Lithium, and Cobalt Share versions 12.6.1204.207 and prior that could allow an attacker to disclose information or execute arbitrary code. CVE-2025-65085has been assigned to this vulnerability. A CVSS v3.1 base score of 7.8 has been calculated; the CVSS vector string is (AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-65085. A base score of 8.4 has been calculated; the CVSS vector string is (AV:L/AC:L/AT:N/PR:N/UI:A/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N).",
-      "mitigations": "N/AAshlar-Vellum recommends users update to the following versions: Cobalt: Versions 12.6.1204.208 or higher Xenon: Versions 12.6.1204.208 or higher Argon: Versions 12.6.1204.208 or higher Lithium: Versions 12.6.1204.208 or higher Cobalt Share: Versions 12.6.1204.208 or higher CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time. These vulnerabilities are not exploitable remotely."
     },
     {
       "title": "Festo Compact Vision System, Control Block, Controller, and Operator Unit products",
