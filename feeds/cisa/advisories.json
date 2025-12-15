@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-12-15T18:31:15.156845Z",
+  "fetched_at": "2025-12-15T19:18:50.996434Z",
   "items": [
+    {
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/15/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "published": "Mon, 15 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/12/cisa-adds-one-known-exploited-vulnerability-catalog",
@@ -146,19 +159,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Grassroots DICOM (GDCM)",
-      "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-345-01",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/AThe following open source products and specified components are affected: Grassroots DICOM (GDCM): Versions 3.0.24 and prior SimpleITK: Versions 2.5.2 and prior medInria: Versions 4.0 and prior",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 6.8 ATTENTION: Low attack complexity Vendor: Grassroots Equipment: DICOM (GDCM) Vulnerability: Out-of-bounds Write",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an attacker to craft a malicious DICOM file and, if opened, could crash the application resulting in a denial-of-service condition.",
-      "vulnerability_overview": "N/AAn out-of-bounds write vulnerability exists in the Grassroots DICOM library (GDCM). The issue is triggered during parsing of a malformed DICOM file containing encapsulated PixelData fragments (compressed image data stored as multiple fragments). This vulnerability leads to a segmentation fault caused by an out-of-bounds memory access due to unsigned integer underflow in buffer indexing. It is exploitable via file input, simply opening a crafted malicious DICOM file is sufficient to trigger the crash, resulting in a denial-of-service condition. CVE-2025-11266has been assigned to this vulnerability. A CVSS v3.1 base score of 6.6 has been calculated; the CVSS vector string is (AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H). A CVSS v4 score has also been calculated forCVE-2025-11266. A base score of 6.8 has been calculated; the CVSS vector string is (AV:L/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:H/SC:N/SI:N/SA:N).",
-      "mitigations": "N/AThe maintainer of the software recommends users updateGrassroots DICOM (GDCM) to v3.2.2 or laterfrom the main GitHub repository. SimpleITK and medInria have both released fixes for the vulnerability. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
-    },
-    {
       "title": "OpenPLC_V3",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-10",
       "published": "Thu, 11 Dec 25 12:00:00 +0000",
@@ -170,6 +170,19 @@
       "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could result in the alteration of PLC settings or the upload of malicious programs.",
       "vulnerability_overview": "N/AOpenPLC_V3 is vulnerable to a cross-site request forgery (CSRF) attack due to the absence of proper CSRF validation. This issue allows an unauthenticated attacker to trick a logged-in administrator into visiting a maliciously crafted link, potentially enabling unauthorized modification of PLC settings or the upload of malicious programs which could lead to significant disruption or damage to connected systems. CVE-2025-13970has been assigned to this vulnerability. A CVSS v3 base score of 8.0 has been calculated; the CVSS vector string is (AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-13970. A base score of 7.0 has been calculated; the CVSS vector string is (AV:N/AC:H/AT:N/PR:N/UI:A/VC:N/VI:H/VA:H/SC:N/SI:N/SA:H).",
       "mitigations": "N/APull request #310 resolves this issue. Users are advised to update OpenPLC_V3 to pull request #310 or later from themain GitHub repository. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability has a high attack complexity."
+    },
+    {
+      "title": "Grassroots DICOM (GDCM)",
+      "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-345-01",
+      "published": "Thu, 11 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/AThe following open source products and specified components are affected: Grassroots DICOM (GDCM): Versions 3.0.24 and prior SimpleITK: Versions 2.5.2 and prior medInria: Versions 4.0 and prior",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/ACVSS v4 6.8 ATTENTION: Low attack complexity Vendor: Grassroots Equipment: DICOM (GDCM) Vulnerability: Out-of-bounds Write",
+      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an attacker to craft a malicious DICOM file and, if opened, could crash the application resulting in a denial-of-service condition.",
+      "vulnerability_overview": "N/AAn out-of-bounds write vulnerability exists in the Grassroots DICOM library (GDCM). The issue is triggered during parsing of a malformed DICOM file containing encapsulated PixelData fragments (compressed image data stored as multiple fragments). This vulnerability leads to a segmentation fault caused by an out-of-bounds memory access due to unsigned integer underflow in buffer indexing. It is exploitable via file input, simply opening a crafted malicious DICOM file is sufficient to trigger the crash, resulting in a denial-of-service condition. CVE-2025-11266has been assigned to this vulnerability. A CVSS v3.1 base score of 6.6 has been calculated; the CVSS vector string is (AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H). A CVSS v4 score has also been calculated forCVE-2025-11266. A base score of 6.8 has been calculated; the CVSS vector string is (AV:L/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:H/SC:N/SI:N/SA:N).",
+      "mitigations": "N/AThe maintainer of the software recommends users updateGrassroots DICOM (GDCM) to v3.2.2 or laterfrom the main GitHub repository. SimpleITK and medInria have both released fixes for the vulnerability. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
     },
     {
       "title": "AzeoTech DAQFactory",
@@ -354,19 +367,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "PRC State-Sponsored Actors Use BRICKSTORM Malware Across Public Sector and Information Technology Systems",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/04/prc-state-sponsored-actors-use-brickstorm-malware-across-public-sector-and-information-technology",
-      "published": "Thu, 04 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "BRICKSTORM Backdoor",
       "link": "https://www.cisa.gov/news-events/analysis-reports/ar25-338a",
       "published": "Thu, 04 Dec 25 12:00:00 +0000",
@@ -380,17 +380,17 @@
       "mitigations": "N/ACISA, NSA, and Cyber Centre recommend organizations implement the mitigations below to improve organization cybersecurity posture based on the cyber actors\u2019 activity. These mitigations align with the Cross-Sector Cybersecurity Performance Goals (CPGs) developed by CISA and the National Institute of Standards and Technology (NIST). The CPGs provide a minimum set of practices and protections that CISA and NIST recommend all organizations implement. CISA and NIST based the CPGs on existing cybersecurity frameworks and guidance to protect against the most common and impactful threats, tactics, techniques, and procedures. Visit CISA\u2019sCPGs webpagefor more information on the CPGs, including additional recommended baseline protections. Upgrade VMware vSphere serversto the latest version [CPG 1.E]. Harden your VMware vSphere environmentsby applyingVMware\u2019s guidance. For additional guidance on logging [CPG 2.T] and hardening, seeFrom Help Desk to Hypervisor: Defending Your VMware vSphere Estate from UNC3944. Take inventory of all network edge devices [CPG 1.A] and monitorfor any suspicious network connectivity originating from these devices. Ensure proper network segmentation restricts network traffic from the DMZ to the internal network [CPG 2.F]. Disable RDP and SMBfrom the DMZ to the internal network. Apply the principle of least privilege and restrict service accountsto only needed permissions. Increase monitoring for service accounts,which are highly privileged and have a predictable pattern of behavior (e.g., scans that reliably run at a certain hour of the day). Block unauthorized DoH providers and external DoH network trafficto reduce unmonitored communications."
     },
     {
-      "title": "Mitsubishi Electric GX Works2",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-338-01",
+      "title": "PRC State-Sponsored Actors Use BRICKSTORM Malware Across Public Sector and Information Technology Systems",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/04/prc-state-sponsored-actors-use-brickstorm-malware-across-public-sector-and-information-technology",
       "published": "Thu, 04 Dec 25 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
-      "affected_products": "N/AThe following versions of GX Works2 are affected: GX Works2: All versions",
+      "vendor": "N/A",
+      "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 6.8 ATTENTION: Low attack complexity Vendor: Mitsubishi Electric Equipment: GX Works2 Vulnerability: Cleartext Storage of Sensitive Information",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could open project files protected by user authentication using disclosed credential information, and obtain or modify project information.",
-      "vulnerability_overview": "N/AAn attacker could disclose credential information stored in plaintext from project files. As a result, the attacker may be able to open project files protected by user authentication using disclosed credential information, and obtain or modify project information. CVE-2025-3784has been assigned to this vulnerability. A CVSS v3.1 base score of 5.5 has been calculated; the CVSS vector string is (AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N). A CVSS v4 score has also been calculated forCVE-2025-3784. A base score of 6.8 has been calculated; the CVSS vector string is (AV:L/AC:L/AT:N/PR:L/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N).",
-      "mitigations": "N/AThe fixed version for this vulnerability is currently under development by Mitsubishi Electric. Until the fixed version is released, please implement the following mitigations: Use the PCs with the affected product installed in the LAN and block remote logins from untrusted networks, hosts, or users. Block unauthorized access by using a firewall or a virtual private network (VPN), etc., and allow remote logins only for trusted users when connecting the PCs with the affected product installed to the Internet. Restrict physical access to the PCs with the affected product installed, as well as to PCs and network devices that can communicate with those PCs. Install an antivirus software on the PCs running the affected product. Encrypt project files when sending or receiving them over the Internet. SeeMitsubishi Electric's security bulletinfor information on the availability of the security updates. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
     }
   ]
 }
