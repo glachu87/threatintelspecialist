@@ -1,12 +1,12 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-12-16T18:31:24.867225Z",
+  "fetched_at": "2025-12-16T19:18:48.286899Z",
   "items": [
     {
-      "title": "CISA Releases Seven Industrial Control Systems Advisories",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-releases-seven-industrial-control-systems-advisories",
+      "title": "Mitsubishi Electric GT Designer3",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-04",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "Fuji Electric",
+      "vendor": "Mitsubishi Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -16,10 +16,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Mitsubishi Electric GT Designer3",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-04",
+      "title": "CISA Releases Seven Industrial Control Systems Advisories",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-releases-seven-industrial-control-systems-advisories",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
+      "vendor": "Fuji Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -57,6 +57,19 @@
     {
       "title": "G\u00fcralp Systems Fortimus Series, Minimus Series, and Certimus Series",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-01",
+      "published": "Tue, 16 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -315,19 +328,6 @@
       "mitigations": "N/AAzeoTech has released the following update that addresses these issues: DAQFactory: Release 21.1 AzeoTech also recommends users take the following actions to reduce the risk: Users are discouraged from using documents from unknown/untrusted sources. Users are encouraged to store .ctl files in a folder only writeable by admin-level users. Users are encouraged to operate in \"Safe Mode\" when loading documents that have been out of their control. Users are encouraged to apply a document editing password to their documents. CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time. These vulnerabilities are not exploitable remotely. These vulnerabilities have a high attack complexity."
     },
     {
-      "title": "Opportunistic Pro-Russia Hacktivists Attack US and Global Critical Infrastructure",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/09/opportunistic-pro-russia-hacktivists-attack-us-and-global-critical-infrastructure",
-      "published": "Tue, 09 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "Multiple India-based CCTV Cameras",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-343-03",
       "published": "Tue, 09 Dec 25 12:00:00 +0000",
@@ -341,6 +341,19 @@
       "mitigations": "N/ASecurus CCTV and Sparsh Securitech did not respond to CISA's requests for coordination. Users of cameras from these vendors are encouraged to reach out to their respective customer service representatives to see if their specific model of camera is affected. Securus CCTV:sales@securuscctv.comor use the form athttps://www.securuscctv.com/contactus Sparsh Securitech:info@sparshsecuritech.comor use the form athttps://www.sparshsecuritech.com/contact-us D-Link has released a security advisory and a software update for the affected camera model. Please visit thisD-Link Security Announcementfor further information. D-Link strongly urges all users to install the relevant updates and regularly check for further updates. After downloading the software update, it is essential to ALWAYS validate its success by comparing the software version on your product interface to the software update version. The model number listed in this advisory is known only for D-Link India Limited. Users of cameras produced by the other listed vendors are encouraged to evaluate this vulnerability within their environment. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
     },
     {
+      "title": "Opportunistic Pro-Russia Hacktivists Attack US and Global Critical Infrastructure",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/09/opportunistic-pro-russia-hacktivists-attack-us-and-global-critical-infrastructure",
+      "published": "Tue, 09 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "CISA Releases Three Industrial Control Systems Advisories",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/09/cisa-releases-three-industrial-control-systems-advisories",
       "published": "Tue, 09 Dec 25 12:00:00 +0000",
@@ -352,19 +365,6 @@
       "risk_evaluation": "N/A",
       "vulnerability_overview": "N/A",
       "mitigations": "N/A"
-    },
-    {
-      "title": "Universal Boot Loader (U-Boot)",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-343-01",
-      "published": "Tue, 09 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/AThe following version of U-boot is affected: U-boot: All versions prior to 2017.11 The following specific chips have been confirmed to be affected: Qualcomm IPQ4019 Qualcomm IPQ5018 Qualcomm IPQ5322 Qualcomm IPQ6018 Qualcomm IPQ8064 Qualcomm IPQ8074 Qualcomm IPQ9574",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 8.6 ATTENTION:Low attack complexity Vendor:U-Boot Equipment:U-Boot Vulnerability:Improper Access Control for Volatile Memory Containing Boot Code",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could result in arbitrary code execution.",
-      "vulnerability_overview": "N/AThe affected products are vulnerable to a bootloader vulnerability, which could allow an attacker to execute arbitrary code. CVE-2025-24857has been assigned to this vulnerability. A CVSS v3 base score of 8.4 has been calculated; the CVSS vector string is (AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-24857. A base score of 8.6 has been calculated; the CVSS vector string is (AV:L/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N).",
-      "mitigations": "N/AKonsulko, the third-party maintainer of U-boot, recommends users upgrade toversion v2025.4 or laterand ensure the physical security of the device. Qualcomm recommends users with the affected chips tocontact supportreferencing CVE-2025-24857, QPSIIR-1969 or CR4082905. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
     },
     {
       "title": "Festo LX Appliance",
