@@ -1,10 +1,23 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-12-22T18:29:52.778799Z",
+  "fetched_at": "2025-12-22T19:17:03.901468Z",
   "items": [
     {
       "title": "NIST and CISA Release Draft Interagency Report on Protecting Tokens and Assertions from Tampering Theft and Misuse for Public Comment",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/22/nist-and-cisa-release-draft-interagency-report-protecting-tokens-and-assertions-tampering-theft-and",
+      "published": "Mon, 22 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/22/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Mon, 22 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -42,10 +55,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "National Instruments LabView",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-03",
+      "title": "Axis Communications Camera Station Pro, Camera Station, and Device Manager",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-08",
       "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "National Instruments",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -68,10 +81,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation Micro820, Micro850, Micro870",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-07",
+      "title": "National Instruments LabView",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-03",
       "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
+      "vendor": "National Instruments",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -81,10 +94,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Axis Communications Camera Station Pro, Camera Station, and Device Manager",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-08",
+      "title": "Rockwell Automation Micro820, Micro850, Micro870",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-07",
       "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
+      "vendor": "Rockwell Automation",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -172,6 +185,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Mitsubishi Electric GT Designer3",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-04",
+      "published": "Tue, 16 Dec 25 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Johnson Controls PowerG, IQPanel and IQHub",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-02",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
@@ -202,19 +228,6 @@
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Mitsubishi Electric GT Designer3",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-04",
-      "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -289,19 +302,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens IAM Client",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-04",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/ASiemens reports that the following products are affected: COMOS V10.6: All versions NX V2412: All versions prior to 2412.8700 NX V2506: All versions prior to 2506.6000 Simcenter 3D: All versions prior to 2506.6000 Simcenter Femap: All versions prior to 2506.0002 Solid Edge SE2025: All versions prior to V225.0 Update 10 Solid Edge SE2026: All versions prior to V226.0 Update 1",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 9.1 ATTENTION: Exploitable remotely Vendor: Siemens Equipment: IAM Client Vulnerability: Improper Certificate Validation",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an unauthenticated remote attacker to perform man-in-the-middle attacks.",
-      "vulnerability_overview": "N/AThe IAM client in affected products is missing server certificate validation while establishing TLS connections to the authorization server. This could allow an attacker to perform a man-in-the-middle attack. CVE-2025-40800has been assigned to this vulnerability. A CVSS v3.1 base score of 7.4 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N). A CVSS v4 score has also been calculated forCVE-2025-40800. A base score of 9.1 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N).",
-      "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: COMOS V10.6: Currently no fix is available Solid Edge SE2025: Update to V225.0 Update 10 orlater version Solid Edge SE2026: Update to V226.0 Update 1 orlater version NX V2412: Update to V2412.8700 orlater version Simcenter Femap: Update to V2506.0002 orlater version NX V2506: Update to V2506.6000 orlater version Simcenter 3D: Update to V2506.6000 orlater version As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-868571 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability has a high attack complexity."
-    },
-    {
       "title": "Siemens Building X - Security Manager Edge Controller",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-07",
       "published": "Thu, 11 Dec 25 12:00:00 +0000",
@@ -313,6 +313,19 @@
       "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an attacker to upload maliciously modified firmware onto the device.",
       "vulnerability_overview": "N/AAffected devices do not properly check the integrity of firmware updates. This could allow a local attacker to upload maliciously modified firmware onto the device. In a second scenario, a remote attacker who is able to intercept the transfer of valid firmware from the server to the device could modify the firmware \"on the fly\". CVE-2022-31807has been assigned to this vulnerability. A CVSS v3.1 base score of 6.2 has been calculated; the CVSS vector string is (CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N). A CVSS v4 score has also been calculated forCVE-2022-31807. A base score of 5.9 has been calculated; the CVSS vector string is (CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N).",
       "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: Building X - Security Manager Edge Controller (ACC-AP): Use the ACC Firmware App to apply updates in a controlled and authenticated manner, ensuring that only verified firmware packages from the official SIOS portal are installed on the controller. Validate the integrity of the downloaded firmware by confirming its hash value. Access to the controller should remain limited to authorized personnel, and credentials must be protected and updated according to policy to reduce the risk of unauthorized modifications or the installation of tampered firmware Building X - Security Manager Edge Controller (ACC-AP): Currently no fix is planned As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-420375 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
+    },
+    {
+      "title": "Siemens IAM Client",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-04",
+      "published": "Thu, 11 Dec 25 12:00:00 +0000",
+      "vendor": "Siemens",
+      "affected_products": "N/ASiemens reports that the following products are affected: COMOS V10.6: All versions NX V2412: All versions prior to 2412.8700 NX V2506: All versions prior to 2506.6000 Simcenter 3D: All versions prior to 2506.6000 Simcenter Femap: All versions prior to 2506.0002 Solid Edge SE2025: All versions prior to V225.0 Update 10 Solid Edge SE2026: All versions prior to V226.0 Update 1",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/ACVSS v4 9.1 ATTENTION: Exploitable remotely Vendor: Siemens Equipment: IAM Client Vulnerability: Improper Certificate Validation",
+      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an unauthenticated remote attacker to perform man-in-the-middle attacks.",
+      "vulnerability_overview": "N/AThe IAM client in affected products is missing server certificate validation while establishing TLS connections to the authorization server. This could allow an attacker to perform a man-in-the-middle attack. CVE-2025-40800has been assigned to this vulnerability. A CVSS v3.1 base score of 7.4 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N). A CVSS v4 score has also been calculated forCVE-2025-40800. A base score of 9.1 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N).",
+      "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: COMOS V10.6: Currently no fix is available Solid Edge SE2025: Update to V225.0 Update 10 orlater version Solid Edge SE2026: Update to V226.0 Update 1 orlater version NX V2412: Update to V2412.8700 orlater version Simcenter Femap: Update to V2506.0002 orlater version NX V2506: Update to V2506.6000 orlater version Simcenter 3D: Update to V2506.6000 orlater version As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-868571 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability has a high attack complexity."
     },
     {
       "title": "2025 CWE Top 25 Most Dangerous Software Weaknesses",
@@ -339,19 +352,6 @@
       "risk_evaluation": "N/A",
       "vulnerability_overview": "N/A",
       "mitigations": "N/A"
-    },
-    {
-      "title": "Siemens Advanced Licensing (SALT) Toolkit",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-05",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/ASiemens reports that the following products are affected: COMOS V10.6: All versions JT Bi-Directional Translator for STEP: All versions NX V2412: Versions prior to 2412.8900 NX V2506: Versions prior to 2506.6000 Simcenter 3D: Versions prior to 2506.6000 Simcenter Femap: Versions prior to 2506.0002 Simcenter Studio: All versions Simcenter System Architect: All versions Tecnomatix Plant Simulation: Versions prior to 2504.0007",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 9.2 ATTENTION: Exploitable remotely/low attack complexity Vendor: Siemens Equipment: Advanced Licensing (SALT) Toolkit Vulnerability: Improper Certificate Validation",
-      "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an unauthenticated remote attacker to perform man-in-the-middle attacks.",
-      "vulnerability_overview": "N/AThe SALT SDK is missing server certificate validation while establishing TLS connections to the authorization server. This could allow an attacker to perform a man-in-the-middle attack. CVE-2025-40801has been assigned to this vulnerability. A CVSS v3.1 base score of 8.1 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-40801. A base score of 9.2 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N).",
-      "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: JT Bi-Directional Translator for STEP: Currently no fix is planned COMOS V10.6, Simcenter Studio, Simcenter System Architect: Currently no fix is available NX V2412: Update to V2412.8900 orlater version Tecnomatix Plant Simulation: Update to V2504.0007 orlater version Simcenter Femap: Update to V2506.0002 orlater version Simcenter 3D: Update to V2506.6000 orlater version NX V2506: Update to V2506.6000 orlater version As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-710408 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time."
     },
     {
       "title": "Siemens Gridscale X Prepay",
