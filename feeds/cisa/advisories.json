@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-12-30T16:26:30.355379Z",
+  "fetched_at": "2025-12-30T17:20:21.753165Z",
   "items": [
+    {
+      "title": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs",
+      "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
+      "published": "Tue, 30 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/29/cisa-adds-one-known-exploited-vulnerability-catalog",
@@ -328,6 +341,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Cybersecurity Performance Goals 2.0 for Critical Infrastructure",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/11/cybersecurity-performance-goals-20-critical-infrastructure",
+      "published": "Thu, 11 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Johnson Controls iSTAR Ultra",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-02",
       "published": "Thu, 11 Dec 25 12:00:00 +0000",
@@ -352,32 +378,6 @@
       "risk_evaluation": "N/ASuccessful exploitation of this vulnerability could allow an attacker to upload maliciously modified firmware onto the device.",
       "vulnerability_overview": "N/AAffected devices do not properly check the integrity of firmware updates. This could allow a local attacker to upload maliciously modified firmware onto the device. In a second scenario, a remote attacker who is able to intercept the transfer of valid firmware from the server to the device could modify the firmware \"on the fly\". CVE-2022-31807has been assigned to this vulnerability. A CVSS v3.1 base score of 6.2 has been calculated; the CVSS vector string is (CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N). A CVSS v4 score has also been calculated forCVE-2022-31807. A base score of 5.9 has been calculated; the CVSS vector string is (CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N).",
       "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: Building X - Security Manager Edge Controller (ACC-AP): Use the ACC Firmware App to apply updates in a controlled and authenticated manner, ensuring that only verified firmware packages from the official SIOS portal are installed on the controller. Validate the integrity of the downloaded firmware by confirming its hash value. Access to the controller should remain limited to authorized personnel, and credentials must be protected and updated according to policy to reduce the risk of unauthorized modifications or the installation of tampered firmware Building X - Security Manager Edge Controller (ACC-AP): Currently no fix is planned As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-420375 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
-    },
-    {
-      "title": "Siemens Gridscale X Prepay",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-09",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/ASiemens reports that the following product is affected: Gridscale X Prepay: Version prior to 4.2.1",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 6.9 ATTENTION: Exploitable remotely/low attack complexity Vendor: Siemens Equipment: Gridscale X Prepay Vulnerabilities: Observable Response Discrepancy, Authentication Bypass by Capture-replay",
-      "risk_evaluation": "N/ASuccessful exploitation of these vulnerabilities could allow an attacker to enumerate valid user names and to bypass locked-out user sessions.",
-      "vulnerability_overview": "N/AThe affected application is vulnerable to user enumeration due to distinguishable responses. This could allow an unauthenticated remote attacker to determine if a user is valid or not, enabling a brute force attack with valid users. CVE-2025-40806has been assigned to this vulnerability. A CVSS v3.1 base score of 5.3 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N). A CVSS v4 score has also been calculated forCVE-2025-40806. A base score of 6.9 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N). The affected application is vulnerable to capture-replay of authentication tokens. This could allow an authenticated but already locked-out user to establish still valid user sessions. CVE-2025-40807has been assigned to this vulnerability. A CVSS v3.1 base score of 6.3 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L). A CVSS v4 score has also been calculated forCVE-2025-40807. A base score of 5.3 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N).",
-      "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: Gridscale X Prepay: Please contact your local Siemens representative for further information. As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-356310 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time."
-    },
-    {
-      "title": "2025 CWE Top 25 Most Dangerous Software Weaknesses",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/11/2025-cwe-top-25-most-dangerous-software-weaknesses",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
     },
     {
       "title": "Johnson Controls iSTAR",
