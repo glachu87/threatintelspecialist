@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2025-12-30T17:20:21.753165Z",
+  "fetched_at": "2025-12-30T18:30:27.857511Z",
   "items": [
+    {
+      "title": "CISA Releases Two Industrial Control Systems Advisories",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/30/cisa-releases-two-industrial-control-systems-advisories",
+      "published": "Tue, 30 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs",
       "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
@@ -159,32 +172,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation Micro820, Micro850, Micro870",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-07",
-      "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Axis Communications Camera Station Pro, Camera Station, and Device Manager",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-08",
-      "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "CISA Releases Nine Industrial Control Systems Advisories",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/18/cisa-releases-nine-industrial-control-systems-advisories",
       "published": "Thu, 18 Dec 25 12:00:00 +0000",
@@ -211,9 +198,61 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Axis Communications Camera Station Pro, Camera Station, and Device Manager",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-08",
+      "published": "Thu, 18 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Rockwell Automation Micro820, Micro850, Micro870",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-07",
+      "published": "Thu, 18 Dec 25 12:00:00 +0000",
+      "vendor": "Rockwell Automation",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/17/cisa-adds-three-known-exploited-vulnerabilities-catalog",
       "published": "Wed, 17 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Tue, 16 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "G\u00fcralp Systems Fortimus Series, Minimus Series, and Certimus Series",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-01",
+      "published": "Tue, 16 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -237,10 +276,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Releases Six Industrial Control Systems Advisories",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-releases-seven-industrial-control-systems-advisories",
+      "title": "Hitachi Energy AFS, AFR and AFF Series",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-03",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "Fuji Electric",
+      "vendor": "Hitachi Energy",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -263,36 +302,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Hitachi Energy AFS, AFR and AFF Series",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-03",
+      "title": "CISA Releases Six Industrial Control Systems Advisories",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-releases-seven-industrial-control-systems-advisories",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "G\u00fcralp Systems Fortimus Series, Minimus Series, and Certimus Series",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-01",
-      "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
+      "vendor": "Fuji Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -341,32 +354,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Cybersecurity Performance Goals 2.0 for Critical Infrastructure",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/11/cybersecurity-performance-goals-20-critical-infrastructure",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Johnson Controls iSTAR Ultra",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-02",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "Johnson Controls",
-      "affected_products": "N/AThe following versions of iSTAR Ultra and iSTAR Edge door controllers are affected: iSTAR Ultra: Versions prior to 6.9.7.CU01 iSTAR Ultra SE: Versions prior to 6.9.7.CU01 iSTAR Ultra LT: Versions prior to 6.9.7.CU01 iSTAR Ultra G2: Versions prior to 6.9.3 iSTAR Ultra G2 SE: Versions prior to 6.9.3 iSTAR Edge G2: Versions prior to 6.9.3",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 8.7 ATTENTION: Exploitable remotely/low attack complexity Vendor: Johnson Controls Equipment: iSTAR Ultra, iSTAR Ultra SE, iSTAR Ultra G2, iSTAR Ultra G2 SE, iSTAR Edge G2, iSTAR Ultra LT Vulnerabilities: OS Command Injection",
-      "risk_evaluation": "N/ASuccessful exploitation of these vulnerabilities could allow an attacker to modify firmware and gain full access to the device.",
-      "vulnerability_overview": "N/AJohnson Controls iSTAR Ultra, Ultra SE, Ultra LT versions prior to 6.9.7.CU01 and Ultra G2, Ultra G2 SE, Edge G2 versions prior to 6.9.3 are vulnerable to OS Command Injection under certain circumstances that could allow an attacker full control of the device. CVE-2025-43873has been assigned to this vulnerability. A CVSS v3.1 base score of 8.8 has been calculated; the CVSS vector string is (AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-43873. A base score of 8.7 has been calculated; the CVSS vector string is (AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N). Johnson Controls iSTAR Ultra, Ultra SE, Ultra LT versions prior to 6.9.7.CU01 and Ultra G2, Ultra G2 SE, Edge G2 versions prior to 6.9.3 are vulnerable to OS Command Injection under certain circumstances that could allow an attacker full control of the device. CVE-2025-43874has been assigned to this vulnerability. A CVSS v3.1 base score of 8.8 has been calculated; the CVSS vector string is (AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-43874. A base score of 8.7 has been calculated; the CVSS vector string is (AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N).",
-      "mitigations": "N/AJohnson Controls recommends users take the following actions: Upgrade iSTAR Ultra, iSTAR Ultra SE, iStar Ultra LT to version 6.9.7.CU01 or greater. Upgrade iSTAR Ultra G2, iSTAR Ultra G2 SE, iSTAR Edge G2 to version 6.9.3 or greater. For more detailed mitigation instructions, please see Johnson Controls Product Security AdvisoryJCI-PSA-2025-11 and JCI-PSA-2025-13. Johnson Controls recommends taking steps to minimize risks to all building automation systems in alignment with CISA's guidance. Further ICS security notices and product security guidance are located at Johnson Controls product securitywebsite. Organizations observing any suspected malicious activity should follow their established internal procedures and report their findings to CISA for tracking and correlation against other incidents. For more information please contactJohnson Controls Global Product Securityor visit theirCybersecuritypage. CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time."
-    },
-    {
       "title": "Siemens Building X - Security Manager Edge Controller",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-07",
       "published": "Thu, 11 Dec 25 12:00:00 +0000",
@@ -380,17 +367,30 @@
       "mitigations": "N/ASiemens has identified the following specific workarounds and mitigations users can apply to reduce risk: Building X - Security Manager Edge Controller (ACC-AP): Use the ACC Firmware App to apply updates in a controlled and authenticated manner, ensuring that only verified firmware packages from the official SIOS portal are installed on the controller. Validate the integrity of the downloaded firmware by confirming its hash value. Access to the controller should remain limited to authorized personnel, and credentials must be protected and updated according to policy to reduce the risk of unauthorized modifications or the installation of tampered firmware Building X - Security Manager Edge Controller (ACC-AP): Currently no fix is planned As a general security measure, Siemens recommends protecting network access to devices with appropriate mechanisms. To operate the devices in a protected IT environment, Siemens recommends configuring the environment according toSiemens' operational guidelines for industrial securityand following recommendations in the product manuals. Additional information on industrial security by Siemens can be found on theSiemens industrial security webpage For more information see the associated Siemens security advisory SSA-420375 inHTMLandCSAF. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs). Recognize VPNs may have vulnerabilities, should be updated to the most recent version available, and are only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.govin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely."
     },
     {
-      "title": "Johnson Controls iSTAR",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-345-01",
+      "title": "Cybersecurity Performance Goals 2.0 for Critical Infrastructure",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/11/cybersecurity-performance-goals-20-critical-infrastructure",
       "published": "Thu, 11 Dec 25 12:00:00 +0000",
-      "vendor": "Johnson Controls",
-      "affected_products": "N/AJohnson Controls reports the following products are affected: iSTAR Ultra: Versions prior to 6.9.7.CU01 iSTAR Ultra SE: Versions prior to 6.9.7.CU01 iSTAR Ultra G2: Versions prior to 6.9.3 iSTAR Ultra G2 SE: Versions prior to 6.9.3 iSTAR Edge G2: Versions prior to 6.9.3",
+      "vendor": "N/A",
+      "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
-      "executive_summary": "N/ACVSS v4 8.7 ATTENTION: Exploitable remotely/low attack complexity Vendor: Johnson Controls Inc. Equipment: iSTAR Ultra, iSTAR Ultra SE, iSTAR Ultra G2, iSTAR Ultra G2 SE, iSTAR Edge G2 Vulnerabilities: Improper Neutralization of Special Elements used in an OS Command",
-      "risk_evaluation": "N/ASuccessful exploitation of these vulnerabilities could result in unauthorized access to the device.",
-      "vulnerability_overview": "N/AUnder certain circumstances a successful exploitation of this vulnerability could result in access to the device. CVE-2025-43875has been assigned to this vulnerability. A CVSS v3.1 base score of 8.8 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-43875. A base score of 8.7 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N). Under certain circumstances a successful exploitation of this vulnerability could result in access to the device. CVE-2025-43876has been assigned to this vulnerability. A CVSS v3.1 base score of 8.8 has been calculated; the CVSS vector string is (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H). A CVSS v4 score has also been calculated forCVE-2025-43876. A base score of 8.7 has been calculated; the CVSS vector string is (CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N).",
-      "mitigations": "N/AJohnson Controls recommends users complete the following actions to address these issues: Upgrade iSTAR Ultra, and iSTAR Ultra SE to version 6.9.7.CU01 or greater. Upgrade iSTAR Ultra G2, iSTAR Ultra G2 SE, and iSTAR Edge G2 to version 6.9.3 or greater. For detailed mitigation instructions, see theJohnson Controls Product Security Advisories JCI-PSA-2025-14 and JCI-PSA-2025-15.Johnson Controls recommends implementing measures to minimize risks to all building automation systems. Further ICS security notices and product security guidance are located at theJohnson Controls product security website. ContactJohnson Controls Global Product Security. CISA recommends users take defensive measures to minimize the risk of exploitation of these vulnerabilities, such as: Minimize network exposure for all control system devices and/or systems, ensuring they arenot accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as virtual private networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section forcontrol systems security recommended practiceson the ICS webpage oncisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, includingImproving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies forproactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage atcisa.gov/icsin the technical information paper,ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer toRecognizing and Avoiding Email Scamsfor more information on avoiding email scams. Refer toAvoiding Social Engineering and Phishing Attacksfor more information on social engineering attacks. No known public exploitation specifically targeting these vulnerabilities has been reported to CISA at this time."
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "2025 CWE Top 25 Most Dangerous Software Weaknesses",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/11/2025-cwe-top-25-most-dangerous-software-weaknesses",
+      "published": "Thu, 11 Dec 25 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
     }
   ]
 }
