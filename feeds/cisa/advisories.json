@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-08T17:25:51.126553Z",
+  "fetched_at": "2026-01-08T18:28:22.354852Z",
   "items": [
+    {
+      "title": "Hitachi Energy Asset Suite",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-008-01",
+      "published": "Thu, 08 Jan 26 12:00:00 +0000",
+      "vendor": "Hitachi Energy",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/07/cisa-adds-two-known-exploited-vulnerabilities-catalog",
@@ -370,19 +383,6 @@
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/12/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Fri, 12 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "2025 CWE Top 25 Most Dangerous Software Weaknesses",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/11/2025-cwe-top-25-most-dangerous-software-weaknesses",
-      "published": "Thu, 11 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
