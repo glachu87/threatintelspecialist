@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-01-12T17:26:32.648418Z",
+  "fetched_at": "2026-01-12T18:38:43.845866Z",
   "count": 20,
   "items": [
+    {
+      "title": "AuraInspector: Auditing Salesforce Aura for Data Exposure",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/auditing-salesforce-aura-data-exposure/",
+      "pubDate": "Mon, 12 Jan 2026 14:00:00 +0000",
+      "description": "Written by: Amine Ismail, Anirudha Kanodia\n\nIntroduction \nMandiant is releasing AuraInspector, a new open-source tool designed to help defenders identify and audit access control misconfigurations within the Salesforce Aura framework.\nSalesforce Experience Cloud is a foundational platform for many businesses, but Mandiant Offensive Security Services (OSS) frequently identifies misconfigurations that allow unauthorized users to access sensitive data including credit card numbers, identity documents, and health information. These access control gaps often go unnoticed until it is too late.\nThis post details the mechanics of these common misconfigurations and introduces a previously undocumented technique using GraphQL to bypass standard record retrieval limits. To help administrators secure their environments, we are releasing AuraInspector, a command-line tool that automates the detection of these exposures and provides actionable insights for remediation.\n\n    aside_block\n    &lt;ListV"
+    },
     {
       "title": "Multiple Threat Actors Exploit React2Shell (CVE-2025-55182)",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actors-exploit-react2shell-cve-2025-55182/",
@@ -49,7 +55,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f5818094d30&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fec2f2db940&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -103,7 +109,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f5804a83220&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fec1c32acd0&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     },
     {
       "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift/",
       "pubDate": "Tue, 26 Aug 2025 14:00:00 +0000",
       "description": "Written by: Austin Larsen, Matt Lin, Tyler McLellan, Omar ElAhdan\n\nUpdate (August 28)\nBased on new information identified by GTIG, the scope of this compromise is not exclusive to the Salesforce integration with Salesloft Drift and impacts other integrations. We now advise all Salesloft Drift customers to treat any and all authentication tokens stored in or connected to the Drift platform as potentially compromised.\nOn August 28, 2025, our investigation confirmed that the actor also compromised OAuth tokens for the \"Drift Email\" integration. On August 9, 2025, a threat actor used these tokens to access email from a very small number of Google Workspace accounts. The only accounts that were potentially accessed were those that had been specifically configured to integrate with Salesloft Drift; the actor would not have been able to access any other accounts on a customer's Workspace domain.\nIn response to these findings and to protect our customers, Google identified the impacted users, "
-    },
-    {
-      "title": "Deception in Depth: PRC-Nexus Espionage Campaign Hijacks Web Traffic to Target Diplomats",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/prc-nexus-espionage-targets-diplomats/",
-      "pubDate": "Mon, 25 Aug 2025 14:00:00 +0000",
-      "description": "Written by: Patrick Whitsell\n\nIn March 2025, Google Threat Intelligence Group (GTIG) identified a complex, multifaceted campaign attributed to the PRC-nexus threat actor UNC6384. The campaign targeted diplomats in Southeast Asia and other entities globally. GTIG assesses this was likely in support of cyber espionage operations aligned with the strategic interests of the People's Republic of China (PRC). \nThe campaign hijacks target web traffic, using a captive portal redirect, to deliver a digitally signed downloader that GTIG tracks as STATICPLUGIN. This ultimately led to the in-memory deployment of the backdoor SOGU.SEC (also known as PlugX). This multi-stage attack chain leverages advanced social engineering including valid code signing certificates, an adversary-in-the-middle (AitM) attack, and indirect execution techniques to evade detection.\nGoogle is actively protecting our users and customers from this threat. We sent government-backed attacker alerts to all Gmail and Workspace"
     }
   ]
 }
