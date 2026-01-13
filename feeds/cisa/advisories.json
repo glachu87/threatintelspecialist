@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-13T19:19:41.904130Z",
+  "fetched_at": "2026-01-13T20:24:36.970622Z",
   "items": [
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/13/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Tue, 13 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "YoSmart YoLink Smart Hub",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-03",
@@ -330,19 +343,6 @@
     {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "G\u00fcralp Systems Fortimus Series, Minimus Series, and Certimus Series",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-01",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
