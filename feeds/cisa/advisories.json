@@ -1,11 +1,11 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-14T14:24:32.188959Z",
+  "fetched_at": "2026-01-14T15:25:41.923215Z",
   "items": [
     {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/13/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Tue, 13 Jan 26 12:00:00 +0000",
+      "title": "Secure Connectivity Principles for Operational Technology (OT)",
+      "link": "https://www.cisa.gov/resources-tools/resources/secure-connectivity-principles-operational-technology-ot",
+      "published": "Wed, 14 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -16,10 +16,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "YoSmart YoLink Smart Hub",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-03",
+      "title": "Rockwell Automation 432ES-IG3 Series A",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-01",
       "published": "Tue, 13 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
+      "vendor": "Rockwell Automation",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -42,10 +42,23 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation 432ES-IG3 Series A",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-01",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/13/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Tue, 13 Jan 26 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "YoSmart YoLink Smart Hub",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-03",
+      "published": "Tue, 13 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -107,8 +120,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs",
-      "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
+      "title": "CISA Releases Two Industrial Control Systems Advisories",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/30/cisa-releases-two-industrial-control-systems-advisories",
       "published": "Tue, 30 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -120,8 +133,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Releases Two Industrial Control Systems Advisories",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/30/cisa-releases-two-industrial-control-systems-advisories",
+      "title": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs",
+      "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
       "published": "Tue, 30 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -159,8 +172,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/22/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "title": "NIST and CISA Release Draft Interagency Report on Protecting Tokens and Assertions from Tampering Theft and Misuse for Public Comment",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/22/nist-and-cisa-release-draft-interagency-report-protecting-tokens-and-assertions-tampering-theft-and",
       "published": "Mon, 22 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -172,8 +185,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "NIST and CISA Release Draft Interagency Report on Protecting Tokens and Assertions from Tampering Theft and Misuse for Public Comment",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/22/nist-and-cisa-release-draft-interagency-report-protecting-tokens-and-assertions-tampering-theft-and",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/22/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Mon, 22 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -211,10 +224,62 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Siemens Interniche IP-Stack",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-05",
+      "published": "Thu, 18 Dec 25 12:00:00 +0000",
+      "vendor": "Siemens",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Rockwell Automation Micro820, Micro850, Micro870",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-07",
+      "published": "Thu, 18 Dec 25 12:00:00 +0000",
+      "vendor": "Rockwell Automation",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "CISA Releases Nine Industrial Control Systems Advisories",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/18/cisa-releases-nine-industrial-control-systems-advisories",
+      "published": "Thu, 18 Dec 25 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Schneider Electric EcoStruxure Foxboro DCS Advisor",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-02",
       "published": "Thu, 18 Dec 25 12:00:00 +0000",
       "vendor": "Schneider  Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Mitsubishi Electric Iconics Digital Solutions and Mitsubishi Electrics Products",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-04",
+      "published": "Thu, 18 Dec 25 12:00:00 +0000",
+      "vendor": "ICONICS, Mitsubishi Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -237,10 +302,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens Interniche IP-Stack",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-05",
+      "title": "Axis Communications Camera Station Pro, Camera Station, and Device Manager",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-08",
       "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "Siemens",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -276,74 +341,9 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation Micro820, Micro850, Micro870",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-07",
-      "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Axis Communications Camera Station Pro, Camera Station, and Device Manager",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-08",
-      "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Mitsubishi Electric Iconics Digital Solutions and Mitsubishi Electrics Products",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-352-04",
-      "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "ICONICS, Mitsubishi Electric",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Releases Nine Industrial Control Systems Advisories",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/18/cisa-releases-nine-industrial-control-systems-advisories",
-      "published": "Thu, 18 Dec 25 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/17/cisa-adds-three-known-exploited-vulnerabilities-catalog",
       "published": "Wed, 17 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Tue, 16 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -367,10 +367,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Hitachi Energy AFS, AFR and AFF Series",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-03",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/16/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -380,10 +380,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Mitsubishi Electric GT Designer3",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-04",
+      "title": "Hitachi Energy AFS, AFR and AFF Series",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-350-03",
       "published": "Tue, 16 Dec 25 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
+      "vendor": "Hitachi Energy",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
