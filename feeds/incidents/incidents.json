@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "title": "Ransomware attack disrupts UK healthcare supplier",
+      "date": "2026-01-15",
+      "description": "A ransomware attack caused operational disruption to a third-party healthcare supplier, impacting appointment scheduling and backend systems.",
+      "link": "/pages/posts/uk-healthcare-ransomware.html"
+    },
+    {
+      "title": "Supply chain compromise impacts energy sector vendor",
+      "date": "2026-01-10",
+      "description": "Malicious code was identified in a software update used by multiple energy sector organisations.",
+      "link": "/pages/posts/energy-supply-chain-attack.html"
+    }
+  ]
+}
