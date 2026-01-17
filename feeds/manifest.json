@@ -1,0 +1,16 @@
+{
+  "generated_utc": "2025-10-28T07:05:49.204076Z",
+  "week": "2025-44",
+  "files": {
+    "kev": "feeds/kev.json",
+    "nvd_last7d": "feeds/nvd_last7d.json",
+    "vendor_ndjson": "feeds/vendor.ndjson",
+    "ioc_enriched": "feeds/ioc_enriched.ndjson"
+  },
+  "counts": {
+    "kev": 1449,
+    "nvd": 3842,
+    "vendor_posts": 85,
+    "iocs_enriched": 972
+  }
+}
