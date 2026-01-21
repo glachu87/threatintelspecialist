@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-21T20:30:06.788925Z",
+  "fetched_at": "2026-01-21T21:27:29.126610Z",
   "items": [
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/21/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Wed, 21 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "Schneider Electric EcoStruxure Foxboro DCS",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-020-01",
@@ -55,36 +68,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens Industrial Edge Device Kit",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-09",
-      "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "Siemens RUGGEDCOM ROS",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-05",
       "published": "Wed, 14 Jan 26 12:00:00 +0000",
       "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Secure Connectivity Principles for Operational Technology (OT)",
-      "link": "https://www.cisa.gov/resources-tools/resources/secure-connectivity-principles-operational-technology-ot",
-      "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -120,10 +107,23 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Festo Firmware",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-02",
+      "title": "Schneider Electric EcoStruxure Power Build Rapsody",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-10",
       "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "Festo",
+      "vendor": "Schneider  Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Siemens Industrial Edge Device Kit",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-09",
+      "published": "Wed, 14 Jan 26 12:00:00 +0000",
+      "vendor": "Siemens",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -159,10 +159,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Schneider Electric EcoStruxure Power Build Rapsody",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-10",
+      "title": "Siemens Industrial Edge Devices",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-08",
       "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "Schneider  Electric",
+      "vendor": "Siemens",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -172,10 +172,23 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens Industrial Edge Devices",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-08",
+      "title": "Festo Firmware",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-02",
       "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "Siemens",
+      "vendor": "Festo",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Secure Connectivity Principles for Operational Technology (OT)",
+      "link": "https://www.cisa.gov/resources-tools/resources/secure-connectivity-principles-operational-technology-ot",
+      "published": "Wed, 14 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -198,8 +211,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation 432ES-IG3 Series A",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-01",
+      "title": "Rockwell Automation FactoryTalk DataMosaix Private Cloud",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-02",
       "published": "Tue, 13 Jan 26 12:00:00 +0000",
       "vendor": "Rockwell Automation",
       "affected_products": "N/A",
@@ -211,8 +224,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation FactoryTalk DataMosaix Private Cloud",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-02",
+      "title": "Rockwell Automation 432ES-IG3 Series A",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-01",
       "published": "Tue, 13 Jan 26 12:00:00 +0000",
       "vendor": "Rockwell Automation",
       "affected_products": "N/A",
@@ -289,8 +302,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs",
-      "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
+      "title": "CISA Releases Two Industrial Control Systems Advisories",
+      "link": "https://www.cisa.gov/news-events/alerts/2025/12/30/cisa-releases-two-industrial-control-systems-advisories",
       "published": "Tue, 30 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -302,8 +315,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Releases Two Industrial Control Systems Advisories",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/30/cisa-releases-two-industrial-control-systems-advisories",
+      "title": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs",
+      "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
       "published": "Tue, 30 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -369,19 +382,6 @@
     {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2025/12/19/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Fri, 19 Dec 25 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA  and Partners Release Update to Malware Analysis Report BRICKSTORM Backdoor",
-      "link": "https://www.cisa.gov/news-events/alerts/2025/12/19/cisa-and-partners-release-update-malware-analysis-report-brickstorm-backdoor",
       "published": "Fri, 19 Dec 25 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
