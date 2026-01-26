@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-26T20:26:43.785646Z",
+  "fetched_at": "2026-01-26T21:23:26.160896Z",
   "items": [
+    {
+      "title": "CISA Adds Five Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/26/cisa-adds-five-known-exploited-vulnerabilities-catalog",
+      "published": "Mon, 26 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/23/cisa-adds-one-known-exploited-vulnerability-catalog",
@@ -211,8 +224,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens RUGGEDCOM ROS",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-05",
+      "title": "Siemens SINEC Security Monitor",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-06",
       "published": "Wed, 14 Jan 26 12:00:00 +0000",
       "vendor": "Siemens",
       "affected_products": "N/A",
@@ -289,36 +302,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens SINEC Security Monitor",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-06",
-      "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "Siemens Industrial Edge Devices",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-08",
       "published": "Wed, 14 Jan 26 12:00:00 +0000",
       "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Festo Firmware",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-02",
-      "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "Festo",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -341,10 +328,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "YoSmart YoLink Smart Hub",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-03",
-      "published": "Tue, 13 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
+      "title": "Festo Firmware",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-02",
+      "published": "Wed, 14 Jan 26 12:00:00 +0000",
+      "vendor": "Festo",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -354,23 +341,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation 432ES-IG3 Series A",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-01",
-      "published": "Tue, 13 Jan 26 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Rockwell Automation FactoryTalk DataMosaix Private Cloud",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-02",
-      "published": "Tue, 13 Jan 26 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
+      "title": "Siemens RUGGEDCOM ROS",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-05",
+      "published": "Wed, 14 Jan 26 12:00:00 +0000",
+      "vendor": "Siemens",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -384,6 +358,32 @@
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/13/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Tue, 13 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "YoSmart YoLink Smart Hub",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-03",
+      "published": "Tue, 13 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Rockwell Automation FactoryTalk DataMosaix Private Cloud",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-013-02",
+      "published": "Tue, 13 Jan 26 12:00:00 +0000",
+      "vendor": "Rockwell Automation",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
