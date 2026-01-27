@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-01-27T14:34:53.478205Z",
+  "fetched_at": "2026-01-27T15:34:49.876294Z",
   "count": 20,
   "items": [
+    {
+      "title": "Diverse Threat Actors Exploiting Critical WinRAR Vulnerability CVE-2025-8088",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/exploiting-critical-winrar-vulnerability/",
+      "pubDate": "Tue, 27 Jan 2026 14:00:00 +0000",
+      "description": "Introduction \nThe Google Threat Intelligence Group (GTIG) has identified widespread, active exploitation of the critical vulnerability CVE-2025-8088 in WinRAR, a popular file archiver tool for Windows, to establish initial access and deliver diverse payloads. Discovered and patched in July 2025, government-backed threat actors linked to Russia and China as well as financially motivated threat actors continue to exploit this n-day across disparate operations. The consistent exploitation method, a path traversal flaw allowing files to be dropped into the Windows Startup folder for persistence, underscores a defensive gap in fundamental application security and user awareness.\nIn this blog post, we provide details on CVE-2025-8088 and the typical exploit chain, highlight exploitation by financially motivated and state-sponsored espionage actors, and provide IOCs to help defenders detect and hunt for the activity described in this post.\nTo protect against this threat, we urge organizations"
+    },
     {
       "title": "Closing the Door on Net-NTLMv1: Releasing Rainbow Tables to Accelerate Protocol Deprecation",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/net-ntlmv1-deprecation-rainbow-tables/",
@@ -61,7 +67,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7efd31e67c40&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f62869b5400&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -115,13 +121,7 @@
       "title": "Another BRICKSTORM: Stealthy Backdoor Enabling Espionage into Tech and Legal Sectors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign/",
       "pubDate": "Wed, 24 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7efd5073aa60&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
-    },
-    {
-      "title": "ViewState Deserialization Zero-Day Vulnerability in Sitecore Products (CVE-2025-53690)",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/viewstate-deserialization-zero-day-vulnerability/",
-      "pubDate": "Wed, 03 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Rommel Joven, Josh Fleischer, Joseph Sciuto, Andi Slok, Choon Kiat Ng\n\nUpdate (September 3): This post was updated to include information about GoTokenTheft usage.\nIn a recent investigation, Mandiant Threat Defense discovered an active ViewState deserialization attack affecting Sitecore deployments leveraging a sample machine key that had been exposed in Sitecore deployment guides from 2017 and earlier. An attacker leveraged the exposed ASP.NET machine key to perform remote code execution.\nMandiant worked directly with Sitecore to address this issue. Sitecore tracks this vulnerable configuration as CVE-2025-53690, which affects customers who deployed any version of multiple Sitecore products using the sample key exposed in publicly available deployment guides (specifically Sitecore XP 9.0 and Active Directory 1.4 and earlier versions). Sitecore has confirmed that its updated deployments automatically generate a unique machine key and that affected customers have been notifi"
+      "description": "Written by: Sarah Yoder, John Wolfram, Ashley Pearson, Doug Bienstock, Josh Madeley, Josh Murchie, Brad Slaybaugh, Matt Lin, Geoff Carstairs, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range of industry verticals, most notably legal services, Software as a Service (SaaS) providers, Business Process Outsourcers (BPOs), and Technology. The value of these targets extends beyond typical espionage missions, potentially providing data to feed development of zero-days and establishing pivot points for broader access to downstream victims.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;BRICKSTORM Scanner&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f6286902550&gt;), (&#x27;btn_text&#x27;, &#x27;Get the tool"
     }
   ]
 }
