@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-28T18:36:50.404861Z",
+  "fetched_at": "2026-01-28T19:27:18.158683Z",
   "items": [
+    {
+      "title": "Fortinet Releases Guidance to Address Ongoing Exploitation of Authentication Bypass Vulnerability CVE-2026-24858",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/28/fortinet-releases-guidance-address-ongoing-exploitation-authentication-bypass-vulnerability-cve-2026",
+      "published": "Wed, 28 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "Johnson Controls Products",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-04",
@@ -81,6 +94,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/23/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Fri, 23 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Product Categories for Technologies That Use Post-Quantum Cryptography Standards",
       "link": "https://www.cisa.gov/resources-tools/resources/product-categories-technologies-use-post-quantum-cryptography-standards",
       "published": "Fri, 23 Jan 26 12:00:00 +0000",
@@ -94,9 +120,9 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/23/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Fri, 23 Jan 26 12:00:00 +0000",
+      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/22/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "published": "Thu, 22 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -146,19 +172,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/22/cisa-adds-four-known-exploited-vulnerabilities-catalog",
-      "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "Rockwell Automation CompactLogix 5370",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-03",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
@@ -176,6 +189,19 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-08",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Schneider Electric EcoStruxure Process Expert",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-01",
+      "published": "Thu, 22 Jan 26 12:00:00 +0000",
+      "vendor": "Schneider  Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -211,19 +237,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Schneider Electric EcoStruxure Process Expert",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-01",
-      "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "Schneider  Electric",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/21/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Wed, 21 Jan 26 12:00:00 +0000",
@@ -237,10 +250,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Schneider Electric EcoStruxure Foxboro DCS",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-020-01",
+      "title": "Rockwell Automation Verve Asset Manager",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-020-03",
       "published": "Tue, 20 Jan 26 12:00:00 +0000",
-      "vendor": "Schneider  Electric",
+      "vendor": "Rockwell Automation",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -250,10 +263,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation Verve Asset Manager",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-020-03",
+      "title": "Schneider Electric EcoStruxure Foxboro DCS",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-020-01",
       "published": "Tue, 20 Jan 26 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
+      "vendor": "Schneider  Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -306,19 +319,6 @@
       "link": "https://www.cisa.gov/resources-tools/resources/secure-connectivity-principles-operational-technology-ot",
       "published": "Wed, 14 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Siemens Industrial Edge Device Kit",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-09",
-      "published": "Wed, 14 Jan 26 12:00:00 +0000",
-      "vendor": "Siemens",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
