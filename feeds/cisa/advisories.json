@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-29T14:01:31.602369Z",
+  "fetched_at": "2026-01-29T14:53:04.754364Z",
   "items": [
     {
       "title": "Fortinet Releases Guidance to Address Ongoing Exploitation of Authentication Bypass Vulnerability CVE-2026-24858",
@@ -292,7 +292,7 @@
       "title": "AVEVA Process Optimization",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-015-01",
       "published": "Thu, 15 Jan 26 12:00:00 +0000",
-      "vendor": "AVEVA",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
