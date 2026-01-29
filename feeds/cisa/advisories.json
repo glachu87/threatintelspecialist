@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-29T07:39:04.916258Z",
+  "fetched_at": "2026-01-29T08:38:37.001090Z",
   "items": [
     {
       "title": "Fortinet Releases Guidance to Address Ongoing Exploitation of Authentication Bypass Vulnerability CVE-2026-24858",
