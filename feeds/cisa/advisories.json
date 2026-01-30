@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-01-30T16:38:21.352021Z",
+  "fetched_at": "2026-01-30T17:33:14.090272Z",
   "items": [
     {
       "title": "KiloView Encoder Series",
@@ -94,7 +94,7 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Johnson Controls Products",
+      "title": "Johnson Controls Metasys Products",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-04",
       "published": "Tue, 27 Jan 26 12:00:00 +0000",
       "vendor": "Johnson Controls",
