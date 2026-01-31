@@ -1,8 +1,20 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-01-30T23:29:34.344701Z",
+  "fetched_at": "2026-01-31T02:23:34.209242Z",
   "count": 20,
   "items": [
+    {
+      "title": "Guidance from the Frontlines: Proactive Defense Against ShinyHunters-Branded Data Theft Targeting SaaS",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/defense-against-shinyhunters-cybercrime-saas/",
+      "pubDate": "Fri, 30 Jan 2026 14:00:00 +0000",
+      "description": "Introduction\nMandiant is tracking a significant expansion and escalation in the operations of threat clusters associated with ShinyHunters-branded extortion. As detailed in our companion report, 'Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft', these campaigns leverage evolved voice phishing (vishing) and victim-branded credential harvesting to successfully compromise single sign-on (SSO) credentials and enroll unauthorized devices into victim multi-factor authentication (MFA) solutions.\nThis activity is not the result of a security vulnerability in vendors' products or infrastructure. Instead, these intrusions rely on the effectiveness of social engineering to bypass identity controls and pivot into cloud-based software-as-a-service (SaaS) environments.\nThis post provides actionable hardening, logging, and detection recommendations to help organizations protect against these threats. Organizations responding to an active incident should focus on rap"
+    },
+    {
+      "title": "Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/expansion-shinyhunters-saas-data-theft/",
+      "pubDate": "Fri, 30 Jan 2026 14:00:00 +0000",
+      "description": "Introduction \nMandiant has identified an expansion in threat activity that uses tactics, techniques, and procedures (TTPs) consistent with prior ShinyHunters-branded extortion operations. These operations primarily leverage sophisticated voice phishing (vishing) and victim-branded credential harvesting sites to gain initial access to corporate environments by obtaining single sign-on (SSO) credentials and multi-factor authentication (MFA) codes. Once inside, the threat actors target cloud-based software-as-a-service (SaaS) applications to exfiltrate sensitive data and internal communications for use in subsequent extortion demands.\nGoogle Threat Intelligence Group (GTIG) is currently tracking this activity under multiple threat clusters (UNC6661, UNC6671, and UNC6240) to enable a more granular understanding of evolving partnerships and account for potential impersonation activity. While this methodology of targeting identity providers and SaaS platforms is consistent with our prior obs"
+    },
     {
       "title": "No Place Like Home Network: Disrupting the World's Largest Residential Proxy Network",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/disrupting-largest-residential-proxy-network/",
@@ -73,7 +85,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f58051cebb0&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fd5f7b39ac0&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -110,18 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc5142-etherhiding-distribute-malware/",
       "pubDate": "Thu, 16 Oct 2025 14:00:00 +0000",
       "description": "Written by: Mark Magee, Jose Hernandez, Bavi Sadayappan, Jessa Valdez\n\nSince late 2023, Mandiant Threat Defense and Google Threat Intelligence Group (GTIG) have tracked UNC5142, a financially motivated threat actor that abuses the blockchain to facilitate the distribution of information stealers (infostealers). UNC5142 is characterized by its use of compromised WordPress websites and \"EtherHiding\", a technique used to obscure malicious code or data by placing it on a public blockchain, such as the BNB Smart Chain. This post is part of a two-part blog series on adversaries using the EtherHiding technique. Read our other post on North Korea (DPRK) adopting EtherHiding.\nSince late 2023, UNC5142 has significantly evolved their tactics, techniques, and procedures (TTPs) to enhance operational security and evade detection. Notably, we have not observed UNC5142 activity since late July 2025, suggesting a shift in the actor’s operational methods or a pause in their activity. \nUNC5142 appears t"
-    },
-    {
-      "title": "Oracle E-Business Suite Zero-Day Exploited in Widespread Extortion Campaign",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/oracle-ebusiness-suite-zero-day-exploitation/",
-      "pubDate": "Thu, 09 Oct 2025 14:00:00 +0000",
-      "description": "Written by: Peter Ukhanov, Genevieve Stark, Zander Work, Ashley Pearson, Josh Murchie, Austin Larsen\n\nUpdate (Oct. 11): On Oct. 11, Oracle released another patch, addressing CVE-2025-61884.\nIntroduction\nBeginning Sept. 29, 2025, Google Threat Intelligence Group (GTIG) and Mandiant began tracking a new, large-scale extortion campaign by a threat actor claiming affiliation with the CL0P extortion brand. The actor began sending a high volume of emails to executives at numerous organizations, alleging the theft of sensitive data from the victims' Oracle E-Business Suite (EBS) environments. On Oct. 2, 2025, Oracle reported that the threat actors may have exploited vulnerabilities that were patched in July 2025 and recommended that customers apply the latest critical patch updates. On Oct. 4, 2025, Oracle directed customers to apply emergency patches to address this vulnerability, reiterating their standing recommendation that customers stay current on all Critical Patch Updates.\nOur analysi"
-    },
-    {
-      "title": "Cybercrime Observations from the Frontlines: UNC6040 Proactive Hardening Recommendations",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6040-proactive-hardening-recommendations/",
-      "pubDate": "Tue, 30 Sep 2025 14:00:00 +0000",
-      "description": "Written by: Omar ElAhdan, Matthew McWhirt, Michael Rudden, Aswad Robinson, Bhavesh Dhake, Laith Al, Ravi Kumar Raja\n\nUpdate (Nov. 21): In response to the Salesforce advisory related to Gainsight applications, this blog post has been updated to include comprehensive hardening, logging, and detection recommendations for programmatic credentials such as API keys, OAuth tokens, service accounts, and access keys.\nBackground\nProtecting software-as-a-service (SaaS) platforms and applications requires a comprehensive security strategy. Drawing from analysis of UNC6040’s specific attack methodologies, this guide presents a structured defensive framework encompassing proactive hardening measures, comprehensive logging protocols, and advanced detection capabilities. While emphasizing Salesforce-specific security recommendations, these strategies provide organizations with actionable approaches to safeguard their SaaS ecosystem against current threats.\nGoogle Threat Intelligence Group (GTIG) is tr"
     }
   ]
 }
