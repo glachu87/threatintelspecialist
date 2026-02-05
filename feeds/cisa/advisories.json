@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-02-05T20:32:56.415035Z",
+  "fetched_at": "2026-02-05T21:27:40.685704Z",
   "items": [
     {
       "title": "TP-Link Systems Inc. VIGI Series IP Camera",
@@ -55,6 +55,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/05/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "published": "Thu, 05 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Hitachi Energy XMC20",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-05",
       "published": "Thu, 05 Feb 26 12:00:00 +0000",
@@ -81,10 +94,36 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Synectix LAN 232 TRIO",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-04",
+      "published": "Tue, 03 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "RISS SRL MOMA Seismic Station",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-03",
       "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Mitsubishi Electric FREQSHIP-mini for Windows",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-01",
+      "published": "Tue, 03 Feb 26 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -120,22 +159,9 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Mitsubishi Electric FREQSHIP-mini for Windows",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-01",
-      "published": "Tue, 03 Feb 26 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Synectix LAN 232 TRIO",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-04",
-      "published": "Tue, 03 Feb 26 12:00:00 +0000",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/29/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Thu, 29 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -150,19 +176,6 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-03",
       "published": "Thu, 29 Jan 26 12:00:00 +0000",
       "vendor": "Rockwell Automation",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/29/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Thu, 29 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -201,32 +214,6 @@
       "title": "Fortinet Releases Guidance to Address Ongoing Exploitation of Authentication Bypass Vulnerability CVE-2026-24858",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/28/fortinet-releases-guidance-address-ongoing-exploitation-authentication-bypass-vulnerability-cve-2026",
       "published": "Wed, 28 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Schneider Electric Zigbee Products",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-03",
-      "published": "Tue, 27 Jan 26 12:00:00 +0000",
-      "vendor": "Schneider  Electric",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "iba Systems ibaPDA",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-01",
-      "published": "Tue, 27 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -276,6 +263,32 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Schneider Electric Zigbee Products",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-03",
+      "published": "Tue, 27 Jan 26 12:00:00 +0000",
+      "vendor": "Schneider  Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "iba Systems ibaPDA",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-01",
+      "published": "Tue, 27 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "CISA Adds Five Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/26/cisa-adds-five-known-exploited-vulnerabilities-catalog",
       "published": "Mon, 26 Jan 26 12:00:00 +0000",
@@ -315,10 +328,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/22/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "title": "Delta Electronics DIAView",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-07",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
+      "vendor": "Delta Electronics",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -341,10 +354,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Johnson Controls Inc. iSTAR Configuration Utility (ICU) tool",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-04",
+      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/22/cisa-adds-four-known-exploited-vulnerabilities-catalog",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "Johnson Controls Inc.",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -367,23 +380,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Schneider Electric EcoStruxure Process Expert",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-01",
+      "title": "Johnson Controls Inc. iSTAR Configuration Utility (ICU) tool",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-04",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "Schneider  Electric",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Delta Electronics DIAView",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-07",
-      "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "Delta Electronics",
+      "vendor": "Johnson Controls Inc.",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
