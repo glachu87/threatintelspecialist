@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-02-09T17:55:55.685107Z",
+  "fetched_at": "2026-02-09T19:14:56.927761Z",
   "items": [
     {
       "title": "TP-Link Systems Inc. VIGI Series IP Camera",
@@ -94,6 +94,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Reducing the Attack Surface for End-of-Support Edge Devices",
+      "link": "https://www.cisa.gov/resources-tools/resources/reducing-attack-surface-end-support-edge-devices",
+      "published": "Thu, 05 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/AOrganizations should be prepared to respond to malicious cyber activity. As the nation\u2019s cyber defense agency, CISA and its partners stand ready to help prepare organizations to respond to and mitigate the impact of malicious cyber activity. CISA and its partners strongly urge all organizations to reviewBOD 26-02and implement the following mitigations."
+    },
+    {
       "title": "Synectix LAN 232 TRIO",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-04",
       "published": "Tue, 03 Feb 26 12:00:00 +0000",
@@ -172,8 +185,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation ControlLogix",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-03",
+      "title": "Rockwell Automation ArmorStart LT",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-02",
       "published": "Thu, 29 Jan 26 12:00:00 +0000",
       "vendor": "Rockwell Automation",
       "affected_products": "N/A",
@@ -185,8 +198,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation ArmorStart LT",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-02",
+      "title": "Rockwell Automation ControlLogix",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-03",
       "published": "Thu, 29 Jan 26 12:00:00 +0000",
       "vendor": "Rockwell Automation",
       "affected_products": "N/A",
@@ -224,21 +237,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Festo Didactic SE MES PC",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-02",
-      "published": "Tue, 27 Jan 26 12:00:00 +0000",
-      "vendor": "Festo",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/27/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "title": "iba Systems ibaPDA",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-01",
       "published": "Tue, 27 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -263,6 +263,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Festo Didactic SE MES PC",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-02",
+      "published": "Tue, 27 Jan 26 12:00:00 +0000",
+      "vendor": "Festo",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Schneider Electric Zigbee Products",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-03",
       "published": "Tue, 27 Jan 26 12:00:00 +0000",
@@ -276,8 +289,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "iba Systems ibaPDA",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-01",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/27/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Tue, 27 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -341,8 +354,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Hubitat Elevation Hubs",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-06",
+      "title": "EVMAPA",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-08",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -367,23 +380,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "EVMAPA",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-08",
+      "title": "Hubitat Elevation Hubs",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-06",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Johnson Controls Inc. iSTAR Configuration Utility (ICU) tool",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-04",
-      "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "Johnson Controls Inc.",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
