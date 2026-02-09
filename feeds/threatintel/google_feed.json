@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-02-09T16:02:36.290297Z",
+  "fetched_at": "2026-02-09T17:52:14.795012Z",
   "count": 20,
   "items": [
+    {
+      "title": "UNC1069 Targets Cryptocurrency Sector with New Tooling and AI-Enabled Social Engineering",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering/",
+      "pubDate": "Mon, 09 Feb 2026 14:00:00 +0000",
+      "description": "Written by: Ross Inman, Adrian Hernandez\n\nIntroduction\nNorth Korean threat actors continue to evolve their tradecraft to target the cryptocurrency and decentralized finance (DeFi) verticals. Mandiant recently investigated an intrusion targeting a FinTech entity within this sector, attributed to UNC1069, a financially motivated threat actor active since at least 2018. This investigation revealed a tailored intrusion resulting in the deployment of seven unique malware families, including a new set of tooling designed to capture host and victim data: SILENCELIFT, DEEPBREATH and CHROMEPUSH. The intrusion relied on a social engineering scheme involving a compromised Telegram account, a fake Zoom meeting, a ClickFix infection vector, and reported usage of AI-generated video to deceive the victim.\nThese tactics build upon a shift first documented in the November 2025 publication GTIG AI Threat Tracker: Advances in Threat Actor Usage of AI Tools where Google Threat Intelligence Group (GTIG) id"
+    },
     {
       "title": "Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/expansion-shinyhunters-saas-data-theft/",
@@ -85,7 +91,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f47a52f0d90&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f633bab28b0&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/dprk-adopts-etherhiding/",
       "pubDate": "Thu, 16 Oct 2025 14:00:00 +0000",
       "description": "Written by: Blas Kojusner, Robert Wallace, Joseph Dobson\n\nGoogle Threat Intelligence Group (GTIG) has observed the North Korea (DPRK) threat actor UNC5342 using ‘EtherHiding’ to deliver malware and facilitate cryptocurrency theft, the first time GTIG has observed a nation-state actor adopting this method. This post is part of a two-part blog series on adversaries using EtherHiding, a technique that leverages transactions on public blockchains to store and retrieve malicious payloads—notable for its resilience against conventional takedown and blocklisting efforts. Read about UNC5142 campaign leveraging EtherHiding to distribute malware.\nSince February 2025, GTIG has tracked UNC5342 incorporating EtherHiding into an ongoing social engineering campaign, dubbed Contagious Interview by Palo Alto Networks. In this campaign, the actor uses JADESNOW malware to deploy a JavaScript variant of INVISIBLEFERRET, which has led to numerous cryptocurrency heists.\nHow EtherHiding Works\nEtherHiding eme"
-    },
-    {
-      "title": "New Group on the Block: UNC5142 Leverages EtherHiding to Distribute Malware",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc5142-etherhiding-distribute-malware/",
-      "pubDate": "Thu, 16 Oct 2025 14:00:00 +0000",
-      "description": "Written by: Mark Magee, Jose Hernandez, Bavi Sadayappan, Jessa Valdez\n\nSince late 2023, Mandiant Threat Defense and Google Threat Intelligence Group (GTIG) have tracked UNC5142, a financially motivated threat actor that abuses the blockchain to facilitate the distribution of information stealers (infostealers). UNC5142 is characterized by its use of compromised WordPress websites and \"EtherHiding\", a technique used to obscure malicious code or data by placing it on a public blockchain, such as the BNB Smart Chain. This post is part of a two-part blog series on adversaries using the EtherHiding technique. Read our other post on North Korea (DPRK) adopting EtherHiding.\nSince late 2023, UNC5142 has significantly evolved their tactics, techniques, and procedures (TTPs) to enhance operational security and evade detection. Notably, we have not observed UNC5142 activity since late July 2025, suggesting a shift in the actor’s operational methods or a pause in their activity. \nUNC5142 appears t"
     }
   ]
 }
