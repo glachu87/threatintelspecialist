@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-02-10T07:11:14.007867Z",
+  "fetched_at": "2026-02-10T09:00:44.894153Z",
   "count": 20,
   "items": [
+    {
+      "title": "Beyond the Battlefield: Threats to the Defense Industrial Base",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/threats-to-defense-industrial-base/",
+      "pubDate": "Tue, 10 Feb 2026 14:00:00 +0000",
+      "description": "Introduction \nIn modern warfare, the front lines are no longer confined to the battlefield; they extend directly into the servers and supply chains of the industry that safeguards the nation. Today, the defense sector faces a relentless barrage of cyber operations conducted by state-sponsored actors and criminal groups alike. In recent years, Google Threat Intelligence Group (GTIG) has observed several distinct areas of focus in adversarial targeting of the defense industrial base (DIB). While not exhaustive of all actors and means, some of the more prominent themes in the landscape today include: \n\n\nConsistent effort has been dedicated to targeting defense entities fielding technologies on the battlefield in the Russia-Ukraine War. As next-generation capabilities are being operationalized in this environment, Russia-nexus threat actors and hacktivists are seeking to compromise defense contractors alongside military assets and systems, with a focus on organizations involved with unmann"
+    },
     {
       "title": "UNC1069 Targets Cryptocurrency Sector with New Tooling and AI-Enabled Social Engineering",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering/",
@@ -91,7 +97,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f7177505430&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f7155160850&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/new-malware-russia-coldriver/",
       "pubDate": "Mon, 20 Oct 2025 14:00:00 +0000",
       "description": "Written by: Wesley Shields\n\nIntroduction \nCOLDRIVER, a Russian state-sponsored threat group known for targeting high profile individuals in NGOs, policy advisors and dissidents, swiftly shifted operations after the May 2025 public disclosure of its LOSTKEYS malware, operationalizing new malware families five days later. It is unclear how long COLDRIVER had this malware in development, but GTIG has not observed a single instance of LOSTKEYS since publication. Instead, GTIG has seen new malware used more aggressively than any other previous malware campaigns we have attributed to COLDRIVER (also known as UNC4057, Star Blizzard, and Callisto).\nThe new malware, which GTIG attributes directly to COLDRIVER, has undergone multiple iterations since discovery, indicating a rapidly increased development and operations tempo from COLDRIVER. It is a collection of related malware families connected via a delivery chain. GTIG seeks to build on details on a part of this infection chain released in a "
-    },
-    {
-      "title": "DPRK Adopts EtherHiding: Nation-State Malware Hiding on Blockchains",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/dprk-adopts-etherhiding/",
-      "pubDate": "Thu, 16 Oct 2025 14:00:00 +0000",
-      "description": "Written by: Blas Kojusner, Robert Wallace, Joseph Dobson\n\nGoogle Threat Intelligence Group (GTIG) has observed the North Korea (DPRK) threat actor UNC5342 using ‘EtherHiding’ to deliver malware and facilitate cryptocurrency theft, the first time GTIG has observed a nation-state actor adopting this method. This post is part of a two-part blog series on adversaries using EtherHiding, a technique that leverages transactions on public blockchains to store and retrieve malicious payloads—notable for its resilience against conventional takedown and blocklisting efforts. Read about UNC5142 campaign leveraging EtherHiding to distribute malware.\nSince February 2025, GTIG has tracked UNC5342 incorporating EtherHiding into an ongoing social engineering campaign, dubbed Contagious Interview by Palo Alto Networks. In this campaign, the actor uses JADESNOW malware to deploy a JavaScript variant of INVISIBLEFERRET, which has led to numerous cryptocurrency heists.\nHow EtherHiding Works\nEtherHiding eme"
     }
   ]
 }
