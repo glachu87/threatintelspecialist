@@ -1,11 +1,11 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-02-10T13:12:40.145472Z",
+  "fetched_at": "2026-02-10T14:57:19.217153Z",
   "items": [
     {
-      "title": "TP-Link Systems Inc. VIGI Series IP Camera",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-01",
-      "published": "Thu, 05 Feb 26 12:00:00 +0000",
+      "title": "Poland Energy Sector Cyber Incident Highlights OT and ICS Security Gaps",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/10/poland-energy-sector-cyber-incident-highlights-ot-and-ics-security-gaps",
+      "published": "Tue, 10 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -14,6 +14,19 @@
       "risk_evaluation": "N/A",
       "vulnerability_overview": "N/A",
       "mitigations": "N/A"
+    },
+    {
+      "title": "Reducing the Attack Surface for End-of-Support Edge Devices",
+      "link": "https://www.cisa.gov/resources-tools/resources/reducing-attack-surface-end-support-edge-devices",
+      "published": "Thu, 05 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/AOrganizations should be prepared to respond to malicious cyber activity. As the nation\u2019s cyber defense agency, CISA and its partners stand ready to help prepare organizations to respond to and mitigate the impact of malicious cyber activity. CISA and its partners strongly urge all organizations to reviewBOD 26-02and implement the following mitigations."
     },
     {
       "title": "Mitsubishi Electric MELSEC iQ-R Series",
@@ -94,22 +107,9 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Reducing the Attack Surface for End-of-Support Edge Devices",
-      "link": "https://www.cisa.gov/resources-tools/resources/reducing-attack-surface-end-support-edge-devices",
+      "title": "TP-Link Systems Inc. VIGI Series IP Camera",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-01",
       "published": "Thu, 05 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/AOrganizations should be prepared to respond to malicious cyber activity. As the nation\u2019s cyber defense agency, CISA and its partners stand ready to help prepare organizations to respond to and mitigate the impact of malicious cyber activity. CISA and its partners strongly urge all organizations to reviewBOD 26-02and implement the following mitigations."
-    },
-    {
-      "title": "Synectix LAN 232 TRIO",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-04",
-      "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -120,8 +120,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "RISS SRL MOMA Seismic Station",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-03",
+      "title": "Synectix LAN 232 TRIO",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-04",
       "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -172,9 +172,9 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/29/cisa-adds-one-known-exploited-vulnerability-catalog",
-      "published": "Thu, 29 Jan 26 12:00:00 +0000",
+      "title": "RISS SRL MOMA Seismic Station",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-03",
+      "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -198,10 +198,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation ControlLogix",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-03",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/29/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Thu, 29 Jan 26 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -224,10 +224,36 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Rockwell Automation ControlLogix",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-03",
+      "published": "Thu, 29 Jan 26 12:00:00 +0000",
+      "vendor": "Rockwell Automation",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Fortinet Releases Guidance to Address Ongoing Exploitation of Authentication Bypass Vulnerability CVE-2026-24858",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/28/fortinet-releases-guidance-address-ongoing-exploitation-authentication-bypass-vulnerability-cve-2026",
       "published": "Wed, 28 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Festo Didactic SE MES PC",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-02",
+      "published": "Tue, 27 Jan 26 12:00:00 +0000",
+      "vendor": "Festo",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -254,19 +280,6 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-04",
       "published": "Tue, 27 Jan 26 12:00:00 +0000",
       "vendor": "Johnson Controls",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Festo Didactic SE MES PC",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-02",
-      "published": "Tue, 27 Jan 26 12:00:00 +0000",
-      "vendor": "Festo",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -315,19 +328,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Product Categories for Technologies That Use Post-Quantum Cryptography Standards",
-      "link": "https://www.cisa.gov/resources-tools/resources/product-categories-technologies-use-post-quantum-cryptography-standards",
-      "published": "Fri, 23 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/AIn response to the June 6, 2025, Executive Order (EO) 14306, \u201cSustaining Select Efforts to Strengthen the Nation\u2019s Cybersecurity and Amending Executive Order 13694 and Executive Order 14144,\u201d the Cybersecurity and Infrastructure Security Agency (CISA) is providing and regularly updating the below lists to aid in post-quantum cryptography (PQC) adoption. The lists include hardware and software categories with example types of widely available products that use PQC standards to protect sensitive information.1The lists focus on categories of available products, typically acquired by the federal government, that utilize cryptographic algorithms. Because PQC-capable products are widely available in the listed categories, organizations should acquire only PQC-capable products when planning acquisitions and procuring products in these categories.",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/23/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Fri, 23 Jan 26 12:00:00 +0000",
@@ -336,6 +336,19 @@
       "release_date": "N/A",
       "cvss_v4": "N/A",
       "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Product Categories for Technologies That Use Post-Quantum Cryptography Standards",
+      "link": "https://www.cisa.gov/resources-tools/resources/product-categories-technologies-use-post-quantum-cryptography-standards",
+      "published": "Fri, 23 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/AIn response to the June 6, 2025, Executive Order (EO) 14306, \u201cSustaining Select Efforts to Strengthen the Nation\u2019s Cybersecurity and Amending Executive Order 13694 and Executive Order 14144,\u201d the Cybersecurity and Infrastructure Security Agency (CISA) is providing and regularly updating the below lists to aid in post-quantum cryptography (PQC) adoption. The lists include hardware and software categories with example types of widely available products that use PQC standards to protect sensitive information.1The lists focus on categories of available products, typically acquired by the federal government, that utilize cryptographic algorithms. Because PQC-capable products are widely available in the listed categories, organizations should acquire only PQC-capable products when planning acquisitions and procuring products in these categories.",
       "risk_evaluation": "N/A",
       "vulnerability_overview": "N/A",
       "mitigations": "N/A"
@@ -369,19 +382,6 @@
     {
       "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/01/22/cisa-adds-four-known-exploited-vulnerabilities-catalog",
-      "published": "Thu, 22 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Hubitat Elevation Hubs",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-022-06",
       "published": "Thu, 22 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
