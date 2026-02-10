@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-02-10T18:01:23.535927Z",
+  "fetched_at": "2026-02-10T19:58:19.690317Z",
   "items": [
     {
       "title": "Yokogawa FAST/TOOLS",
@@ -42,6 +42,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "CISA Adds Six Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+      "published": "Tue, 10 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "ZOLL ePCR IOS Mobile Application",
       "link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-041-01",
       "published": "Tue, 10 Feb 26 12:00:00 +0000",
@@ -57,6 +70,19 @@
     {
       "title": "Poland Energy Sector Cyber Incident Highlights OT and ICS Security Gaps",
       "link": "https://www.cisa.gov/news-events/alerts/2026/02/10/poland-energy-sector-cyber-incident-highlights-ot-and-ics-security-gaps",
+      "published": "Tue, 10 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "\u200b\u200bBarriers to Secure OT Communication: Why Johnny Can\u2019t Authenticate\u200b",
+      "link": "https://www.cisa.gov/resources-tools/resources/barriers-secure-ot-communication-why-johnny-cant-authenticate",
       "published": "Tue, 10 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -92,6 +118,19 @@
       "risk_evaluation": "N/A",
       "vulnerability_overview": "N/A",
       "mitigations": "N/A"
+    },
+    {
+      "title": "Reducing the Attack Surface for End-of-Support Edge Devices",
+      "link": "https://www.cisa.gov/resources-tools/resources/reducing-attack-surface-end-support-edge-devices",
+      "published": "Thu, 05 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/AOrganizations should be prepared to respond to malicious cyber activity. As the nation\u2019s cyber defense agency, CISA and its partners stand ready to help prepare organizations to respond to and mitigate the impact of malicious cyber activity. CISA and its partners strongly urge all organizations to reviewBOD 26-02and implement the following mitigations."
     },
     {
       "title": "Hitachi Energy FOX61x",
@@ -159,19 +198,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Reducing the Attack Surface for End-of-Support Edge Devices",
-      "link": "https://www.cisa.gov/resources-tools/resources/reducing-attack-surface-end-support-edge-devices",
-      "published": "Thu, 05 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/AOrganizations should be prepared to respond to malicious cyber activity. As the nation\u2019s cyber defense agency, CISA and its partners stand ready to help prepare organizations to respond to and mitigate the impact of malicious cyber activity. CISA and its partners strongly urge all organizations to reviewBOD 26-02and implement the following mitigations."
-    },
-    {
       "title": "Ilevia EVE X1 Server",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-04",
       "published": "Thu, 05 Feb 26 12:00:00 +0000",
@@ -187,32 +213,6 @@
     {
       "title": "RISS SRL MOMA Seismic Station",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-03",
-      "published": "Tue, 03 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Mitsubishi Electric FREQSHIP-mini for Windows",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-01",
-      "published": "Tue, 03 Feb 26 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Avation Light Engine Pro",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-02",
       "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -250,9 +250,22 @@
       "mitigations": "N/A"
     },
     {
-      "title": "KiloView Encoder Series (Update A)",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-01",
-      "published": "Thu, 29 Jan 26 12:00:00 +0000",
+      "title": "Mitsubishi Electric FREQSHIP-mini for Windows",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-01",
+      "published": "Tue, 03 Feb 26 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Avation Light Engine Pro",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-02",
+      "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -276,10 +289,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Rockwell Automation ControlLogix",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-03",
+      "title": "KiloView Encoder Series (Update A)",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-01",
       "published": "Thu, 29 Jan 26 12:00:00 +0000",
-      "vendor": "Rockwell Automation",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -302,10 +315,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Fortinet Releases Guidance to Address Ongoing Exploitation of Authentication Bypass Vulnerability CVE-2026-24858",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/28/fortinet-releases-guidance-address-ongoing-exploitation-authentication-bypass-vulnerability-cve-2026",
-      "published": "Wed, 28 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
+      "title": "Rockwell Automation ControlLogix",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-029-03",
+      "published": "Thu, 29 Jan 26 12:00:00 +0000",
+      "vendor": "Rockwell Automation",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -315,10 +328,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Johnson Controls Metasys Products",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-04",
-      "published": "Tue, 27 Jan 26 12:00:00 +0000",
-      "vendor": "Johnson Controls",
+      "title": "Fortinet Releases Guidance to Address Ongoing Exploitation of Authentication Bypass Vulnerability CVE-2026-24858",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/01/28/fortinet-releases-guidance-address-ongoing-exploitation-authentication-bypass-vulnerability-cve-2026",
+      "published": "Wed, 28 Jan 26 12:00:00 +0000",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -354,10 +367,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Festo Didactic SE MES PC",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-02",
+      "title": "Johnson Controls Metasys Products",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-04",
       "published": "Tue, 27 Jan 26 12:00:00 +0000",
-      "vendor": "Festo",
+      "vendor": "Johnson Controls",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -370,19 +383,6 @@
       "title": "iba Systems ibaPDA",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-027-01",
       "published": "Tue, 27 Jan 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds Five Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/01/26/cisa-adds-five-known-exploited-vulnerabilities-catalog",
-      "published": "Mon, 26 Jan 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
