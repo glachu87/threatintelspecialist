@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-02-12T07:06:35.988222Z",
+  "fetched_at": "2026-02-12T08:53:59.317715Z",
   "count": 20,
   "items": [
+    {
+      "title": "GTIG AI Threat Tracker: Distillation, Experimentation, and (Continued) Integration of AI for Adversarial Use",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/distillation-experimentation-integration-ai-adversarial-use/",
+      "pubDate": "Thu, 12 Feb 2026 14:00:00 +0000",
+      "description": "Introduction\nIn the final quarter of 2025, Google Threat Intelligence Group (GTIG) observed threat actors increasingly integrating artificial intelligence (AI) to accelerate the attack lifecycle, achieving productivity gains in reconnaissance, social engineering, and malware development. This report serves as an update to our November 2025 findings regarding the advances in threat actor usage of AI tools.\nBy identifying these early indicators and offensive proofs of concept, GTIG aims to arm defenders with the intelligence necessary to anticipate the next phase of AI-enabled threats, proactively thwart malicious activity, and continually strengthen both our classifiers and model.\nExecutive Summary\nGoogle DeepMind and GTIG have identified an increase in model extraction attempts or \"distillation attacks,\" a method of intellectual property theft that violates Google's terms of service. Throughout this report we've noted steps we've taken to thwart malicious activity, including Google det"
+    },
     {
       "title": "Beyond the Battlefield: Threats to the Defense Industrial Base",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/threats-to-defense-industrial-base/",
@@ -97,7 +103,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7fa932e6cee0&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7efe84c4c8b0&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/pro-russia-information-operations-drone-incursions/",
       "pubDate": "Tue, 21 Oct 2025 14:00:00 +0000",
       "description": "Written by: Alden Wahlstrom, David Mainor\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) observed multiple instances of pro-Russia information operations (IO) actors promoting narratives related to the reported incursion of Russian drones into Polish airspace that occurred on Sept. 9-10, 2025. The identified IO activity, which mobilized in response to this event and the ensuing political and security developments, appeared consistent with previously observed instances of pro-Russia IO targeting Poland—and more broadly the NATO Alliance and the West. Information provided in this report was derived from GTIG's tracking of IO beyond Google surfaces. Google is committed to information transparency, and we will continue tracking these threats and blocking their inauthentic content on Google’s platforms. We regularly disclose our latest enforcement actions in the TAG Bulletin.\nObserved messaging surrounding the Russian drone incursion into Polish airspace advanced multiple, often int"
-    },
-    {
-      "title": "To Be (A Robot) or Not to Be: New Malware Attributed to Russia State-Sponsored COLDRIVER",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/new-malware-russia-coldriver/",
-      "pubDate": "Mon, 20 Oct 2025 14:00:00 +0000",
-      "description": "Written by: Wesley Shields\n\nIntroduction \nCOLDRIVER, a Russian state-sponsored threat group known for targeting high profile individuals in NGOs, policy advisors and dissidents, swiftly shifted operations after the May 2025 public disclosure of its LOSTKEYS malware, operationalizing new malware families five days later. It is unclear how long COLDRIVER had this malware in development, but GTIG has not observed a single instance of LOSTKEYS since publication. Instead, GTIG has seen new malware used more aggressively than any other previous malware campaigns we have attributed to COLDRIVER (also known as UNC4057, Star Blizzard, and Callisto).\nThe new malware, which GTIG attributes directly to COLDRIVER, has undergone multiple iterations since discovery, indicating a rapidly increased development and operations tempo from COLDRIVER. It is a collection of related malware families connected via a delivery chain. GTIG seeks to build on details on a part of this infection chain released in a "
     }
   ]
 }
