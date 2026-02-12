@@ -1,12 +1,25 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-02-12T21:32:20.252108Z",
+  "fetched_at": "2026-02-12T22:32:07.700234Z",
   "items": [
     {
       "title": "Siemens SINEC NMS",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-01",
       "published": "Thu, 12 Feb 26 12:00:00 +0000",
       "vendor": "Siemens",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/12/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "published": "Thu, 12 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -172,8 +185,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "\u200b\u200bBarriers to Secure OT Communication: Why Johnny Can\u2019t Authenticate\u200b",
-      "link": "https://www.cisa.gov/resources-tools/resources/barriers-secure-ot-communication-why-johnny-cant-authenticate",
+      "title": "ZLAN Information Technology Co. ZLAN5143D",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-041-02",
       "published": "Tue, 10 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -185,8 +198,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "ZLAN Information Technology Co. ZLAN5143D",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-041-02",
+      "title": "\u200b\u200bBarriers to Secure OT Communication: Why Johnny Can\u2019t Authenticate\u200b",
+      "link": "https://www.cisa.gov/resources-tools/resources/barriers-secure-ot-communication-why-johnny-cant-authenticate",
       "published": "Tue, 10 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -343,19 +356,6 @@
     {
       "title": "Synectix LAN 232 TRIO",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-04",
-      "published": "Tue, 03 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/02/03/cisa-adds-four-known-exploited-vulnerabilities-catalog",
       "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
