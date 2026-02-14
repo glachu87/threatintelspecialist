@@ -1,10 +1,36 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-02-14T01:59:03.566731Z",
+  "fetched_at": "2026-02-14T04:15:38.845355Z",
   "items": [
     {
-      "title": "Siemens SINEC NMS",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-01",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/13/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Fri, 13 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Siemens SINEC OS",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-06",
+      "published": "Thu, 12 Feb 26 12:00:00 +0000",
+      "vendor": "Siemens",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Siemens Solid Edge",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-05",
       "published": "Thu, 12 Feb 26 12:00:00 +0000",
       "vendor": "Siemens",
       "affected_products": "N/A",
@@ -31,19 +57,6 @@
     {
       "title": "Siemens Siveillance Video Management Servers",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-07",
-      "published": "Thu, 12 Feb 26 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Siemens Solid Edge",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-05",
       "published": "Thu, 12 Feb 26 12:00:00 +0000",
       "vendor": "Siemens",
       "affected_products": "N/A",
@@ -107,19 +120,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens SINEC OS",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-06",
-      "published": "Thu, 12 Feb 26 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "Siemens COMOS",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-03",
       "published": "Thu, 12 Feb 26 12:00:00 +0000",
@@ -137,6 +137,19 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-09",
       "published": "Thu, 12 Feb 26 12:00:00 +0000",
       "vendor": "Hitachi Energy",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Siemens SINEC NMS",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-01",
+      "published": "Thu, 12 Feb 26 12:00:00 +0000",
+      "vendor": "Siemens",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -172,10 +185,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "AVEVA PI to CONNECT Agent",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-041-04",
+      "title": "ZLAN Information Technology Co. ZLAN5143D",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-041-02",
       "published": "Tue, 10 Feb 26 12:00:00 +0000",
-      "vendor": "AVEVA",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -185,10 +198,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "ZLAN Information Technology Co. ZLAN5143D",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-041-02",
+      "title": "AVEVA PI to CONNECT Agent",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-041-04",
       "published": "Tue, 10 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
+      "vendor": "AVEVA",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -263,6 +276,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Mitsubishi Electric MELSEC iQ-R Series",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-02",
+      "published": "Thu, 05 Feb 26 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "o6 Automation GmbH Open62541",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-03",
       "published": "Thu, 05 Feb 26 12:00:00 +0000",
@@ -280,19 +306,6 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-06",
       "published": "Thu, 05 Feb 26 12:00:00 +0000",
       "vendor": "Hitachi Energy",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Mitsubishi Electric MELSEC iQ-R Series",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-02",
-      "published": "Thu, 05 Feb 26 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -344,19 +357,6 @@
       "title": "TP-Link Systems Inc. VIGI Series IP Camera",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-036-01",
       "published": "Thu, 05 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Synectix LAN 232 TRIO",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-034-04",
-      "published": "Tue, 03 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
