@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-02-17T19:02:52.136516Z",
+  "fetched_at": "2026-02-17T20:42:26.529345Z",
   "count": 20,
   "items": [
+    {
+      "title": "From BRICKSTORM to GRIMBOLT: UNC6201 Exploiting a Dell RecoverPoint for Virtual Machines Zero-Day",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6201-exploiting-dell-recoverpoint-zero-day/",
+      "pubDate": "Tue, 17 Feb 2026 14:00:00 +0000",
+      "description": "Written by: Peter Ukhanov, Daniel Sislo, Nick Harbour, John Scarbrough, Fernando Tomlinson, Jr., Rich Reece\n\nIntroduction \nMandiant and Google Threat Intelligence Group (GTIG) have identified the zero-day exploitation of a high-risk vulnerability in Dell RecoverPoint for Virtual Machines, tracked as CVE-2026-22769, with a CVSSv3.0 score of 10.0. Analysis of incident response engagements revealed that UNC6201, a suspected PRC-nexus threat cluster, has exploited this flaw since at least mid-2024 to move laterally, maintain persistent access, and deploy malware including SLAYSTYLE, BRICKSTORM, and a novel backdoor tracked as GRIMBOLT. The initial access vector for these incidents was not confirmed, but UNC6201 is known to target edge appliances (such as VPN concentrators) for initial access. There are notable overlaps between UNC6201 and UNC5221, which has been used synonymously with the actor publicly reported as Silk Typhoon, although GTIG does not currently consider the two clusters to"
+    },
     {
       "title": "GTIG AI Threat Tracker: Distillation, Experimentation, and (Continued) Integration of AI for Adversarial Use",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/distillation-experimentation-integration-ai-adversarial-use/",
@@ -103,7 +109,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f943294e160&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f98813c9610&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     },
     {
       "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/vietnamese-actors-fake-job-posting-campaigns/",
       "pubDate": "Thu, 23 Oct 2025 14:00:00 +0000",
       "description": "Google Threat Intelligence Group (GTIG) is tracking a cluster of financially motivated threat actors operating from Vietnam that leverages fake job postings on legitimate platforms to target individuals in the digital advertising and marketing sectors. The actor effectively uses social engineering to deliver malware and phishing kits, ultimately aiming to compromise high-value corporate accounts, in order to hijack digital advertising accounts. GTIG tracks parts of this activity as UNC6229. \nThe activity targets remote digital advertising workers who have contract or part-time positions and may actively look for work while they currently have a job. The attack starts when a target downloads and executes malware or enters credentials into a phishing site. If the target falls victim while logged into a work computer with a personal account, or while using a personal device with access to company ads accounts, threat actors can gain access to those company accounts. Successful compromise "
-    },
-    {
-      "title": "Pro-Russia Information Operations Leverage Russian Drone Incursions into Polish Airspace",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/pro-russia-information-operations-drone-incursions/",
-      "pubDate": "Tue, 21 Oct 2025 14:00:00 +0000",
-      "description": "Written by: Alden Wahlstrom, David Mainor\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) observed multiple instances of pro-Russia information operations (IO) actors promoting narratives related to the reported incursion of Russian drones into Polish airspace that occurred on Sept. 9-10, 2025. The identified IO activity, which mobilized in response to this event and the ensuing political and security developments, appeared consistent with previously observed instances of pro-Russia IO targeting Poland—and more broadly the NATO Alliance and the West. Information provided in this report was derived from GTIG's tracking of IO beyond Google surfaces. Google is committed to information transparency, and we will continue tracking these threats and blocking their inauthentic content on Google’s platforms. We regularly disclose our latest enforcement actions in the TAG Bulletin.\nObserved messaging surrounding the Russian drone incursion into Polish airspace advanced multiple, often int"
     }
   ]
 }
