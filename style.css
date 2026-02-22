@@ -1,12 +1,24 @@
-/* ===== Base Styles ===== */
+/* ===== BACKGROUND UPGRADE ===== */
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: url('images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #e5e7eb;
+
+  /* Animated gradient */
+  background: linear-gradient(135deg, #0f172a, #0a0f1c, #111827);
+  background-size: 400% 400%;
+  animation: gradientMove 20s ease infinite;
+
+  overflow-x: hidden;
 }
 
+/* Smooth gradient animation */
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 header, nav, main, footer {
   text-align: center;
   padding: 1em;
