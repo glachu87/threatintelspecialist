@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-02-25T17:56:17.620582Z",
+  "fetched_at": "2026-02-25T19:08:48.230376Z",
   "items": [
+    {
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/25/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "published": "Wed, 25 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "CISA and Partners Release Guidance for Ongoing Global Exploitation of Cisco SD-WAN Systems",
       "link": "https://www.cisa.gov/news-events/alerts/2026/02/25/cisa-and-partners-release-guidance-ongoing-global-exploitation-cisco-sd-wan-systems",
@@ -107,8 +120,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "EnOcean SmartServer IoT",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-01",
+      "title": "Welker OdorEyes EcoSystem Pulse Bypass System with XL4 Controller",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-04",
       "published": "Thu, 19 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -120,8 +133,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Welker OdorEyes EcoSystem Pulse Bypass System with XL4 Controller",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-04",
+      "title": "EnOcean SmartServer IoT",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-01",
       "published": "Thu, 19 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -159,6 +172,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/17/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "published": "Tue, 17 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Delta Electronics ASDA-Soft",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-048-02",
       "published": "Tue, 17 Feb 26 12:00:00 +0000",
@@ -172,8 +198,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/02/17/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "title": "GE Vernova Enervista UR Setup",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-048-03",
       "published": "Tue, 17 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -189,19 +215,6 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-048-01",
       "published": "Tue, 17 Feb 26 12:00:00 +0000",
       "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "GE Vernova Enervista UR Setup",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-048-03",
-      "published": "Tue, 17 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -302,6 +315,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Siemens SINEC OS",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-06",
+      "published": "Thu, 12 Feb 26 12:00:00 +0000",
+      "vendor": "Siemens",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Siemens Siveillance Video Management Servers",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-07",
       "published": "Thu, 12 Feb 26 12:00:00 +0000",
@@ -345,32 +371,6 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-04",
       "published": "Thu, 12 Feb 26 12:00:00 +0000",
       "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Siemens SINEC OS",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-043-06",
-      "published": "Thu, 12 Feb 26 12:00:00 +0000",
-      "vendor": "Siemens",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "ZLAN Information Technology Co. ZLAN5143D",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-041-02",
-      "published": "Tue, 10 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
