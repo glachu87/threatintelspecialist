@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-03T14:49:36.198112Z",
+  "fetched_at": "2026-03-03T15:51:23.218263Z",
   "count": 20,
   "items": [
+    {
+      "title": "Coruna: The Mysterious Journey of a Powerful iOS Exploit Kit",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/coruna-powerful-ios-exploit-kit/",
+      "pubDate": "Tue, 03 Mar 2026 14:00:00 +0000",
+      "description": "Introduction \nGoogle Threat Intelligence Group (GTIG) has identified a new and powerful exploit kit targeting Apple iPhone models running iOS version 13.0 (released in September 2019) up to version 17.2.1 (released in December 2023). The exploit kit, named “Coruna” by its developers, contained five full iOS exploit chains and a total of 23 exploits. The core technical value of this exploit kit lies in its comprehensive collection of iOS exploits, with the most advanced ones using non-public exploitation techniques and mitigation bypasses. \nThe Coruna exploit kit provides another example of how sophisticated capabilities proliferate. Over the course of 2025, GTIG tracked its use in highly targeted operations initially conducted by a customer of a surveillance vendor, then observed its deployment in watering hole attacks targeting Ukrainian users by UNC6353, a suspected Russian espionage group. We then retrieved the complete exploit kit when it was later used in broad-scale campaigns by "
+    },
     {
       "title": "Exposing the Undercurrent: Disrupting the GRIDTIDE Global Cyber Espionage Campaign",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/disrupting-gridtide-global-espionage-campaign/",
@@ -115,13 +121,7 @@
       "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
       "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f23402310d0&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
-    },
-    {
-      "title": "Keys to the Kingdom: A Defender's Guide to Privileged Account Monitoring",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/privileged-account-monitoring/",
-      "pubDate": "Tue, 28 Oct 2025 14:00:00 +0000",
-      "description": "Written by: Bhavesh Dhake, Will Silverstone, Matthew Hitchcock, Aaron Fletcher\n\nThe Criticality of Privileged Access in Today's Threat Landscape\nPrivileged access stands as the most critical pathway for adversaries seeking to compromise sensitive systems and data. Its protection is not only a best practice, it is a fundamental imperative for organizational resilience. The increasing complexity of modern IT environments, exacerbated by rapid cloud migration, has led to a surge in both human and non-human identities, comprising privileged accounts and virtual systems [compute workloads such as virtual machines (VMs), containers, and serverless functions, plus their control planes], significantly expanding the overall attack surface. This environment presents escalating challenges in identity and access management, cross-platform system security, and effective staffing, making the establishment and maintenance of a robust security posture increasingly challenging.\nThe threat landscape is "
+      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f7ffc8a8130&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     }
   ]
 }
