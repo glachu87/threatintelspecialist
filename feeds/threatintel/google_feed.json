@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-05T15:54:24.840897Z",
+  "fetched_at": "2026-03-05T18:08:11.862764Z",
   "count": 20,
   "items": [
+    {
+      "title": "Look What You Made Us Patch: 2025 Zero-Days in Review",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+      "pubDate": "Thu, 05 Mar 2026 14:00:00 +0000",
+      "description": "Written by: Casey Charrier, James Sadowski, Zander Work, Clement Lecigne, Benoît Sevens, Fred Plan\n\nExecutive Summary\nGoogle Threat Intelligence Group (GTIG) tracked 90 zero-day vulnerabilities exploited in-the-wild in 2025. Although that volume of zero-days is lower than the record high observed in 2023 (100), it is higher than 2024’s count (78) and remained within the 60–100 range established over the previous four years, indicating a trend toward stabilization at these levels.\nIn 2025, we continued to observe the structural shift, first identified in 2024, toward increased enterprise exploitation. Both the raw number (43) and proportion (48%) of vulnerabilities impacting enterprise technologies reached all-time highs, accounting for almost 50% of total zero-days exploited in 2025. We observed a sustained decrease in detected browser-based exploitation, which fell to historical lows, while seeing increased abuse of operating system vulnerabilities.\nState-sponsored espionage groups co"
+    },
     {
       "title": "Coruna: The Mysterious Journey of a Powerful iOS Exploit Kit",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/coruna-powerful-ios-exploit-kit/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools/",
       "pubDate": "Wed, 05 Nov 2025 14:00:00 +0000",
       "description": "Executive Summary\nBased on recent analysis of the broader threat landscape, Google Threat Intelligence Group (GTIG) has identified a shift that occurred within the last year: adversaries are no longer leveraging artificial intelligence (AI) just for productivity gains, they are deploying novel AI-enabled malware in active operations. This marks a new operational phase of AI abuse, involving tools that dynamically alter behavior mid-execution.\nThis report serves as an update to our January 2025 analysis, \"Adversarial Misuse of Generative AI,\" and details how government-backed threat actors and cyber criminals are integrating and experimenting with AI across the industry throughout the entire attack lifecycle. Our findings are based on the broader threat landscape.\nAt Google, we are committed to developing AI responsibly and take proactive steps to disrupt malicious activity by disabling the projects and accounts associated with bad actors, while continuously improving our models to make"
-    },
-    {
-      "title": "Preparing for Threats to Come: Cybersecurity Forecast 2026",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/cybersecurity-forecast-2026/",
-      "pubDate": "Tue, 04 Nov 2025 14:00:00 +0000",
-      "description": "Every November, we make it our mission to equip organizations with the knowledge needed to stay ahead of threats we anticipate in the coming year. The Cybersecurity Forecast 2026 report, released today, provides comprehensive insights to help security leaders and teams prepare for those challenges.\nThis report does not contain \"crystal ball\" predictions. Instead, our forecasts are built on real-world trends and data we are observing right now. The information contained in the report comes directly from Google Cloud security leaders, and dozens of experts, analysts, researchers, and responders directly on the frontlines.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;Cybersecurity Forecast 2026&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText object at 0x7f31c6989a00&gt;), (&#x27;btn_text&#x27;, &#x27;Download now&#x27;), (&#x27;href&#x27;, &#x27;https://cloud.google.com/security/resources/cybersecurity-forecast?&amp;utm_source=cgc-blog&amp;utm_medi"
     }
   ]
 }
