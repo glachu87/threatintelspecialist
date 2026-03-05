@@ -1,12 +1,25 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-03-05T18:03:10.163756Z",
+  "fetched_at": "2026-03-05T19:51:33.724805Z",
   "items": [
     {
       "title": "Delta Electronics CNCSoft-G2",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-064-01",
       "published": "Thu, 05 Mar 26 12:00:00 +0000",
       "vendor": "Delta Electronics",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "CISA Adds Five Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/03/05/cisa-adds-five-known-exploited-vulnerabilities-catalog",
+      "published": "Thu, 05 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -172,19 +185,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Yokogawa CENTUM VP R6, R7",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-09",
-      "published": "Thu, 26 Feb 26 12:00:00 +0000",
-      "vendor": "Yokogawa",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "SWITCH EV swtchenergy.com",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-06",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
@@ -215,6 +215,19 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-02",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Yokogawa CENTUM VP R6, R7",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-09",
+      "published": "Thu, 26 Feb 26 12:00:00 +0000",
+      "vendor": "Yokogawa",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -356,19 +369,6 @@
     {
       "title": "Welker OdorEyes EcoSystem Pulse Bypass System with XL4 Controller",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-04",
-      "published": "Thu, 19 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "EnOcean SmartServer IoT",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-01",
       "published": "Thu, 19 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
