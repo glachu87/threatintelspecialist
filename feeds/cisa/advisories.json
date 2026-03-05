@@ -1,38 +1,12 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-03-05T15:50:12.891024Z",
+  "fetched_at": "2026-03-05T18:03:10.163756Z",
   "items": [
     {
-      "title": "Mobiliti e-mobi.hu",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-06",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Hitachi Energy RTU500 Product",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-03",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Labkotec LID-3300IP",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-05",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "N/A",
+      "title": "Delta Electronics CNCSoft-G2",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-064-01",
+      "published": "Thu, 05 Mar 26 12:00:00 +0000",
+      "vendor": "Delta Electronics",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -44,6 +18,19 @@
     {
       "title": "ePower epower.ie",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-07",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Mobiliti e-mobi.hu",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-06",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -94,6 +81,32 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Labkotec LID-3300IP",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-05",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Hitachi Energy RTU500 Product",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-03",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "Hitachi Energy",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Everon OCPP Backends",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-08",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
@@ -111,6 +124,58 @@
       "link": "https://www.cisa.gov/news-events/alerts/2026/03/03/cisa-adds-two-known-exploited-vulnerabilities-catalog",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Mobility46 mobility46.se",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-08",
+      "published": "Thu, 26 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "EV Energy ev.energy",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-07",
+      "published": "Thu, 26 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Copeland XWEB and XWEB Pro",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-10",
+      "published": "Thu, 26 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Yokogawa CENTUM VP R6, R7",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-09",
+      "published": "Thu, 26 Feb 26 12:00:00 +0000",
+      "vendor": "Yokogawa",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -146,8 +211,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "EV2GO ev2go.io",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-04",
+      "title": "Pelco, Inc. Sarix Pro 3 Series IP Cameras",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-02",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -172,60 +237,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Mobility46 mobility46.se",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-08",
-      "published": "Thu, 26 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Pelco, Inc. Sarix Pro 3 Series IP Cameras",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-02",
-      "published": "Thu, 26 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "EV Energy ev.energy",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-07",
-      "published": "Thu, 26 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Yokogawa CENTUM VP R6, R7",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-09",
-      "published": "Thu, 26 Feb 26 12:00:00 +0000",
-      "vendor": "Yokogawa",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Copeland XWEB and XWEB Pro",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-10",
+      "title": "EV2GO ev2go.io",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-04",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -250,19 +263,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/02/25/cisa-adds-two-known-exploited-vulnerabilities-catalog",
-      "published": "Wed, 25 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "CISA and Partners Release Guidance for Ongoing Global Exploitation of Cisco SD-WAN Systems",
       "link": "https://www.cisa.gov/news-events/alerts/2026/02/25/cisa-and-partners-release-guidance-ongoing-global-exploitation-cisco-sd-wan-systems",
       "published": "Wed, 25 Feb 26 12:00:00 +0000",
@@ -276,8 +276,21 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/02/24/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/25/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "published": "Wed, 25 Feb 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Gardyn Home Kit",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-03",
       "published": "Tue, 24 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -302,8 +315,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "InSAT MasterSCADA BUK-TS",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-01",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/02/24/cisa-adds-one-known-exploited-vulnerability-catalog",
       "published": "Tue, 24 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -315,8 +328,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Gardyn Home Kit",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-03",
+      "title": "InSAT MasterSCADA BUK-TS",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-01",
       "published": "Tue, 24 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -341,8 +354,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Jinan USR IOT Technology Limited (PUSR) USR-W610",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-03",
+      "title": "Welker OdorEyes EcoSystem Pulse Bypass System with XL4 Controller",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-04",
       "published": "Thu, 19 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -367,21 +380,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Valmet DNA Engineering Web Tools",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-02",
-      "published": "Thu, 19 Feb 26 12:00:00 +0000",
-      "vendor": "Valmet",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Welker OdorEyes EcoSystem Pulse Bypass System with XL4 Controller",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-04",
+      "title": "Jinan USR IOT Technology Limited (PUSR) USR-W610",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-03",
       "published": "Thu, 19 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
