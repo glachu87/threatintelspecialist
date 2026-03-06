@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-06T14:40:34.514686Z",
+  "fetched_at": "2026-03-06T15:41:35.144521Z",
   "count": 20,
   "items": [
+    {
+      "title": "Proactive Preparation and Hardening Against Destructive Attacks: 2026 Edition",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/preparation-hardening-destructive-attacks/",
+      "pubDate": "Fri, 06 Mar 2026 14:00:00 +0000",
+      "description": "Written by: Matthew McWhirt, Bhavesh Dhake, Emilio Oropeza, Gautam Krishnan, Stuart Carrera, Greg Blaum, Michael Rudden\n\nBackground\nThreat actors leverage destructive malware to destroy data, eliminate evidence of malicious activity, or manipulate systems in a way that renders them inoperable. Destructive cyberattacks can be a powerful means to achieve strategic or tactical objectives; however, the risk of reprisal is likely to limit the frequency of use to very select incidents. Destructive cyberattacks can include destructive malware, wipers, or modified ransomware.\nWhen conflict erupts, cyber attacks are an inexpensive and easily deployable weapon. It should come as no surprise that instability leads to increases in attacks. This blog post provides proactive recommendations for organizations to prioritize for protecting against a destructive attack within an environment. The recommendations include practical and scalable methods that can help protect organizations from not only dest"
+    },
     {
       "title": "Look What You Made Us Patch: 2025 Zero-Days in Review",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/triofox-vulnerability-cve-2025-12480/",
       "pubDate": "Mon, 10 Nov 2025 14:00:00 +0000",
       "description": "Written by: Stallone D'Souza, Praveeth DSouza, Bill Glynn, Kevin O'Flynn, Yash Gupta\n\nWelcome to the Frontline Bulletin Series\nStraight from Mandiant Threat Defense, the \"Frontline Bulletin\" series brings you the latest on the threats we are seeing in the wild right now, equipping our community to understand and respond. \nIntroduction\nMandiant Threat Defense has uncovered exploitation of an unauthenticated access vulnerability within Gladinet’s Triofox file-sharing and remote access platform. This now-patched n-day vulnerability, assigned CVE-2025-12480, allowed an attacker to bypass authentication and access the application configuration pages, enabling the upload and execution of arbitrary payloads. \nAs early as Aug. 24, 2025, a threat cluster tracked by Google Threat Intelligence Group (GTIG) as UNC6485 exploited the unauthenticated access vulnerability and chained it with the abuse of the built-in anti-virus feature to achieve code execution. \nThe activity discussed in this blog po"
-    },
-    {
-      "title": "GTIG AI Threat Tracker: Advances in Threat Actor Usage of AI Tools",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools/",
-      "pubDate": "Wed, 05 Nov 2025 14:00:00 +0000",
-      "description": "Executive Summary\nBased on recent analysis of the broader threat landscape, Google Threat Intelligence Group (GTIG) has identified a shift that occurred within the last year: adversaries are no longer leveraging artificial intelligence (AI) just for productivity gains, they are deploying novel AI-enabled malware in active operations. This marks a new operational phase of AI abuse, involving tools that dynamically alter behavior mid-execution.\nThis report serves as an update to our January 2025 analysis, \"Adversarial Misuse of Generative AI,\" and details how government-backed threat actors and cyber criminals are integrating and experimenting with AI across the industry throughout the entire attack lifecycle. Our findings are based on the broader threat landscape.\nAt Google, we are committed to developing AI responsibly and take proactive steps to disrupt malicious activity by disabling the projects and accounts associated with bad actors, while continuously improving our models to make"
     }
   ]
 }
