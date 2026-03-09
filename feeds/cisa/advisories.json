@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-03-09T17:00:18.036205Z",
+  "fetched_at": "2026-03-09T17:54:09.155999Z",
   "items": [
+    {
+      "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/03/09/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+      "published": "Mon, 09 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "Delta Electronics CNCSoft-G2",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-064-01",
@@ -29,10 +42,49 @@
       "mitigations": "N/A"
     },
     {
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/03/03/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Everon OCPP Backends",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-08",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "ePower epower.ie",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-07",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Hitachi Energy RTU500 Product",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-03",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "Hitachi Energy",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -68,10 +120,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Mitsubishi Electric MELSEC iQ-F Series EtherNet/IP module and Ethernet module",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-62-01",
+      "title": "Labkotec LID-3300IP",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-05",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -94,9 +146,22 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Labkotec LID-3300IP",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-05",
+      "title": "Mitsubishi Electric MELSEC iQ-F Series EtherNet/IP module and Ethernet module",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-62-01",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Copeland XWEB and XWEB Pro",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-10",
+      "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
@@ -107,47 +172,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Hitachi Energy RTU500 Product",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-03",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Everon OCPP Backends",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-08",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/03/03/cisa-adds-two-known-exploited-vulnerabilities-catalog",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Mobility46 mobility46.se",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-08",
+      "title": "Pelco, Inc. Sarix Pro 3 Series IP Cameras",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-02",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -172,8 +198,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Copeland XWEB and XWEB Pro",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-10",
+      "title": "Mobility46 mobility46.se",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-08",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -200,19 +226,6 @@
     {
       "title": "Chargemap chargemap.com",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-05",
-      "published": "Thu, 26 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Pelco, Inc. Sarix Pro 3 Series IP Cameras",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-02",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -302,10 +315,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Gardyn Home Kit",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-03",
+      "title": "Schneider Electric EcoStruxure Building Operation Workstation",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-02",
       "published": "Tue, 24 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
+      "vendor": "Schneider  Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -315,10 +328,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Schneider Electric EcoStruxure Building Operation Workstation",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-02",
+      "title": "Gardyn Home Kit",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-03",
       "published": "Tue, 24 Feb 26 12:00:00 +0000",
-      "vendor": "Schneider  Electric",
+      "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -369,19 +382,6 @@
     {
       "title": "Welker OdorEyes EcoSystem Pulse Bypass System with XL4 Controller",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-04",
-      "published": "Thu, 19 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Jinan USR IOT Technology Limited (PUSR) USR-W610",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-050-03",
       "published": "Thu, 19 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
