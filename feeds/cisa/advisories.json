@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-03-11T17:48:24.971268Z",
+  "fetched_at": "2026-03-11T18:52:57.020078Z",
   "items": [
+    {
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/03/11/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "published": "Wed, 11 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "Honeywell IQ4x BMS Controller",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-069-03",
@@ -172,6 +185,19 @@
       "mitigations": "N/A"
     },
     {
+      "title": "Mitsubishi Electric MELSEC iQ-F Series EtherNet/IP module and Ethernet module",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-62-01",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
       "title": "Portwell Engineering Toolkits",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-04",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
@@ -189,19 +215,6 @@
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-02",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
       "vendor": "Hitachi Energy",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Mitsubishi Electric MELSEC iQ-F Series EtherNet/IP module and Ethernet module",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-62-01",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -276,8 +289,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "CloudCharge cloudcharge.se",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-03",
+      "title": "Chargemap chargemap.com",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-05",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -289,8 +302,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "EV2GO ev2go.io",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-04",
+      "title": "CloudCharge cloudcharge.se",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-03",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -315,8 +328,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Chargemap chargemap.com",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-05",
+      "title": "EV2GO ev2go.io",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-04",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -357,19 +370,6 @@
       "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/02/25/cisa-adds-two-known-exploited-vulnerabilities-catalog",
       "published": "Wed, 25 Feb 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Gardyn Home Kit",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-055-03",
-      "published": "Tue, 24 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
       "release_date": "N/A",
