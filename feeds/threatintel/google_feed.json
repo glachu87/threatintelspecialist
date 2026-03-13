@@ -1,13 +1,13 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-13T17:38:31.863962Z",
+  "fetched_at": "2026-03-13T18:49:55.103761Z",
   "count": 20,
   "items": [
     {
       "title": "Proactive Preparation and Hardening Against Destructive Attacks: 2026 Edition",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/preparation-hardening-destructive-attacks/",
       "pubDate": "Fri, 06 Mar 2026 14:00:00 +0000",
-      "description": "Written by: Matthew McWhirt, Bhavesh Dhake, Emilio Oropeza, Gautam Krishnan, Stuart Carrera, Greg Blaum, Michael Rudden\n\nBackground\nThreat actors leverage destructive malware to destroy data, eliminate evidence of malicious activity, or manipulate systems in a way that renders them inoperable. Destructive cyberattacks can be a powerful means to achieve strategic or tactical objectives; however, the risk of reprisal is likely to limit the frequency of use to very select incidents. Destructive cyberattacks can include destructive malware, wipers, or modified ransomware.\nWhen conflict erupts, cyber attacks are an inexpensive and easily deployable weapon. It should come as no surprise that instability leads to increases in attacks. This blog post provides proactive recommendations for organizations to prioritize for protecting against a destructive attack within an environment. The recommendations include practical and scalable methods that can help protect organizations from not only dest"
+      "description": "Written by: Matthew McWhirt, Bhavesh Dhake, Emilio Oropeza, Gautam Krishnan, Stuart Carrera, Greg Blaum, Michael Rudden\n\nUPDATE (March 13): Added guidance around abuse or misuse of endpoint / MDM platforms.\nBackground\nThreat actors leverage destructive malware to destroy data, eliminate evidence of malicious activity, or manipulate systems in a way that renders them inoperable. Destructive cyberattacks can be a powerful means to achieve strategic or tactical objectives; however, the risk of reprisal is likely to limit the frequency of use to very select incidents. Destructive cyberattacks can include destructive malware, wipers, or modified ransomware.\nWhen conflict erupts, cyber attacks are an inexpensive and easily deployable weapon. It should come as no surprise that instability leads to increases in attacks. This blog post provides proactive recommendations for organizations to prioritize for protecting against a destructive attack within an environment. The recommendations include"
     },
     {
       "title": "Look What You Made Us Patch: 2025 Zero-Days in Review",
