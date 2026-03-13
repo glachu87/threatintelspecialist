@@ -1,7 +1,20 @@
 {
   "source": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-  "fetched_at": "2026-03-13T16:39:03.117471Z",
+  "fetched_at": "2026-03-13T17:34:09.500203Z",
   "items": [
+    {
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/03/13/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "published": "Fri, 13 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
     {
       "title": "Siemens SIDIS Prime",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-071-03",
@@ -55,10 +68,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Siemens Heliox EV Chargers",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-071-05",
+      "title": "Inductive Automation Ignition Software",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-071-06",
       "published": "Thu, 12 Mar 26 12:00:00 +0000",
-      "vendor": "Siemens",
+      "vendor": "Inductive Automation",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -68,10 +81,10 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Inductive Automation Ignition Software",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-071-06",
+      "title": "Siemens Heliox EV Chargers",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-071-05",
       "published": "Thu, 12 Mar 26 12:00:00 +0000",
-      "vendor": "Inductive Automation",
+      "vendor": "Siemens",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -159,19 +172,6 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Delta Electronics CNCSoft-G2",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-064-01",
-      "published": "Thu, 05 Mar 26 12:00:00 +0000",
-      "vendor": "Delta Electronics",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
       "title": "CISA Adds Five Known Exploited Vulnerabilities to Catalog",
       "link": "https://www.cisa.gov/news-events/alerts/2026/03/05/cisa-adds-five-known-exploited-vulnerabilities-catalog",
       "published": "Thu, 05 Mar 26 12:00:00 +0000",
@@ -185,10 +185,23 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Mitsubishi Electric MELSEC iQ-F Series EtherNet/IP module and Ethernet module",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-62-01",
+      "title": "Delta Electronics CNCSoft-G2",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-064-01",
+      "published": "Thu, 05 Mar 26 12:00:00 +0000",
+      "vendor": "Delta Electronics",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Hitachi Energy Relion REB500 Product",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-02",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "Mitsubishi Electric",
+      "vendor": "Hitachi Energy",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -200,32 +213,6 @@
     {
       "title": "Mobiliti e-mobi.hu",
       "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-06",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
-      "link": "https://www.cisa.gov/news-events/alerts/2026/03/03/cisa-adds-two-known-exploited-vulnerabilities-catalog",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "N/A",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Everon OCPP Backends",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-08",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -250,21 +237,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Hitachi Energy Relion REB500 Product",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-02",
-      "published": "Tue, 03 Mar 26 12:00:00 +0000",
-      "vendor": "Hitachi Energy",
-      "affected_products": "N/A",
-      "release_date": "N/A",
-      "cvss_v4": "N/A",
-      "executive_summary": "N/A",
-      "risk_evaluation": "N/A",
-      "vulnerability_overview": "N/A",
-      "mitigations": "N/A"
-    },
-    {
-      "title": "Portwell Engineering Toolkits",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-04",
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "link": "https://www.cisa.gov/news-events/alerts/2026/03/03/cisa-adds-two-known-exploited-vulnerabilities-catalog",
       "published": "Tue, 03 Mar 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -302,10 +276,36 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Mobility46 mobility46.se",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-08",
-      "published": "Thu, 26 Feb 26 12:00:00 +0000",
+      "title": "Everon OCPP Backends",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-08",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
       "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Portwell Engineering Toolkits",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-062-04",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "N/A",
+      "affected_products": "N/A",
+      "release_date": "N/A",
+      "cvss_v4": "N/A",
+      "executive_summary": "N/A",
+      "risk_evaluation": "N/A",
+      "vulnerability_overview": "N/A",
+      "mitigations": "N/A"
+    },
+    {
+      "title": "Mitsubishi Electric MELSEC iQ-F Series EtherNet/IP module and Ethernet module",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-62-01",
+      "published": "Tue, 03 Mar 26 12:00:00 +0000",
+      "vendor": "Mitsubishi Electric",
       "affected_products": "N/A",
       "release_date": "N/A",
       "cvss_v4": "N/A",
@@ -328,8 +328,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "Copeland XWEB and XWEB Pro",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-10",
+      "title": "Mobility46 mobility46.se",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-08",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
@@ -341,8 +341,8 @@
       "mitigations": "N/A"
     },
     {
-      "title": "SWITCH EV swtchenergy.com",
-      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-06",
+      "title": "Copeland XWEB and XWEB Pro",
+      "link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-057-10",
       "published": "Thu, 26 Feb 26 12:00:00 +0000",
       "vendor": "N/A",
       "affected_products": "N/A",
