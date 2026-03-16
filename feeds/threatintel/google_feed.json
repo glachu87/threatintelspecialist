@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-16T15:04:27.369101Z",
+  "fetched_at": "2026-03-16T17:05:54.505549Z",
   "count": 20,
   "items": [
+    {
+      "title": "Ransomware Under Pressure: Tactics, Techniques, and Procedures in a Shifting Threat Landscape",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
+      "pubDate": "Mon, 16 Mar 2026 14:00:00 +0000",
+      "description": "Written by: Bavi Sadayappan, Zach Riddle, Ioana Teaca, Kimberly Goody, Genevieve Stark\n\nIntroduction \nSince 2018, when many financially motivated threat actors began shifting their monetization strategy to post-compromise ransomware deployments, ransomware has become one of the most pervasive threats to organizations across almost every industry vertical and region. In recent years ransomware operations have evolved, creating a robust ecosystem that has lowered the barrier to entry via the commoditization and specialization of the supporting underground communities, which is exemplified by the proliferation of the ransomware-as-a-service (RaaS) business model. While ransomware remains a dominant threat due to the volume of activity and the potential for serious operational disruptions, we have observed multiple indicators that suggest the overall profitability of ransomware operations is in decline. This trend is likely the result of multiple factors, including improved cybersecurity p"
+    },
     {
       "title": "Proactive Preparation and Hardening Against Destructive Attacks: 2026 Edition",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/preparation-hardening-destructive-attacks/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/time-travel-debugging-using-net-process-hollowing/",
       "pubDate": "Thu, 13 Nov 2025 14:00:00 +0000",
       "description": "Written by: Josh Stroschein, Jae Young Kim\n\nThe prevalence of obfuscation and multi-stage layering in today’s malware often forces analysts into tedious and manual debugging sessions. For instance, the primary challenge of analyzing pervasive commodity stealers like AgentTesla isn’t identifying the malware, but quickly cutting through the obfuscated delivery chain to get to the final payload.\nUnlike traditional live debugging, Time Travel Debugging (TTD) captures a deterministic, shareable record of a program's execution. Leveraging TTD's powerful data model and time travel capabilities allow us to efficiently pivot to the key execution events that lead to the final payload.\nThis post introduces all of the basics of WinDbg and TTD necessary to start incorporating TTD into your analysis. We demonstrate why it deserves to be a part of your toolkit by walking through an obfuscated multi-stage .NET dropper that performs process hollowing.\nWhat is Time Travel Debugging?\nTime Travel Debuggin"
-    },
-    {
-      "title": "No Place Like Localhost: Unauthenticated Remote Access via Triofox Vulnerability CVE-2025-12480",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/triofox-vulnerability-cve-2025-12480/",
-      "pubDate": "Mon, 10 Nov 2025 14:00:00 +0000",
-      "description": "Written by: Stallone D'Souza, Praveeth DSouza, Bill Glynn, Kevin O'Flynn, Yash Gupta\n\nWelcome to the Frontline Bulletin Series\nStraight from Mandiant Threat Defense, the \"Frontline Bulletin\" series brings you the latest on the threats we are seeing in the wild right now, equipping our community to understand and respond. \nIntroduction\nMandiant Threat Defense has uncovered exploitation of an unauthenticated access vulnerability within Gladinet’s Triofox file-sharing and remote access platform. This now-patched n-day vulnerability, assigned CVE-2025-12480, allowed an attacker to bypass authentication and access the application configuration pages, enabling the upload and execution of arbitrary payloads. \nAs early as Aug. 24, 2025, a threat cluster tracked by Google Threat Intelligence Group (GTIG) as UNC6485 exploited the unauthenticated access vulnerability and chained it with the abuse of the built-in anti-virus feature to achieve code execution. \nThe activity discussed in this blog po"
     }
   ]
 }
