@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-18T13:22:44.805789Z",
+  "fetched_at": "2026-03-18T15:07:27.131157Z",
   "count": 20,
   "items": [
+    {
+      "title": "The Proliferation of DarkSword: iOS Exploit Chain Adopted by Multiple Threat Actors",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
+      "pubDate": "Wed, 18 Mar 2026 14:00:00 +0000",
+      "description": "Introduction \nGoogle Threat Intelligence Group (GTIG) has identified a new iOS full-chain exploit that leveraged multiple zero-day vulnerabilities to fully compromise devices. Based on toolmarks in recovered payloads, we believe the exploit chain to be called DarkSword. Since at least November 2025, GTIG has observed multiple commercial surveillance vendors and suspected state-sponsored actors utilizing DarkSword in distinct campaigns. These threat actors have deployed the exploit chain against targets in Saudi Arabia, Turkey, Malaysia, and Ukraine.\nDarkSword supports iOS versions 18.4 through 18.7 and utilizes six different vulnerabilities to deploy final-stage payloads. GTIG has identified three distinct malware families deployed following a successful DarkSword compromise: GHOSTBLADE, GHOSTKNIFE, and GHOSTSABER. The proliferation of this single exploit chain across disparate threat actors mirrors the previously discovered Coruna iOS exploit kit. Notably, UNC6353, a suspected Russian"
+    },
     {
       "title": "Ransomware Under Pressure: Tactics, Techniques, and Procedures in a Shifting Threat Landscape",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense/",
       "pubDate": "Mon, 17 Nov 2025 14:00:00 +0000",
       "description": "Written by: Mohamed El-Banna, Daniel Lee, Mike Stokkel, Josh Goddard\n\nOverview\nLast year, Mandiant published a blog post highlighting suspected Iran-nexus espionage activity targeting the aerospace, aviation, and defense industries in the Middle East. In this follow-up post, Mandiant discusses additional tactics, techniques, and procedures (TTPs) observed in incidents Mandiant has responded to.\nSince mid-2024, Mandiant has responded to targeted campaigns by the threat group UNC1549 against the aerospace, aviation and defense industries. To gain initial access into these environments, UNC1549 employed a dual approach: deploying well-crafted phishing campaigns designed to steal credentials or deliver malware and exploiting trusted connections with third-party suppliers and partners.\nThe latter technique is particularly strategic when targeting organizations with high security maturity, such as defense contractors. While these primary targets often invest heavily in robust defenses, their"
-    },
-    {
-      "title": "Time Travel Triage: An Introduction to Time Travel Debugging using a .NET Process Hollowing Case Study",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/time-travel-debugging-using-net-process-hollowing/",
-      "pubDate": "Thu, 13 Nov 2025 14:00:00 +0000",
-      "description": "Written by: Josh Stroschein, Jae Young Kim\n\nThe prevalence of obfuscation and multi-stage layering in today’s malware often forces analysts into tedious and manual debugging sessions. For instance, the primary challenge of analyzing pervasive commodity stealers like AgentTesla isn’t identifying the malware, but quickly cutting through the obfuscated delivery chain to get to the final payload.\nUnlike traditional live debugging, Time Travel Debugging (TTD) captures a deterministic, shareable record of a program's execution. Leveraging TTD's powerful data model and time travel capabilities allow us to efficiently pivot to the key execution events that lead to the final payload.\nThis post introduces all of the basics of WinDbg and TTD necessary to start incorporating TTD into your analysis. We demonstrate why it deserves to be a part of your toolkit by walking through an obfuscated multi-stage .NET dropper that performs process hollowing.\nWhat is Time Travel Debugging?\nTime Travel Debuggin"
     }
   ]
 }
