@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-23T14:59:51.390699Z",
+  "fetched_at": "2026-03-23T16:06:20.692961Z",
   "count": 20,
   "items": [
+    {
+      "title": "M-Trends 2026: Data, Insights, and Strategies From the Frontlines",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2026/",
+      "pubDate": "Mon, 23 Mar 2026 14:00:00 +0000",
+      "description": "Every year, the cyber threat landscape forces defenders to adapt to evolving adversary tactics, techniques, and procedures (TTPs). In 2025, Mandiant observed a clear divergence in adversary pacing that closely aligns with the trends we have been documenting for defenders over the past year. On one end of the spectrum, cyber criminal groups optimized for immediate impact and deliberate recovery denial. On the other end, sophisticated cyber espionage groups and insider threats optimized for extreme persistence, utilizing unmonitored edge devices and native network functionalities to evade detection.\nToday, we release M-Trends 2026. Grounded in over 500,000 hours of frontline incident investigations conducted by Mandiant globally in 2025, this report provides a definitive look at the TTPs actively being used in breaches today.\n\n    aside_block\n    &lt;ListValue: [StructValue([(&#x27;title&#x27;, &#x27;M-Trends 2026 is available!&#x27;), (&#x27;body&#x27;, &lt;wagtail.rich_text.RichText ob"
+    },
     {
       "title": "The Proliferation of DarkSword: iOS Exploit Chain Adopted by Multiple Threat Actors",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/apt24-pivot-to-multi-vector-attacks/",
       "pubDate": "Thu, 20 Nov 2025 14:00:00 +0000",
       "description": "Written by: Harsh Parashar, Tierra Duncan, Dan Perez\n\nGoogle Threat Intelligence Group (GTIG) is tracking a long-running and adaptive cyber espionage campaign by APT24, a People's Republic of China (PRC)-nexus threat actor. Spanning three years, APT24 has been deploying BADAUDIO, a highly obfuscated first-stage downloader used to establish persistent access to victim networks.\nWhile earlier operations relied on broad strategic web compromises to compromise legitimate websites, APT24 has recently pivoted to using more sophisticated vectors targeting organizations in Taiwan. This includes the repeated compromise of a regional digital marketing firm to execute supply chain attacks and the use of targeted phishing campaigns.\nThis report provides a technical analysis of the BADAUDIO malware, details the evolution of APT24's delivery mechanisms from 2022 to present, and offers actionable intelligence to help defenders detect and mitigate this persistent threat.\nAs part of our efforts to comb"
-    },
-    {
-      "title": "Frontline Intelligence: Analysis of UNC1549 TTPs, Custom Tools, and Malware Targeting the Aerospace and Defense Ecosystem",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense/",
-      "pubDate": "Mon, 17 Nov 2025 14:00:00 +0000",
-      "description": "Written by: Mohamed El-Banna, Daniel Lee, Mike Stokkel, Josh Goddard\n\nOverview\nLast year, Mandiant published a blog post highlighting suspected Iran-nexus espionage activity targeting the aerospace, aviation, and defense industries in the Middle East. In this follow-up post, Mandiant discusses additional tactics, techniques, and procedures (TTPs) observed in incidents Mandiant has responded to.\nSince mid-2024, Mandiant has responded to targeted campaigns by the threat group UNC1549 against the aerospace, aviation and defense industries. To gain initial access into these environments, UNC1549 employed a dual approach: deploying well-crafted phishing campaigns designed to steal credentials or deliver malware and exploiting trusted connections with third-party suppliers and partners.\nThe latter technique is particularly strategic when targeting organizations with high security maturity, such as defense contractors. While these primary targets often invest heavily in robust defenses, their"
     }
   ]
 }
