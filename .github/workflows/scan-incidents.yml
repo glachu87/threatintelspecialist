@@ -1,1 +1,37 @@
+name: AI Incident Scanner
 
+on:
+  schedule:
+    - cron: '5 * * * *'      # Every hour at :05
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scan-incidents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests anthropic python-dateutil
+
+      - name: Run incident scanner
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+        run: python scripts/scan_incidents.py
+
+      - name: Commit new incidents
+        run: |
+          git config --global user.name 'TIS Incident Bot'
+          git config --global user.email 'bot@threatintelspecialist.com'
+          git add public/data/incidents.json
+          git diff --staged --quiet || git commit -m "chore: add new incidents [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          git push
