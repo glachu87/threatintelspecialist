@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Posts | Threat Intel Specialist</title>
+  <link rel="icon" href="/images/TIS_Logo.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYCC5SQJNN"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NYCC5SQJNN');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#060a12;--bg2:#0a1020;--bg3:#0f1628;--surface:#111d35;--border:rgba(56,139,253,0.12);--border2:rgba(56,139,253,0.25);--accent:#3b82f6;--accent2:#06b6d4;--accent3:#8b5cf6;--red:#f43f5e;--green:#10b981;--text:#e2e8f0;--text2:#94a3b8;--text3:#475569;--mono:'JetBrains Mono',monospace;--display:'Syne',sans-serif;--body:'Inter',sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+    a{color:inherit;text-decoration:none}
+    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(56,139,253,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,139,253,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+    .nav{position:sticky;top:0;z-index:100;background:rgba(6,10,18,0.88);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:64px;display:flex;align-items:center;gap:2rem}
+    .nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+    .nav-brand img{height:30px}
+    .nav-brand-text{font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-0.01em;background:linear-gradient(135deg,#fff 30%,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+    .nav-links a{padding:6px 12px;border-radius:6px;font-size:0.83rem;font-weight:500;color:var(--text2);transition:all 0.15s;white-space:nowrap}
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+    .nav-links a.active{color:var(--accent)}
+    .nav-cta{margin-left:0.75rem;padding:7px 16px!important;background:var(--accent)!important;color:#fff!important;border-radius:8px!important;font-weight:600!important}
+    .menu-toggle{display:none;background:none;border:1px solid var(--border2);color:var(--text2);border-radius:6px;padding:6px 10px;cursor:pointer;margin-left:auto;font-size:1rem}
+    .page-header{padding:48px 2rem 32px;position:relative;z-index:1;border-bottom:1px solid var(--border);margin-bottom:2rem}
+    .page-header-inner{max-width:1280px;margin:0 auto}
+    .page-eyebrow{font-family:var(--mono);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
+    .page-header h1{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:6px}
+    .page-header p{font-size:0.9rem;color:var(--text2);max-width:560px}
+    .wrap{max-width:1280px;margin:0 auto;padding:0 2rem 3rem;position:relative;z-index:1;flex:1}
+    /* FILTER ROW */
+    .filter-row{display:flex;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center}
+    .filter-row input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 14px;font-size:0.83rem;font-family:var(--body);outline:none;transition:border-color 0.15s}
+    .filter-row input:focus{border-color:var(--accent)}
+    .filter-row select{background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 12px;font-size:0.83rem;font-family:var(--body);outline:none;cursor:pointer}
+    .filter-row select option{background:var(--bg2)}
+    /* POSTS GRID */
+    .posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+    .post-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color 0.2s,background 0.2s,transform 0.2s;display:flex;flex-direction:column;gap:10px;cursor:pointer;position:relative;overflow:hidden}
+    .post-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.2s}
+    .post-card:hover{border-color:var(--border2);background:var(--surface);transform:translateY(-2px)}
+    .post-card:hover::before{opacity:1}
+    .post-card.featured{border-color:rgba(139,92,246,0.3);background:linear-gradient(135deg,rgba(139,92,246,0.04),rgba(59,130,246,0.02))}
+    .post-card.featured::before{background:linear-gradient(90deg,var(--accent3),var(--accent));opacity:1}
+    .post-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .post-card h2{font-family:var(--display);font-size:1rem;font-weight:700;line-height:1.35;color:var(--text)}
+    .post-excerpt{font-size:0.82rem;color:var(--text2);line-height:1.6;flex:1}
+    .post-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:4px}
+    .post-author{font-size:0.75rem;color:var(--text3)}
+    .post-readmore{font-size:0.78rem;color:var(--accent);display:flex;align-items:center;gap:4px;transition:gap 0.15s}
+    .post-card:hover .post-readmore{gap:8px}
+    .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;font-family:var(--mono)}
+    .t-ransomware{background:rgba(244,63,94,0.1);color:#fb7185;border:1px solid rgba(244,63,94,0.2)}
+    .t-breach{background:rgba(59,130,246,0.1);color:#93c5fd;border:1px solid rgba(59,130,246,0.2)}
+    .t-apt{background:rgba(139,92,246,0.1);color:#c4b5fd;border:1px solid rgba(139,92,246,0.2)}
+    .t-supply{background:rgba(249,115,22,0.1);color:#fdba74;border:1px solid rgba(249,115,22,0.2)}
+    .t-ddos{background:rgba(6,182,212,0.1);color:#67e8f9;border:1px solid rgba(6,182,212,0.2)}
+    .t-guide{background:rgba(16,185,129,0.1);color:#34d399;border:1px solid rgba(16,185,129,0.2)}
+    .t-featured{background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3)}
+    .post-date{font-family:var(--mono);font-size:0.7rem;color:var(--text3)}
+    .empty-state{text-align:center;padding:4rem;color:var(--text3)}
+    .empty-state .icon{font-size:2.5rem;margin-bottom:1rem}
+    footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index:1}
+    .footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-brand{display:flex;align-items:center;gap:10px}
+    .footer-brand img{height:22px;opacity:0.6}
+    .footer-text{font-size:0.77rem;color:var(--text3)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:0.77rem;color:var(--text3);transition:color 0.15s}
+    .footer-links a:hover{color:var(--text2)}
+    @media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem;gap:4px}.nav-links.open{display:flex}.nav-cta{display:none!important}.menu-toggle{display:block}.page-header{padding:32px 1.25rem 24px}.wrap{padding:0 1.25rem 2rem}}
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-brand">
+      <img src="/images/TIS_Logo.png" alt="TIS">
+      <span class="nav-brand-text">ThreatIntel<span style="-webkit-text-fill-color:var(--accent2)">Specialist</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="/index.html">Home</a>
+      <a href="/pages/vulnerabilities.html">Vulnerabilities</a>
+      <a href="/pages/incidents.html">Incidents</a>
+      <a href="/pages/analysis.html">Analysis</a>
+      <a href="/pages/threat-intel.html">Threat Feeds</a>
+      <a href="/pages/posts.html" class="active">Posts</a>
+      <a href="/pages/vulnerabilities.html" class="nav-cta">Live Dashboard →</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Knowledge Base</div>
+    <h1>✍️ Posts & Articles</h1>
+    <p>Security research, threat breakdowns, guides, and community insights from the ThreatIntelSpecialist team.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="filter-row">
+    <input type="text" id="post-search" placeholder="Search posts…" oninput="filterPosts()">
+    <select id="post-cat" onchange="filterPosts()">
+      <option value="">All Categories</option>
+      <option value="ransomware">Ransomware</option>
+      <option value="breach">Data Breach</option>
+      <option value="apt">APT</option>
+      <option value="supply">Supply Chain</option>
+      <option value="ddos">DDoS</option>
+      <option value="guide">Guide</option>
+    </select>
+  </div>
+  <div class="posts-grid" id="posts-grid"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="/images/TIS_Logo.png" alt="TIS"><span class="footer-text">© 2025 ThreatIntelSpecialist.com</span></div>
+    <div class="footer-links">
+      <a href="/pages/vulnerabilities.html">Vulnerabilities</a>
+      <a href="/pages/incidents.html">Incidents</a>
+      <a href="/pages/analysis.html">Analysis</a>
+      <a href="/pages/threat-intel.html">Threat Feeds</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const POSTS = [
+    { id:1, title:'Understanding CVSS v4: What Changed and Why It Matters', category:'guide', date:'2025-03-10', author:'TIS Analyst', featured:true, excerpt:'CVSS v4.0 introduces significant changes to how vulnerabilities are scored. We break down the new metric groups, supplemental metrics, and what the changes mean for your patch prioritisation workflow.', tags:['CVSS','Vulnerability Management','Guide'] },
+    { id:2, title:'LockBit 3.0 — Post-Takedown Activity and Affiliate Resurgence', category:'ransomware', date:'2025-02-28', author:'TIS Analyst', featured:true, excerpt:'Following Operation Cronos, LockBit affiliates have fragmented across multiple new RaaS platforms. We track the resurgence activity, new branding attempts, and what defenders should watch for.', tags:['LockBit','Ransomware','Operation Cronos'] },
+    { id:3, title:'Anatomy of a Supply Chain Attack: XZ Utils Case Study', category:'supply', date:'2025-02-15', author:'TIS Analyst', featured:false, excerpt:'A deep-dive into CVE-2024-3094 — how a threat actor spent 2 years embedding a backdoor into a widely-used Linux compression library through social engineering of an open-source maintainer.', tags:['XZ Utils','Supply Chain','CVE-2024-3094'] },
+    { id:4, title:'Volt Typhoon: China\'s Long-Term Critical Infrastructure Access', category:'apt', date:'2025-02-01', author:'TIS Analyst', featured:false, excerpt:'CISA, NSA, and FBI jointly confirmed Chinese state-sponsored actors have maintained persistent access to US critical infrastructure for 5+ years. We analyse the TTPs and detection opportunities.', tags:['Volt Typhoon','APT','Critical Infrastructure'] },
+    { id:5, title:'HTTP/2 Rapid Reset: The DDoS Technique Breaking Records', category:'ddos', date:'2025-01-20', author:'TIS Analyst', featured:false, excerpt:'CVE-2023-44487 enabled a new class of devastating DDoS attacks. We explain the technical mechanism, why it is so effective, and how to harden your infrastructure against it.', tags:['HTTP/2','DDoS','CVE-2023-44487'] },
+    { id:6, title:'Change Healthcare Breach: Lessons for Healthcare Security', category:'breach', date:'2025-01-10', author:'TIS Analyst', featured:false, excerpt:'The ALPHV/BlackCat attack on Change Healthcare disrupted US pharmacy operations for weeks. We examine the root causes, cascading supply-chain impact, and defensive recommendations for healthcare organisations.', tags:['ALPHV','Healthcare','Ransomware'] },
+    { id:7, title:'Building a Threat Intelligence Program on a Budget', category:'guide', date:'2024-12-15', author:'TIS Analyst', featured:false, excerpt:'You do not need expensive commercial tools to run an effective threat intel program. This guide walks through free and open-source tools, OSINT sources, and workflows that any security team can adopt.', tags:['Threat Intel','OSINT','Guide','Blue Team'] },
+    { id:8, title:'MITRE ATT&CK for Defenders: A Practical Introduction', category:'guide', date:'2024-12-01', author:'TIS Analyst', featured:false, excerpt:'MITRE ATT&CK is the industry-standard framework for describing adversary behaviour. This post walks through how defenders can use it for detection engineering, gap analysis, and incident response.', tags:['MITRE ATT&CK','Detection Engineering','Guide'] },
+  ];
+
+  let filtered = [...POSTS];
+
+  const catClass = { ransomware:'t-ransomware', breach:'t-breach', apt:'t-apt', supply:'t-supply', ddos:'t-ddos', guide:'t-guide' };
+
+  function renderPosts(list) {
+    const grid = document.getElementById('posts-grid');
+    if (!list.length) {
+      grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="icon">📄</div><p>No posts match your search.</p></div>';
+      return;
+    }
+    grid.innerHTML = list.map(p => `
+      <article class="post-card ${p.featured?'featured':''}" onclick="window.location='/pages/analysis.html'">
+        <div class="post-meta">
+          ${p.featured?'<span class="tag t-featured">⭐ Featured</span>':''}
+          <span class="tag ${catClass[p.category]||'t-guide'}">${p.category}</span>
+          <span class="post-date">${p.date}</span>
+        </div>
+        <h2>${p.title}</h2>
+        <p class="post-excerpt">${p.excerpt}</p>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:2px">
+          ${p.tags.slice(0,3).map(t=>`<span class="tag" style="background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid var(--border);font-size:0.65rem">${t}</span>`).join('')}
+        </div>
+        <div class="post-footer">
+          <span class="post-author">✍️ ${p.author}</span>
+          <span class="post-readmore">Read more →</span>
+        </div>
+      </article>`).join('');
+  }
+
+  function filterPosts() {
+    const q   = document.getElementById('post-search').value.toLowerCase();
+    const cat = document.getElementById('post-cat').value;
+    filtered = POSTS.filter(p => {
+      if (cat && p.category !== cat) return false;
+      if (q) { const hay = [p.title,p.excerpt,...p.tags].join(' ').toLowerCase(); if (!hay.includes(q)) return false; }
+      return true;
+    });
+    renderPosts(filtered);
+  }
+
+  renderPosts(POSTS);
+
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
