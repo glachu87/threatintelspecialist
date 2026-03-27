@@ -1,230 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Threat Intelligence Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Threat Feeds | Threat Intel Specialist</title>
+  <link rel="icon" href="/images/TIS_Logo.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYCC5SQJNN"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NYCC5SQJNN');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg1: #0f172a;
-      --bg2: #0b1220;
-      --panel: #1e293b;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #60a5fa;
-      --accent2: #22d3ee;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg1), var(--bg2));
-      display: flex;
-      height: 100vh;
-    }
-    .sidebar {
-      width: 240px;
-      background: var(--panel);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid rgba(255,255,255,0.1);
-      align-items: center;
-    }
-    .logo-link {
-      display: block;
-      margin-bottom: 1.5rem;
-    }
-    .logo {
-      width: 60px;
-      height: auto;
-    }
-    .sidebar h2 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      color: var(--accent2);
-    }
-    .sidebar a.menu-link {
-      width: 100%;
-      color: var(--text);
-      text-decoration: none;
-      padding: 0.6rem 0.8rem;
-      border-radius: 6px;
-      margin-bottom: 0.5rem;
-      display: block;
-      transition: background 0.2s;
-      text-align: center;
-    }
-    .sidebar a.menu-link:hover,
-    .sidebar a.menu-link.active {
-      background: rgba(96,165,250,0.2);
-    }
-    .main {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem 1.5rem;
-    }
-    .feed-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    .feed-table th,
-    .feed-table td {
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.75rem;
-      text-align: left;
-    }
-    .feed-table th {
-      background: var(--panel);
-      color: var(--accent);
-      width: 200px;
-    }
-    .feed-card {
-      background: var(--panel);
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .feed-card h3 {
-      margin-bottom: 0.5rem;
-      color: var(--accent2);
-    }
-    .content-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-
-    /* NEW: make feed links match CISA accent color */
-    .feed-card a {
-      color: var(--accent2);
-      text-decoration: none;
-    }
-    .feed-card a:visited {
-      color: var(--accent2);
-    }
-    .feed-card a:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#060a12;--bg2:#0a1020;--bg3:#0f1628;--surface:#111d35;--border:rgba(56,139,253,0.12);--border2:rgba(56,139,253,0.25);--accent:#3b82f6;--accent2:#06b6d4;--accent3:#8b5cf6;--red:#f43f5e;--orange:#f97316;--green:#10b981;--yellow:#f59e0b;--text:#e2e8f0;--text2:#94a3b8;--text3:#475569;--mono:'JetBrains Mono',monospace;--display:'Syne',sans-serif;--body:'Inter',sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+    a{color:inherit;text-decoration:none}
+    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(56,139,253,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,139,253,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:rgba(6,10,18,0.88);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:64px;display:flex;align-items:center;gap:2rem}
+    .nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+    .nav-brand img{height:30px}
+    .nav-brand-text{font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-0.01em;background:linear-gradient(135deg,#fff 30%,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+    .nav-links a{padding:6px 12px;border-radius:6px;font-size:0.83rem;font-weight:500;color:var(--text2);transition:all 0.15s;white-space:nowrap}
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+    .nav-links a.active{color:var(--accent)}
+    .nav-cta{margin-left:0.75rem;padding:7px 16px!important;background:var(--accent)!important;color:#fff!important;border-radius:8px!important;font-weight:600!important}
+    .menu-toggle{display:none;background:none;border:1px solid var(--border2);color:var(--text2);border-radius:6px;padding:6px 10px;cursor:pointer;margin-left:auto;font-size:1rem}
+    /* PAGE HEADER */
+    .page-header{padding:48px 2rem 32px;position:relative;z-index:1;border-bottom:1px solid var(--border);margin-bottom:2rem}
+    .page-header-inner{max-width:1280px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .page-eyebrow{font-family:var(--mono);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
+    .page-header h1{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:6px}
+    .page-header p{font-size:0.9rem;color:var(--text2);max-width:560px}
+    /* LAYOUT */
+    .layout{display:grid;grid-template-columns:220px 1fr;gap:0;max-width:1280px;margin:0 auto;padding:0 2rem 3rem;position:relative;z-index:1;flex:1}
+    /* SIDEBAR */
+    .sidebar{border-right:1px solid var(--border);padding-right:1.5rem;padding-bottom:2rem}
+    .sidebar-section{margin-bottom:1.5rem}
+    .sidebar-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);font-family:var(--mono);margin-bottom:8px;padding:0 4px}
+    .feed-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;background:none;border:none;color:var(--text2);font-size:0.83rem;font-family:var(--body);cursor:pointer;transition:all 0.15s;text-align:left}
+    .feed-btn:hover{background:rgba(255,255,255,0.04);color:var(--text)}
+    .feed-btn.active{background:rgba(59,130,246,0.1);color:var(--accent);border:1px solid rgba(59,130,246,0.2)}
+    .feed-btn .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .dot-green{background:var(--green);box-shadow:0 0 6px var(--green)}
+    .dot-blue{background:var(--accent);box-shadow:0 0 6px var(--accent)}
+    .dot-purple{background:var(--accent3);box-shadow:0 0 6px var(--accent3)}
+    .dot-cyan{background:var(--accent2);box-shadow:0 0 6px var(--accent2)}
+    /* MAIN */
+    .main-area{padding-left:2rem;min-width:0}
+    /* FEED PANEL */
+    .feed-panel{display:none}
+    .feed-panel.active{display:block}
+    .feed-panel-header{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .feed-panel-title{font-family:var(--display);font-size:1.1rem;font-weight:700}
+    .feed-count{font-family:var(--mono);font-size:0.73rem;color:var(--text3)}
+    .feed-search{display:flex;gap:8px;margin-bottom:1.25rem}
+    .feed-search input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 14px;font-size:0.83rem;font-family:var(--body);outline:none;transition:border-color 0.15s}
+    .feed-search input:focus{border-color:var(--accent)}
+    /* ADVISORY CARDS */
+    .advisory-list{display:flex;flex-direction:column;gap:10px}
+    .advisory-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;transition:border-color 0.2s,background 0.2s;position:relative;overflow:hidden;cursor:pointer}
+    .advisory-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity 0.2s}
+    .advisory-card:hover{border-color:var(--border2);background:var(--surface)}
+    .advisory-card:hover::before{opacity:1}
+    .advisory-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+    .advisory-title{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.4}
+    .advisory-title a{color:var(--text);transition:color 0.15s}
+    .advisory-title a:hover{color:var(--accent)}
+    .advisory-date{font-family:var(--mono);font-size:0.69rem;color:var(--text3);white-space:nowrap;flex-shrink:0;margin-top:2px}
+    .advisory-body{font-size:0.8rem;color:var(--text2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
+    .advisory-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .advisory-meta{font-family:var(--mono);font-size:0.67rem;color:var(--text3)}
+    .severity-badge{font-family:var(--mono);font-size:0.67rem;padding:2px 7px;border-radius:4px;font-weight:700;text-transform:uppercase}
+    .sev-critical{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.25)}
+    .sev-high{background:rgba(249,115,22,0.12);color:#fdba74;border:1px solid rgba(249,115,22,0.25)}
+    .sev-medium{background:rgba(234,179,8,0.12);color:#fde047;border:1px solid rgba(234,179,8,0.25)}
+    /* LOADING / EMPTY */
+    .loading-state{text-align:center;padding:4rem 2rem;color:var(--text3)}
+    .spinner{display:inline-block;width:28px;height:28px;border:3px solid rgba(56,139,253,0.2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:1rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .empty-state{text-align:center;padding:4rem 2rem;color:var(--text3)}
+    .empty-state .icon{font-size:2.5rem;margin-bottom:1rem}
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index:1}
+    .footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-brand{display:flex;align-items:center;gap:10px}
+    .footer-brand img{height:22px;opacity:0.6}
+    .footer-text{font-size:0.77rem;color:var(--text3)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:0.77rem;color:var(--text3);transition:color 0.15s}
+    .footer-links a:hover{color:var(--text2)}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:1rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.sidebar-label{display:none}.main-area{padding-left:0}}
+    @media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem;gap:4px}.nav-links.open{display:flex}.nav-cta{display:none!important}.menu-toggle{display:block}.layout{padding:0 1.25rem 2rem}}
   </style>
 </head>
 <body>
-  <aside class="sidebar">
-    <!-- Logo -->
-    <a href="/index.html" class="logo-link">
-      <img src="/images/TIS_Logo.png" alt="Threat Intel Logo" class="logo">
-    </a>
+<div class="grid-bg"></div>
 
-    <h2>Threat Feeds</h2>
-    <a href="#" id="link-cisa" class="menu-link active" onclick="showFeed('cisa')">CISA Advisories</a>
-    <a href="#" id="link-ncsc" class="menu-link" onclick="showFeed('ncsc')">UK NCSC</a>
-    <a href="#" id="link-vt" class="menu-link" onclick="showFeed('virustotal')">VirusTotal</a>
-    <a href="#" id="link-google" class="menu-link" onclick="showFeed('google')">Google threat intel</a>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-brand">
+      <img src="/images/TIS_Logo.png" alt="TIS">
+      <span class="nav-brand-text">ThreatIntel<span style="-webkit-text-fill-color:var(--accent2)">Specialist</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="/index.html">Home</a>
+      <a href="/pages/vulnerabilities.html">Vulnerabilities</a>
+      <a href="/pages/incidents.html">Incidents</a>
+      <a href="/pages/analysis.html">Analysis</a>
+      <a href="/pages/threat-intel.html" class="active">Threat Feeds</a>
+      <a href="/pages/posts.html">Posts</a>
+      <a href="/pages/vulnerabilities.html" class="nav-cta">Live Dashboard →</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div>
+      <div class="page-eyebrow">Threat Intelligence</div>
+      <h1>📡 Threat Feeds</h1>
+      <p>Centralised advisories from CISA, UK NCSC, VirusTotal and Google Threat Intelligence — updated automatically.</p>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Feed Sources</div>
+      <button class="feed-btn active" onclick="showFeed('cisa',this)"><div class="dot dot-green"></div>CISA Advisories</button>
+      <button class="feed-btn" onclick="showFeed('ncsc',this)"><div class="dot dot-blue"></div>UK NCSC</button>
+      <button class="feed-btn" onclick="showFeed('vt',this)"><div class="dot dot-purple"></div>VirusTotal</button>
+      <button class="feed-btn" onclick="showFeed('google',this)"><div class="dot dot-cyan"></div>Google Threat Intel</button>
+    </div>
   </aside>
 
-  <main class="main">
-    <div id="feed-container">
-      <p>Select a feed from the left menu to begin.</p>
+  <main class="main-area">
+    <!-- CISA -->
+    <div class="feed-panel active" id="panel-cisa">
+      <div class="feed-panel-header">
+        <div class="feed-panel-title">CISA Advisories</div>
+        <span class="feed-count" id="count-cisa">Loading…</span>
+      </div>
+      <div class="feed-search">
+        <input type="text" id="search-cisa" placeholder="Search advisories…" oninput="filterFeed('cisa')">
+      </div>
+      <div class="advisory-list" id="list-cisa">
+        <div class="loading-state"><div class="spinner"></div><br>Loading CISA advisories…</div>
+      </div>
+    </div>
+
+    <!-- NCSC -->
+    <div class="feed-panel" id="panel-ncsc">
+      <div class="feed-panel-header">
+        <div class="feed-panel-title">UK NCSC Advisories</div>
+        <span class="feed-count" id="count-ncsc">Loading…</span>
+      </div>
+      <div class="feed-search">
+        <input type="text" id="search-ncsc" placeholder="Search advisories…" oninput="filterFeed('ncsc')">
+      </div>
+      <div class="advisory-list" id="list-ncsc">
+        <div class="loading-state"><div class="spinner"></div><br>Loading UK NCSC advisories…</div>
+      </div>
+    </div>
+
+    <!-- VIRUSTOTAL -->
+    <div class="feed-panel" id="panel-vt">
+      <div class="feed-panel-header">
+        <div class="feed-panel-title">VirusTotal Intelligence</div>
+        <span class="feed-count" id="count-vt">Loading…</span>
+      </div>
+      <div class="feed-search">
+        <input type="text" id="search-vt" placeholder="Search…" oninput="filterFeed('vt')">
+      </div>
+      <div class="advisory-list" id="list-vt">
+        <div class="loading-state"><div class="spinner"></div><br>Loading VirusTotal feed…</div>
+      </div>
+    </div>
+
+    <!-- GOOGLE -->
+    <div class="feed-panel" id="panel-google">
+      <div class="feed-panel-header">
+        <div class="feed-panel-title">Google Threat Intelligence</div>
+        <span class="feed-count" id="count-google">Loading…</span>
+      </div>
+      <div class="feed-search">
+        <input type="text" id="search-google" placeholder="Search…" oninput="filterFeed('google')">
+      </div>
+      <div class="advisory-list" id="list-google">
+        <div class="loading-state"><div class="spinner"></div><br>Loading Google Threat Intel feed…</div>
+      </div>
     </div>
   </main>
+</div>
 
-  <script>
-  const links = {
-    cisa: document.getElementById('link-cisa'),
-    ncsc: document.getElementById('link-ncsc'),
-    virustotal: document.getElementById('link-vt'),
-    google: document.getElementById('link-google')
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="/images/TIS_Logo.png" alt="TIS"><span class="footer-text">© 2025 ThreatIntelSpecialist.com</span></div>
+    <div class="footer-links">
+      <a href="/pages/vulnerabilities.html">Vulnerabilities</a>
+      <a href="/pages/incidents.html">Incidents</a>
+      <a href="/pages/analysis.html">Analysis</a>
+      <a href="/pages/posts.html">Posts</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const feedData = { cisa:[], ncsc:[], vt:[], google:[] };
+
+  const FEED_URLS = {
+    cisa:   '/feeds/cisa/advisories.json',
+    ncsc:   '/feeds/ncsc/advisories.json',
+    vt:     '/feeds/vt/advisories.json',
+    google: '/feeds/google/advisories.json',
   };
 
-  function setActive(feed) {
-    // Remove active from all, add to the one that exists
-    Object.values(links).forEach(el => el && el.classList.remove('active'));
-    if (links[feed]) links[feed].classList.add('active');
-  }
-
-  async function showFeed(feed) {
-    setActive(feed);
-    const container = document.getElementById('feed-container');
-    container.innerHTML = `<p>Loading ${feed.toUpperCase()} feed...</p>`;
-
-    if (feed === 'cisa') {
-      try {
-        const res = await fetch('/feeds/cisa/advisories.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to fetch feed');
-        const data = await res.json();
-        renderCisa(data, container);
-      } catch (e) {
-        console.error(e);
-        container.innerHTML = `<p>Error loading CISA feed.</p>`;
-      }
-    } else if (feed === 'google') {
-      try {
-        const res = await fetch('/feeds/threatintel/google_feed.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to fetch feed');
-        const data = await res.json();
-        renderGoogle(data, container);
-      } catch (e) {
-        console.error(e);
-        container.innerHTML = `<p>Error loading Google threat intel feed.</p>`;
-      }
-    } else {
-      container.innerHTML = `<p>${feed.toUpperCase()} feed coming soon!</p>`;
+  async function loadFeed(key) {
+    try {
+      const r = await fetch(FEED_URLS[key], {cache:'no-store'});
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+      feedData[key] = d.items || [];
+      renderFeed(key, feedData[key]);
+    } catch(e) {
+      document.getElementById('list-'+key).innerHTML =
+        `<div class="empty-state"><div class="icon">📭</div><p>Feed unavailable — check back shortly.<br><small style="color:var(--text3);font-family:var(--mono)">${e.message}</small></p></div>`;
+      document.getElementById('count-'+key).textContent = '0 items';
     }
   }
 
-  function renderCisa(data, container) {
-    container.innerHTML = '<div class="content-title">CISA Cybersecurity Advisories</div>';
-    (data.items || []).forEach(item => {
-      container.innerHTML += `
-        <div class="feed-card">
-          <h3>${item.title || 'No Title'}</h3>
-          <table class="feed-table">
-            <tr><th>Vendor</th><td>${item.vendor || 'N/A'}</td></tr>
-            <tr><th>Affected Products</th><td>${item.affected_products || 'N/A'}</td></tr>
-            <tr><th>Release Date</th><td>${item.release_date || item.published || 'N/A'}</td></tr>
-            <tr><th>CVSS v4</th><td>${item.cvss_v4 || 'N/A'}</td></tr>
-            <tr><th>Summary</th><td>${item.executive_summary || item.summary || 'N/A'}</td></tr>
-            <tr><th>Risk</th><td>${item.risk_evaluation || 'N/A'}</td></tr>
-            <tr><th>Overview</th><td>${item.vulnerability_overview || 'N/A'}</td></tr>
-            <tr><th>Mitigations</th><td>${item.mitigations || 'N/A'}</td></tr>
-          </table>
-        </div>`;
-    });
-  }
-
-  // Simple reader for the Google feed snapshot
-  function renderGoogle(data, container) {
-    const items = (data.items || []);
-    container.innerHTML = '<div class="content-title">Google Threat Intelligence</div>';
+  function renderFeed(key, items) {
+    document.getElementById('count-'+key).textContent = items.length + ' advisories';
     if (!items.length) {
-      container.innerHTML += '<p>No items found.</p>';
+      document.getElementById('list-'+key).innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>No advisories found.</p></div>';
       return;
     }
-    const fmtDate = s => {
-      const d = new Date(s);
-      return isNaN(d) ? (s || '') : d.toLocaleString();
-    };
-    items.slice(0, 20).forEach(it => {
-      const title = it.title || 'Untitled';
-      const link = it.link || '#';
-      const date = fmtDate(it.pubDate);
-      const desc = (it.description || '').slice(0, 400);
-
-      container.innerHTML += `
-        <div class="feed-card">
-          <h3><a href="${link}" target="_blank" rel="noopener">${title}</a></h3>
-          <div style="color: var(--muted); margin-bottom: .5rem;">${date}</div>
-          <div>${desc}</div>
-        </div>`;
-    });
+    document.getElementById('list-'+key).innerHTML = items.map(it => {
+      const summary = (it.executive_summary || it.summary || it.description || '').toString();
+      const date = it.published || it.release_date || it.dateAdded || '';
+      const vendor = it.vendor ? `<span class="advisory-meta">Vendor: ${it.vendor}</span>` : '';
+      const products = it.affected_products ? `<span class="advisory-meta">Affects: ${it.affected_products}</span>` : '';
+      const cvss = it.cvss_v4 || it.cvss_v3 || it.cvss || '';
+      const cvssEl = cvss ? `<span class="severity-badge sev-high">CVSS ${cvss}</span>` : '';
+      return `<article class="advisory-card">
+        <div class="advisory-top">
+          <div class="advisory-title"><a href="${it.link||'#'}" target="_blank" rel="noopener">${it.title||'Untitled Advisory'}</a></div>
+          <span class="advisory-date">${date ? date.toString().substring(0,10) : ''}</span>
+        </div>
+        <div class="advisory-body">${summary.slice(0,280)}${summary.length>280?'…':''}</div>
+        <div class="advisory-footer">
+          ${cvssEl}${vendor}${products}
+          ${it.link?`<a href="${it.link}" target="_blank" rel="noopener" style="font-size:0.72rem;color:var(--accent);margin-left:auto">Read more →</a>`:''}
+        </div>
+      </article>`;
+    }).join('');
   }
 
-  // Load CISA by default
-  window.addEventListener('DOMContentLoaded', () => showFeed('cisa'));
-  </script>
+  function filterFeed(key) {
+    const q = document.getElementById('search-'+key).value.toLowerCase();
+    const filtered = feedData[key].filter(it =>
+      [it.title,it.vendor,it.affected_products,it.executive_summary,it.summary,it.description]
+        .filter(Boolean).join(' ').toLowerCase().includes(q)
+    );
+    renderFeed(key, filtered);
+  }
+
+  function showFeed(key, btn) {
+    document.querySelectorAll('.feed-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.feed-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-'+key).classList.add('active');
+    btn.classList.add('active');
+    if (!feedData[key].length) loadFeed(key);
+  }
+
+  // Load all feeds on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    loadFeed('cisa');
+    loadFeed('ncsc');
+    loadFeed('vt');
+    loadFeed('google');
+  });
+
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 </body>
 </html>
