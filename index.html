@@ -1,378 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NYCC5SQJNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NYCC5SQJNN');
-</script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Threat Intel</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Threat Intel Specialist</title>
+  <link rel="icon" href="/images/TIS_Logo.png">
 
-  <meta charset="UTF-8" />
-  <title>Threat Intel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYCC5SQJNN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NYCC5SQJNN');
+  </script>
 
-  <!-- Inline page-specific styles to avoid conflicts with existing style.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg1:#0f172a; --bg2:#0b1220; --panel:#111827; --muted:#9ca3af; --accent:#60a5fa; --accent-2:#22d3ee;
-      --text:#e5e7eb; --white:#fff;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #060a12;
+      --bg2:      #0a1020;
+      --bg3:      #0f1628;
+      --surface:  #111d35;
+      --surface2: #162040;
+      --border:   rgba(56, 139, 253, 0.12);
+      --border2:  rgba(56, 139, 253, 0.25);
+      --accent:   #3b82f6;
+      --accent2:  #06b6d4;
+      --accent3:  #8b5cf6;
+      --red:      #f43f5e;
+      --orange:   #f97316;
+      --green:    #10b981;
+      --yellow:   #f59e0b;
+      --text:     #e2e8f0;
+      --text2:    #94a3b8;
+      --text3:    #475569;
+      --mono:     'JetBrains Mono', monospace;
+      --display:  'Syne', sans-serif;
+      --body:     'Inter', sans-serif;
     }
-    *{box-sizing:border-box}
-    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--text); background:linear-gradient(180deg,var(--bg1),var(--bg2));}
-    a{color:inherit}
 
-    /* Top bar */
-    .nav{
-      position:sticky; top:0; z-index:10;
-      background:rgba(2,6,23,.7); backdrop-filter:saturate(140%) blur(6px);
-      border-bottom:1px solid rgba(255,255,255,.06);
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* GRID BACKGROUND */
+    .grid-bg {
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(56,139,253,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,139,253,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none; z-index: 0;
     }
-    .nav-inner{max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 16px;}
-    .brand{font-weight:800; letter-spacing:.3px;}
-    .menu{display:flex; gap:14px; margin-left:auto; flex-wrap:wrap}
-    .menu a{padding:8px 10px; border-radius:8px; text-decoration:none; color:var(--text)}
-    .menu a:hover{background:rgba(255,255,255,.06)}
-    .menu .dropdown{position:relative}
-    .menu .dropdown:hover .dropdown-list{display:block}
-    .dropdown-list{
-      display:none; position:absolute; top:100%; left:0; background:var(--panel);
-      border:1px solid rgba(255,255,255,.08); border-radius:10px; min-width:220px; padding:8px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    /* STATUS BAR */
+    .status-bar {
+      background: rgba(16,185,129,0.05);
+      border-bottom: 1px solid rgba(16,185,129,0.12);
+      padding: 5px 2rem;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2rem; font-size: 0.72rem;
+      font-family: var(--mono); color: var(--text3); flex-wrap: wrap;
     }
-    .dropdown-list a{display:block; padding:10px 12px; border-radius:8px}
-    .dropdown-list a:hover{background:rgba(255,255,255,.06)}
+    .status-item { display: flex; align-items: center; gap: 6px; }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: blink 2s infinite; }
+    .status-dot.yellow { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .status-val { color: var(--green); font-weight: 600; }
+    .status-val.yellow { color: var(--yellow); }
 
-    /* Hero */
-    .hero{
-      position:relative; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.06);
-      background:
-        radial-gradient(1200px 500px at 20% 0%, rgba(96,165,250,.10), transparent 60%),
-        radial-gradient(1000px 400px at 80% 10%, rgba(34,211,238,.10), transparent 60%);
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,10,18,0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
     }
-    .hero-inner{max-width:1200px; margin:0 auto; padding:72px 16px 52px; display:grid; gap:22px}
-    .kicker{color:var(--accent-2); font-weight:700; letter-spacing:.2em; text-transform:uppercase; font-size:.8rem}
-    h1{margin:0; font-size:clamp(1.8rem,3.2vw,2.6rem); line-height:1.15}
-    .subtitle{color:var(--muted); max-width:800px}
-    .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .pill{font-size:.9rem; color:var(--text); text-decoration:none; border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:8px 12px; background:rgba(17,24,39,.7)}
-    .pill:hover{background:rgba(255,255,255,.06)}
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+      height: 64px; display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-brand img { height: 30px; }
+    .nav-brand-text {
+      font-family: var(--display); font-weight: 800; font-size: 1rem;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #fff 30%, #94a3b8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+    .nav-links a { padding: 6px 12px; border-radius: 6px; font-size: 0.83rem; font-weight: 500; color: var(--text2); transition: all 0.15s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta { margin-left: 0.75rem; padding: 7px 16px !important; background: var(--accent) !important; color: #fff !important; border-radius: 8px !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: #2563eb !important; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--border2); color: var(--text2); border-radius: 6px; padding: 6px 10px; cursor: pointer; margin-left: auto; font-size: 1rem; }
 
-    /* Sections */
-    .section{max-width:1200px; margin:0 auto; padding:28px 16px}
-    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
-    .card{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px;
-          box-shadow:0 8px 28px rgba(0,0,0,.25); transition:transform .15s ease, box-shadow .15s ease;}
-    .card:hover{transform:translateY(-3px); box-shadow:0 14px 36px rgba(0,0,0,.35)}
-    .card h3{margin:0 0 6px}
-    .muted{color:var(--muted)}
-    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1220}
-    .btn.primary{background:linear-gradient(90deg, #3b82f6, #06b6d4); color:var(--white); border:none}
-    .btn:hover{filter:brightness(1.05)}
+    /* HERO */
+    .hero { position: relative; padding: 88px 2rem 72px; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; top: -160px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; top: 0; right: -80px;
+      width: 500px; height: 380px;
+      background: radial-gradient(ellipse, rgba(139,92,246,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2);
+      background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.18);
+      border-radius: 999px; padding: 5px 14px; margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 8px var(--accent2); animation: blink 2s infinite; }
+    .hero-title { font-family: var(--display); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+    .line1 { display: block; color: var(--text); }
+    .line2 { display: block; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.05rem; color: var(--text2); max-width: 540px; line-height: 1.75; margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--accent); color: #fff; border-radius: 10px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+    .btn-primary:hover { background: #2563eb; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(59,130,246,0.35); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: transparent; color: var(--text); border-radius: 10px; font-weight: 500; font-size: 0.9rem; border: 1px solid var(--border2); transition: all 0.2s; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.04); border-color: rgba(56,139,253,0.4); }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .hero-stat .num { font-family: var(--mono); font-size: 1.7rem; font-weight: 700; color: var(--text); display: block; }
+    .hero-stat .lbl { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
 
-    /* Latest advisories */
-    .feed-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px}
-    .feed-card{background:#0b1220; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px}
-    .feed-card h4{margin:0 0 6px; font-size:1rem}
-    .feed-card a{color:#93c5fd; text-decoration:none}
-    .feed-card a:hover{text-decoration:underline}
-    .feed-card time{display:block; color:var(--muted); font-size:.85rem; margin-bottom:6px}
-    .feed-footer{margin-top:10px}
-    .feed-footer a{color:#22d3ee; text-decoration:none}
+    /* SECTIONS */
+    .section { max-width: 1280px; margin: 0 auto; padding: 0 2rem 3.5rem; position: relative; z-index: 1; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; gap: 1rem; flex-wrap: wrap; }
+    .section-title { font-family: var(--display); font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .s-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+    .s-blue  { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.22); }
+    .s-red   { background: rgba(244,63,94,0.10);  border: 1px solid rgba(244,63,94,0.22); }
+    .s-cyan  { background: rgba(6,182,212,0.10);  border: 1px solid rgba(6,182,212,0.22); }
+    .see-all { font-size: 0.8rem; color: var(--accent); display: flex; align-items: center; gap: 4px; transition: gap 0.15s; white-space: nowrap; }
+    .see-all:hover { gap: 8px; }
 
-    /* Footer */
-    footer{border-top:1px solid rgba(255,255,255,.06); color:var(--muted)}
-    .footer-inner{max-width:1200px; margin:0 auto; padding:22px 16px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between}
+    /* CAPABILITY GRID */
+    .cap-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    }
+    .cap-card { background: var(--bg3); padding: 1.75rem; transition: background 0.2s; display: block; }
+    .cap-card:hover { background: var(--surface); }
+    .cap-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
+    .cap-card h3 { font-size: 0.93rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .cap-card p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; margin-bottom: 1rem; }
+    .cap-foot { display: flex; align-items: center; justify-content: space-between; }
+    .cap-badge { font-family: var(--mono); font-size: 0.67rem; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+    .b-live   { background: rgba(16,185,129,0.1); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+    .b-ai     { background: rgba(139,92,246,0.1); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.2); }
+    .b-deep   { background: rgba(249,115,22,0.1); color: #fdba74; border: 1px solid rgba(249,115,22,0.2); }
+    .b-auto   { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+    .cap-arrow { color: var(--text3); transition: color 0.2s, transform 0.2s; }
+    .cap-card:hover .cap-arrow { color: var(--accent); transform: translateX(4px); }
+
+    /* FEED CARDS */
+    .feed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; }
+    .feed-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; transition: border-color 0.2s, background 0.2s; position: relative; overflow: hidden; }
+    .feed-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
+    .feed-card:hover { border-color: var(--border2); background: var(--surface); }
+    .feed-card:hover::before { opacity: 1; }
+    .feed-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+    .feed-card h4 { font-size: 0.86rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .feed-card h4 a { color: var(--text); transition: color 0.15s; }
+    .feed-card h4 a:hover { color: var(--accent); }
+    .feed-card time { font-family: var(--mono); font-size: 0.68rem; color: var(--text3); white-space: nowrap; flex-shrink: 0; }
+    .feed-card p { font-size: 0.78rem; color: var(--text2); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .feed-src { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-family: var(--mono); font-size: 0.66rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--mono); }
+    .t-ransomware { background: rgba(244,63,94,0.1); color: #fb7185; border: 1px solid rgba(244,63,94,0.2); }
+    .t-breach     { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+    .t-apt        { background: rgba(139,92,246,0.1); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.2); }
+    .t-ddos       { background: rgba(6,182,212,0.1);  color: #67e8f9; border: 1px solid rgba(6,182,212,0.2); }
+    .t-critical   { background: rgba(244,63,94,0.1); color: #fb7185; border: 1px solid rgba(244,63,94,0.2); }
+    .t-high       { background: rgba(249,115,22,0.1); color: #fdba74; border: 1px solid rgba(249,115,22,0.2); }
+    .t-medium     { background: rgba(234,179,8,0.1);  color: #fde047; border: 1px solid rgba(234,179,8,0.2); }
+    .t-sector     { background: rgba(139,92,246,0.08); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.18); }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 2rem 3.5rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem; position: relative; z-index: 1; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand img { height: 22px; opacity: 0.6; }
+    .footer-text { font-size: 0.77rem; color: var(--text3); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.77rem; color: var(--text3); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text2); }
+
+    /* CHAT */
+    .ti-fab { position: fixed; right: 24px; bottom: 24px; z-index: 200; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 999px; padding: 12px 20px; cursor: pointer; box-shadow: 0 8px 32px rgba(59,130,246,0.4); font-family: var(--body); font-weight: 600; font-size: 0.85rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .ti-fab:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(59,130,246,0.5); }
+    .ti-panel { position: fixed; right: 24px; bottom: 88px; z-index: 200; width: 360px; max-height: 72vh; background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; box-shadow: 0 24px 64px rgba(0,0,0,0.6); display: none; flex-direction: column; }
+    .ti-panel.open { display: flex; }
+    .ti-head { padding: 14px 16px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .ti-head-l { display: flex; align-items: center; gap: 10px; }
+    .ti-head-l img { height: 22px; }
+    .ti-head-l strong { font-size: 0.88rem; font-weight: 700; }
+    .ti-live-badge { font-size: 0.67rem; color: var(--green); font-family: var(--mono); background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); padding: 1px 6px; border-radius: 3px; }
+    .ti-x { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 1rem; padding: 4px; border-radius: 4px; transition: color 0.15s; }
+    .ti-x:hover { color: var(--text); }
+    .ti-msgs { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 10px; }
+    .ti-m { max-width: 88%; padding: 9px 12px; border-radius: 10px; font-size: 0.82rem; line-height: 1.5; }
+    .ti-bot { background: var(--surface); border: 1px solid var(--border); color: var(--text2); align-self: flex-start; }
+    .ti-user { background: var(--accent); color: #fff; align-self: flex-end; border-radius: 10px 10px 2px 10px; }
+    .ti-row { padding: 12px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+    .ti-row input { flex: 1; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; color: var(--text); padding: 8px 12px; font-size: 0.82rem; font-family: var(--body); outline: none; transition: border-color 0.15s; }
+    .ti-row input:focus { border-color: var(--accent); }
+    .ti-row button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 8px 14px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+    .ti-row button:hover { opacity: 0.85; }
+    .ti-link { color: var(--accent); text-decoration: none; }
+    .ti-link:hover { text-decoration: underline; }
+    .ti-src { font-size: 0.69rem; color: var(--text3); font-family: var(--mono); margin-bottom: 3px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .cap-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 1rem; gap: 4px; }
+      .nav-links.open { display: flex; }
+      .nav-cta { display: none !important; }
+      .menu-toggle { display: block; }
+      .hero { padding: 48px 1.25rem 40px; }
+      .section { padding: 0 1.25rem 2rem; }
+      .divider { margin: 0 1.25rem 2rem; }
+      .status-bar { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .ti-panel { width: calc(100vw - 32px); right: 16px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Top navigation -->
+<div class="grid-bg"></div>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="status-item"><div class="status-dot"></div>NVD Feed: <span class="status-val">LIVE</span></div>
+  <div class="status-item"><div class="status-dot"></div>Incident Scanner: <span class="status-val">ACTIVE</span></div>
+  <div class="status-item"><div class="status-dot yellow"></div>CISA KEV: <span class="status-val yellow" id="sb-kev">Loading…</span></div>
+  <div class="status-item"><div class="status-dot"></div>Last scan: <span class="status-val" id="sb-time">—</span></div>
+</div>
+
+<!-- NAV -->
 <header class="nav">
   <div class="nav-inner">
-    <a href="/index.html" class="logo-link">
-      <img src="/images/TIS_Logo.png" alt="Threat Intel Specialist Logo" class="logo">
+    <a href="/index.html" class="nav-brand">
+      <img src="/images/TIS_Logo.png" alt="TIS">
+      <span class="nav-brand-text">ThreatIntel<span style="-webkit-text-fill-color:var(--accent2)">Specialist</span></span>
     </a>
-    <div class="brand">Threat Intel</div>
-
-    <!-- Add this button -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
-
-    <!-- Give your existing menu an id -->
-    <nav class="menu" id="menu">
-      <a href="/index.html">Home</a>
-      <a href="/pages/threat-intel.html">Threat Intelligence</a>
-      <a href="/pages/case-study.html">Incident Analysis</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="/index.html" class="active">Home</a>
+      <a href="/pages/vulnerabilities.html">Vulnerabilities</a>
+      <a href="/pages/incidents.html">Incidents</a>
+      <a href="/pages/analysis.html">Analysis</a>
+      <a href="/pages/threat-intel.html">Threat Feeds</a>
       <a href="/pages/posts.html">Posts</a>
+      <a href="/pages/vulnerabilities.html" class="nav-cta">Live Dashboard →</a>
     </nav>
   </div>
 </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="kicker">Welcome to Threat Intel world</div>
-      <h1>Track emerging threats. Understand the risk. Take action.</h1>
-      <p class="subtitle">
-        Explore the latest cyber threats, analysis, and mitigation strategies.
-      </p>
-      <div class="cta-row">
-        <a class="btn primary" href="/pages/threat-intel.html">View Threat Feeds</a>
-        <a class="btn" href="/pages/posts.html">Read Posts</a>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Cyber Threat Intelligence Platform</div>
+    <h1 class="hero-title">
+      <span class="line1">Track. Understand.</span>
+      <span class="line2">Take Action.</span>
+    </h1>
+    <p class="hero-sub">Real-time vulnerability feeds, AI-powered incident monitoring, and deep technical analysis — built for the security community.</p>
+    <div class="hero-actions">
+      <a href="/pages/vulnerabilities.html" class="btn-primary">🛡️ View Vulnerabilities</a>
+      <a href="/pages/incidents.html" class="btn-secondary">🚨 Incident Tracker</a>
     </div>
-  </section>
-<!-- Cybersecurity Incidents -->
-<section class="section">
-  <h2 style="margin:0 0 12px">Cybersecurity Incidents</h2>
-  <p class="muted" style="margin-bottom:14px">
-    Recently reported cybersecurity incidents affecting organisations worldwide
-    (listed from latest to older).
-  </p>
-
-  <div id="incident-feed" class="feed-grid">
-    <!-- populated by JS -->
-  </div>
-
-  <div class="feed-footer">
-    <a href="/pages/posts.html">View all incident analysis →</a>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num" id="hs-total">—</span><span class="lbl">CVEs tracked</span></div>
+      <div class="hero-stat"><span class="num" style="color:var(--red)" id="hs-crit">—</span><span class="lbl">Critical severity</span></div>
+      <div class="hero-stat"><span class="num" style="color:var(--yellow)">6h</span><span class="lbl">Refresh cycle</span></div>
+      <div class="hero-stat"><span class="num" style="color:var(--accent2)">1h</span><span class="lbl">Incident scan interval</span></div>
+      <div class="hero-stat"><span class="num" style="color:var(--accent3)">Free</span><span class="lbl">Always open access</span></div>
+    </div>
   </div>
 </section>
 
-  <!-- Highlights -->
-  <section class="section">
-    <div class="cards">
-      <article class="card">
-        <h3>Threat Intelligence</h3>
-        <p class="muted">Centralized feeds from CISA, UK NCSC, VirusTotal and more—updated automatically.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Latest advisories (auto from your JSON) -->
-  <section class="section">
-    <h2 style="margin:0 0 12px">Latest CISA Advisories</h2>
-    <div id="latest-feed" class="feed-grid">
-      <!-- populated by JS -->
-    </div>
-    <div class="feed-footer">
-      <a href="/pages/threat-intel.html">See all feeds →</a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-inner">
-      <div>© 2025 ThreatIntelSpecialist.com</div>
-    </div>
-  </footer>
-
-  <!-- Tiny script to preview top 5 CISA items on the home page -->
-  <script>
-    (async function(){
-      try{
-        const res = await fetch('/feeds/cisa/advisories.json', {cache:'no-store'});
-        if(!res.ok) return;
-        const data = await res.json();
-        const items = (data.items || []).slice(0,5);
-        const container = document.getElementById('latest-feed');
-        container.innerHTML = items.map(it => `
-          <article class="feed-card">
-            <h4><a href="${it.link}" target="_blank" rel="noopener">${it.title || 'Untitled advisory'}</a></h4>
-            <time>${it.published ? it.published : ''}</time>
-            <p class="muted">${(it.executive_summary || it.summary || '').toString().slice(0,180)}${(it.executive_summary || it.summary || '').length>180?'…':''}</p>
-          </article>
-        `).join('');
-      }catch(e){
-        console.warn('CISA preview failed', e);
-      }
-    })();
-  </script>
-
-  <!-- === Threat Intel Chat (floating widget) === -->
-<style>
-  .ti-chat-launcher{
-    position:fixed; right:20px; bottom:20px; z-index:60;
-    display:flex; align-items:center; gap:10px;
-    background:linear-gradient(90deg,#3b82f6,#06b6d4); color:#fff;
-    border:none; border-radius:999px; padding:10px 14px; cursor:pointer;
-    box-shadow:0 10px 30px rgba(0,0,0,.35); font-weight:600;
-  }
-  .ti-chat-panel{
-    position:fixed; right:20px; bottom:80px; z-index:60; width:340px; max-height:70vh;
-    background:#0b1220; color:#e5e7eb; border:1px solid rgba(255,255,255,.1);
-    border-radius:14px; box-shadow:0 16px 50px rgba(0,0,0,.45); display:none; overflow:hidden;
-  }
-  .ti-chat-header{
-    display:flex; align-items:center; justify-content:space-between; gap:8px;
-    padding:10px 12px; background:#111827; border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .ti-chat-title{display:flex; align-items:center; gap:8px; font-weight:800}
-  .ti-chat-title img{height:20px; width:auto}
-  .ti-chat-close{
-    background:transparent; border:none; color:#e5e7eb; font-size:18px; cursor:pointer;
-  }
-  .ti-chat-messages{height:48vh; overflow-y:auto; padding:12px; background:#0b1220}
-  .ti-msg{max-width:85%; padding:8px 10px; border-radius:10px; margin:6px 0; font-size:.95rem; line-height:1.35}
-  .ti-user{background:#2563eb; color:#fff; margin-left:auto}
-  .ti-bot{background:#1f2937; color:#e5e7eb; margin-right:auto}
-  .ti-src{font-size:.8rem; color:#60a5fa; margin:6px 0 2px}
-  .ti-chat-input{display:flex; gap:8px; padding:10px; background:#111827; border-top:1px solid rgba(255,255,255,.08)}
-  .ti-chat-input input{
-    flex:1; background:#0b1220; color:#e5e7eb; border:1px solid rgba(255,255,255,.12);
-    border-radius:10px; padding:10px;
-  }
-  .ti-chat-input button{
-    background:#2563eb; color:#fff; border:none; border-radius:10px; padding:10px 12px; cursor:pointer;
-  }
-  .ti-link{color:#93c5fd; text-decoration:none}
-  .ti-link:hover{text-decoration:underline}
-</style>
-
-<button class="ti-chat-launcher" id="tiOpenChat" aria-label="Open Threat Intel Chat">
-  🔎 Threat Intel Chat
-</button>
-
-<div class="ti-chat-panel" id="tiChatPanel" role="dialog" aria-label="Threat Intel Chat" aria-modal="true">
-  <div class="ti-chat-header">
-    <div class="ti-chat-title">
-      <img src="/images/TIS_Logo.png" alt="TIS logo">
-      <span>Threat Intel Chat</span>
-    </div>
-    <button class="ti-chat-close" id="tiCloseChat" aria-label="Close">✕</button>
+<!-- CAPABILITIES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title"><div class="s-icon s-blue">⚡</div>Platform Capabilities</div>
   </div>
-  <div class="ti-chat-messages" id="tiMessages"></div>
-  <div class="ti-chat-input">
-    <input id="tiInput" type="text" placeholder="Type a product/software name…" />
+  <div class="cap-grid">
+    <a href="/pages/vulnerabilities.html" class="cap-card">
+      <div class="cap-icon s-blue">🛡️</div>
+      <h3>Vulnerability Intelligence</h3>
+      <p>Top CVEs from NIST NVD — filterable by product, CVSS score, attack vector, and severity. Executive charts included.</p>
+      <div class="cap-foot"><span class="cap-badge b-live">● Live NVD Feed</span><span class="cap-arrow">→</span></div>
+    </a>
+    <a href="/pages/incidents.html" class="cap-card">
+      <div class="cap-icon s-red">🚨</div>
+      <h3>Incident Tracker</h3>
+      <p>AI-powered hourly scanning of global cybersecurity incidents with history archive and quarterly trend reports.</p>
+      <div class="cap-foot"><span class="cap-badge b-ai">🤖 AI-Powered</span><span class="cap-arrow">→</span></div>
+    </a>
+    <a href="/pages/analysis.html" class="cap-card">
+      <div class="cap-icon" style="background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.22)">🔬</div>
+      <h3>Technical Analysis</h3>
+      <p>Deep-dive write-ups on major incidents — MITRE ATT&CK mapping, IoCs, TTPs, and defensive recommendations.</p>
+      <div class="cap-foot"><span class="cap-badge b-deep">In-Depth Reports</span><span class="cap-arrow">→</span></div>
+    </a>
+    <a href="/pages/threat-intel.html" class="cap-card">
+      <div class="cap-icon s-cyan">📡</div>
+      <h3>Threat Feeds</h3>
+      <p>Centralised advisories from CISA, UK NCSC, VirusTotal, and Google Threat Intel — updated automatically.</p>
+      <div class="cap-foot"><span class="cap-badge b-auto">Auto-Updated</span><span class="cap-arrow">→</span></div>
+    </a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CISA ADVISORIES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title"><div class="s-icon s-red">⚠️</div>Latest CISA Advisories</div>
+    <a href="/pages/threat-intel.html" class="see-all">See all feeds →</a>
+  </div>
+  <div id="cisa-feed" class="feed-grid">
+    <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3);font-size:0.82rem">Loading advisories…</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- INCIDENT FEED -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title"><div class="s-icon s-red">🚨</div>Recent Incidents</div>
+    <div style="display:flex;gap:1.25rem">
+      <a href="/pages/incidents.html" class="see-all">View all →</a>
+      <a href="/pages/analysis.html" class="see-all">Read analysis →</a>
+    </div>
+  </div>
+  <div id="incident-feed" class="feed-grid">
+    <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3);font-size:0.82rem">Loading incidents…</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/images/TIS_Logo.png" alt="TIS">
+      <span class="footer-text">© 2025 ThreatIntelSpecialist.com — Open to the security community</span>
+    </div>
+    <div class="footer-links">
+      <a href="/pages/vulnerabilities.html">Vulnerabilities</a>
+      <a href="/pages/incidents.html">Incidents</a>
+      <a href="/pages/analysis.html">Analysis</a>
+      <a href="/pages/posts.html">Posts</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CHAT FAB -->
+<button class="ti-fab" id="tiOpenChat">🔎 Threat Intel Chat</button>
+<div class="ti-panel" id="tiPanel">
+  <div class="ti-head">
+    <div class="ti-head-l">
+      <img src="/images/TIS_Logo.png" alt="TIS">
+      <strong>Threat Intel Chat</strong>
+      <span class="ti-live-badge">LIVE</span>
+    </div>
+    <button class="ti-x" id="tiClose">✕</button>
+  </div>
+  <div class="ti-msgs" id="tiMsgs"></div>
+  <div class="ti-row">
+    <input id="tiInput" type="text" placeholder="Search product or software…">
     <button id="tiSend">Send</button>
   </div>
 </div>
 
 <script>
-(function(){
-  const openBtn = document.getElementById('tiOpenChat');
-  const panel   = document.getElementById('tiChatPanel');
-  const closeBtn= document.getElementById('tiCloseChat');
-  const msgs    = document.getElementById('tiMessages');
-  const input   = document.getElementById('tiInput');
-  const sendBtn = document.getElementById('tiSend');
+  // STATUS BAR TIME
+  document.getElementById('sb-time').textContent =
+    new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + ' UTC';
 
-  let allFeeds = [];
-  let feedsLoaded = false;
-
-  function addMsg(html, who='bot'){
-    const div = document.createElement('div');
-    div.className = `ti-msg ${who==='user'?'ti-user':'ti-bot'}`;
-    div.innerHTML = html;
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  async function loadFeeds() {
-    if (feedsLoaded) return;
-    addMsg('Loading latest advisories from CISA, UK NCSC, and VirusTotal…');
+  // CISA FEED
+  (async () => {
     try {
-      const [cisa, ncsc, vt] = await Promise.all([
-        fetch('/feeds/cisa/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
-        fetch('/feeds/ncsc/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
-        fetch('/feeds/vt/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
-      ]);
-      if (cisa?.items) allFeeds = allFeeds.concat(cisa.items.map(i => ({...i, source:'CISA'})));
-      if (ncsc?.items) allFeeds = allFeeds.concat(ncsc.items.map(i => ({...i, source:'UK NCSC'})));
-      if (vt?.items)   allFeeds = allFeeds.concat(vt.items.map(i => ({...i, source:'VirusTotal'})));
-      feedsLoaded = true;
-      addMsg('Feeds loaded. Ask me about a product or software (e.g., “Cisco ASA”, “OpenSSL”, “Windows Server”).');
-    } catch(e){
-      addMsg('Failed to load one or more feeds. Try again in a minute.');
+      const res = await fetch('/feeds/cisa/advisories.json', {cache:'no-store'});
+      if (!res.ok) return;
+      const data = await res.json();
+      const items = (data.items || []).slice(0, 6);
+      document.getElementById('sb-kev').textContent = items.length + ' advisories';
+      document.getElementById('cisa-feed').innerHTML = items.map(it => `
+        <article class="feed-card">
+          <div class="feed-top">
+            <h4><a href="${it.link}" target="_blank" rel="noopener">${it.title || 'Untitled advisory'}</a></h4>
+            <time>${it.published ? it.published.substring(0,10) : ''}</time>
+          </div>
+          <p>${(it.executive_summary || it.summary || '').toString().slice(0,160)}…</p>
+          <div class="feed-src">📡 CISA</div>
+        </article>`).join('');
+    } catch(e) {
+      document.getElementById('cisa-feed').innerHTML = '<p style="color:var(--text3);font-size:0.82rem;padding:1rem">Advisory feed unavailable.</p>';
     }
-  }
+  })();
 
-  function search(query){
-    const q = query.toLowerCase();
-    return allFeeds.filter(item => {
-      const hay = [
-        item.title, item.vendor, item.affected_products,
-        item.executive_summary, item.vulnerability_overview
-      ].filter(Boolean).join(' ').toLowerCase();
-      return hay.includes(q);
-    });
-  }
+  // INCIDENT FEED
+  (async () => {
+    const DEMO = [
+      {org:'NHS Trust', type:'Ransomware', sector:'Healthcare', severity:'Critical', summary:'Ransomware attack encrypted critical patient records systems, forcing manual operations across multiple hospitals.', date:'2025-03-20'},
+      {org:'Major US Bank', type:'Data Breach', sector:'Finance', severity:'High', summary:'Unauthorised access to customer database exposed 2.1M account records including PII and partial card data.', date:'2025-03-18'},
+      {org:'City Council', type:'DDoS', sector:'Government', severity:'Medium', summary:'Sustained DDoS attack disrupted online services for 14 hours, affecting permit and payments portals.', date:'2025-03-15'},
+    ];
+    let incidents = DEMO;
+    try {
+      const r = await fetch('/public/data/incidents.json');
+      if (r.ok) { const d = await r.json(); incidents = (d.incidents || []).slice(0,6); }
+    } catch(e) {}
+    const tc = {Ransomware:'t-ransomware','Data Breach':'t-breach',APT:'t-apt',DDoS:'t-ddos'};
+    const sc = {Critical:'t-critical',High:'t-high',Medium:'t-medium'};
+    document.getElementById('incident-feed').innerHTML = incidents.slice(0,6).map(inc => `
+      <article class="feed-card">
+        <div class="feed-top">
+          <h4>${inc.org || inc.title || 'Unknown organisation'}</h4>
+          <time>${inc.date || ''}</time>
+        </div>
+        <div style="display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap">
+          <span class="tag ${tc[inc.type]||'t-breach'}">${inc.type||'Incident'}</span>
+          <span class="tag ${sc[inc.severity]||'t-medium'}">${inc.severity||'Medium'}</span>
+          ${inc.sector?`<span class="tag t-sector">${inc.sector}</span>`:''}
+        </div>
+        <p>${(inc.summary||'').slice(0,140)}…</p>
+        <div class="feed-src">🚨 Incident</div>
+      </article>`).join('');
+  })();
 
-  function formatResult(item){
-    const fields = [
-      ['Vendor', item.vendor || 'N/A'],
-      ['Affected products/systems', item.affected_products || 'N/A'],
-      ['Release date', item.release_date || item.published || 'N/A'],
-      ['CVSS v4 score', item.cvss_v4 || 'N/A'],
-      ['Executive summary', item.executive_summary || item.summary || 'N/A'],
-      ['Risk evaluation', item.risk_evaluation || 'N/A'],
-      ['Vulnerability overview', item.vulnerability_overview || 'N/A'],
-      ['Mitigations', item.mitigations || 'N/A'],
-    ].map(([k,v]) => `<strong>${k}:</strong> ${v}`).join('<br>');
+  // HERO STATS
+  (async () => {
+    try {
+      const r = await fetch('/public/data/vulnerabilities.json');
+      if (!r.ok) return;
+      const d = await r.json();
+      const v = d.vulnerabilities || [];
+      document.getElementById('hs-total').textContent = v.length.toLocaleString();
+      document.getElementById('hs-crit').textContent = v.filter(x=>x.severity==='CRITICAL').length;
+    } catch(e) {}
+  })();
 
-    return `
-      <div class="ti-src">[${item.source}]</div>
-      <a class="ti-link" href="${item.link}" target="_blank" rel="noopener">${item.title || 'Advisory'}</a><br>
-      ${fields}
-    `;
-  }
-
-  function handleSend(){
-    const query = input.value.trim();
-    if(!query) return;
-    addMsg(query, 'user');
-    input.value = '';
-    if (!feedsLoaded){
-      addMsg('Hold on—still loading feeds. Try again in a few seconds.');
-      return;
-    }
-    const results = search(query);
-    if (!results.length){
-      addMsg(`No advisories found mentioning “${query}”.`);
-      return;
-    }
-    const top = results.slice(0,8).map(formatResult).join('<hr style="border:0;border-top:1px solid rgba(255,255,255,.1);margin:8px 0">');
-    addMsg(`<strong>Found ${results.length} matching advisories.</strong><br><br>${top}`);
-  }
-
-  // open/close
-  openBtn.addEventListener('click', ()=>{ panel.style.display='block'; loadFeeds(); input.focus(); });
-  closeBtn.addEventListener('click', ()=>{ panel.style.display='none'; });
-  sendBtn.addEventListener('click', handleSend);
-  input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') handleSend(); });
-})();
-</script>
-<!-- === /Threat Intel Chat === -->
-<script>
-  document.getElementById('menuToggle').addEventListener('click', function() {
-    document.getElementById('menu').classList.toggle('showing');
-  });
-</script>
-<script>
-  // Toggle the whole menu
-  document.getElementById('menuToggle').addEventListener('click', function () {
-    document.getElementById('menu').classList.toggle('open');
+  // MOBILE NAV
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
   });
 
-  // Make the dropdown tap-to-open on mobile (<=768px)
-  Array.from(document.querySelectorAll('.menu .dropdown > a')).forEach(link => {
-    link.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        const parent = link.parentElement;
-        parent.classList.toggle('open');
-      }
-    });
-  });
+  // CHAT WIDGET
+  (function(){
+    const fab   = document.getElementById('tiOpenChat');
+    const panel = document.getElementById('tiPanel');
+    const close = document.getElementById('tiClose');
+    const msgs  = document.getElementById('tiMsgs');
+    const input = document.getElementById('tiInput');
+    const send  = document.getElementById('tiSend');
+    let feeds = [], loaded = false;
+
+    function msg(html, who='bot') {
+      const d = document.createElement('div');
+      d.className = `ti-m ${who==='user'?'ti-user':'ti-bot'}`;
+      d.innerHTML = html; msgs.appendChild(d);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    async function loadFeeds() {
+      if (loaded) return;
+      msg('Loading advisories from CISA, UK NCSC, and VirusTotal…');
+      try {
+        const [c,n,v] = await Promise.all([
+          fetch('/feeds/cisa/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
+          fetch('/feeds/ncsc/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
+          fetch('/feeds/vt/advisories.json').then(r=>r.ok?r.json():null).catch(()=>null),
+        ]);
+        if(c?.items) feeds = feeds.concat(c.items.map(i=>({...i,source:'CISA'})));
+        if(n?.items) feeds = feeds.concat(n.items.map(i=>({...i,source:'UK NCSC'})));
+        if(v?.items) feeds = feeds.concat(v.items.map(i=>({...i,source:'VirusTotal'})));
+        loaded = true;
+        msg('Ready. Ask me about a product or CVE — e.g. <em>"Cisco ASA"</em>, <em>"Windows Server"</em>.');
+      } catch(e) { msg('Could not load feeds. Try again shortly.'); }
+    }
+
+    function search(q) {
+      q = q.toLowerCase();
+      return feeds.filter(i => [i.title,i.vendor,i.affected_products,i.executive_summary,i.vulnerability_overview].filter(Boolean).join(' ').toLowerCase().includes(q));
+    }
+
+    function fmt(item) {
+      return `<div class="ti-src">[${item.source}]</div>
+        <a class="ti-link" href="${item.link}" target="_blank" rel="noopener">${item.title||'Advisory'}</a><br>
+        <strong>Vendor:</strong> ${item.vendor||'N/A'}<br>
+        <strong>Affected:</strong> ${item.affected_products||'N/A'}<br>
+        <strong>Summary:</strong> ${(item.executive_summary||item.summary||'N/A').slice(0,200)}`;
+    }
+
+    function go() {
+      const q = input.value.trim(); if(!q) return;
+      msg(q,'user'); input.value='';
+      if(!loaded){msg('Still loading feeds, please wait.');return;}
+      const r = search(q);
+      if(!r.length){msg(`No advisories found for <strong>${q}</strong>.`);return;}
+      msg(`<strong>${r.length} result${r.length>1?'s':''} for "${q}":</strong><br><br>${r.slice(0,5).map(fmt).join('<hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:8px 0">')}`);
+    }
+
+    fab.addEventListener('click', ()=>{panel.classList.add('open');loadFeeds();input.focus();});
+    close.addEventListener('click', ()=>panel.classList.remove('open'));
+    send.addEventListener('click', go);
+    input.addEventListener('keydown', e=>{if(e.key==='Enter')go();});
+  })();
 </script>
 </body>
 </html>
-
