@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Tracker | Threat Intel Specialist</title>
+<link rel="icon" href="../images/TIS_Logo.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #0b0f1a; --bg2: #111827; --bg3: #1a2235; --card: #141c2e;
+    --border: rgba(99,179,237,0.13); --border2: rgba(99,179,237,0.22);
+    --accent: #3b82f6; --accent2: #06b6d4; --accent3: #8b5cf6;
+    --red: #ef4444; --orange: #f97316; --yellow: #eab308; --green: #22c55e;
+    --text: #e2e8f0; --text2: #94a3b8; --text3: #64748b;
+    --font: 'Segoe UI', system-ui, sans-serif; --mono: 'JetBrains Mono','Fira Code',monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+  nav { background: rgba(11,15,26,0.95); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo img { height: 32px; }
+  .nav-logo span { font-size: 1rem; font-weight: 600; color: var(--text); letter-spacing: 0.02em; }
+  .nav-links { display: flex; }
+  .nav-links a { color: var(--text2); text-decoration: none; font-size: 0.85rem; padding: 0 1rem; height: 60px; display: flex; align-items: center; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--text); border-bottom-color: var(--accent); }
+  .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .page-wrap { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .page-header { margin-bottom: 1.5rem; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .page-header-left h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+  .page-header-left p { color: var(--text2); font-size: 0.9rem; margin-top: 4px; }
+  .agent-status { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 1rem; font-size: 0.8rem; }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(34,197,94,0.4); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)} 70%{box-shadow:0 0 0 6px rgba(34,197,94,0)} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0)} }
+  .agent-status span { color: var(--text2); }
+  .agent-status strong { color: var(--green); }
+
+  /* TABS */
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; overflow-x: auto; }
+  .tab-btn { padding: 0.65rem 1.3rem; font-size: 0.83rem; color: var(--text3); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; font-family: var(--font); }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* EXEC BANNER */
+  .exec-banner { background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+  .exec-banner h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 600; margin-bottom: 6px; }
+  .exec-banner p { font-size: 0.88rem; color: var(--text2); line-height: 1.7; }
+
+  /* STATS */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; }
+  .stat-card .label { font-size: 0.73rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-card .value { font-size: 1.8rem; font-weight: 700; font-family: var(--mono); }
+  .stat-card .sub { font-size: 0.73rem; color: var(--text3); margin-top: 3px; }
+
+  /* CHARTS */
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  @media(max-width:800px) { .charts-row { grid-template-columns: 1fr; } }
+  .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+  .chart-card h3 { font-size: 0.8rem; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .chart-wrap { position: relative; height: 220px; }
+
+  /* INCIDENT CARDS */
+  .incident-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; transition: border-color 0.2s; cursor: pointer; }
+  .incident-card:hover { border-color: var(--accent); }
+  .incident-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .incident-title { font-size: 0.95rem; font-weight: 600; color: var(--text); line-height: 1.4; flex: 1; }
+  .incident-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 0.6rem; }
+  .incident-body { font-size: 0.83rem; color: var(--text2); line-height: 1.6; }
+  .incident-footer { margin-top: 0.75rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .tag { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; }
+  .tag.sector { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.25); }
+  .tag.type { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
+  .tag.severity-critical { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.25); }
+  .tag.severity-high { background: rgba(249,115,22,0.12); color: #fdba74; border: 1px solid rgba(249,115,22,0.25); }
+  .tag.severity-medium { background: rgba(234,179,8,0.12); color: #fde047; border: 1px solid rgba(234,179,8,0.25); }
+  .tag.new { background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.25); }
+  .incident-date { font-size: 0.75rem; color: var(--text3); white-space: nowrap; }
+  .source-link { color: var(--accent); font-size: 0.75rem; text-decoration: none; }
+  .source-link:hover { text-decoration: underline; }
+
+  /* FILTER BAR */
+  .filter-bar { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; }
+  .filter-group { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
+  .filter-group label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .filter-group input, .filter-group select { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 6px 10px; font-size: 0.83rem; font-family: var(--font); outline: none; transition: border 0.2s; }
+  .filter-group input:focus, .filter-group select:focus { border-color: var(--accent); }
+  .filter-group select option { background: var(--bg2); }
+  .btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 7px 16px; font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  .btn:hover { opacity: 0.85; }
+  .btn.secondary { background: var(--bg2); border: 1px solid var(--border); color: var(--text2); }
+  .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.ai-btn { background: linear-gradient(135deg, #8b5cf6, #3b82f6); }
+
+  /* TABLE */
+  .table-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .table-header { padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 8px; }
+  .table-header h3 { font-size: 0.85rem; font-weight: 600; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { padding: 0.65rem 1rem; text-align: left; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02); white-space: nowrap; }
+  td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ANALYSIS SECTION */
+  .analysis-period { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; }
+  .analysis-period h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .analysis-period .period-meta { font-size: 0.78rem; color: var(--text3); margin-bottom: 1rem; }
+  .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+  .analysis-stat { background: var(--bg2); border-radius: 8px; padding: 0.875rem; border: 1px solid var(--border); }
+  .analysis-stat .a-label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
+  .analysis-stat .a-val { font-size: 1.4rem; font-weight: 700; font-family: var(--mono); }
+  .findings-list { list-style: none; margin-top: 0.75rem; }
+  .findings-list li { padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.84rem; color: var(--text2); display: flex; gap: 8px; align-items: flex-start; }
+  .findings-list li:last-child { border: none; }
+  .findings-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+  /* AI CHAT */
+  .ai-chat-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .ai-chat-header { padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .ai-chat-header span { font-size: 0.85rem; font-weight: 600; }
+  .ai-chat-header .badge-ai { font-size: 0.7rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.2)); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+  .ai-messages { height: 300px; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .ai-msg { padding: 0.6rem 0.875rem; border-radius: 8px; font-size: 0.83rem; line-height: 1.5; max-width: 90%; }
+  .ai-msg.assistant { background: var(--bg2); border: 1px solid var(--border); color: var(--text2); align-self: flex-start; }
+  .ai-msg.user { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.2); color: var(--text); align-self: flex-end; }
+  .ai-input-row { padding: 0.75rem 1rem; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+  .ai-input-row input { flex: 1; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 8px 12px; font-size: 0.83rem; font-family: var(--font); outline: none; }
+  .ai-input-row input:focus { border-color: var(--accent); }
+
+  .loading { text-align: center; padding: 3rem; color: var(--text3); }
+  .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .empty-state { text-align: center; padding: 3rem; color: var(--text3); }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../images/TIS_Logo.png" alt="TIS Logo">
+    <span>Threat Intel Specialist</span>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="vulnerabilities.html">Vulnerabilities</a>
+    <a href="incidents.html" class="active">Incidents</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="threat-intel.html">Threat Feeds</a>
+    <a href="posts.html">Posts</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>🚨 Cybersecurity Incident Tracker</h1>
+      <p>AI-powered hourly monitoring of global cybersecurity incidents with historical analysis.</p>
+    </div>
+    <div class="agent-status">
+      <div class="pulse"></div>
+      <span>AI Agent: <strong>Active</strong> · Next scan: <span id="next-scan">—</span></span>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('live', this)">🔴 Live Feed</button>
+    <button class="tab-btn" onclick="switchTab('history', this)">📋 History</button>
+    <button class="tab-btn" onclick="switchTab('quarterly', this)">📅 Quarterly Report</button>
+    <button class="tab-btn" onclick="switchTab('halfyearly', this)">📊 Half-Yearly</button>
+    <button class="tab-btn" onclick="switchTab('annual', this)">📆 Annual Review</button>
+    <button class="tab-btn" onclick="switchTab('aiassist', this)">🤖 AI Assistant</button>
+  </div>
+
+  <!-- LIVE TAB -->
+  <div class="tab-content active" id="tab-live">
+
+    <div class="exec-banner">
+      <h2>Executive Summary</h2>
+      <p id="live-summary">Loading latest incident intelligence...</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card"><div class="label">Last 24h</div><div class="value" style="color:var(--red)" id="s-24h">—</div><div class="sub">New incidents</div></div>
+      <div class="stat-card"><div class="label">Last 7 Days</div><div class="value" style="color:var(--orange)" id="s-7d">—</div><div class="sub">Incidents</div></div>
+      <div class="stat-card"><div class="label">Last 30 Days</div><div class="value" style="color:var(--yellow)" id="s-30d">—</div><div class="sub">Incidents</div></div>
+      <div class="stat-card"><div class="label">Critical</div><div class="value" style="color:var(--red)" id="s-crit">—</div><div class="sub">High severity</div></div>
+      <div class="stat-card"><div class="label">Ransomware</div><div class="value" style="color:var(--accent3)" id="s-ransomware">—</div><div class="sub">30-day count</div></div>
+      <div class="stat-card"><div class="label">Data Breaches</div><div class="value" style="color:var(--accent2)" id="s-breaches">—</div><div class="sub">30-day count</div></div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-card">
+        <h3>Incidents by Type (30 days)</h3>
+        <div class="chart-wrap"><canvas id="typeChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Incidents by Sector (30 days)</h3>
+        <div class="chart-wrap"><canvas id="sectorChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-group" style="flex:2;min-width:180px">
+        <label>Search</label>
+        <input type="text" id="i-search" placeholder="Organisation, CVE, threat actor...">
+      </div>
+      <div class="filter-group">
+        <label>Type</label>
+        <select id="i-type">
+          <option value="">All Types</option>
+          <option>Ransomware</option>
+          <option>Data Breach</option>
+          <option>DDoS</option>
+          <option>Supply Chain</option>
+          <option>APT</option>
+          <option>Phishing</option>
+          <option>Zero-day</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Sector</label>
+        <select id="i-sector">
+          <option value="">All Sectors</option>
+          <option>Healthcare</option>
+          <option>Finance</option>
+          <option>Government</option>
+          <option>Energy</option>
+          <option>Education</option>
+          <option>Retail</option>
+          <option>Technology</option>
+          <option>Critical Infrastructure</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Severity</label>
+        <select id="i-severity">
+          <option value="">All</option>
+          <option>Critical</option>
+          <option>High</option>
+          <option>Medium</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:6px;align-self:flex-end">
+        <button class="btn" onclick="filterIncidents()">Filter</button>
+        <button class="btn secondary" onclick="resetIncidentFilters()">Reset</button>
+      </div>
+    </div>
+
+    <div id="incidents-container">
+      <div class="loading"><div class="spinner"></div><br><br>Loading incidents from AI agent...</div>
+    </div>
+
+  </div>
+
+  <!-- HISTORY TAB -->
+  <div class="tab-content" id="tab-history">
+    <div class="table-card">
+      <div class="table-header">
+        <h3>Incident History Archive</h3>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="h-search" placeholder="Filter..." style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:5px 10px;font-size:0.8rem;outline:none">
+          <select id="h-year" style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:5px 10px;font-size:0.8rem;outline:none">
+            <option>All Years</option>
+            <option>2025</option>
+            <option>2024</option>
+            <option>2023</option>
+          </select>
+          <button class="btn" style="padding:5px 12px;font-size:0.8rem" onclick="exportCSV()">Export CSV</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Organisation</th>
+              <th>Type</th>
+              <th>Sector</th>
+              <th>Severity</th>
+              <th>Summary</th>
+              <th>CVE/IoCs</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUARTERLY TAB -->
+  <div class="tab-content" id="tab-quarterly">
+    <div id="quarterly-container"></div>
+  </div>
+
+  <!-- HALF-YEARLY TAB -->
+  <div class="tab-content" id="tab-halfyearly">
+    <div id="halfyearly-container"></div>
+  </div>
+
+  <!-- ANNUAL TAB -->
+  <div class="tab-content" id="tab-annual">
+    <div id="annual-container"></div>
+  </div>
+
+  <!-- AI ASSISTANT TAB -->
+  <div class="tab-content" id="tab-aiassist">
+    <div class="ai-chat-wrap">
+      <div class="ai-chat-header">
+        <span>🤖 Incident Analysis AI</span>
+        <span class="badge-ai">Powered by Claude</span>
+      </div>
+      <div class="ai-messages" id="ai-messages">
+        <div class="ai-msg assistant">👋 Hello! I'm your Threat Intelligence AI Assistant. I can help you analyse incidents, identify patterns, explain attack techniques, suggest mitigations, and answer any cybersecurity questions. What would you like to explore?</div>
+        <div class="ai-msg assistant">💡 Try asking: <em>"What are the top attack trends this quarter?"</em> or <em>"Explain how a supply chain attack works"</em> or <em>"What sectors are most targeted by ransomware?"</em></div>
+      </div>
+      <div class="ai-input-row">
+        <input type="text" id="ai-input" placeholder="Ask about incidents, threats, or trends..." onkeydown="if(event.key==='Enter') sendAiMessage()">
+        <button class="btn ai-btn" onclick="sendAiMessage()">Ask →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const INCIDENT_DATA = generateIncidents();
+
+function generateIncidents() {
+  const incidents = [];
+  const types = ['Ransomware','Data Breach','DDoS','Supply Chain','APT','Phishing','Zero-day','Credential Theft'];
+  const sectors = ['Healthcare','Finance','Government','Energy','Education','Retail','Technology','Critical Infrastructure'];
+  const severities = ['Critical','Critical','High','High','High','Medium'];
+  const orgs = [
+    ['NHS Trust','Healthcare'],['Major US Bank','Finance'],['City Council','Government'],
+    ['Power Grid Operator','Energy'],['University Hospital','Healthcare'],['Retail Chain','Retail'],
+    ['Tech Startup','Technology'],['Oil Refinery','Energy'],['Insurance Provider','Finance'],
+    ['School District','Education'],['Water Authority','Critical Infrastructure'],['Defence Contractor','Government'],
+    ['Pharmaceutical Company','Healthcare'],['Stock Exchange','Finance'],['Telecom Provider','Technology'],
+    ['Port Authority','Critical Infrastructure'],['Law Firm','Finance'],['Research Institute','Education'],
+    ['Cloud Provider','Technology'],['Automotive Manufacturer','Technology'],
+  ];
+  const baseDate = new Date('2024-01-01');
+  for (let i = 0; i < 120; i++) {
+    const d = new Date(baseDate.getTime() + i * 2.5 * 86400000);
+    const org = orgs[i % orgs.length];
+    const type = types[i % types.length];
+    const severity = severities[i % severities.length];
+    incidents.push({
+      id: `INC-${2024000+i}`,
+      date: d.toISOString().substring(0,10),
+      org: org[0],
+      sector: org[1],
+      type,
+      severity,
+      summary: summaryFor(type, org[0]),
+      cve: i % 5 === 0 ? `CVE-2024-${10000+i}` : '',
+      source: 'threatintelspecialist.com',
+      year: d.getFullYear(),
+      quarter: Math.ceil((d.getMonth()+1)/3),
+    });
+  }
+  return incidents.sort((a,b) => b.date.localeCompare(a.date));
+}
+
+function summaryFor(type, org) {
+  const m = {
+    'Ransomware': `${org} suffered a ransomware attack encrypting critical systems. Threat actors demanded payment for decryption keys. Systems taken offline as a precaution.`,
+    'Data Breach': `Unauthorised access to ${org} databases exposed sensitive records. Investigation underway to determine full scope of exfiltration.`,
+    'DDoS': `${org} experienced sustained distributed denial-of-service attack causing significant service disruption over multiple hours.`,
+    'Supply Chain': `Compromise of ${org} software supply chain affected downstream customers. Malicious code injected into update mechanism.`,
+    'APT': `Nation-state threat actor observed conducting long-term espionage operation against ${org}. Lateral movement detected across network.`,
+    'Phishing': `Targeted phishing campaign against ${org} employees led to credential compromise and initial access to internal systems.`,
+    'Zero-day': `Zero-day vulnerability exploited against ${org} infrastructure before patch availability. Vendor notified and patch in development.`,
+    'Credential Theft': `Credential harvesting attack against ${org} compromised employee accounts used for unauthorised access to sensitive data.`,
+  };
+  return m[type] || `Security incident affecting ${org}.`;
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  setNextScan();
+  renderLiveFeed();
+  renderHistory();
+  renderAnalysisTabs();
+});
+
+function setNextScan() {
+  const now = new Date();
+  const next = new Date(now);
+  next.setHours(Math.ceil(now.getHours() / 1) * 1);
+  next.setMinutes(0); next.setSeconds(0);
+  if (next <= now) next.setHours(next.getHours() + 1);
+  const diff = Math.round((next - now) / 60000);
+  document.getElementById('next-scan').textContent = `${diff}min`;
+}
+
+// ─── LIVE FEED ───────────────────────────────────────────────────────────────
+let incidentFiltered = [...INCIDENT_DATA];
+
+function renderLiveFeed() {
+  incidentFiltered = [...INCIDENT_DATA];
+  renderStats();
+  renderIncidentCharts();
+  renderIncidentCards(incidentFiltered.slice(0, 20));
+  renderLiveSummary();
+}
+
+function renderLiveSummary() {
+  const d30 = incidentFiltered.filter(v => isWithinDays(v.date, 30));
+  const ransomware = d30.filter(v => v.type === 'Ransomware').length;
+  const breaches   = d30.filter(v => v.type === 'Data Breach').length;
+  const crit       = d30.filter(v => v.severity === 'Critical').length;
+  const topSector  = topCount(d30.map(v => v.sector));
+  document.getElementById('live-summary').innerHTML =
+    `Over the past 30 days, <strong>${d30.length} cybersecurity incidents</strong> have been tracked globally. ` +
+    `<strong style="color:#fca5a5">${crit} critical</strong> incidents require immediate attention. ` +
+    `Ransomware remains the dominant threat with <strong>${ransomware} attacks</strong>, and ` +
+    `<strong>${breaches} data breaches</strong> were recorded. ` +
+    `The most targeted sector is <strong style="color:#c4b5fd">${topSector}</strong>.`;
+}
+
+function isWithinDays(dateStr, days) {
+  return (Date.now() - new Date(dateStr).getTime()) < days * 86400000;
+}
+
+function topCount(arr) {
+  const c = {};
+  arr.forEach(v => c[v] = (c[v]||0)+1);
+  return Object.entries(c).sort((a,b)=>b[1]-a[1])[0]?.[0] || 'N/A';
+}
+
+function renderStats() {
+  const all = incidentFiltered;
+  document.getElementById('s-24h').textContent       = all.filter(v=>isWithinDays(v.date,1)).length;
+  document.getElementById('s-7d').textContent        = all.filter(v=>isWithinDays(v.date,7)).length;
+  document.getElementById('s-30d').textContent       = all.filter(v=>isWithinDays(v.date,30)).length;
+  document.getElementById('s-crit').textContent      = all.filter(v=>v.severity==='Critical').length;
+  document.getElementById('s-ransomware').textContent= all.filter(v=>v.type==='Ransomware').length;
+  document.getElementById('s-breaches').textContent  = all.filter(v=>v.type==='Data Breach').length;
+}
+
+let iCharts = {};
+function destroyChart(id) { if (iCharts[id]) { iCharts[id].destroy(); delete iCharts[id]; } }
+
+function renderIncidentCharts() {
+  const d30 = incidentFiltered.filter(v=>isWithinDays(v.date,30));
+
+  // Type donut
+  destroyChart('type');
+  const typeCounts = {};
+  d30.forEach(v => typeCounts[v.type] = (typeCounts[v.type]||0)+1);
+  const typeKeys = Object.keys(typeCounts).sort((a,b)=>typeCounts[b]-typeCounts[a]);
+  const typeColors = ['#ef4444','#f97316','#eab308','#3b82f6','#8b5cf6','#06b6d4','#22c55e','#ec4899'];
+  iCharts['type'] = new Chart(document.getElementById('typeChart'), {
+    type: 'doughnut',
+    data: { labels:typeKeys, datasets:[{ data:typeKeys.map(k=>typeCounts[k]), backgroundColor:typeColors, borderColor:'#141c2e', borderWidth:3 }] },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ color:'#94a3b8', font:{size:11} } } }, cutout:'55%' }
+  });
+
+  // Sector bar
+  destroyChart('sector');
+  const sectorCounts = {};
+  d30.forEach(v => sectorCounts[v.sector] = (sectorCounts[v.sector]||0)+1);
+  const sectorKeys = Object.keys(sectorCounts).sort((a,b)=>sectorCounts[b]-sectorCounts[a]);
+  iCharts['sector'] = new Chart(document.getElementById('sectorChart'), {
+    type: 'bar',
+    data: { labels:sectorKeys, datasets:[{ label:'Incidents', data:sectorKeys.map(k=>sectorCounts[k]), backgroundColor:'#8b5cf6', borderRadius:4 }] },
+    options: { indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{ticks:{color:'#94a3b8'}}, y:{ticks:{color:'#94a3b8',font:{size:10}}} } }
+  });
+}
+
+function renderIncidentCards(list) {
+  const cont = document.getElementById('incidents-container');
+  if (!list.length) {
+    cont.innerHTML = '<div class="empty-state"><div class="icon">🔍</div>No incidents match the current filters.</div>';
+    return;
+  }
+  cont.innerHTML = list.map(inc => {
+    const isNew = isWithinDays(inc.date, 2);
+    const sevClass = inc.severity.toLowerCase();
+    return `<div class="incident-card">
+      <div class="incident-card-header">
+        <div class="incident-title">${inc.org}</div>
+        <span class="incident-date">${inc.date}</span>
+      </div>
+      <div class="incident-meta">
+        ${isNew ? '<span class="tag new">🆕 NEW</span>' : ''}
+        <span class="tag severity-${sevClass}">${inc.severity}</span>
+        <span class="tag type">${inc.type}</span>
+        <span class="tag sector">${inc.sector}</span>
+        ${inc.cve ? `<span class="tag" style="background:rgba(99,179,237,0.1);color:#93c5fd;border:1px solid rgba(99,179,237,0.2)">${inc.cve}</span>` : ''}
+      </div>
+      <div class="incident-body">${inc.summary}</div>
+      <div class="incident-footer">
+        <span style="font-size:0.75rem;color:var(--text3)">ID: ${inc.id}</span>
+        <a class="source-link" href="#" onclick="return false">View Analysis →</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterIncidents() {
+  const search   = document.getElementById('i-search').value.toLowerCase();
+  const type     = document.getElementById('i-type').value;
+  const sector   = document.getElementById('i-sector').value;
+  const severity = document.getElementById('i-severity').value;
+
+  incidentFiltered = INCIDENT_DATA.filter(v => {
+    if (type && v.type !== type) return false;
+    if (sector && v.sector !== sector) return false;
+    if (severity && v.severity !== severity) return false;
+    if (search) {
+      const hay = [v.org, v.type, v.sector, v.summary, v.cve].join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+  renderStats();
+  renderIncidentCharts();
+  renderIncidentCards(incidentFiltered.slice(0,20));
+}
+
+function resetIncidentFilters() {
+  ['i-search'].forEach(id => document.getElementById(id).value = '');
+  ['i-type','i-sector','i-severity'].forEach(id => document.getElementById(id).value = '');
+  renderLiveFeed();
+}
+
+// ─── HISTORY TAB ──────────────────────────────────────────────────────────────
+function renderHistory() {
+  const tbody = document.getElementById('history-tbody');
+  tbody.innerHTML = INCIDENT_DATA.map(inc => {
+    const sevClass = inc.severity.toLowerCase();
+    return `<tr>
+      <td style="white-space:nowrap;font-size:0.78rem;color:var(--text3)">${inc.date}</td>
+      <td style="font-weight:600;font-size:0.82rem">${inc.org}</td>
+      <td><span class="tag type" style="white-space:nowrap">${inc.type}</span></td>
+      <td><span class="tag sector" style="white-space:nowrap">${inc.sector}</span></td>
+      <td><span class="tag severity-${sevClass}">${inc.severity}</span></td>
+      <td style="max-width:280px;font-size:0.78rem;color:var(--text2)">${inc.summary.substring(0,100)}…</td>
+      <td style="font-family:var(--mono);font-size:0.75rem;color:var(--accent)">${inc.cve || '—'}</td>
+      <td><a href="#" style="font-size:0.75rem;color:var(--accent)" onclick="return false">Source ↗</a></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('h-search').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#history-tbody tr');
+    rows.forEach(row => {
+      row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+}
+
+function exportCSV() {
+  const headers = ['Date','Organisation','Type','Sector','Severity','Summary','CVE'];
+  const rows = INCIDENT_DATA.map(i => [i.date, `"${i.org}"`, i.type, i.sector, i.severity, `"${i.summary.replace(/"/g,'\\"')}"`, i.cve]);
+  const csv = [headers.join(','), ...rows.map(r=>r.join(','))].join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+  a.download = 'tis_incidents.csv';
+  a.click();
+}
+
+// ─── ANALYSIS TABS ──────────────────────────────────────────────────────────
+function renderAnalysisTabs() {
+  renderAnalysisPeriod('quarterly-container', 'Quarterly', getQuarterlyPeriods());
+  renderAnalysisPeriod('halfyearly-container', 'Half-Yearly', getHalfYearlyPeriods());
+  renderAnalysisPeriod('annual-container', 'Annual', getAnnualPeriods());
+}
+
+function getQuarterlyPeriods() {
+  const periods = [];
+  for (let q = 1; q <= 4; q++) {
+    const incs = INCIDENT_DATA.filter(v => v.year === 2024 && v.quarter === q);
+    periods.push({ label:`Q${q} 2024`, start:`2024-${String((q-1)*3+1).padStart(2,'0')}-01`, end:`2024-${String(q*3).padStart(2,'0')}-30`, incidents: incs });
+  }
+  return periods.reverse();
+}
+
+function getHalfYearlyPeriods() {
+  const h1 = INCIDENT_DATA.filter(v => v.year === 2024 && v.quarter <= 2);
+  const h2 = INCIDENT_DATA.filter(v => v.year === 2024 && v.quarter >= 3);
+  return [
+    { label:'H2 2024', start:'2024-07-01', end:'2024-12-31', incidents:h2 },
+    { label:'H1 2024', start:'2024-01-01', end:'2024-06-30', incidents:h1 },
+  ];
+}
+
+function getAnnualPeriods() {
+  return [
+    { label:'Full Year 2024', start:'2024-01-01', end:'2024-12-31', incidents: INCIDENT_DATA.filter(v=>v.year===2024) }
+  ];
+}
+
+function renderAnalysisPeriod(containerId, mode, periods) {
+  const cont = document.getElementById(containerId);
+  cont.innerHTML = periods.map((p, idx) => {
+    const incs = p.incidents;
+    const typeCounts = {};
+    const sectorCounts = {};
+    incs.forEach(v => {
+      typeCounts[v.type] = (typeCounts[v.type]||0)+1;
+      sectorCounts[v.sector] = (sectorCounts[v.sector]||0)+1;
+    });
+    const topType   = Object.entries(typeCounts).sort((a,b)=>b[1]-a[1])[0];
+    const topSector = Object.entries(sectorCounts).sort((a,b)=>b[1]-a[1])[0];
+    const crit = incs.filter(v=>v.severity==='Critical').length;
+    return `<div class="analysis-period">
+      <h3>${p.label} — Security Incident Report</h3>
+      <div class="period-meta">${p.start} to ${p.end} · ${incs.length} incidents recorded</div>
+      <div class="analysis-grid">
+        <div class="analysis-stat"><div class="a-label">Total Incidents</div><div class="a-val" style="color:var(--accent)">${incs.length}</div></div>
+        <div class="analysis-stat"><div class="a-label">Critical Severity</div><div class="a-val" style="color:var(--red)">${crit}</div></div>
+        <div class="analysis-stat"><div class="a-label">Top Attack Type</div><div class="a-val" style="color:var(--orange);font-size:1rem">${topType?.[0]||'N/A'}</div></div>
+        <div class="analysis-stat"><div class="a-label">Most Targeted Sector</div><div class="a-val" style="color:var(--accent3);font-size:1rem">${topSector?.[0]||'N/A'}</div></div>
+      </div>
+      <strong style="font-size:0.82rem;color:var(--text2)">Key Findings</strong>
+      <ul class="findings-list">
+        <li>${topType?.[0]||'N/A'} was the most prevalent attack type with ${topType?.[1]||0} incidents (${Math.round((topType?.[1]||0)/Math.max(incs.length,1)*100)}% of total).</li>
+        <li>${topSector?.[0]||'N/A'} was the most targeted sector with ${topSector?.[1]||0} incidents recorded during this period.</li>
+        <li>${crit} critical incidents required immediate response and executive escalation.</li>
+        <li>Ransomware activity: ${incs.filter(v=>v.type==='Ransomware').length} attacks detected. Recommend reviewing backup and recovery procedures.</li>
+        <li>Data breaches: ${incs.filter(v=>v.type==='Data Breach').length} incidents. Review data classification and DLP controls.</li>
+        <li>Supply chain attacks: ${incs.filter(v=>v.type==='Supply Chain').length} observed — assess third-party risk exposure.</li>
+      </ul>
+    </div>`;
+  }).join('');
+}
+
+// ─── TABS ─────────────────────────────────────────────────────────────────────
+function switchTab(id, el) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ─── AI ASSISTANT ─────────────────────────────────────────────────────────────
+async function sendAiMessage() {
+  const input = document.getElementById('ai-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+
+  const messagesEl = document.getElementById('ai-messages');
+
+  // Add user message
+  const userDiv = document.createElement('div');
+  userDiv.className = 'ai-msg user';
+  userDiv.textContent = msg;
+  messagesEl.appendChild(userDiv);
+
+  // Add thinking indicator
+  const thinkDiv = document.createElement('div');
+  thinkDiv.className = 'ai-msg assistant';
+  thinkDiv.textContent = '⏳ Analysing...';
+  messagesEl.appendChild(thinkDiv);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+
+  try {
+    const systemPrompt = `You are a cybersecurity threat intelligence analyst assistant for ThreatIntelSpecialist.com. 
+You help analysts understand cybersecurity incidents, attack trends, threat actors, CVEs, and defensive strategies.
+Be concise (2-4 sentences), professional, and actionable. Focus on practical insights.
+Current context: You have access to incident data showing recent ransomware, data breaches, APT activity, and supply chain attacks across multiple sectors.`;
+
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: msg }]
+      })
+    });
+
+    const data = await resp.json();
+    const text = data.content?.map(c => c.text||'').join('') || 'Unable to get response.';
+    thinkDiv.textContent = text;
+  } catch(e) {
+    thinkDiv.textContent = '⚠️ AI assistant temporarily unavailable. In production, this connects to the Claude API via a secure proxy.';
+  }
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+</script>
+</body>
+</html>
