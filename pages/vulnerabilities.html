@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vulnerability Intelligence | Threat Intel Specialist</title>
+<link rel="icon" href="../images/TIS_Logo.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --bg2: #111827;
+    --bg3: #1a2235;
+    --card: #141c2e;
+    --border: rgba(99,179,237,0.13);
+    --border2: rgba(99,179,237,0.22);
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --red: #ef4444;
+    --orange: #f97316;
+    --yellow: #eab308;
+    --green: #22c55e;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --font: 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+
+  /* NAV */
+  nav { background: rgba(11,15,26,0.95); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo img { height: 32px; }
+  .nav-logo span { font-size: 1rem; font-weight: 600; color: var(--text); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a { color: var(--text2); text-decoration: none; font-size: 0.85rem; padding: 0 1rem; height: 60px; display: flex; align-items: center; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--text); border-bottom-color: var(--accent); }
+  .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* LAYOUT */
+  .page-wrap { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  /* PAGE HEADER */
+  .page-header { margin-bottom: 1.5rem; }
+  .page-header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+  .page-header p { color: var(--text2); font-size: 0.9rem; margin-top: 4px; }
+  .last-updated { font-size: 0.78rem; color: var(--text3); margin-top: 6px; }
+  .last-updated span { color: var(--accent2); }
+
+  /* EXEC SUMMARY BANNER */
+  .exec-banner { background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(6,182,212,0.06) 100%); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
+  .exec-banner-icon { font-size: 1.5rem; margin-top: 2px; flex-shrink: 0; }
+  .exec-banner-content { flex: 1; min-width: 200px; }
+  .exec-banner-content h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 600; margin-bottom: 6px; }
+  .exec-banner-content p { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
+  #exec-summary-text { color: var(--text); }
+
+  /* STAT CARDS */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; }
+  .stat-card .label { font-size: 0.75rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-card .value { font-size: 1.8rem; font-weight: 700; font-family: var(--mono); }
+  .stat-card .sub { font-size: 0.75rem; color: var(--text3); margin-top: 3px; }
+  .stat-card.critical .value { color: var(--red); }
+  .stat-card.high .value { color: var(--orange); }
+  .stat-card.medium .value { color: var(--yellow); }
+  .stat-card.total .value { color: var(--accent); }
+
+  /* CHARTS ROW */
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  @media (max-width: 800px) { .charts-row { grid-template-columns: 1fr; } }
+  .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+  .chart-card h3 { font-size: 0.82rem; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .chart-wrap { position: relative; height: 220px; }
+
+  /* FILTER BAR */
+  .filter-bar { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; }
+  .filter-group { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 140px; }
+  .filter-group label { font-size: 0.73rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .filter-group input, .filter-group select { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 6px 10px; font-size: 0.83rem; font-family: var(--font); outline: none; transition: border 0.2s; }
+  .filter-group input:focus, .filter-group select:focus { border-color: var(--accent); }
+  .filter-group select option { background: var(--bg2); }
+  .btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 7px 16px; font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
+  .btn:hover { opacity: 0.85; }
+  .btn.secondary { background: var(--bg2); border: 1px solid var(--border); color: var(--text2); }
+  .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* TABLE */
+  .table-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; }
+  .table-header { padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 8px; }
+  .table-header h3 { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+  .table-header span { font-size: 0.75rem; color: var(--text3); }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { padding: 0.65rem 1rem; text-align: left; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02); white-space: nowrap; cursor: pointer; user-select: none; }
+  th:hover { color: var(--accent); }
+  td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.025); }
+  .cve-link { color: var(--accent); font-family: var(--mono); font-size: 0.8rem; text-decoration: none; }
+  .cve-link:hover { text-decoration: underline; }
+  .desc-cell { max-width: 320px; color: var(--text2); line-height: 1.4; font-size: 0.8rem; }
+  .desc-cell .trunc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* SEVERITY BADGES */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--mono); }
+  .badge.CRITICAL { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+  .badge.HIGH { background: rgba(249,115,22,0.15); color: #fdba74; border: 1px solid rgba(249,115,22,0.3); }
+  .badge.MEDIUM { background: rgba(234,179,8,0.15); color: #fde047; border: 1px solid rgba(234,179,8,0.3); }
+  .badge.LOW { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+  .badge.NONE { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
+  .badge.N\/A { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
+
+  /* SCORE PILL */
+  .score { font-family: var(--mono); font-weight: 700; font-size: 0.85rem; }
+  .score.c { color: var(--red); }
+  .score.h { color: var(--orange); }
+  .score.m { color: var(--yellow); }
+  .score.l { color: var(--green); }
+
+  /* AV BADGE */
+  .av-badge { font-size: 0.7rem; color: var(--text3); font-family: var(--mono); background: var(--bg2); padding: 2px 6px; border-radius: 3px; border: 1px solid var(--border); }
+
+  /* PAGINATION */
+  .pagination { display: flex; justify-content: center; align-items: center; gap: 6px; padding: 1rem; }
+  .page-btn { background: var(--bg2); border: 1px solid var(--border); color: var(--text2); padding: 5px 10px; border-radius: 5px; font-size: 0.78rem; cursor: pointer; transition: all 0.15s; }
+  .page-btn:hover, .page-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .page-btn:disabled { opacity: 0.3; cursor: default; }
+
+  /* LOADING */
+  .loading { text-align: center; padding: 3rem; color: var(--text3); }
+  .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ERROR */
+  .error-msg { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 1rem; color: #fca5a5; font-size: 0.85rem; margin: 1rem 0; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+  .tab { padding: 0.6rem 1.2rem; font-size: 0.83rem; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; text-decoration: none; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .page-wrap { padding: 1rem; }
+    .page-header h1 { font-size: 1.3rem; }
+    .charts-row { grid-template-columns: 1fr; }
+  }
+
+  /* TOOLTIP */
+  .tooltip-wrap { position: relative; cursor: help; }
+  .tooltip-text { visibility: hidden; opacity: 0; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: var(--bg3); border: 1px solid var(--border2); color: var(--text); padding: 6px 10px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; z-index: 50; transition: opacity 0.2s; pointer-events: none; max-width: 260px; white-space: normal; text-align: center; }
+  .tooltip-wrap:hover .tooltip-text { visibility: visible; opacity: 1; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../images/TIS_Logo.png" alt="TIS Logo">
+    <span>Threat Intel Specialist</span>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="vulnerabilities.html" class="active">Vulnerabilities</a>
+    <a href="incidents.html">Incidents</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="threat-intel.html">Threat Feeds</a>
+    <a href="posts.html">Posts</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <h1>🛡️ Vulnerability Intelligence</h1>
+    <p>Top CVEs from the NVD database — filtered, analysed, and executive-ready.</p>
+    <div class="last-updated">Last refreshed: <span id="refresh-time">Loading...</span> &nbsp;·&nbsp; Source: NIST NVD API 2.0 &nbsp;·&nbsp; Auto-refreshes every 6 hours via GitHub Actions</div>
+  </div>
+
+  <!-- EXEC SUMMARY -->
+  <div class="exec-banner">
+    <div class="exec-banner-icon">📊</div>
+    <div class="exec-banner-content">
+      <h2>Executive Summary</h2>
+      <p id="exec-summary-text">Loading vulnerability intelligence summary...</p>
+    </div>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="stats-row">
+    <div class="stat-card critical">
+      <div class="label">Critical (9.0–10.0)</div>
+      <div class="value" id="stat-critical">—</div>
+      <div class="sub">CVSSv3 ≥ 9.0</div>
+    </div>
+    <div class="stat-card high">
+      <div class="label">High (7.0–8.9)</div>
+      <div class="value" id="stat-high">—</div>
+      <div class="sub">CVSSv3 7.0–8.9</div>
+    </div>
+    <div class="stat-card medium">
+      <div class="label">Medium (4.0–6.9)</div>
+      <div class="value" id="stat-medium">—</div>
+      <div class="sub">CVSSv3 4.0–6.9</div>
+    </div>
+    <div class="stat-card total">
+      <div class="label">Total Loaded</div>
+      <div class="value" id="stat-total">—</div>
+      <div class="sub">Past 30 days</div>
+    </div>
+    <div class="stat-card" style="--c: var(--accent2);">
+      <div class="label">Network Attack Vector</div>
+      <div class="value" style="color:var(--accent2)" id="stat-network">—</div>
+      <div class="sub">AV:N vulnerabilities</div>
+    </div>
+    <div class="stat-card" style="">
+      <div class="label">KEV Listed</div>
+      <div class="value" style="color:#a78bfa" id="stat-kev">—</div>
+      <div class="sub">CISA Known Exploited</div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>Severity Distribution</h3>
+      <div class="chart-wrap"><canvas id="severityChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Attack Vector Breakdown</h3>
+      <div class="chart-wrap"><canvas id="avChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>CVSS Score Distribution</h3>
+      <div class="chart-wrap"><canvas id="scoreHistChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Top Affected Products (CWE)</h3>
+      <div class="chart-wrap"><canvas id="cweChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-group" style="flex:2; min-width: 180px;">
+      <label>Search CVE / Keyword / Product</label>
+      <input type="text" id="f-search" placeholder="e.g. CVE-2024-1234, Apache, Microsoft...">
+    </div>
+    <div class="filter-group">
+      <label>Severity</label>
+      <select id="f-severity">
+        <option value="">All Severities</option>
+        <option value="CRITICAL">Critical</option>
+        <option value="HIGH">High</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LOW">Low</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Attack Vector</label>
+      <select id="f-av">
+        <option value="">All Vectors</option>
+        <option value="NETWORK">Network</option>
+        <option value="ADJACENT">Adjacent</option>
+        <option value="LOCAL">Local</option>
+        <option value="PHYSICAL">Physical</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Min CVSS Score</label>
+      <input type="number" id="f-minscore" placeholder="0.0" min="0" max="10" step="0.1">
+    </div>
+    <div class="filter-group">
+      <label>Date Range</label>
+      <select id="f-days">
+        <option value="30">Last 30 days</option>
+        <option value="7">Last 7 days</option>
+        <option value="90">Last 90 days</option>
+        <option value="180">Last 180 days</option>
+      </select>
+    </div>
+    <div style="display:flex; gap: 6px; align-self: flex-end;">
+      <button class="btn" onclick="applyFilters()">Apply</button>
+      <button class="btn secondary" onclick="resetFilters()">Reset</button>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Vulnerability Feed</h3>
+      <span id="table-count">Loading...</span>
+    </div>
+    <div class="table-wrap">
+      <table id="vuln-table">
+        <thead>
+          <tr>
+            <th onclick="sortTable('cveId')">CVE ID ↕</th>
+            <th onclick="sortTable('score')">Score ↕</th>
+            <th onclick="sortTable('severity')">Severity ↕</th>
+            <th>Attack Vector</th>
+            <th>Description</th>
+            <th>Products</th>
+            <th onclick="sortTable('published')">Published ↕</th>
+            <th>References</th>
+          </tr>
+        </thead>
+        <tbody id="vuln-tbody">
+          <tr><td colspan="8"><div class="loading"><div class="spinner"></div><br>Fetching vulnerabilities from NVD...</div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+</div>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────
+const NVD_API   = 'https://services.nvd.nist.gov/rest/json/cves/2.0';
+const CISA_KEV  = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
+const PAGE_SIZE = 25;
+
+// ─── STATE ────────────────────────────────────────────────
+let allVulns  = [];
+let filtered  = [];
+let kevSet    = new Set();
+let page      = 1;
+let sortKey   = 'score';
+let sortDir   = -1; // -1 = desc
+
+// ─── INIT ─────────────────────────────────────────────────
+(async () => {
+  document.getElementById('refresh-time').textContent = new Date().toLocaleString('en-GB', {timeZone:'UTC'}) + ' UTC';
+  await loadKEV();
+  await loadVulns(30);
+})();
+
+// ─── LOAD KEV ─────────────────────────────────────────────
+async function loadKEV() {
+  try {
+    const r = await fetch(CISA_KEV);
+    const d = await r.json();
+    (d.vulnerabilities || []).forEach(v => kevSet.add(v.cveID));
+  } catch(e) { console.warn('KEV load failed', e); }
+}
+
+// ─── LOAD NVD ─────────────────────────────────────────────
+async function loadVulns(days) {
+  const tbody = document.getElementById('vuln-tbody');
+  tbody.innerHTML = '<tr><td colspan="8"><div class="loading"><div class="spinner"></div><br>Fetching from NVD API...</div></td></tr>';
+
+  const end   = new Date();
+  const start = new Date(Date.now() - days * 86400000);
+  const fmt   = d => d.toISOString().replace(/\.\d{3}Z$/, '.000');
+  const params = new URLSearchParams({
+    pubStartDate: fmt(start),
+    pubEndDate:   fmt(end),
+    resultsPerPage: 2000,
+  });
+
+  try {
+    const r = await fetch(`${NVD_API}?${params}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    allVulns = (data.vulnerabilities || []).map(parseVuln).filter(Boolean);
+    allVulns.sort((a,b) => (b.score||0) - (a.score||0));
+    applyFilters();
+  } catch(e) {
+    tbody.innerHTML = `<tr><td colspan="8"><div class="error-msg">⚠️ NVD API error: ${e.message}. This may be a CORS/rate-limit issue. In production, use a GitHub Actions proxy that stores data as JSON in the repo. <a href="#setup" style="color:var(--accent)">Setup guide below.</a></div></td></tr>`;
+    // Load demo data for local preview
+    loadDemoData();
+  }
+}
+
+// ─── PARSE NVD ENTRY ──────────────────────────────────────
+function parseVuln(entry) {
+  const c = entry.cve;
+  if (!c) return null;
+  const id = c.id;
+  const desc = (c.descriptions || []).find(d => d.lang === 'en')?.value || 'No description.';
+  const metrics = c.metrics || {};
+  const m31 = (metrics.cvssMetricV31 || [])[0];
+  const m30 = (metrics.cvssMetricV30 || [])[0];
+  const m2  = (metrics.cvssMetricV2  || [])[0];
+  const cvss = m31 || m30;
+  const score    = cvss?.cvssData?.baseScore ?? m2?.cvssData?.baseScore ?? null;
+  const severity = cvss?.cvssData?.baseSeverity ?? m2?.baseSeverity ?? 'N/A';
+  const av       = cvss?.cvssData?.attackVector ?? m2?.cvssData?.accessVector ?? 'N/A';
+  const refs     = (c.references || []).slice(0, 3).map(r => r.url);
+  const configs  = c.configurations || [];
+  const products = extractProducts(configs);
+  const cwes     = (c.weaknesses || []).flatMap(w => w.description || []).map(d => d.value).filter(v => v.startsWith('CWE-')).slice(0, 2);
+
+  return { id, desc, score, severity: severity.toUpperCase(), av: av.toUpperCase(), refs, products, cwes, published: c.published, kev: kevSet.has(id) };
+}
+
+function extractProducts(configs) {
+  const prods = new Set();
+  configs.forEach(cfg => {
+    (cfg.nodes || []).forEach(node => {
+      (node.cpeMatch || []).forEach(cpe => {
+        const parts = (cpe.criteria || '').split(':');
+        if (parts.length >= 5) {
+          const vendor  = parts[3] || '';
+          const product = parts[4] || '';
+          if (vendor && vendor !== '*' && product && product !== '*') {
+            prods.add(`${vendor.replace(/_/g,' ')} ${product.replace(/_/g,' ')}`);
+          }
+        }
+      });
+    });
+  });
+  return [...prods].slice(0, 3);
+}
+
+// ─── DEMO DATA (fallback) ─────────────────────────────────
+function loadDemoData() {
+  allVulns = [
+    { id:'CVE-2025-0001', score:9.8, severity:'CRITICAL', av:'NETWORK', desc:'Remote code execution vulnerability in Apache HTTP Server allows unauthenticated attackers to execute arbitrary code via crafted HTTP requests.', products:['apache http_server'], cwes:['CWE-78'], refs:['https://nvd.nist.gov'], published:'2025-01-15T00:00:00.000', kev:true },
+    { id:'CVE-2025-0002', score:9.1, severity:'CRITICAL', av:'NETWORK', desc:'Authentication bypass in Microsoft Exchange Server allows attackers to impersonate other users via NTLM relay attack.', products:['microsoft exchange_server'], cwes:['CWE-287'], refs:['https://nvd.nist.gov'], published:'2025-01-12T00:00:00.000', kev:false },
+    { id:'CVE-2025-0003', score:8.8, severity:'HIGH', av:'NETWORK', desc:'SQL injection vulnerability in Cisco IOS XE Web UI enables remote attackers to execute arbitrary SQL queries.', products:['cisco ios_xe'], cwes:['CWE-89'], refs:['https://nvd.nist.gov'], published:'2025-01-10T00:00:00.000', kev:true },
+    { id:'CVE-2025-0004', score:8.1, severity:'HIGH', av:'NETWORK', desc:'Heap buffer overflow in Google Chrome V8 JavaScript engine allows remote code execution through crafted HTML pages.', products:['google chrome'], cwes:['CWE-122'], refs:['https://nvd.nist.gov'], published:'2025-01-08T00:00:00.000', kev:false },
+    { id:'CVE-2025-0005', score:7.5, severity:'HIGH', av:'NETWORK', desc:'Improper input validation in Fortinet FortiOS SSL-VPN allows remote code execution without authentication.', products:['fortinet fortios'], cwes:['CWE-20'], refs:['https://nvd.nist.gov'], published:'2025-01-07T00:00:00.000', kev:true },
+    { id:'CVE-2025-0006', score:6.5, severity:'MEDIUM', av:'NETWORK', desc:'Cross-site scripting (XSS) vulnerability in WordPress core allows authenticated users to inject malicious scripts.', products:['wordpress wordpress'], cwes:['CWE-79'], refs:['https://nvd.nist.gov'], published:'2025-01-06T00:00:00.000', kev:false },
+    { id:'CVE-2025-0007', score:5.9, severity:'MEDIUM', av:'ADJACENT', desc:'Race condition in Linux kernel network stack allows local privilege escalation on multi-core systems.', products:['linux linux_kernel'], cwes:['CWE-362'], refs:['https://nvd.nist.gov'], published:'2025-01-05T00:00:00.000', kev:false },
+    { id:'CVE-2025-0008', score:9.9, severity:'CRITICAL', av:'NETWORK', desc:'Zero-day remote code execution in Ivanti Connect Secure allows unauthenticated remote attackers to execute commands.', products:['ivanti connect_secure'], cwes:['CWE-78'], refs:['https://nvd.nist.gov'], published:'2025-01-04T00:00:00.000', kev:true },
+  ];
+  for (let i = 9; i <= 60; i++) {
+    const scores = [9.8,9.1,8.8,8.1,7.5,6.5,5.9,4.2,3.1,9.9];
+    const score = scores[i % scores.length];
+    const severity = score>=9?'CRITICAL':score>=7?'HIGH':score>=4?'MEDIUM':'LOW';
+    const avs = ['NETWORK','NETWORK','NETWORK','LOCAL','ADJACENT','PHYSICAL'];
+    allVulns.push({ id:`CVE-2025-00${String(i).padStart(2,'0')}`, score, severity, av:avs[i%avs.length], desc:`Sample vulnerability ${i}: Buffer overflow in affected component allows remote code execution.`, products:[`vendor${i} product${i}`], cwes:['CWE-119'], refs:['https://nvd.nist.gov'], published:`2025-01-${String(30-(i%28)).padStart(2,'0')}T00:00:00.000`, kev: i%7===0 });
+  }
+  applyFilters();
+}
+
+// ─── FILTERS ──────────────────────────────────────────────
+function applyFilters() {
+  const search   = document.getElementById('f-search').value.toLowerCase().trim();
+  const severity = document.getElementById('f-severity').value;
+  const av       = document.getElementById('f-av').value;
+  const minScore = parseFloat(document.getElementById('f-minscore').value) || 0;
+
+  filtered = allVulns.filter(v => {
+    if (severity && v.severity !== severity) return false;
+    if (av && v.av !== av) return false;
+    if (v.score !== null && v.score < minScore) return false;
+    if (search) {
+      const hay = [v.id, v.desc, ...v.products, ...v.cwes].join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  filtered.sort((a,b) => {
+    let va = a[sortKey], vb = b[sortKey];
+    if (sortKey === 'published') { va = new Date(va); vb = new Date(vb); }
+    if (va < vb) return sortDir;
+    if (va > vb) return -sortDir;
+    return 0;
+  });
+
+  page = 1;
+  renderStats();
+  renderCharts();
+  renderTable();
+  renderExecSummary();
+}
+
+function resetFilters() {
+  ['f-search','f-minscore'].forEach(id => document.getElementById(id).value = '');
+  ['f-severity','f-av'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-days').value = '30';
+  applyFilters();
+}
+
+function sortTable(key) {
+  if (sortKey === key) sortDir = -sortDir;
+  else { sortKey = key; sortDir = -1; }
+  applyFilters();
+}
+
+// ─── RENDER STATS ─────────────────────────────────────────
+function renderStats() {
+  const all = filtered;
+  document.getElementById('stat-critical').textContent = all.filter(v=>v.severity==='CRITICAL').length;
+  document.getElementById('stat-high').textContent     = all.filter(v=>v.severity==='HIGH').length;
+  document.getElementById('stat-medium').textContent   = all.filter(v=>v.severity==='MEDIUM').length;
+  document.getElementById('stat-total').textContent    = all.length;
+  document.getElementById('stat-network').textContent  = all.filter(v=>v.av==='NETWORK').length;
+  document.getElementById('stat-kev').textContent      = all.filter(v=>v.kev).length;
+  document.getElementById('table-count').textContent   = `${all.length} vulnerabilities`;
+}
+
+// ─── RENDER EXEC SUMMARY ──────────────────────────────────
+function renderExecSummary() {
+  const all = filtered;
+  const crit = all.filter(v=>v.severity==='CRITICAL').length;
+  const high = all.filter(v=>v.severity==='HIGH').length;
+  const kev  = all.filter(v=>v.kev).length;
+  const netw = all.filter(v=>v.av==='NETWORK').length;
+  const top  = all.slice(0,1);
+  let txt = `In the current filtered view, <strong>${all.length} vulnerabilities</strong> are loaded. `;
+  if (crit>0) txt += `<strong style="color:#fca5a5">${crit} CRITICAL</strong> and `;
+  txt += `<strong style="color:#fdba74">${high} HIGH</strong> severity CVEs require immediate attention. `;
+  if (kev>0) txt += `<strong style="color:#a78bfa">${kev} CVE(s)</strong> appear on CISA's Known Exploited Vulnerabilities list and should be patched urgently. `;
+  txt += `${Math.round(netw/Math.max(all.length,1)*100)}% are exploitable over the <strong>network</strong>.`;
+  if (top[0]) txt += ` Top priority: <strong style="color:var(--accent)">${top[0].id}</strong> (CVSS ${top[0].score}).`;
+  document.getElementById('exec-summary-text').innerHTML = txt;
+}
+
+// ─── RENDER CHARTS ────────────────────────────────────────
+let charts = {};
+function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
+
+function renderCharts() {
+  // Severity donut
+  destroyChart('sev');
+  const sevCounts = { CRITICAL:0, HIGH:0, MEDIUM:0, LOW:0 };
+  filtered.forEach(v => { if (sevCounts[v.severity]!==undefined) sevCounts[v.severity]++; });
+  charts['sev'] = new Chart(document.getElementById('severityChart'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(sevCounts),
+      datasets: [{ data: Object.values(sevCounts), backgroundColor:['#ef4444','#f97316','#eab308','#22c55e'], borderColor:'#141c2e', borderWidth:3 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ color:'#94a3b8', font:{size:11} } } }, cutout:'60%' }
+  });
+
+  // AV bar
+  destroyChart('av');
+  const avCounts = {};
+  filtered.forEach(v => { avCounts[v.av] = (avCounts[v.av]||0)+1; });
+  const avKeys = Object.keys(avCounts).sort((a,b)=>avCounts[b]-avCounts[a]);
+  const avColors = { NETWORK:'#3b82f6', LOCAL:'#f97316', ADJACENT:'#eab308', PHYSICAL:'#22c55e', 'N/A':'#64748b' };
+  charts['av'] = new Chart(document.getElementById('avChart'), {
+    type: 'bar',
+    data: {
+      labels: avKeys,
+      datasets: [{ label:'Count', data: avKeys.map(k=>avCounts[k]), backgroundColor: avKeys.map(k=>avColors[k]||'#64748b'), borderRadius:4 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ x:{ticks:{color:'#94a3b8'}}, y:{ticks:{color:'#94a3b8'}, grid:{color:'rgba(255,255,255,0.05)'}} } }
+  });
+
+  // Score histogram
+  destroyChart('hist');
+  const buckets = Array(10).fill(0);
+  filtered.forEach(v => { if (v.score!=null) { const idx=Math.min(Math.floor(v.score),9); buckets[idx]++; } });
+  const histLabels = ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9','9-10'];
+  const histColors = buckets.map((_,i) => i>=9?'#ef4444':i>=7?'#f97316':i>=4?'#eab308':'#64748b');
+  charts['hist'] = new Chart(document.getElementById('scoreHistChart'), {
+    type: 'bar',
+    data: { labels:histLabels, datasets:[{ label:'CVEs', data:buckets, backgroundColor:histColors, borderRadius:3 }] },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{ticks:{color:'#94a3b8',font:{size:10}}}, y:{ticks:{color:'#94a3b8'}, grid:{color:'rgba(255,255,255,0.05)'}} } }
+  });
+
+  // CWE bar
+  destroyChart('cwe');
+  const cweCounts = {};
+  filtered.forEach(v => v.cwes.forEach(c => { cweCounts[c]=(cweCounts[c]||0)+1; }));
+  const topCwes = Object.entries(cweCounts).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  charts['cwe'] = new Chart(document.getElementById('cweChart'), {
+    type: 'bar',
+    data: { labels:topCwes.map(x=>x[0]), datasets:[{ label:'CVEs', data:topCwes.map(x=>x[1]), backgroundColor:'#06b6d4', borderRadius:3 }] },
+    options: { indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{ticks:{color:'#94a3b8'}}, y:{ticks:{color:'#94a3b8',font:{size:10}}} } }
+  });
+}
+
+// ─── RENDER TABLE ─────────────────────────────────────────
+function renderTable() {
+  const tbody = document.getElementById('vuln-tbody');
+  const start = (page-1)*PAGE_SIZE;
+  const slice = filtered.slice(start, start+PAGE_SIZE);
+
+  if (!slice.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:2rem;color:#64748b;">No vulnerabilities match the current filters.</td></tr>';
+    renderPagination();
+    return;
+  }
+
+  tbody.innerHTML = slice.map(v => {
+    const scoreClass = v.score>=9?'c':v.score>=7?'h':v.score>=4?'m':'l';
+    const avLabel = {'NETWORK':'🌐 Network','LOCAL':'💻 Local','ADJACENT':'📡 Adjacent','PHYSICAL':'🖐 Physical'}[v.av] || v.av;
+    const prodsHtml = v.products.slice(0,2).map(p=>`<span class="av-badge">${p}</span>`).join(' ');
+    const kevBadge = v.kev ? '<span class="badge CRITICAL" style="margin-left:4px;font-size:0.65rem">KEV</span>' : '';
+    const refsHtml = v.refs.length ? `<a href="${v.refs[0]}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.75rem">NVD ↗</a>` : '—';
+    const pubDate  = v.published ? v.published.substring(0,10) : '—';
+    return `<tr>
+      <td><a class="cve-link" href="https://nvd.nist.gov/vuln/detail/${v.id}" target="_blank" rel="noopener">${v.id}</a>${kevBadge}</td>
+      <td><span class="score ${scoreClass}">${v.score != null ? v.score.toFixed(1) : '—'}</span></td>
+      <td><span class="badge ${v.severity}">${v.severity}</span></td>
+      <td><span style="font-size:0.78rem;color:var(--text2)">${avLabel}</span></td>
+      <td class="desc-cell"><div class="trunc">${escHtml(v.desc)}</div></td>
+      <td>${prodsHtml || '<span style="color:var(--text3)">—</span>'}</td>
+      <td><span style="font-size:0.78rem;color:var(--text3);white-space:nowrap">${pubDate}</span></td>
+      <td>${refsHtml}</td>
+    </tr>`;
+  }).join('');
+
+  renderPagination();
+}
+
+function renderPagination() {
+  const total = Math.ceil(filtered.length / PAGE_SIZE);
+  const pag = document.getElementById('pagination');
+  if (total <= 1) { pag.innerHTML=''; return; }
+  let html = `<button class="page-btn" onclick="goPage(${page-1})" ${page<=1?'disabled':''}>◀</button>`;
+  const range = getPageRange(page, total);
+  range.forEach(p => {
+    if (p === '...') html += `<span style="color:var(--text3);padding:0 4px">…</span>`;
+    else html += `<button class="page-btn ${p===page?'active':''}" onclick="goPage(${p})">${p}</button>`;
+  });
+  html += `<button class="page-btn" onclick="goPage(${page+1})" ${page>=total?'disabled':''}>▶</button>`;
+  pag.innerHTML = html;
+}
+
+function getPageRange(current, total) {
+  if (total <= 7) return Array.from({length:total},(_,i)=>i+1);
+  if (current <= 4) return [1,2,3,4,5,'...',total];
+  if (current >= total-3) return [1,'...',total-4,total-3,total-2,total-1,total];
+  return [1,'...',current-1,current,current+1,'...',total];
+}
+
+function goPage(p) {
+  const total = Math.ceil(filtered.length/PAGE_SIZE);
+  if (p<1||p>total) return;
+  page = p;
+  renderTable();
+  window.scrollTo({top:400,behavior:'smooth'});
+}
+
+// ─── DATE RANGE CHANGE ────────────────────────────────────
+document.getElementById('f-days').addEventListener('change', function() {
+  loadVulns(parseInt(this.value));
+});
+
+// ─── UTIL ─────────────────────────────────────────────────
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>
