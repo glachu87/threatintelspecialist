@@ -20,11 +20,11 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests anthropic python-dateutil
+        run: pip install requests python-dateutil
 
       - name: Run incident scanner
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
         run: python scripts/scan_incidents.py
 
