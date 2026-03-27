@@ -11,11 +11,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#060a12;--bg2:#0a1020;--bg3:#0f1628;--surface:#111d35;--border:rgba(56,139,253,0.12);--border2:rgba(56,139,253,0.25);--accent:#3b82f6;--accent2:#06b6d4;--accent3:#8b5cf6;--red:#f43f5e;--orange:#f97316;--green:#10b981;--yellow:#f59e0b;--text:#e2e8f0;--text2:#94a3b8;--text3:#475569;--mono:'JetBrains Mono',monospace;--display:'Syne',sans-serif;--body:'Inter',sans-serif}
+    :root{
+      --bg:#060a12;--bg2:#0a1020;--bg3:#0f1628;--surface:#111d35;
+      --border:rgba(56,139,253,0.12);--border2:rgba(56,139,253,0.25);
+      --accent:#3b82f6;--accent2:#06b6d4;--accent3:#8b5cf6;
+      --red:#f43f5e;--orange:#f97316;--green:#10b981;--yellow:#f59e0b;
+      --text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
+      --mono:'JetBrains Mono',monospace;--display:'Syne',sans-serif;--body:'Inter',sans-serif
+    }
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
     a{color:inherit;text-decoration:none}
     .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(56,139,253,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,139,253,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
     /* NAV */
     .nav{position:sticky;top:0;z-index:100;background:rgba(6,10,18,0.88);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border)}
     .nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:64px;display:flex;align-items:center;gap:2rem}
@@ -28,63 +36,132 @@
     .nav-links a.active{color:var(--accent)}
     .nav-cta{margin-left:0.75rem;padding:7px 16px!important;background:var(--accent)!important;color:#fff!important;border-radius:8px!important;font-weight:600!important}
     .menu-toggle{display:none;background:none;border:1px solid var(--border2);color:var(--text2);border-radius:6px;padding:6px 10px;cursor:pointer;margin-left:auto;font-size:1rem}
+
     /* PAGE HEADER */
-    .page-header{padding:48px 2rem 32px;position:relative;z-index:1;border-bottom:1px solid var(--border);margin-bottom:2rem}
-    .page-header-inner{max-width:1280px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .page-header{padding:48px 2rem 32px;position:relative;z-index:1;border-bottom:1px solid var(--border);margin-bottom:0}
+    .page-header-inner{max-width:1280px;margin:0 auto}
     .page-eyebrow{font-family:var(--mono);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
     .page-header h1{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:6px}
-    .page-header p{font-size:0.9rem;color:var(--text2);max-width:560px}
+    .page-header p{font-size:0.9rem;color:var(--text2);max-width:600px}
+
     /* LAYOUT */
-    .layout{display:grid;grid-template-columns:220px 1fr;gap:0;max-width:1280px;margin:0 auto;padding:0 2rem 3rem;position:relative;z-index:1;flex:1}
+    .layout{display:grid;grid-template-columns:240px 1fr;gap:0;max-width:1280px;margin:0 auto;padding:0 2rem 3rem;position:relative;z-index:1;flex:1;margin-top:2rem}
+
     /* SIDEBAR */
-    .sidebar{border-right:1px solid var(--border);padding-right:1.5rem;padding-bottom:2rem}
-    .sidebar-section{margin-bottom:1.5rem}
-    .sidebar-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);font-family:var(--mono);margin-bottom:8px;padding:0 4px}
-    .feed-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;background:none;border:none;color:var(--text2);font-size:0.83rem;font-family:var(--body);cursor:pointer;transition:all 0.15s;text-align:left}
+    .sidebar{border-right:1px solid var(--border);padding-right:1.5rem;padding-top:0.25rem}
+    .sidebar-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);font-family:var(--mono);margin-bottom:10px;padding:0 4px}
+    .feed-btn{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border-radius:8px;background:none;border:none;color:var(--text2);font-size:0.83rem;font-family:var(--body);cursor:pointer;transition:all 0.15s;text-align:left;margin-bottom:2px}
     .feed-btn:hover{background:rgba(255,255,255,0.04);color:var(--text)}
     .feed-btn.active{background:rgba(59,130,246,0.1);color:var(--accent);border:1px solid rgba(59,130,246,0.2)}
-    .feed-btn .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .feed-btn .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;animation:blink 2s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
     .dot-green{background:var(--green);box-shadow:0 0 6px var(--green)}
     .dot-blue{background:var(--accent);box-shadow:0 0 6px var(--accent)}
     .dot-purple{background:var(--accent3);box-shadow:0 0 6px var(--accent3)}
     .dot-cyan{background:var(--accent2);box-shadow:0 0 6px var(--accent2)}
+    .feed-btn-info{display:flex;flex-direction:column;gap:1px}
+    .feed-btn-name{font-weight:500}
+    .feed-btn-sub{font-size:0.69rem;color:var(--text3);font-family:var(--mono)}
+    .sidebar-divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
+
     /* MAIN */
     .main-area{padding-left:2rem;min-width:0}
+
     /* FEED PANEL */
     .feed-panel{display:none}
     .feed-panel.active{display:block}
-    .feed-panel-header{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-    .feed-panel-title{font-family:var(--display);font-size:1.1rem;font-weight:700}
-    .feed-count{font-family:var(--mono);font-size:0.73rem;color:var(--text3)}
-    .feed-search{display:flex;gap:8px;margin-bottom:1.25rem}
-    .feed-search input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 14px;font-size:0.83rem;font-family:var(--body);outline:none;transition:border-color 0.15s}
-    .feed-search input:focus{border-color:var(--accent)}
-    /* ADVISORY CARDS */
-    .advisory-list{display:flex;flex-direction:column;gap:10px}
-    .advisory-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;transition:border-color 0.2s,background 0.2s;position:relative;overflow:hidden;cursor:pointer}
-    .advisory-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity 0.2s}
+
+    /* PANEL HEADER */
+    .panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:10px}
+    .panel-title-wrap{display:flex;flex-direction:column;gap:2px}
+    .panel-title{font-family:var(--display);font-size:1.1rem;font-weight:700}
+    .panel-subtitle{font-size:0.78rem;color:var(--text3)}
+    .panel-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .panel-count{font-family:var(--mono);font-size:0.72rem;color:var(--text3);background:var(--surface);border:1px solid var(--border);padding:4px 10px;border-radius:6px}
+    .search-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:7px 14px;font-size:0.82rem;font-family:var(--body);outline:none;transition:border-color 0.15s;width:220px}
+    .search-box:focus{border-color:var(--accent)}
+    .filter-sel{background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text2);padding:7px 10px;font-size:0.78rem;font-family:var(--body);outline:none;cursor:pointer}
+    .filter-sel option{background:var(--bg2)}
+
+    /* ADVISORY CARDS — rich layout */
+    .advisory-list{display:flex;flex-direction:column;gap:12px}
+
+    .advisory-card{
+      background:var(--bg3);border:1px solid var(--border);border-radius:14px;
+      padding:1.25rem 1.4rem;transition:border-color 0.2s,background 0.2s;
+      position:relative;overflow:hidden;
+    }
+    .advisory-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;opacity:0;transition:opacity 0.2s;border-radius:4px 0 0 4px}
     .advisory-card:hover{border-color:var(--border2);background:var(--surface)}
     .advisory-card:hover::before{opacity:1}
-    .advisory-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
-    .advisory-title{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.4}
-    .advisory-title a{color:var(--text);transition:color 0.15s}
-    .advisory-title a:hover{color:var(--accent)}
-    .advisory-date{font-family:var(--mono);font-size:0.69rem;color:var(--text3);white-space:nowrap;flex-shrink:0;margin-top:2px}
-    .advisory-body{font-size:0.8rem;color:var(--text2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
-    .advisory-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .advisory-meta{font-family:var(--mono);font-size:0.67rem;color:var(--text3)}
-    .severity-badge{font-family:var(--mono);font-size:0.67rem;padding:2px 7px;border-radius:4px;font-weight:700;text-transform:uppercase}
-    .sev-critical{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.25)}
-    .sev-high{background:rgba(249,115,22,0.12);color:#fdba74;border:1px solid rgba(249,115,22,0.25)}
-    .sev-medium{background:rgba(234,179,8,0.12);color:#fde047;border:1px solid rgba(234,179,8,0.25)}
+    .advisory-card.ransomware::before{background:var(--red)}
+    .advisory-card.high::before{background:var(--orange)}
+    .advisory-card.medium::before{background:var(--yellow)}
+    .advisory-card.normal::before{background:var(--accent)}
+
+    /* CARD TOP ROW */
+    .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .card-title{font-size:0.9rem;font-weight:700;color:var(--text);line-height:1.4;flex:1}
+    .card-title a{color:var(--text);transition:color 0.15s}
+    .card-title a:hover{color:var(--accent)}
+    .card-badges{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;align-items:flex-start}
+
+    /* BADGE */
+    .badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:4px;font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;font-family:var(--mono);white-space:nowrap}
+    .badge-ransomware{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.25)}
+    .badge-new{background:rgba(16,185,129,0.12);color:#34d399;border:1px solid rgba(16,185,129,0.25)}
+    .badge-kev{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.25)}
+    .badge-critical{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.25)}
+    .badge-high{background:rgba(249,115,22,0.12);color:#fdba74;border:1px solid rgba(249,115,22,0.25)}
+    .badge-medium{background:rgba(234,179,8,0.12);color:#fde047;border:1px solid rgba(234,179,8,0.25)}
+    .badge-info{background:rgba(59,130,246,0.12);color:#93c5fd;border:1px solid rgba(59,130,246,0.2)}
+    .badge-source{background:rgba(139,92,246,0.1);color:#c4b5fd;border:1px solid rgba(139,92,246,0.2)}
+
+    /* CARD META ROW */
+    .card-meta{display:flex;gap:16px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+    .meta-item{display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--text3);font-family:var(--mono)}
+    .meta-item strong{color:var(--text2);font-weight:500}
+    .meta-dot{width:3px;height:3px;border-radius:50%;background:var(--text3)}
+
+    /* CARD SUMMARY */
+    .card-summary{font-size:0.83rem;color:var(--text2);line-height:1.65;margin-bottom:10px}
+
+    /* ACTION BOX — the key new section */
+    .action-box{
+      background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);
+      border-radius:8px;padding:10px 14px;margin-bottom:10px;
+      display:flex;gap:10px;align-items:flex-start
+    }
+    .action-box.urgent{background:rgba(244,63,94,0.05);border-color:rgba(244,63,94,0.2)}
+    .action-icon{font-size:0.9rem;flex-shrink:0;margin-top:1px}
+    .action-label{font-size:0.69rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);font-family:var(--mono);margin-bottom:2px}
+    .action-box.urgent .action-label{color:var(--red)}
+    .action-text{font-size:0.8rem;color:var(--text2);line-height:1.5}
+
+    /* DUE DATE BAR */
+    .due-bar{display:flex;align-items:center;gap:8px;font-size:0.75rem;margin-bottom:10px}
+    .due-label{color:var(--text3);font-family:var(--mono);font-size:0.69rem;text-transform:uppercase;letter-spacing:0.06em}
+    .due-date{color:var(--red);font-family:var(--mono);font-weight:600;font-size:0.78rem}
+    .due-date.safe{color:var(--green)}
+    .due-date.warn{color:var(--yellow)}
+    .due-days{font-size:0.72rem;color:var(--text3)}
+
+    /* CARD FOOTER */
+    .card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.04)}
+    .card-footer-left{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .card-link{font-size:0.75rem;color:var(--accent);display:inline-flex;align-items:center;gap:4px;transition:gap 0.15s}
+    .card-link:hover{gap:7px}
+    .card-date{font-family:var(--mono);font-size:0.69rem;color:var(--text3)}
+
     /* LOADING / EMPTY */
     .loading-state{text-align:center;padding:4rem 2rem;color:var(--text3)}
     .spinner{display:inline-block;width:28px;height:28px;border:3px solid rgba(56,139,253,0.2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:1rem}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .empty-state{text-align:center;padding:4rem 2rem;color:var(--text3)}
-    .empty-state .icon{font-size:2.5rem;margin-bottom:1rem}
+    .empty-state{text-align:center;padding:4rem;color:var(--text3)}
+    .empty-icon{font-size:2.5rem;margin-bottom:1rem}
+
     /* FOOTER */
-    footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index:1}
+    footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index:1;margin-top:auto}
     .footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
     .footer-brand{display:flex;align-items:center;gap:10px}
     .footer-brand img{height:22px;opacity:0.6}
@@ -92,8 +169,26 @@
     .footer-links{display:flex;gap:1.5rem}
     .footer-links a{font-size:0.77rem;color:var(--text3);transition:color 0.15s}
     .footer-links a:hover{color:var(--text2)}
-    @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:1rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.sidebar-label{display:none}.main-area{padding-left:0}}
-    @media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem;gap:4px}.nav-links.open{display:flex}.nav-cta{display:none!important}.menu-toggle{display:block}.layout{padding:0 1.25rem 2rem}}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:1rem;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:6px}
+      .sidebar-label,.sidebar-divider{display:none}
+      .feed-btn{width:auto;padding:7px 12px}
+      .feed-btn-sub{display:none}
+      .main-area{padding-left:0}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem;gap:4px}
+      .nav-links.open{display:flex}
+      .nav-cta{display:none!important}
+      .menu-toggle{display:block}
+      .page-header{padding:32px 1.25rem 24px}
+      .layout{padding:0 1.25rem 2rem}
+      .search-box{width:100%}
+      .panel-controls{width:100%}
+    }
   </style>
 </head>
 <body>
@@ -120,81 +215,130 @@
 
 <div class="page-header">
   <div class="page-header-inner">
-    <div>
-      <div class="page-eyebrow">Threat Intelligence</div>
-      <h1>📡 Threat Feeds</h1>
-      <p>Centralised advisories from CISA, UK NCSC, VirusTotal and Google Threat Intelligence — updated automatically.</p>
-    </div>
+    <div class="page-eyebrow">Threat Intelligence</div>
+    <h1>📡 Threat Feeds</h1>
+    <p>Centralised advisories from CISA KEV, UK NCSC, VirusTotal and Google Threat Intelligence — with required actions, due dates, and full context.</p>
   </div>
 </div>
 
 <div class="layout">
   <aside class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-label">Feed Sources</div>
-      <button class="feed-btn active" onclick="showFeed('cisa',this)"><div class="dot dot-green"></div>CISA Advisories</button>
-      <button class="feed-btn" onclick="showFeed('ncsc',this)"><div class="dot dot-blue"></div>UK NCSC</button>
-      <button class="feed-btn" onclick="showFeed('vt',this)"><div class="dot dot-purple"></div>VirusTotal</button>
-      <button class="feed-btn" onclick="showFeed('google',this)"><div class="dot dot-cyan"></div>Google Threat Intel</button>
-    </div>
+    <div class="sidebar-label">Feed Sources</div>
+
+    <button class="feed-btn active" id="btn-cisa" onclick="showFeed('cisa',this)">
+      <div class="dot dot-green"></div>
+      <div class="feed-btn-info">
+        <span class="feed-btn-name">CISA KEV</span>
+        <span class="feed-btn-sub">Known Exploited Vulns</span>
+      </div>
+    </button>
+
+    <button class="feed-btn" id="btn-ncsc" onclick="showFeed('ncsc',this)">
+      <div class="dot dot-blue"></div>
+      <div class="feed-btn-info">
+        <span class="feed-btn-name">UK NCSC</span>
+        <span class="feed-btn-sub">National Cyber Security</span>
+      </div>
+    </button>
+
+    <button class="feed-btn" id="btn-vt" onclick="showFeed('vt',this)">
+      <div class="dot dot-purple"></div>
+      <div class="feed-btn-info">
+        <span class="feed-btn-name">VirusTotal</span>
+        <span class="feed-btn-sub">Threat Intelligence</span>
+      </div>
+    </button>
+
+    <button class="feed-btn" id="btn-google" onclick="showFeed('google',this)">
+      <div class="dot dot-cyan"></div>
+      <div class="feed-btn-info">
+        <span class="feed-btn-name">Google Threat Intel</span>
+        <span class="feed-btn-sub">Mandiant / TAG</span>
+      </div>
+    </button>
+
+    <hr class="sidebar-divider">
+    <div class="sidebar-label">About CISA KEV</div>
+    <p style="font-size:0.75rem;color:var(--text3);padding:0 4px;line-height:1.6">
+      The Known Exploited Vulnerabilities catalog lists CVEs with confirmed active exploitation in the wild. Federal agencies must patch by the due date under BOD 22-01.
+    </p>
   </aside>
 
   <main class="main-area">
-    <!-- CISA -->
+
+    <!-- CISA PANEL -->
     <div class="feed-panel active" id="panel-cisa">
-      <div class="feed-panel-header">
-        <div class="feed-panel-title">CISA Advisories</div>
-        <span class="feed-count" id="count-cisa">Loading…</span>
-      </div>
-      <div class="feed-search">
-        <input type="text" id="search-cisa" placeholder="Search advisories…" oninput="filterFeed('cisa')">
+      <div class="panel-header">
+        <div class="panel-title-wrap">
+          <div class="panel-title">CISA Known Exploited Vulnerabilities</div>
+          <div class="panel-subtitle">Actively exploited CVEs — patch by the due date</div>
+        </div>
+        <div class="panel-controls">
+          <input class="search-box" type="text" id="search-cisa" placeholder="Search CVE, vendor, product…" oninput="filterFeed('cisa')">
+          <select class="filter-sel" id="filter-cisa-ransomware" onchange="filterFeed('cisa')">
+            <option value="">All types</option>
+            <option value="yes">Ransomware only</option>
+            <option value="no">Non-ransomware</option>
+          </select>
+          <span class="panel-count" id="count-cisa">Loading…</span>
+        </div>
       </div>
       <div class="advisory-list" id="list-cisa">
-        <div class="loading-state"><div class="spinner"></div><br>Loading CISA advisories…</div>
+        <div class="loading-state"><div class="spinner"></div><br>Loading CISA KEV advisories…</div>
       </div>
     </div>
 
-    <!-- NCSC -->
+    <!-- NCSC PANEL -->
     <div class="feed-panel" id="panel-ncsc">
-      <div class="feed-panel-header">
-        <div class="feed-panel-title">UK NCSC Advisories</div>
-        <span class="feed-count" id="count-ncsc">Loading…</span>
-      </div>
-      <div class="feed-search">
-        <input type="text" id="search-ncsc" placeholder="Search advisories…" oninput="filterFeed('ncsc')">
+      <div class="panel-header">
+        <div class="panel-title-wrap">
+          <div class="panel-title">UK NCSC Advisories</div>
+          <div class="panel-subtitle">UK National Cyber Security Centre guidance</div>
+        </div>
+        <div class="panel-controls">
+          <input class="search-box" type="text" id="search-ncsc" placeholder="Search advisories…" oninput="filterFeed('ncsc')">
+          <span class="panel-count" id="count-ncsc">Loading…</span>
+        </div>
       </div>
       <div class="advisory-list" id="list-ncsc">
         <div class="loading-state"><div class="spinner"></div><br>Loading UK NCSC advisories…</div>
       </div>
     </div>
 
-    <!-- VIRUSTOTAL -->
+    <!-- VT PANEL -->
     <div class="feed-panel" id="panel-vt">
-      <div class="feed-panel-header">
-        <div class="feed-panel-title">VirusTotal Intelligence</div>
-        <span class="feed-count" id="count-vt">Loading…</span>
-      </div>
-      <div class="feed-search">
-        <input type="text" id="search-vt" placeholder="Search…" oninput="filterFeed('vt')">
+      <div class="panel-header">
+        <div class="panel-title-wrap">
+          <div class="panel-title">VirusTotal Intelligence</div>
+          <div class="panel-subtitle">Threat intelligence and malware analysis</div>
+        </div>
+        <div class="panel-controls">
+          <input class="search-box" type="text" id="search-vt" placeholder="Search…" oninput="filterFeed('vt')">
+          <span class="panel-count" id="count-vt">Loading…</span>
+        </div>
       </div>
       <div class="advisory-list" id="list-vt">
         <div class="loading-state"><div class="spinner"></div><br>Loading VirusTotal feed…</div>
       </div>
     </div>
 
-    <!-- GOOGLE -->
+    <!-- GOOGLE PANEL -->
     <div class="feed-panel" id="panel-google">
-      <div class="feed-panel-header">
-        <div class="feed-panel-title">Google Threat Intelligence</div>
-        <span class="feed-count" id="count-google">Loading…</span>
-      </div>
-      <div class="feed-search">
-        <input type="text" id="search-google" placeholder="Search…" oninput="filterFeed('google')">
+      <div class="panel-header">
+        <div class="panel-title-wrap">
+          <div class="panel-title">Google Threat Intelligence</div>
+          <div class="panel-subtitle">Mandiant & Google TAG research</div>
+        </div>
+        <div class="panel-controls">
+          <input class="search-box" type="text" id="search-google" placeholder="Search…" oninput="filterFeed('google')">
+          <span class="panel-count" id="count-google">Loading…</span>
+        </div>
       </div>
       <div class="advisory-list" id="list-google">
         <div class="loading-state"><div class="spinner"></div><br>Loading Google Threat Intel feed…</div>
       </div>
     </div>
+
   </main>
 </div>
 
@@ -211,84 +355,233 @@
 </footer>
 
 <script>
-  const feedData = { cisa:[], ncsc:[], vt:[], google:[] };
+// ── STATE ──────────────────────────────────────────────────────────────────
+const feedData = { cisa:[], ncsc:[], vt:[], google:[] };
+const FEED_URLS = {
+  cisa:   '/feeds/cisa/advisories.json',
+  ncsc:   '/feeds/ncsc/advisories.json',
+  vt:     '/feeds/vt/advisories.json',
+  google: '/feeds/google/advisories.json',
+};
 
-  const FEED_URLS = {
-    cisa:   '/feeds/cisa/advisories.json',
-    ncsc:   '/feeds/ncsc/advisories.json',
-    vt:     '/feeds/vt/advisories.json',
-    google: '/feeds/google/advisories.json',
+// ── NORMALISE — maps any JSON structure to a common schema ─────────────────
+function normalise(item, source) {
+  // CISA KEV fields: cveID, vendorProject, product, vulnerabilityName,
+  //   dateAdded, shortDescription, requiredAction, dueDate,
+  //   knownRansomwareCampaignUse, notes
+  // Generic feed fields: title, link, published, summary, executive_summary,
+  //   vendor, affected_products, cvss_v4, cvss_v3, risk_evaluation, mitigations
+
+  const isKEV = !!item.cveID;
+
+  return {
+    source,
+    cveId:        item.cveID || item.cve_id || extractCVE(item.title) || '',
+    title:        item.vulnerabilityName || item.title || 'Untitled Advisory',
+    vendor:       item.vendorProject || item.vendor || item.vendorProject || '',
+    product:      item.product || item.affected_products || '',
+    summary:      item.shortDescription || item.executive_summary || item.summary || item.description || '',
+    action:       item.requiredAction || item.mitigations || item.recommended_actions || '',
+    dueDate:      item.dueDate || item.due_date || '',
+    dateAdded:    item.dateAdded || item.published || item.release_date || '',
+    ransomware:   (item.knownRansomwareCampaignUse || '').toString().toLowerCase(),
+    cvss:         item.cvss_v4 || item.cvss_v3 || item.cvss || '',
+    risk:         item.risk_evaluation || item.severity || '',
+    notes:        item.notes || '',
+    link:         item.link || item.url || (item.cveID ? `https://nvd.nist.gov/vuln/detail/${item.cveID}` : '#'),
+    isKEV,
   };
+}
 
-  async function loadFeed(key) {
-    try {
-      const r = await fetch(FEED_URLS[key], {cache:'no-store'});
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      const d = await r.json();
-      feedData[key] = d.items || [];
-      renderFeed(key, feedData[key]);
-    } catch(e) {
-      document.getElementById('list-'+key).innerHTML =
-        `<div class="empty-state"><div class="icon">📭</div><p>Feed unavailable — check back shortly.<br><small style="color:var(--text3);font-family:var(--mono)">${e.message}</small></p></div>`;
-      document.getElementById('count-'+key).textContent = '0 items';
-    }
+function extractCVE(str) {
+  if (!str) return '';
+  const m = str.match(/CVE-\d{4}-\d+/i);
+  return m ? m[0].toUpperCase() : '';
+}
+
+// ── LOAD ───────────────────────────────────────────────────────────────────
+async function loadFeed(key) {
+  try {
+    const r = await fetch(FEED_URLS[key], { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+
+    // Handle both {items:[]} and raw array formats, plus CISA's {vulnerabilities:[]}
+    const raw = d.items || d.vulnerabilities || d || [];
+    feedData[key] = (Array.isArray(raw) ? raw : []).map(it => normalise(it, key));
+    renderFeed(key, feedData[key]);
+  } catch(e) {
+    // If the feed file doesn't exist yet, show a helpful message with demo cards
+    feedData[key] = getDemoItems(key);
+    renderFeed(key, feedData[key]);
+    document.getElementById('count-' + key).textContent = 'Demo data (feed file not found)';
+  }
+}
+
+// ── DEMO ITEMS — shown until real feed files exist ─────────────────────────
+function getDemoItems(key) {
+  const demos = {
+    cisa: [
+      { cveID:'CVE-2024-3094', vendorProject:'XZ Utils', product:'liblzma', vulnerabilityName:'XZ Utils Supply Chain Backdoor', dateAdded:'2024-04-02', dueDate:'2024-04-22', shortDescription:'XZ Utils versions 5.6.0 and 5.6.1 contain a backdoor enabling unauthenticated remote code execution via compromised OpenSSH on affected Linux distributions.', requiredAction:'Downgrade XZ Utils to version 5.4.x or earlier. Verify your distribution is not running 5.6.0 or 5.6.1 with systemd-linked sshd.', knownRansomwareCampaignUse:'Unknown', link:'https://nvd.nist.gov/vuln/detail/CVE-2024-3094' },
+      { cveID:'CVE-2024-21762', vendorProject:'Fortinet', product:'FortiOS', vulnerabilityName:'Fortinet FortiOS Out-of-Bound Write Vulnerability', dateAdded:'2024-02-09', dueDate:'2024-02-16', shortDescription:'Fortinet FortiOS contains an out-of-bounds write vulnerability in its SSL VPN that allows a remote unauthenticated attacker to execute arbitrary code or commands.', requiredAction:'Apply updates per Fortinet instructions or disable SSL VPN if updates cannot be applied immediately.', knownRansomwareCampaignUse:'Yes', link:'https://nvd.nist.gov/vuln/detail/CVE-2024-21762' },
+      { cveID:'CVE-2023-34362', vendorProject:'Progress', product:'MOVEit Transfer', vulnerabilityName:'Progress MOVEit Transfer SQL Injection Vulnerability', dateAdded:'2023-06-02', dueDate:'2023-06-23', shortDescription:'Progress MOVEit Transfer contains a SQL injection vulnerability that allows unauthenticated attackers to gain unauthorised access to MOVEit Transfer databases.', requiredAction:'Apply updates per vendor instructions. Disable all HTTP and HTTPS traffic to your MOVEit Transfer environment until a patch is applied.', knownRansomwareCampaignUse:'Yes', link:'https://nvd.nist.gov/vuln/detail/CVE-2023-34362' },
+    ],
+    ncsc: [
+      { title:'Critical Vulnerability in Cisco IOS XE Web UI', published:'2024-10-20', summary:'Cisco has disclosed a critical vulnerability in the web UI feature of IOS XE Software that could allow an unauthenticated remote attacker to create an account with privilege level 15 access.', executive_summary:'Cisco IOS XE contains a critical privilege escalation flaw actively exploited in the wild. Organisations should apply the patch immediately and audit for signs of compromise.', mitigations:'Disable the HTTP server feature on all internet-facing systems. Apply Cisco patches immediately.', link:'https://www.ncsc.gov.uk/news/cisco-ios-xe-advisory' },
+      { title:'NCSC Advisory: Active Exploitation of Ivanti VPN Vulnerabilities', published:'2024-01-12', summary:'Multiple vulnerabilities in Ivanti Connect Secure and Ivanti Policy Secure gateways are being actively exploited by threat actors to gain access to networks.', executive_summary:'Ivanti VPN products contain multiple vulnerabilities being exploited by nation-state actors. Organisations should apply mitigations and conduct forensic checks for compromise.', mitigations:'Apply Ivanti mitigations, run the Integrity Checker Tool, and consider factory resetting affected devices.', link:'https://www.ncsc.gov.uk' },
+    ],
+    vt: [
+      { title:'LockBit 3.0 Ransomware Campaign Analysis', published:'2024-03-01', summary:'VirusTotal analysis of LockBit 3.0 samples reveals updated evasion techniques including process injection and credential harvesting.', executive_summary:'LockBit 3.0 continues to evolve with new anti-analysis techniques. This advisory details IOCs, YARA rules, and detection guidance.', link:'https://blog.virustotal.com' },
+    ],
+    google: [
+      { title:'APT29 Spear-Phishing Campaign Targeting European Governments', published:'2024-02-14', summary:'Google Threat Analysis Group (TAG) identified a spear-phishing campaign by APT29 (Midnight Blizzard) targeting European government and diplomatic entities.', executive_summary:'Russian-linked APT29 is conducting targeted phishing attacks against European governments using zero-day exploits in widely-used productivity software.', link:'https://blog.google/threat-analysis-group' },
+    ],
+  };
+  return (demos[key] || []).map(it => normalise(it, key));
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────────────
+function renderFeed(key, items) {
+  const el = document.getElementById('list-' + key);
+  document.getElementById('count-' + key).textContent = items.length + ' advisories';
+
+  if (!items.length) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><p>No advisories match your search.</p></div>';
+    return;
   }
 
-  function renderFeed(key, items) {
-    document.getElementById('count-'+key).textContent = items.length + ' advisories';
-    if (!items.length) {
-      document.getElementById('list-'+key).innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>No advisories found.</p></div>';
-      return;
-    }
-    document.getElementById('list-'+key).innerHTML = items.map(it => {
-      const summary = (it.executive_summary || it.summary || it.description || '').toString();
-      const date = it.published || it.release_date || it.dateAdded || '';
-      const vendor = it.vendor ? `<span class="advisory-meta">Vendor: ${it.vendor}</span>` : '';
-      const products = it.affected_products ? `<span class="advisory-meta">Affects: ${it.affected_products}</span>` : '';
-      const cvss = it.cvss_v4 || it.cvss_v3 || it.cvss || '';
-      const cvssEl = cvss ? `<span class="severity-badge sev-high">CVSS ${cvss}</span>` : '';
-      return `<article class="advisory-card">
-        <div class="advisory-top">
-          <div class="advisory-title"><a href="${it.link||'#'}" target="_blank" rel="noopener">${it.title||'Untitled Advisory'}</a></div>
-          <span class="advisory-date">${date ? date.toString().substring(0,10) : ''}</span>
+  el.innerHTML = items.map(it => renderCard(it)).join('');
+}
+
+function renderCard(it) {
+  // ── Dates ──
+  const dateAdded = it.dateAdded ? it.dateAdded.toString().substring(0,10) : '';
+  const daysAgo   = dateAdded ? Math.floor((Date.now() - new Date(dateAdded)) / 86400000) : null;
+  const ageStr    = daysAgo === 0 ? 'Today' : daysAgo === 1 ? 'Yesterday' : daysAgo !== null ? `${daysAgo}d ago` : '';
+  const isNew     = daysAgo !== null && daysAgo <= 7;
+
+  // ── Due date ──
+  let dueDateHtml = '';
+  if (it.dueDate) {
+    const due       = new Date(it.dueDate);
+    const daysLeft  = Math.ceil((due - Date.now()) / 86400000);
+    const dueClass  = daysLeft < 0 ? '' : daysLeft <= 3 ? 'warn' : 'safe';
+    const dueLabel  = daysLeft < 0 ? `Overdue by ${Math.abs(daysLeft)}d` : daysLeft === 0 ? 'Due today' : `${daysLeft} days left`;
+    dueDateHtml = `
+      <div class="due-bar">
+        <span class="due-label">Patch deadline:</span>
+        <span class="due-date ${dueClass}">${it.dueDate.substring(0,10)}</span>
+        <span class="due-days">(${dueLabel})</span>
+      </div>`;
+  }
+
+  // ── Ransomware badge ──
+  const isRansomware = it.ransomware === 'yes' || it.ransomware === 'true';
+  const ransomwareBadge = isRansomware
+    ? '<span class="badge badge-ransomware">🔴 Ransomware</span>'
+    : it.ransomware === 'unknown' ? '<span class="badge badge-info">Ransomware: Unknown</span>' : '';
+
+  // ── Card accent class ──
+  const cardClass = isRansomware ? 'ransomware' : isNew ? 'high' : 'normal';
+
+  // ── Summary — never show N/A, use fallback chain ──
+  const summary = it.summary || it.title || 'No description available.';
+
+  // ── Required action box ──
+  const actionHtml = it.action
+    ? `<div class="action-box ${isRansomware ? 'urgent' : ''}">
+        <div class="action-icon">${isRansomware ? '🚨' : '🔧'}</div>
+        <div>
+          <div class="action-label">Required Action</div>
+          <div class="action-text">${it.action}</div>
         </div>
-        <div class="advisory-body">${summary.slice(0,280)}${summary.length>280?'…':''}</div>
-        <div class="advisory-footer">
-          ${cvssEl}${vendor}${products}
-          ${it.link?`<a href="${it.link}" target="_blank" rel="noopener" style="font-size:0.72rem;color:var(--accent);margin-left:auto">Read more →</a>`:''}
+       </div>`
+    : '';
+
+  // ── Meta items — only show fields that have real values ──
+  const metas = [];
+  if (it.cveId)   metas.push(`<span class="meta-item"><a href="https://nvd.nist.gov/vuln/detail/${it.cveId}" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--mono);font-size:0.75rem">${it.cveId} ↗</a></span>`);
+  if (it.vendor)  metas.push(`<span class="meta-item">🏢 <strong>${it.vendor}</strong></span>`);
+  if (it.product) metas.push(`<span class="meta-item">📦 <strong>${it.product}</strong></span>`);
+  if (it.cvss)    metas.push(`<span class="meta-item">📊 CVSS <strong>${it.cvss}</strong></span>`);
+  const metaHtml  = metas.length ? `<div class="card-meta">${metas.join('<span class="meta-dot"></span>')}</div>` : '';
+
+  // ── Notes / references ──
+  const notesLinks = it.notes
+    ? it.notes.split(';').map(n => n.trim()).filter(n => n.startsWith('http')).slice(0,3)
+        .map(u => { let label=u; try{label=new URL(u).hostname.replace('www.','')}catch(e){} return `<a href="${u}" target="_blank" rel="noopener" style="color:var(--text3);font-size:0.72rem">${label} ↗</a>`; }).join('  ·  ')
+    : '';
+
+  return `
+    <article class="advisory-card ${cardClass}">
+      <div class="card-top">
+        <div class="card-title">
+          <a href="${it.link}" target="_blank" rel="noopener">${it.title}</a>
         </div>
-      </article>`;
-    }).join('');
-  }
+        <div class="card-badges">
+          ${isNew ? '<span class="badge badge-new">🆕 New</span>' : ''}
+          ${it.isKEV ? '<span class="badge badge-kev">⚠️ KEV</span>' : ''}
+          ${ransomwareBadge}
+        </div>
+      </div>
 
-  function filterFeed(key) {
-    const q = document.getElementById('search-'+key).value.toLowerCase();
-    const filtered = feedData[key].filter(it =>
-      [it.title,it.vendor,it.affected_products,it.executive_summary,it.summary,it.description]
-        .filter(Boolean).join(' ').toLowerCase().includes(q)
-    );
-    renderFeed(key, filtered);
-  }
+      ${metaHtml}
+      ${dueDateHtml}
 
-  function showFeed(key, btn) {
-    document.querySelectorAll('.feed-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.feed-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('panel-'+key).classList.add('active');
-    btn.classList.add('active');
-    if (!feedData[key].length) loadFeed(key);
-  }
+      <div class="card-summary">${summary}</div>
+      ${actionHtml}
 
-  // Load all feeds on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    loadFeed('cisa');
-    loadFeed('ncsc');
-    loadFeed('vt');
-    loadFeed('google');
+      <div class="card-footer">
+        <div class="card-footer-left">
+          ${notesLinks}
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          ${ageStr ? `<span class="card-date">${ageStr}</span>` : ''}
+          <a href="${it.link}" target="_blank" rel="noopener" class="card-link">Full advisory →</a>
+        </div>
+      </div>
+    </article>`;
+}
+
+// ── FILTER ─────────────────────────────────────────────────────────────────
+function filterFeed(key) {
+  const q = (document.getElementById('search-' + key)?.value || '').toLowerCase();
+  const ransomwareFilter = document.getElementById('filter-cisa-ransomware')?.value || '';
+
+  let items = feedData[key].filter(it => {
+    if (ransomwareFilter === 'yes' && it.ransomware !== 'yes') return false;
+    if (ransomwareFilter === 'no'  && it.ransomware === 'yes') return false;
+    if (q) {
+      const hay = [it.cveId, it.title, it.vendor, it.product, it.summary, it.action]
+        .filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
   });
 
-  document.getElementById('menuToggle').addEventListener('click', () => {
-    document.getElementById('navLinks').classList.toggle('open');
-  });
+  renderFeed(key, items);
+}
+
+// ── TAB SWITCHING ──────────────────────────────────────────────────────────
+function showFeed(key, btn) {
+  document.querySelectorAll('.feed-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.feed-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + key).classList.add('active');
+  btn.classList.add('active');
+  if (!feedData[key].length) loadFeed(key);
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadFeed('cisa');
+  loadFeed('ncsc');
+  loadFeed('vt');
+  loadFeed('google');
+});
+
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
 </script>
 </body>
 </html>
