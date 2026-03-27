@@ -2,14 +2,15 @@
 """
 AI-powered incident scanner.
 Sources: NewsAPI, CISA advisories, RSS feeds.
-Uses Claude to classify, summarise, and deduplicate incidents.
+Uses Google Gemini (free tier) to classify, summarise, and deduplicate incidents.
 """
 
 import os, json, hashlib, requests
 from datetime import datetime, timezone
-import anthropic
 
 INCIDENT_FILE = "public/data/incidents.json"
+GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+
 NEWS_SOURCES = [
     "https://feeds.feedburner.com/TheHackersNews",
     "https://www.bleepingcomputer.com/feed/",
@@ -17,6 +18,7 @@ NEWS_SOURCES = [
     "https://www.darkreading.com/rss.xml",
     "https://www.securityweek.com/feed",
 ]
+
 
 def fetch_news_articles() -> list[dict]:
     """Fetch recent cybersecurity news from RSS feeds and NewsAPI."""
@@ -69,15 +71,45 @@ def fetch_news_articles() -> list[dict]:
     return articles
 
 
-def classify_incidents_with_ai(articles: list[dict]) -> list[dict]:
-    """Use Claude to classify articles as cybersecurity incidents."""
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+def call_gemini(prompt: str) -> str:
+    """Send a prompt to Gemini and return the response text."""
+    gemini_key = os.environ.get("GEMINI_API_KEY")
+    if not gemini_key:
+        raise ValueError("GEMINI_API_KEY environment variable is not set")
 
+    response = requests.post(
+        f"{GEMINI_API_URL}?key={gemini_key}",
+        json={
+            "contents": [
+                {
+                    "parts": [{"text": prompt}]
+                }
+            ],
+            "generationConfig": {
+                "temperature": 0.1,       # Low temperature = more consistent/predictable JSON output
+                "maxOutputTokens": 2000,
+            }
+        },
+        timeout=30
+    )
+
+    if response.status_code != 200:
+        raise Exception(f"Gemini API error {response.status_code}: {response.text}")
+
+    candidates = response.json().get("candidates", [])
+    if not candidates:
+        raise Exception("Gemini returned no candidates")
+
+    return candidates[0]["content"]["parts"][0]["text"]
+
+
+def classify_incidents_with_ai(articles: list[dict]) -> list[dict]:
+    """Use Gemini to classify articles as cybersecurity incidents."""
     batch_size = 10
     incidents = []
 
     for i in range(0, len(articles), batch_size):
-        batch = articles[i:i+batch_size]
+        batch = articles[i:i + batch_size]
         articles_text = "\n\n".join([
             f"Article {j+1}:\nTitle: {a['title']}\nDescription: {a['description']}\nSource: {a['source']}\nDate: {a['publishedAt']}"
             for j, a in enumerate(batch)
@@ -97,35 +129,46 @@ For each incident found, return a JSON array with objects containing:
 - date: incident date in YYYY-MM-DD format
 
 Only include actual security incidents (not commentary, analysis, or general news).
-Return ONLY the JSON array, no other text.
+Return ONLY the JSON array with no markdown formatting, no code fences, no extra text.
 
 Articles:
 {articles_text}"""
 
         try:
-            msg = client.messages.create(
-                model="claude-sonnet-4-20250514",
-                max_tokens=2000,
-                messages=[{"role": "user", "content": prompt}]
-            )
-            result = json.loads(msg.content[0].text)
+            raw = call_gemini(prompt)
+
+            # Strip markdown code fences if Gemini wraps the JSON in them
+            # e.g. ```json ... ``` or ``` ... ```
+            cleaned = raw.strip()
+            if cleaned.startswith("```"):
+                cleaned = cleaned.split("```")[1]          # remove opening fence
+                if cleaned.startswith("json"):
+                    cleaned = cleaned[4:]                  # strip the word "json"
+                cleaned = cleaned.rsplit("```", 1)[0]      # remove closing fence
+                cleaned = cleaned.strip()
+
+            result = json.loads(cleaned)
             if isinstance(result, list):
                 incidents.extend(result)
-        except json.JSONDecodeError:
-            pass
+                print(f"  Batch {i//batch_size + 1}: extracted {len(result)} incidents")
+            else:
+                print(f"  Batch {i//batch_size + 1}: unexpected response format, skipping")
+
+        except json.JSONDecodeError as e:
+            print(f"  Batch {i//batch_size + 1}: JSON parse error — {e}")
         except Exception as e:
-            print(f"Claude API error: {e}")
+            print(f"  Batch {i//batch_size + 1}: Gemini error — {e}")
 
     return incidents
 
 
 def deduplicate(new_incidents: list[dict], existing: list[dict]) -> list[dict]:
     """Remove incidents already in history using title similarity."""
-    existing_titles = {inc.get("title","").lower()[:60] for inc in existing}
+    existing_titles = {inc.get("title", "").lower()[:60] for inc in existing}
 
     fresh = []
     for inc in new_incidents:
-        key = inc.get("title","").lower()[:60]
+        key = inc.get("title", "").lower()[:60]
         if key not in existing_titles:
             inc["id"] = "INC-" + hashlib.md5(inc["title"].encode()).hexdigest()[:8].upper()
             inc["discoveredAt"] = datetime.now(timezone.utc).isoformat()
@@ -144,10 +187,16 @@ def main():
         with open(INCIDENT_FILE) as f:
             existing = json.load(f).get("incidents", [])
 
+    print(f"Loaded {len(existing)} existing incidents from history")
+
     # Fetch and classify new incidents
     articles = fetch_news_articles()
+    print(f"Classifying {len(articles)} articles with Gemini...")
     new_incidents = classify_incidents_with_ai(articles)
+    print(f"Gemini extracted {len(new_incidents)} incidents total")
+
     fresh = deduplicate(new_incidents, existing)
+    print(f"{len(fresh)} are new (not seen before)")
 
     # Merge and save
     all_incidents = fresh + existing
@@ -163,7 +212,7 @@ def main():
     with open(INCIDENT_FILE, "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"Saved {len(all_incidents)} incidents ({len(fresh)} new)")
+    print(f"Done. Saved {len(all_incidents)} total incidents ({len(fresh)} new) to {INCIDENT_FILE}")
 
 
 if __name__ == "__main__":
