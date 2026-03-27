@@ -303,14 +303,15 @@
             <th onclick="sortTable('score')">Score ↕</th>
             <th onclick="sortTable('severity')">Severity ↕</th>
             <th>Attack Vector</th>
+            <th>Exploitability</th>
+            <th>Weakness (CWE)</th>
             <th>Description</th>
-            <th>Products</th>
-            <th onclick="sortTable('published')">Published ↕</th>
-            <th>References</th>
+            <th onclick="sortTable('published')">Age ↕</th>
+            <th>Details</th>
           </tr>
         </thead>
         <tbody id="vuln-tbody">
-          <tr><td colspan="8"><div class="loading"><div class="spinner"></div><br>Fetching vulnerabilities from NVD...</div></td></tr>
+          <tr><td colspan="9"><div class="loading"><div class="spinner"></div><br>Fetching vulnerabilities from NVD...</div></td></tr>
         </tbody>
       </table>
     </div>
@@ -352,7 +353,7 @@ async function loadKEV() {
 // ─── LOAD NVD ─────────────────────────────────────────────
 async function loadVulns(days) {
   const tbody = document.getElementById('vuln-tbody');
-  tbody.innerHTML = '<tr><td colspan="8"><div class="loading"><div class="spinner"></div><br>Fetching from NVD API...</div></td></tr>';
+  tbody.innerHTML = '<tr><td colspan="9"><div class="loading"><div class="spinner"></div><br>Fetching from NVD API...</div></td></tr>';
 
   const end   = new Date();
   const start = new Date(Date.now() - days * 86400000);
@@ -371,7 +372,7 @@ async function loadVulns(days) {
     allVulns.sort((a,b) => (b.score||0) - (a.score||0));
     applyFilters();
   } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="8"><div class="error-msg">⚠️ NVD API error: ${e.message}. This may be a CORS/rate-limit issue. In production, use a GitHub Actions proxy that stores data as JSON in the repo. <a href="#setup" style="color:var(--accent)">Setup guide below.</a></div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9"><div class="error-msg">⚠️ NVD API error: ${e.message}. This may be a CORS/rate-limit issue. In production, use a GitHub Actions proxy that stores data as JSON in the repo. <a href="#setup" style="color:var(--accent)">Setup guide below.</a></div></td></tr>`;
     // Load demo data for local preview
     loadDemoData();
   }
@@ -388,54 +389,36 @@ function parseVuln(entry) {
   const m30 = (metrics.cvssMetricV30 || [])[0];
   const m2  = (metrics.cvssMetricV2  || [])[0];
   const cvss = m31 || m30;
-  const score    = cvss?.cvssData?.baseScore ?? m2?.cvssData?.baseScore ?? null;
+  const score = cvss?.cvssData?.baseScore ?? m2?.cvssData?.baseScore ?? null;
+  // Skip CVEs awaiting NVD analysis — no score means no actionable data
+  if (score === null) return null;
   const severity = cvss?.cvssData?.baseSeverity ?? m2?.baseSeverity ?? 'N/A';
   const av       = cvss?.cvssData?.attackVector ?? m2?.cvssData?.accessVector ?? 'N/A';
-  const refs     = (c.references || []).slice(0, 3).map(r => r.url);
-  const configs  = c.configurations || [];
-  const products = extractProducts(configs);
+  const ui       = cvss?.cvssData?.userInteraction ?? null;
+  const privReq  = cvss?.cvssData?.privilegesRequired ?? null;
+  const refs     = (c.references || []).slice(0, 5).map(r => r.url);
   const cwes     = (c.weaknesses || []).flatMap(w => w.description || []).map(d => d.value).filter(v => v.startsWith('CWE-')).slice(0, 2);
-
-  return { id, desc, score, severity: severity.toUpperCase(), av: av.toUpperCase(), refs, products, cwes, published: c.published, kev: kevSet.has(id) };
-}
-
-function extractProducts(configs) {
-  const prods = new Set();
-  configs.forEach(cfg => {
-    (cfg.nodes || []).forEach(node => {
-      (node.cpeMatch || []).forEach(cpe => {
-        const parts = (cpe.criteria || '').split(':');
-        if (parts.length >= 5) {
-          const vendor  = parts[3] || '';
-          const product = parts[4] || '';
-          if (vendor && vendor !== '*' && product && product !== '*') {
-            prods.add(`${vendor.replace(/_/g,' ')} ${product.replace(/_/g,' ')}`);
-          }
-        }
-      });
-    });
-  });
-  return [...prods].slice(0, 3);
+  return { id, desc, score, severity: severity.toUpperCase(), av: av.toUpperCase(), ui, privReq, refs, cwes, published: c.published, kev: kevSet.has(id) };
 }
 
 // ─── DEMO DATA (fallback) ─────────────────────────────────
 function loadDemoData() {
   allVulns = [
-    { id:'CVE-2025-0001', score:9.8, severity:'CRITICAL', av:'NETWORK', desc:'Remote code execution vulnerability in Apache HTTP Server allows unauthenticated attackers to execute arbitrary code via crafted HTTP requests.', products:['apache http_server'], cwes:['CWE-78'], refs:['https://nvd.nist.gov'], published:'2025-01-15T00:00:00.000', kev:true },
-    { id:'CVE-2025-0002', score:9.1, severity:'CRITICAL', av:'NETWORK', desc:'Authentication bypass in Microsoft Exchange Server allows attackers to impersonate other users via NTLM relay attack.', products:['microsoft exchange_server'], cwes:['CWE-287'], refs:['https://nvd.nist.gov'], published:'2025-01-12T00:00:00.000', kev:false },
-    { id:'CVE-2025-0003', score:8.8, severity:'HIGH', av:'NETWORK', desc:'SQL injection vulnerability in Cisco IOS XE Web UI enables remote attackers to execute arbitrary SQL queries.', products:['cisco ios_xe'], cwes:['CWE-89'], refs:['https://nvd.nist.gov'], published:'2025-01-10T00:00:00.000', kev:true },
-    { id:'CVE-2025-0004', score:8.1, severity:'HIGH', av:'NETWORK', desc:'Heap buffer overflow in Google Chrome V8 JavaScript engine allows remote code execution through crafted HTML pages.', products:['google chrome'], cwes:['CWE-122'], refs:['https://nvd.nist.gov'], published:'2025-01-08T00:00:00.000', kev:false },
-    { id:'CVE-2025-0005', score:7.5, severity:'HIGH', av:'NETWORK', desc:'Improper input validation in Fortinet FortiOS SSL-VPN allows remote code execution without authentication.', products:['fortinet fortios'], cwes:['CWE-20'], refs:['https://nvd.nist.gov'], published:'2025-01-07T00:00:00.000', kev:true },
-    { id:'CVE-2025-0006', score:6.5, severity:'MEDIUM', av:'NETWORK', desc:'Cross-site scripting (XSS) vulnerability in WordPress core allows authenticated users to inject malicious scripts.', products:['wordpress wordpress'], cwes:['CWE-79'], refs:['https://nvd.nist.gov'], published:'2025-01-06T00:00:00.000', kev:false },
-    { id:'CVE-2025-0007', score:5.9, severity:'MEDIUM', av:'ADJACENT', desc:'Race condition in Linux kernel network stack allows local privilege escalation on multi-core systems.', products:['linux linux_kernel'], cwes:['CWE-362'], refs:['https://nvd.nist.gov'], published:'2025-01-05T00:00:00.000', kev:false },
-    { id:'CVE-2025-0008', score:9.9, severity:'CRITICAL', av:'NETWORK', desc:'Zero-day remote code execution in Ivanti Connect Secure allows unauthenticated remote attackers to execute commands.', products:['ivanti connect_secure'], cwes:['CWE-78'], refs:['https://nvd.nist.gov'], published:'2025-01-04T00:00:00.000', kev:true },
+    { id:'CVE-2025-0001', score:9.8, severity:'CRITICAL', av:'NETWORK', ui:'NONE', privReq:'NONE', desc:'Remote code execution vulnerability in Apache HTTP Server allows unauthenticated attackers to execute arbitrary code via crafted HTTP requests.', cwes:['CWE-78'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0001','https://httpd.apache.org/security/vulnerabilities_24.html'], published:'2025-01-15T00:00:00.000', kev:true },
+    { id:'CVE-2025-0002', score:9.1, severity:'CRITICAL', av:'NETWORK', ui:'NONE', privReq:'NONE', desc:'Authentication bypass in Microsoft Exchange Server allows attackers to impersonate other users via NTLM relay attack.', cwes:['CWE-287'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0002','https://msrc.microsoft.com'], published:'2025-01-12T00:00:00.000', kev:false },
+    { id:'CVE-2025-0003', score:8.8, severity:'HIGH', av:'NETWORK', ui:'NONE', privReq:'LOW', desc:'SQL injection vulnerability in Cisco IOS XE Web UI enables remote attackers to execute arbitrary SQL queries.', cwes:['CWE-89'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0003','https://sec.cloudapps.cisco.com/security/advisories'], published:'2025-01-10T00:00:00.000', kev:true },
+    { id:'CVE-2025-0004', score:8.1, severity:'HIGH', av:'NETWORK', ui:'REQUIRED', privReq:'NONE', desc:'Heap buffer overflow in Google Chrome V8 JavaScript engine allows remote code execution through crafted HTML pages.', cwes:['CWE-122'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0004','https://chromereleases.googleblog.com'], published:'2025-01-08T00:00:00.000', kev:false },
+    { id:'CVE-2025-0005', score:7.5, severity:'HIGH', av:'NETWORK', ui:'NONE', privReq:'NONE', desc:'Improper input validation in Fortinet FortiOS SSL-VPN allows remote code execution without authentication.', cwes:['CWE-20'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0005','https://www.fortiguard.com/psirt'], published:'2025-01-07T00:00:00.000', kev:true },
+    { id:'CVE-2025-0006', score:6.5, severity:'MEDIUM', av:'NETWORK', ui:'REQUIRED', privReq:'LOW', desc:'Cross-site scripting (XSS) vulnerability in WordPress core allows authenticated users to inject malicious scripts.', cwes:['CWE-79'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0006','https://wordpress.org/news/category/security'], published:'2025-01-06T00:00:00.000', kev:false },
+    { id:'CVE-2025-0007', score:5.9, severity:'MEDIUM', av:'ADJACENT', ui:'NONE', privReq:'LOW', desc:'Race condition in Linux kernel network stack allows local privilege escalation on multi-core systems.', cwes:['CWE-362'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0007','https://kernel.org/pub/linux/kernel'], published:'2025-01-05T00:00:00.000', kev:false },
+    { id:'CVE-2025-0008', score:9.9, severity:'CRITICAL', av:'NETWORK', ui:'NONE', privReq:'NONE', desc:'Zero-day remote code execution in Ivanti Connect Secure allows unauthenticated remote attackers to execute commands.', cwes:['CWE-78'], refs:['https://nvd.nist.gov/vuln/detail/CVE-2025-0008','https://forums.ivanti.com/s/article/security-advisory'], published:'2025-01-04T00:00:00.000', kev:true },
   ];
   for (let i = 9; i <= 60; i++) {
     const scores = [9.8,9.1,8.8,8.1,7.5,6.5,5.9,4.2,3.1,9.9];
     const score = scores[i % scores.length];
     const severity = score>=9?'CRITICAL':score>=7?'HIGH':score>=4?'MEDIUM':'LOW';
     const avs = ['NETWORK','NETWORK','NETWORK','LOCAL','ADJACENT','PHYSICAL'];
-    allVulns.push({ id:`CVE-2025-00${String(i).padStart(2,'0')}`, score, severity, av:avs[i%avs.length], desc:`Sample vulnerability ${i}: Buffer overflow in affected component allows remote code execution.`, products:[`vendor${i} product${i}`], cwes:['CWE-119'], refs:['https://nvd.nist.gov'], published:`2025-01-${String(30-(i%28)).padStart(2,'0')}T00:00:00.000`, kev: i%7===0 });
+    const ui = ['NONE','NONE','REQUIRED','NONE'][i%4]; const pr = ['NONE','LOW','HIGH','NONE'][i%4]; allVulns.push({ id:`CVE-2025-00${String(i).padStart(2,'0')}`, score, severity, av:avs[i%avs.length], ui, privReq:pr, desc:`Sample vulnerability ${i}: Buffer overflow in affected component allows remote code execution.`, cwes:['CWE-119'], refs:[`https://nvd.nist.gov/vuln/detail/CVE-2025-00${String(i).padStart(2,'0')}`], published:`2025-01-${String(30-(i%28)).padStart(2,'0')}T00:00:00.000`, kev: i%7===0 });
   }
   applyFilters();
 }
@@ -580,27 +563,43 @@ function renderTable() {
   const slice = filtered.slice(start, start+PAGE_SIZE);
 
   if (!slice.length) {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:2rem;color:#64748b;">No vulnerabilities match the current filters.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:2rem;color:#64748b;">No vulnerabilities match the current filters.</td></tr>';
     renderPagination();
     return;
   }
 
   tbody.innerHTML = slice.map(v => {
     const scoreClass = v.score>=9?'c':v.score>=7?'h':v.score>=4?'m':'l';
-    const avLabel = {'NETWORK':'🌐 Network','LOCAL':'💻 Local','ADJACENT':'📡 Adjacent','PHYSICAL':'🖐 Physical'}[v.av] || v.av;
-    const prodsHtml = v.products.slice(0,2).map(p=>`<span class="av-badge">${p}</span>`).join(' ');
-    const kevBadge = v.kev ? '<span class="badge CRITICAL" style="margin-left:4px;font-size:0.65rem">KEV</span>' : '';
-    const refsHtml = v.refs.length ? `<a href="${v.refs[0]}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.75rem">NVD ↗</a>` : '—';
-    const pubDate  = v.published ? v.published.substring(0,10) : '—';
+    const avIcons = {'NETWORK':'🌐','LOCAL':'💻','ADJACENT':'📡','PHYSICAL':'🖐'};
+    const avColor = {'NETWORK':'#ef4444','LOCAL':'#f97316','ADJACENT':'#eab308','PHYSICAL':'#22c55e'};
+    const avHtml = `<span style="display:inline-flex;align-items:center;gap:4px;font-size:0.75rem;color:${avColor[v.av]||'#94a3b8'}">${avIcons[v.av]||''}${v.av}</span>`;
+    const kevBadge = v.kev ? '<span class="badge CRITICAL" style="margin-left:4px;font-size:0.63rem;vertical-align:middle">KEV</span>' : '';
+    // Exploitability — combines user interaction + privileges required
+    const uiLabel = v.ui === 'NONE' ? '🔓 No interaction' : v.ui === 'REQUIRED' ? '🖱️ User interaction' : '—';
+    const privLabel = v.privReq === 'NONE' ? '🔑 No auth' : v.privReq === 'LOW' ? '🔑 Low priv' : v.privReq === 'HIGH' ? '🔑 High priv' : '';
+    const exploitHtml = `<div style="font-size:0.75rem;color:var(--text2);line-height:1.7">${uiLabel}${privLabel ? '<br>'+privLabel : ''}</div>`;
+    // CWE badges
+    const cweHtml = v.cwes.length
+      ? v.cwes.map(c => `<span class="av-badge" style="display:inline-block;margin:1px 2px;font-size:0.68rem" title="${c}">${c}</span>`).join('')
+      : '<span style="color:var(--text3);font-size:0.75rem">—</span>';
+    // Age calculation
+    const daysAgo = v.published ? Math.floor((Date.now() - new Date(v.published)) / 86400000) : null;
+    const ageStr  = daysAgo === null ? '—' : daysAgo === 0 ? 'Today' : daysAgo === 1 ? '1 day ago' : daysAgo < 30 ? `${daysAgo}d ago` : daysAgo < 365 ? `${Math.floor(daysAgo/30)}mo ago` : `${Math.floor(daysAgo/365)}y ago`;
+    const ageColor = daysAgo !== null && daysAgo <= 3 ? 'var(--red)' : daysAgo <= 7 ? 'var(--orange)' : 'var(--text3)';
+    // Details: NVD link + vendor refs
+    const nvdUrl    = `https://nvd.nist.gov/vuln/detail/${v.id}`;
+    const vendorRef = v.refs.find(r => !r.includes('nvd.nist.gov'));
+    const detailsHtml = `<a href="${nvdUrl}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.75rem;font-weight:600;display:block">NVD ↗</a>${vendorRef ? `<a href="${vendorRef}" target="_blank" rel="noopener" style="color:var(--text3);font-size:0.69rem;display:block;margin-top:3px" title="${vendorRef}">Vendor ↗</a>` : ''}`;
     return `<tr>
-      <td><a class="cve-link" href="https://nvd.nist.gov/vuln/detail/${v.id}" target="_blank" rel="noopener">${v.id}</a>${kevBadge}</td>
-      <td><span class="score ${scoreClass}">${v.score != null ? v.score.toFixed(1) : '—'}</span></td>
+      <td><a class="cve-link" href="${nvdUrl}" target="_blank" rel="noopener">${v.id}</a>${kevBadge}</td>
+      <td><span class="score ${scoreClass}">${v.score.toFixed(1)}</span></td>
       <td><span class="badge ${v.severity}">${v.severity}</span></td>
-      <td><span style="font-size:0.78rem;color:var(--text2)">${avLabel}</span></td>
+      <td>${avHtml}</td>
+      <td>${exploitHtml}</td>
+      <td>${cweHtml}</td>
       <td class="desc-cell"><div class="trunc">${escHtml(v.desc)}</div></td>
-      <td>${prodsHtml || '<span style="color:var(--text3)">—</span>'}</td>
-      <td><span style="font-size:0.78rem;color:var(--text3);white-space:nowrap">${pubDate}</span></td>
-      <td>${refsHtml}</td>
+      <td><span style="font-size:0.75rem;color:${ageColor};white-space:nowrap" title="${v.published ? v.published.substring(0,10) : ''}">${ageStr}</span></td>
+      <td>${detailsHtml}</td>
     </tr>`;
   }).join('');
 
