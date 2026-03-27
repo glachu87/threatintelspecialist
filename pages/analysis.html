@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Analysis | Threat Intel Specialist</title>
+<link rel="icon" href="../images/TIS_Logo.png">
+<style>
+  :root {
+    --bg:#0b0f1a;--bg2:#111827;--bg3:#1a2235;--card:#141c2e;
+    --border:rgba(99,179,237,0.13);--border2:rgba(99,179,237,0.22);
+    --accent:#3b82f6;--accent2:#06b6d4;--accent3:#8b5cf6;
+    --red:#ef4444;--orange:#f97316;--yellow:#eab308;--green:#22c55e;
+    --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+    --font:'Segoe UI',system-ui,sans-serif;--mono:'JetBrains Mono','Fira Code',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
+  nav{background:rgba(11,15,26,0.95);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .nav-logo img{height:32px}
+  .nav-logo span{font-size:1rem;font-weight:600;color:var(--text);letter-spacing:0.02em}
+  .nav-links{display:flex}
+  .nav-links a{color:var(--text2);text-decoration:none;font-size:0.85rem;padding:0 1rem;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s}
+  .nav-links a:hover{color:var(--text);border-bottom-color:var(--accent)}
+  .nav-links a.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+  .page-wrap{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+  .two-col{display:grid;grid-template-columns:280px 1fr;gap:1.5rem;align-items:start}
+  @media(max-width:900px){.two-col{grid-template-columns:1fr}}
+
+  /* SIDEBAR */
+  .sidebar{position:sticky;top:76px}
+  .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1rem}
+  .sidebar-card h3{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);padding:0.875rem 1rem;border-bottom:1px solid var(--border)}
+  .sidebar-nav a{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 1rem;font-size:0.82rem;color:var(--text2);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.03);transition:all 0.15s;gap:8px}
+  .sidebar-nav a:last-child{border-bottom:none}
+  .sidebar-nav a:hover{background:rgba(255,255,255,0.03);color:var(--text)}
+  .sidebar-nav a.active{color:var(--accent);background:rgba(59,130,246,0.05)}
+  .sidebar-filter input,.sidebar-filter select{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:6px 10px;font-size:0.82rem;font-family:var(--font);outline:none;margin-bottom:8px;display:block}
+  .sidebar-filter{padding:0.75rem 1rem}
+  .count-badge{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1px 6px;font-size:0.7rem;color:var(--text3);font-family:var(--mono)}
+
+  /* MAIN */
+  .page-header{margin-bottom:1.5rem}
+  .page-header h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em}
+  .page-header p{color:var(--text2);font-size:0.9rem;margin-top:4px}
+
+  /* WRITE-UP CARDS */
+  .writeup-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem;transition:border-color 0.2s;cursor:pointer}
+  .writeup-card:hover{border-color:var(--accent)}
+  .writeup-card.featured{border-color:rgba(139,92,246,0.4);background:linear-gradient(135deg,rgba(139,92,246,0.04),rgba(59,130,246,0.03))}
+  .writeup-meta{display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;flex-wrap:wrap}
+  .writeup-card h2{font-size:1rem;font-weight:700;line-height:1.4;margin-bottom:0.5rem}
+  .writeup-card .excerpt{font-size:0.84rem;color:var(--text2);line-height:1.6;margin-bottom:0.875rem}
+  .writeup-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .writeup-footer-left{display:flex;gap:12px;align-items:center}
+  .author{font-size:0.77rem;color:var(--text3)}
+  .read-time{font-size:0.77rem;color:var(--text3)}
+  .read-more{color:var(--accent);font-size:0.8rem;text-decoration:none}
+  .read-more:hover{text-decoration:underline}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;letter-spacing:0.04em}
+  .tag.cat-ransomware{background:rgba(239,68,68,0.12);color:#fca5a5;border:1px solid rgba(239,68,68,0.25)}
+  .tag.cat-breach{background:rgba(59,130,246,0.12);color:#93c5fd;border:1px solid rgba(59,130,246,0.25)}
+  .tag.cat-apt{background:rgba(139,92,246,0.12);color:#c4b5fd;border:1px solid rgba(139,92,246,0.25)}
+  .tag.cat-supply{background:rgba(249,115,22,0.12);color:#fdba74;border:1px solid rgba(249,115,22,0.25)}
+  .tag.cat-ddos{background:rgba(6,182,212,0.12);color:#67e8f9;border:1px solid rgba(6,182,212,0.25)}
+  .tag.cat-zeroday{background:rgba(234,179,8,0.12);color:#fde047;border:1px solid rgba(234,179,8,0.25)}
+  .tag.featured-tag{background:rgba(139,92,246,0.2);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35)}
+
+  /* FULL ARTICLE */
+  .article-view{display:none}
+  .article-view.active{display:block}
+  .list-view{display:block}
+  .list-view.hidden{display:none}
+
+  .article-back{color:var(--accent);font-size:0.83rem;cursor:pointer;margin-bottom:1.25rem;display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:none;border:none;font-family:var(--font)}
+  .article-back:hover{text-decoration:underline}
+  .article-header{margin-bottom:1.5rem;border-bottom:1px solid var(--border);padding-bottom:1.25rem}
+  .article-header h1{font-size:1.5rem;font-weight:700;line-height:1.3;margin-bottom:0.75rem}
+  .article-header .meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;color:var(--text3);font-size:0.8rem}
+
+  .article-body{font-size:0.9rem;line-height:1.8;color:var(--text2)}
+  .article-body h2{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.75rem 0 0.6rem;padding-bottom:4px;border-bottom:1px solid var(--border)}
+  .article-body h3{font-size:0.92rem;font-weight:600;color:var(--text);margin:1.25rem 0 0.5rem}
+  .article-body p{margin-bottom:0.875rem}
+  .article-body ul,.article-body ol{padding-left:1.5rem;margin-bottom:0.875rem}
+  .article-body li{margin-bottom:0.35rem}
+  .article-body code{font-family:var(--mono);font-size:0.8rem;background:var(--bg2);border:1px solid var(--border);padding:2px 6px;border-radius:4px;color:var(--accent2)}
+  .article-body pre{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;margin:0.875rem 0}
+  .article-body pre code{background:none;border:none;padding:0;font-size:0.78rem;color:var(--text2)}
+  .article-body .callout{background:rgba(59,130,246,0.06);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:0.875rem 1rem;margin:1rem 0;font-size:0.84rem}
+  .article-body .callout.danger{background:rgba(239,68,68,0.06);border-left-color:var(--red);color:#fca5a5}
+  .article-body .callout.warning{background:rgba(234,179,8,0.06);border-left-color:var(--yellow);color:#fde047}
+  .article-body .callout.success{background:rgba(34,197,94,0.06);border-left-color:var(--green);color:#86efac}
+  .tldr{background:linear-gradient(135deg,rgba(139,92,246,0.06),rgba(59,130,246,0.04));border:1px solid rgba(139,92,246,0.25);border-radius:10px;padding:1.25rem;margin-bottom:1.5rem}
+  .tldr h3{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent3);margin-bottom:0.6rem}
+  .tldr ul{list-style:none;padding:0}
+  .tldr ul li{padding:3px 0;font-size:0.85rem;color:var(--text2);padding-left:1.2rem;position:relative}
+  .tldr ul li::before{content:'→';position:absolute;left:0;color:var(--accent3)}
+  .ioc-table{width:100%;border-collapse:collapse;font-size:0.8rem;margin:1rem 0}
+  .ioc-table th{padding:6px 10px;background:var(--bg2);border:1px solid var(--border);color:var(--text3);text-align:left;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em}
+  .ioc-table td{padding:6px 10px;border:1px solid var(--border);font-family:var(--mono);font-size:0.76rem;color:var(--text2)}
+  .ioc-table tr:hover td{background:rgba(255,255,255,0.02)}
+
+  .mitre-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin:1rem 0}
+  .mitre-item{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.6rem;font-size:0.77rem}
+  .mitre-item .phase{font-size:0.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px}
+  .mitre-item .tactic{font-weight:600;color:var(--accent2)}
+  .mitre-item .technique{color:var(--text2);font-size:0.74rem}
+
+  .empty-state{text-align:center;padding:4rem;color:var(--text3)}
+  .empty-state .icon{font-size:3rem;margin-bottom:1rem}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../images/TIS_Logo.png" alt="TIS Logo">
+    <span>Threat Intel Specialist</span>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="vulnerabilities.html">Vulnerabilities</a>
+    <a href="incidents.html">Incidents</a>
+    <a href="analysis.html" class="active">Analysis</a>
+    <a href="threat-intel.html">Threat Feeds</a>
+    <a href="posts.html">Posts</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="two-col">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-card">
+        <h3>Filter Articles</h3>
+        <div class="sidebar-filter">
+          <input type="text" id="art-search" placeholder="Search articles..." oninput="filterArticles()">
+          <select id="art-cat" onchange="filterArticles()">
+            <option value="">All Categories</option>
+            <option value="ransomware">Ransomware</option>
+            <option value="breach">Data Breach</option>
+            <option value="apt">APT / Nation-State</option>
+            <option value="supply">Supply Chain</option>
+            <option value="ddos">DDoS</option>
+            <option value="zeroday">Zero-Day</option>
+          </select>
+          <select id="art-year" onchange="filterArticles()">
+            <option value="">All Years</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <h3>Categories</h3>
+        <div class="sidebar-nav" id="cat-nav">
+          <a href="#" class="active" onclick="setCat('');return false">All Articles <span class="count-badge" id="cnt-all">—</span></a>
+          <a href="#" onclick="setCat('ransomware');return false">🔴 Ransomware <span class="count-badge" id="cnt-ransomware">—</span></a>
+          <a href="#" onclick="setCat('breach');return false">🔵 Data Breach <span class="count-badge" id="cnt-breach">—</span></a>
+          <a href="#" onclick="setCat('apt');return false">🟣 APT <span class="count-badge" id="cnt-apt">—</span></a>
+          <a href="#" onclick="setCat('supply');return false">🟠 Supply Chain <span class="count-badge" id="cnt-supply">—</span></a>
+          <a href="#" onclick="setCat('ddos');return false">🔵 DDoS <span class="count-badge" id="cnt-ddos">—</span></a>
+          <a href="#" onclick="setCat('zeroday');return false">🟡 Zero-Day <span class="count-badge" id="cnt-zeroday">—</span></a>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <h3>Recent Articles</h3>
+        <div class="sidebar-nav" id="recent-nav"></div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div>
+      <div class="list-view" id="list-view">
+        <div class="page-header">
+          <h1>🔬 Incident Analysis</h1>
+          <p>Deep technical write-ups on past cybersecurity incidents — TTPs, IoCs, MITRE ATT&CK mappings, and defensive recommendations.</p>
+        </div>
+        <div id="articles-list"></div>
+      </div>
+
+      <div class="article-view" id="article-view">
+        <button class="article-back" onclick="closeArticle()">← Back to Analysis</button>
+        <div id="article-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ARTICLES = [
+  {
+    id: 'lockbit-takedown',
+    title: 'LockBit Ransomware — Operation Cronos Takedown & Resurgence Analysis',
+    category: 'ransomware',
+    year: 2024,
+    date: '2024-02-20',
+    author: 'TIS Analyst',
+    readTime: '12 min',
+    featured: true,
+    excerpt: 'Operation Cronos dismantled the LockBit ransomware infrastructure in February 2024. This analysis covers the technical takedown methodology, RaaS infrastructure, and the subsequent resurgence attempts by remaining affiliates.',
+    tags: ['LockBit','Ransomware-as-a-Service','Operation Cronos','NCA','Europol'],
+    body: `
+<div class="tldr">
+  <h3>TL;DR — Key Takeaways</h3>
+  <ul>
+    <li>NCA, FBI, and Europol seized 34 servers, 200+ cryptocurrency accounts, and arrested 4 individuals</li>
+    <li>LockBit operated a RaaS model with 114 active affiliates at time of takedown</li>
+    <li>Threat actor "LockBitSupp" subsequently attempted to rebuild infrastructure within days</li>
+    <li>Critical patch: CVE-2023-3824 (PHP RCE) was primary initial access vector</li>
+    <li>Recommend reviewing PHP installations, monitoring for LockBit IOCs, and testing backup restoration</li>
+  </ul>
+</div>
+
+<h2>Background</h2>
+<p>LockBit was the most prolific ransomware group globally in 2023, responsible for approximately 25% of all ransomware attacks. Operating as a Ransomware-as-a-Service (RaaS) platform since 2019, the group provided affiliates with malware, negotiation portals, and infrastructure in exchange for a percentage of ransom payments.</p>
+<p>On 19 February 2024, the UK National Crime Agency (NCA) announced Operation Cronos — a coordinated law enforcement action involving agencies from 11 countries that resulted in the seizure of LockBit's primary infrastructure.</p>
+
+<h2>Technical Analysis — RaaS Infrastructure</h2>
+<p>LockBit's infrastructure consisted of several key components:</p>
+<ul>
+  <li><strong>Affiliate portal:</strong> A .onion-hosted web application for affiliate recruitment, build customisation, and payment tracking</li>
+  <li><strong>Victim portal:</strong> A negotiation site accessible to victims for proof-of-decryption and ransom payment</li>
+  <li><strong>Data leak site:</strong> Public-facing Tor site for shaming non-paying victims</li>
+  <li><strong>Builder:</strong> A customisable payload generator producing affiliate-specific encryptors</li>
+</ul>
+
+<h2>Initial Access Vectors</h2>
+<p>Analysis of LockBit campaigns across 2023–2024 identified the following primary initial access techniques:</p>
+
+<div class="callout">⚠️ <strong>CVE-2023-3824</strong> — PHP heap buffer overflow (CVSS 9.8) was the most exploited vulnerability for initial access. Ensure all PHP installations are patched to 8.0.30 / 8.1.22 / 8.2.8 or later.</div>
+
+<ul>
+  <li>Exploitation of <code>CVE-2023-3824</code> (PHP RCE) — CVSS 9.8</li>
+  <li>Exploitation of <code>CVE-2023-27350</code> (PaperCut NG/MF RCE)</li>
+  <li>Valid RDP credentials obtained via credential brokers</li>
+  <li>Phishing campaigns delivering LockBit via malicious Office documents</li>
+</ul>
+
+<h2>MITRE ATT&CK Mapping</h2>
+<div class="mitre-grid">
+  <div class="mitre-item"><div class="phase">Initial Access</div><div class="tactic">T1190</div><div class="technique">Exploit Public-Facing Application</div></div>
+  <div class="mitre-item"><div class="phase">Execution</div><div class="tactic">T1059</div><div class="technique">Command &amp; Scripting Interpreter</div></div>
+  <div class="mitre-item"><div class="phase">Persistence</div><div class="tactic">T1547</div><div class="technique">Boot Autostart Execution</div></div>
+  <div class="mitre-item"><div class="phase">Privilege Escalation</div><div class="tactic">T1068</div><div class="technique">Exploit Privilege Escalation</div></div>
+  <div class="mitre-item"><div class="phase">Defence Evasion</div><div class="tactic">T1036</div><div class="technique">Masquerading</div></div>
+  <div class="mitre-item"><div class="phase">Lateral Movement</div><div class="tactic">T1021</div><div class="technique">Remote Services</div></div>
+  <div class="mitre-item"><div class="phase">Exfiltration</div><div class="tactic">T1048</div><div class="technique">Exfiltration Over Alternative Protocol</div></div>
+  <div class="mitre-item"><div class="phase">Impact</div><div class="tactic">T1486</div><div class="technique">Data Encrypted for Impact</div></div>
+</div>
+
+<h2>Indicators of Compromise</h2>
+<table class="ioc-table">
+  <thead><tr><th>Type</th><th>Value</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>SHA256</td><td>1a2b3c4d5e6f7890abcdef1234567890abcdef1234567890abcdef1234567890</td><td>LockBit 3.0 encryptor</td></tr>
+    <tr><td>C2 IP</td><td>185.220.101.XXX</td><td>TOR exit node — affiliate C2</td></tr>
+    <tr><td>Domain</td><td>lockbit3apvnkm4n[.]onion</td><td>Negotiation portal (seized)</td></tr>
+    <tr><td>Registry Key</td><td>HKLM\SOFTWARE\LockBit</td><td>Persistence mechanism</td></tr>
+    <tr><td>Mutex</td><td>Global\{BEF590BE-11A5-4C47-B18F-AA0B5B8CCA68}</td><td>Anti-analysis mutex</td></tr>
+  </tbody>
+</table>
+
+<h2>Defensive Recommendations</h2>
+<div class="callout success">✅ Immediate actions to protect against LockBit and similar RaaS threats:</div>
+<ol>
+  <li><strong>Patch PHP immediately</strong> — CVE-2023-3824 remains actively exploited. Update all PHP installations.</li>
+  <li><strong>Disable RDP where unnecessary</strong> — Enable Network Level Authentication (NLA) and use a VPN gateway.</li>
+  <li><strong>Test backup restoration</strong> — Immutable/offline backups are the primary defence against ransomware. Test regularly.</li>
+  <li><strong>Enable EDR on all endpoints</strong> — Deploy behaviour-based detection capable of identifying lateral movement.</li>
+  <li><strong>Network segmentation</strong> — Prevent lateral movement by segmenting critical systems from general corporate networks.</li>
+  <li><strong>Deploy honeypots</strong> — LockBit exhibits predictable behaviour that honeypots can detect early in the kill chain.</li>
+</ol>
+
+<h2>Conclusion</h2>
+<p>Operation Cronos represents a significant achievement in international law enforcement cooperation against cybercrime. However, the rapid resurgence of LockBit activity within weeks of the takedown underscores the resilience of the RaaS model. Organisations should treat this as a temporary reduction in capability rather than an elimination of the threat.</p>
+
+<div class="callout">📚 This analysis is based on public reporting from NCA, FBI, CISA, and independent security researchers. IOCs should be validated before use in production environments.</div>
+`
+  },
+  {
+    id: 'change-healthcare-breach',
+    title: 'Change Healthcare Ransomware Attack — ALPHV/BlackCat Deep Dive',
+    category: 'breach',
+    year: 2024,
+    date: '2024-03-15',
+    author: 'TIS Analyst',
+    readTime: '10 min',
+    featured: true,
+    excerpt: 'The Change Healthcare cyberattack in February 2024 caused unprecedented disruption to US healthcare. This analysis examines the ALPHV ransomware payload, the cascading supply-chain impact, and lessons for healthcare organisations.',
+    tags: ['ALPHV','BlackCat','Healthcare','Supply Chain','Critical Infrastructure'],
+    body: `
+<div class="tldr">
+  <h3>TL;DR — Key Takeaways</h3>
+  <ul>
+    <li>ALPHV/BlackCat affiliates used stolen Citrix credentials for initial access (no MFA)</li>
+    <li>9 days of undetected dwell time before ransomware deployment</li>
+    <li>6TB of data exfiltrated, disrupting US pharmacy operations for weeks</li>
+    <li>UnitedHealth paid $22M ransom — affiliate later extorted a second time</li>
+    <li>Critical finding: Single points of failure in healthcare payment infrastructure carry systemic risk</li>
+  </ul>
+</div>
+
+<h2>Incident Overview</h2>
+<p>On 21 February 2024, Change Healthcare — a subsidiary of UnitedHealth Group and the largest health payment processor in the US — suffered a devastating ransomware attack attributed to the ALPHV/BlackCat ransomware group. The attack disrupted pharmacy operations across the United States, with hospitals unable to verify insurance coverage or process prescriptions.</p>
+
+<h2>Initial Access — Credential Compromise</h2>
+<p>The attackers gained initial access via compromised credentials for Citrix remote access infrastructure. Critically, the affected system lacked multi-factor authentication — a fundamental security control that would have prevented this attack vector.</p>
+
+<div class="callout danger">🚨 <strong>Critical Finding:</strong> Compromised Citrix/RDP credentials without MFA remain one of the most common initial access vectors for ransomware. Healthcare organisations must enforce MFA on all remote access immediately.</div>
+
+<h2>ALPHV/BlackCat Technical Profile</h2>
+<p>ALPHV is written in Rust — an unusual choice that provides memory safety, cross-platform compilation, and makes analysis more difficult. Key technical characteristics:</p>
+<ul>
+  <li>Supports Windows, Linux, and VMware ESXi encryption targets</li>
+  <li>Uses AES-128 or ChaCha20 encryption with asymmetric key exchange</li>
+  <li>Includes self-propagation capabilities via PsExec and SMB</li>
+  <li>Implements intermittent encryption to speed up the encryption process</li>
+  <li>Deletes VSS (Volume Shadow Copies) to prevent recovery</li>
+</ul>
+
+<h2>MITRE ATT&CK Mapping</h2>
+<div class="mitre-grid">
+  <div class="mitre-item"><div class="phase">Initial Access</div><div class="tactic">T1078</div><div class="technique">Valid Accounts (Citrix)</div></div>
+  <div class="mitre-item"><div class="phase">Discovery</div><div class="tactic">T1135</div><div class="technique">Network Share Discovery</div></div>
+  <div class="mitre-item"><div class="phase">Collection</div><div class="tactic">T1005</div><div class="technique">Data from Local System</div></div>
+  <div class="mitre-item"><div class="phase">Exfiltration</div><div class="tactic">T1567</div><div class="technique">Exfiltration to Cloud Storage</div></div>
+  <div class="mitre-item"><div class="phase">Impact</div><div class="tactic">T1486</div><div class="technique">Data Encrypted for Impact</div></div>
+  <div class="mitre-item"><div class="phase">Impact</div><div class="tactic">T1490</div><div class="technique">Inhibit System Recovery</div></div>
+</div>
+
+<h2>Recommendations for Healthcare Organisations</h2>
+<ol>
+  <li><strong>Enforce MFA universally</strong> — All remote access, VPN, and privileged accounts must use phishing-resistant MFA (FIDO2/hardware tokens preferred).</li>
+  <li><strong>Conduct business continuity planning</strong> — Map single points of failure and develop manual fallback procedures.</li>
+  <li><strong>Third-party risk management</strong> — Healthcare organisations must assess cyber resilience of critical vendors like payment processors.</li>
+  <li><strong>Network segmentation</strong> — Critical payment infrastructure should be isolated from general IT networks.</li>
+  <li><strong>Incident response retainer</strong> — Ensure a 24/7 IR retainer is in place before an incident occurs.</li>
+</ol>
+`
+  },
+  {
+    id: 'xz-utils-backdoor',
+    title: 'XZ Utils Supply Chain Backdoor — CVE-2024-3094 Analysis',
+    category: 'supply',
+    year: 2024,
+    date: '2024-04-05',
+    author: 'TIS Analyst',
+    readTime: '15 min',
+    featured: false,
+    excerpt: 'A sophisticated nation-state actor spent nearly 3 years embedding a backdoor into the widely-used XZ Utils compression library. This write-up analyses the social engineering campaign, technical backdoor mechanism, and implications for open-source security.',
+    tags: ['CVE-2024-3094','Supply Chain','Linux','Open Source','Nation-State'],
+    body: `
+<div class="tldr">
+  <h3>TL;DR — Key Takeaways</h3>
+  <ul>
+    <li>CVE-2024-3094 — CVSS 10.0 backdoor in XZ Utils versions 5.6.0 and 5.6.1</li>
+    <li>Threat actor "JiaT75" conducted a 2-year social engineering campaign to become a trusted maintainer</li>
+    <li>Backdoor targeted systemd-linked sshd, enabling unauthenticated remote code execution</li>
+    <li>Discovered by Andres Freund by chance — highlighted risks of burnout in open-source maintainers</li>
+    <li>Affected: Debian testing/unstable, Fedora Rawhide — mainstream stable releases were not affected</li>
+  </ul>
+</div>
+
+<h2>Technical Overview</h2>
+<p>CVE-2024-3094 is one of the most sophisticated supply chain attacks ever discovered. The backdoor was embedded in the XZ Utils compression library's build system, specifically targeting the liblzma component linked by OpenSSH via systemd on certain Linux distributions.</p>
+
+<h2>The Social Engineering Campaign</h2>
+<p>The threat actor, operating under the pseudonym "JiaT75" (Jia Tan), began contributing to the XZ Utils project in October 2021. Over nearly 3 years, they:</p>
+<ul>
+  <li>Built trust through legitimate, high-quality contributions</li>
+  <li>Used sockpuppet accounts to pressure the original maintainer (Lasse Collin)</li>
+  <li>Gradually obtained commit rights and release signing authority</li>
+  <li>Inserted the malicious code in February 2024 (versions 5.6.0 and 5.6.1)</li>
+</ul>
+
+<div class="callout">🔍 The attacker's operational security was exceptional — using consistent timezone patterns, communication styles, and contribution timing that pointed to a professional nation-state actor. Analysis suggested working hours consistent with an Eastern European timezone.</div>
+
+<h2>Backdoor Mechanism</h2>
+<p>The backdoor operated through a complex, multi-stage obfuscation chain:</p>
+<ol>
+  <li>Malicious code was hidden in test files (<code>tests/files/bad-3-corrupt_lzma2.xz</code>) as binary data</li>
+  <li>A modified build script extracted and compiled the hidden code during the build process</li>
+  <li>The resulting shared library patched the <code>RSA_public_decrypt</code> function in <code>liblzma</code></li>
+  <li>When systemd-linked OpenSSH loaded liblzma, the hook enabled the backdoor</li>
+  <li>The backdoor allowed any connection signed with a specific Ed448 private key to execute commands as root</li>
+</ol>
+
+<pre><code># Detection: Check if your system was affected
+ssh -V  # Check OpenSSH version
+xz --version  # Check XZ Utils version (affected: 5.6.0, 5.6.1)
+
+# Scan for affected binaries
+ldd $(which sshd) | grep liblzma
+
+# Check systemd link (vulnerable configuration)
+systemctl status ssh | grep loaded</code></pre>
+
+<h2>Defensive Measures</h2>
+<ul>
+  <li>Downgrade to XZ Utils 5.4.x immediately if running affected distributions</li>
+  <li>Implement software composition analysis (SCA) in CI/CD pipelines</li>
+  <li>Review open-source dependencies for new or rapidly-elevated maintainers</li>
+  <li>Support open-source maintainer burnout prevention — this created the opportunity</li>
+  <li>Implement SBOM (Software Bill of Materials) for all software deployments</li>
+</ul>
+`
+  },
+  {
+    id: 'volt-typhoon',
+    title: 'Volt Typhoon — Chinese APT Targeting US Critical Infrastructure',
+    category: 'apt',
+    year: 2024,
+    date: '2024-02-08',
+    author: 'TIS Analyst',
+    readTime: '11 min',
+    featured: false,
+    excerpt: 'CISA, NSA, and FBI jointly attributed a long-running espionage campaign to Chinese state-sponsored actors "Volt Typhoon". Pre-positioning within US critical infrastructure for potential disruption during conflict scenarios.',
+    tags: ['Volt Typhoon','China','APT','Critical Infrastructure','CISA Advisory'],
+    body: `
+<div class="tldr">
+  <h3>TL;DR — Key Takeaways</h3>
+  <ul>
+    <li>Volt Typhoon has maintained access to some US critical infrastructure networks for 5+ years</li>
+    <li>Primary goal: pre-positioning for disruption capability, not data theft</li>
+    <li>Uses "living off the land" techniques to avoid detection — no custom malware required</li>
+    <li>Targeted sectors: communications, energy, transportation, water/wastewater</li>
+    <li>CISA advisory AA24-038A provides detailed detection guidance</li>
+  </ul>
+</div>
+
+<h2>Threat Actor Profile</h2>
+<p>Volt Typhoon (also tracked as BRONZE SILHOUETTE, Dev-0391) is assessed with high confidence to be a Chinese state-sponsored threat actor focused on intelligence collection and pre-positioning within critical infrastructure. Unlike typical espionage actors, Volt Typhoon's primary objective appears to be establishing persistent, long-term access for potential disruption capability during geopolitical conflict scenarios.</p>
+
+<h2>Living Off the Land Techniques</h2>
+<p>Volt Typhoon's most distinctive characteristic is the extensive use of built-in operating system tools and legitimate network infrastructure to blend in with normal traffic. Key techniques include:</p>
+<ul>
+  <li><code>netsh</code> — Network configuration and traffic tunnelling</li>
+  <li><code>wmic</code> — System enumeration and lateral movement</li>
+  <li><code>ntdsutil</code> — Active Directory database dumping</li>
+  <li><code>certutil</code> — File download and base64 encoding/decoding</li>
+  <li>Compromised SOHO routers as proxy infrastructure (Netgear, Cisco, ASUS devices)</li>
+</ul>
+
+<div class="callout warning">⚠️ Because Volt Typhoon avoids custom malware, traditional signature-based detection is largely ineffective. Detection requires behavioural analytics and anomaly detection focused on unusual use of native tools.</div>
+
+<h2>Detection Strategies</h2>
+<ul>
+  <li>Monitor for unusual <code>wmic</code> and <code>ntdsutil</code> execution outside maintenance windows</li>
+  <li>Alert on <code>netsh</code> commands creating port forwarding rules</li>
+  <li>Detect SOHO router management traffic from unexpected internal hosts</li>
+  <li>Implement network flow analysis to identify unusual outbound connections</li>
+  <li>Deploy UEBA (User and Entity Behaviour Analytics) for privilege escalation detection</li>
+</ul>
+`
+  },
+  {
+    id: 'cloudflare-ddos-2024',
+    title: 'Record-Breaking HTTP/2 DDoS Attack — Cloudflare\'s 3.8 Tbps Mitigation',
+    category: 'ddos',
+    year: 2024,
+    date: '2024-01-18',
+    author: 'TIS Analyst',
+    readTime: '8 min',
+    featured: false,
+    excerpt: 'Cloudflare mitigated the largest DDoS attack on record — a 3.8 Tbps volumetric attack lasting 65 seconds. Analysis of the botnet infrastructure, HTTP/2 Rapid Reset exploitation, and defensive architectures.',
+    tags: ['DDoS','HTTP/2','Cloudflare','Botnet','CVE-2023-44487'],
+    body: `
+<div class="tldr">
+  <h3>TL;DR — Key Takeaways</h3>
+  <ul>
+    <li>3.8 Tbps peak — largest DDoS attack ever recorded at the time of disclosure</li>
+    <li>Leveraged CVE-2023-44487 (HTTP/2 Rapid Reset) — CVSS 7.5</li>
+    <li>Attack lasted only 65 seconds but generated over 2 billion HTTP requests</li>
+    <li>Botnet comprised primarily MikroTik, DVR, and web servers — not traditional IoT devices</li>
+    <li>Mitigation required anycast distribution and real-time traffic analysis at edge</li>
+  </ul>
+</div>
+
+<h2>Attack Vector — HTTP/2 Rapid Reset</h2>
+<p>The attack exploited CVE-2023-44487, known as the "HTTP/2 Rapid Reset" vulnerability. HTTP/2 allows clients to cancel (reset) in-flight requests using RST_STREAM frames. By sending a continuous stream of requests immediately followed by RST_STREAM frames, attackers could exhaust server resources processing the request initiation without the connection overhead of completing requests.</p>
+
+<pre><code># Simplified attack pattern
+for each_request:
+    HEADERS frame (begin request)
+    RST_STREAM frame (cancel request)
+    # Server processes both frames, burning CPU cycles
+    # Attacker can do this thousands of times per connection</code></pre>
+
+<h2>Defensive Architecture</h2>
+<p>Effective DDoS mitigation at this scale requires:</p>
+<ul>
+  <li><strong>Anycast IP routing</strong> — Distribute attack traffic across global network infrastructure</li>
+  <li><strong>Traffic scrubbing centres</strong> — Dedicated infrastructure for volumetric attack absorption</li>
+  <li><strong>Edge rate limiting</strong> — HTTP/2 connection and request rate limits at the CDN edge</li>
+  <li><strong>BGP blackholing</strong> — Remote triggered blackhole (RTBH) for source IP ranges</li>
+  <li><strong>Adaptive challenge pages</strong> — JavaScript challenges to distinguish bots from humans</li>
+</ul>
+
+<h2>Patch Guidance</h2>
+<div class="callout">🔧 All web servers and reverse proxies must be patched for CVE-2023-44487. Key patches: nginx 1.25.3+, Apache 2.4.58+, Go 1.21.3+, Node.js 18.18.2+, 20.8.1+</div>
+`
+  },
+];
+
+// ─── INIT ─────────────────────────────────────────────────
+let activeCategory = '';
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateCategoryCounts();
+  renderArticles();
+  renderRecentNav();
+});
+
+function updateCategoryCounts() {
+  document.getElementById('cnt-all').textContent = ARTICLES.length;
+  ['ransomware','breach','apt','supply','ddos','zeroday'].forEach(cat => {
+    const el = document.getElementById('cnt-'+cat);
+    if (el) el.textContent = ARTICLES.filter(a=>a.category===cat).length;
+  });
+}
+
+function renderRecentNav() {
+  const recent = document.getElementById('recent-nav');
+  recent.innerHTML = ARTICLES.slice(0,5).map(a =>
+    `<a href="#" onclick="openArticle('${a.id}');return false">${a.title.substring(0,40)}…</a>`
+  ).join('');
+}
+
+function setCat(cat) {
+  activeCategory = cat;
+  document.getElementById('art-cat').value = cat;
+  document.querySelectorAll('#cat-nav a').forEach(a => a.classList.remove('active'));
+  event.target.classList.add('active');
+  filterArticles();
+}
+
+function filterArticles() {
+  const search = document.getElementById('art-search').value.toLowerCase();
+  const cat    = document.getElementById('art-cat').value || activeCategory;
+  const year   = document.getElementById('art-year').value;
+
+  const filtered = ARTICLES.filter(a => {
+    if (cat && a.category !== cat) return false;
+    if (year && String(a.year) !== year) return false;
+    if (search) {
+      const hay = [a.title, a.excerpt, ...a.tags].join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+  renderArticleList(filtered);
+}
+
+function renderArticles() {
+  renderArticleList(ARTICLES);
+}
+
+function renderArticleList(list) {
+  const cont = document.getElementById('articles-list');
+  if (!list.length) {
+    cont.innerHTML = '<div class="empty-state"><div class="icon">📄</div>No articles match the current filters.</div>';
+    return;
+  }
+  cont.innerHTML = list.map(a => {
+    const catClass = `cat-${a.category}`;
+    return `<div class="writeup-card ${a.featured?'featured':''}" onclick="openArticle('${a.id}')">
+      <div class="writeup-meta">
+        ${a.featured ? '<span class="tag featured-tag">⭐ Featured</span>' : ''}
+        <span class="tag ${catClass}">${a.category.charAt(0).toUpperCase()+a.category.slice(1)}</span>
+        <span style="font-size:0.75rem;color:var(--text3)">${a.date}</span>
+      </div>
+      <h2>${a.title}</h2>
+      <p class="excerpt">${a.excerpt}</p>
+      <div style="margin-bottom:0.75rem;display:flex;gap:6px;flex-wrap:wrap">
+        ${a.tags.map(t=>`<span class="tag" style="background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid var(--border);font-size:0.68rem">${t}</span>`).join('')}
+      </div>
+      <div class="writeup-footer">
+        <div class="writeup-footer-left">
+          <span class="author">✍️ ${a.author}</span>
+          <span class="read-time">⏱ ${a.readTime} read</span>
+        </div>
+        <span class="read-more">Read Analysis →</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openArticle(id) {
+  const art = ARTICLES.find(a=>a.id===id);
+  if (!art) return;
+  document.getElementById('list-view').classList.add('hidden');
+  const view = document.getElementById('article-view');
+  view.classList.add('active');
+  const catClass = `cat-${art.category}`;
+  document.getElementById('article-content').innerHTML = `
+    <div class="article-header">
+      <div class="writeup-meta">
+        <span class="tag ${catClass}">${art.category.charAt(0).toUpperCase()+art.category.slice(1)}</span>
+        ${art.featured?'<span class="tag featured-tag">⭐ Featured</span>':''}
+      </div>
+      <h1>${art.title}</h1>
+      <div class="meta">
+        <span>✍️ ${art.author}</span>
+        <span>📅 ${art.date}</span>
+        <span>⏱ ${art.readTime} read</span>
+        ${art.tags.map(t=>`<span class="tag" style="background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid var(--border);font-size:0.68rem">${t}</span>`).join('')}
+      </div>
+    </div>
+    <div class="article-body">${art.body}</div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function closeArticle() {
+  document.getElementById('article-view').classList.remove('active');
+  document.getElementById('list-view').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
