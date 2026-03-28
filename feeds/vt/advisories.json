@@ -1,0 +1,207 @@
+{
+  "source": "https://blog.virustotal.com",
+  "fetched_at": "2026-03-28T00:19:49.597914+00:00",
+  "total": 20,
+  "items": [
+    {
+      "title": "From Automation to Infection (Part II): Reverse Shells, Semantic Worms, and Cognitive Rootkits in OpenClaw Skills",
+      "link": "https://blog.virustotal.com/feeds/7091495964134854859/comments/default",
+      "published": "2026-02-05",
+      "summary": "In part one , we showed how OpenClaw skills are rapidly becoming a supply-chain delivery channel: third-party \"automation\" that runs with real system access. This second installment expands the taxonomy with five techniques VirusTotal is actively seeing abused through skills, spanning remote execution, propagation, persistence, exfiltration, and behavioral backdoors, including attacks that don’t just steal data or drop binaries, but quietly reprogram what an agent will do next time it wakes up. ",
+      "executive_summary": "In part one , we showed how OpenClaw skills are rapidly becoming a supply-chain delivery channel: third-party \"automation\" that runs with real system access. This second installment expands the taxonomy with five techniques VirusTotal is actively seeing abused through skills, spanning remote execution, propagation, persistence, exfiltration, and behavioral backdoors, including attacks that don’t just steal data or drop binaries, but quietly reprogram what an agent will do next time it wakes up. ",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "From Automation to Infection: How OpenClaw AI Agent Skills Are Being Weaponized",
+      "link": "https://blog.virustotal.com/feeds/2905132620539165007/comments/default",
+      "published": "2026-02-02",
+      "summary": "The fastest-growing personal AI agent ecosystem just became a new delivery channel for malware. Over the last few days, VirusTotal has detected hundreds of OpenClaw skills that are actively malicious. What started as an ecosystem for extending AI agents is rapidly becoming a new supply-chain attack surface, where attackers distribute droppers, backdoors, infostealers and remote access tools disguised as helpful automation. \n  What is OpenClaw (formerly Clawdbot / Moltbot)?  \n Unless you’ve been ",
+      "executive_summary": "The fastest-growing personal AI agent ecosystem just became a new delivery channel for malware. Over the last few days, VirusTotal has detected hundreds of OpenClaw skills that are actively malicious. What started as an ecosystem for extending AI agents is rapidly becoming a new supply-chain attack surface, where attackers distribute droppers, backdoors, infostealers and remote access tools disguised as helpful automation. \n  What is OpenClaw (formerly Clawdbot / Moltbot)?  \n Unless you’ve been ",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "New Infostealer Campaign Targets Users via Spoofed Software Installers",
+      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/9050542757942830513",
+      "published": "2026-01-16",
+      "summary": "Introduction   As part of our commitment to sharing interesting hunts, we are launching these 'Flash Hunting Findings' to highlight active threats. Our latest investigation tracks an operation active between January 11 and January 15, 2026, which uses consistent ZIP file structures and a unique behash (\"4acaac53c8340a8c236c91e68244e6cb\") for identification. The campaign relies on a trusted executable to trick the operating system into loading a malicious payload, leading to the execution of seco",
+      "executive_summary": "Introduction   As part of our commitment to sharing interesting hunts, we are launching these 'Flash Hunting Findings' to highlight active threats. Our latest investigation tracks an operation active between January 11 and January 15, 2026, which uses consistent ZIP file structures and a unique behash (\"4acaac53c8340a8c236c91e68244e6cb\") for identification. The campaign relies on a trusted executable to trick the operating system into loading a malicious payload, leading to the execution of seco",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Introducing Saved Searches in Google Threat Intelligence (GTI) and VirusTotal (VT): Enhance Collaboration and Efficiency",
+      "link": "https://blog.virustotal.com/feeds/7901055715260642532/comments/default",
+      "published": "2025-12-10",
+      "summary": "We are excited to announce the launch of  Saved Searches  in Google Threat Intelligence (GTI) and VirusTotal (VT), a powerful new feature designed to streamline your threat hunting workflows and foster seamless collaboration across your security team.   From Campaign to Feature: Better Search Efficiency  For the last month, we’ve highlighted the critical importance of mastering search in our ongoing  #monthofgoogletisearch  campaign. We saw how security teams rely on complex, highly-tuned querie",
+      "executive_summary": "We are excited to announce the launch of  Saved Searches  in Google Threat Intelligence (GTI) and VirusTotal (VT), a powerful new feature designed to streamline your threat hunting workflows and foster seamless collaboration across your security team.   From Campaign to Feature: Better Search Efficiency  For the last month, we’ve highlighted the critical importance of mastering search in our ongoing  #monthofgoogletisearch  campaign. We saw how security teams rely on complex, highly-tuned querie",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "VTPRACTITIONERS{ACRONIS}: Tracking FileFix, Shadow Vector, and SideWinder",
+      "link": "https://blog.virustotal.com/feeds/7836000947023109573/comments/default",
+      "published": "2025-11-10",
+      "summary": "Introduction  \n We have recently started a new blog series called #VTPRACTITIONERS. This series aims to share with the community what other practitioners are able to research using VirusTotal from a technical point of view.\n  \n Our first blog saw our colleagues at  SEQRITE tracking UNG0002, Silent Lynx, and DragonClone . In this new post,  Acronis Threat Research Unit (TRU)  shares practical insights from multiple investigations, including the ClickFix variant known as FileFix, the long-running ",
+      "executive_summary": "Introduction  \n We have recently started a new blog series called #VTPRACTITIONERS. This series aims to share with the community what other practitioners are able to research using VirusTotal from a technical point of view.\n  \n Our first blog saw our colleagues at  SEQRITE tracking UNG0002, Silent Lynx, and DragonClone . In this new post,  Acronis Threat Research Unit (TRU)  shares practical insights from multiple investigations, including the ClickFix variant known as FileFix, the long-running ",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Reversing at Scale: AI-Powered Malware Detection for Apple’s Binaries",
+      "link": "https://blog.virustotal.com/feeds/3657089766679181622/comments/default",
+      "published": "2025-11-06",
+      "summary": "TL;DR: \nWe ran our new AI-based Mach-O analysis pipeline in production, no metadata, no prior detections, just raw Apple binaries. On Oct 18, 2025, out of 9,981 first-seen samples, VT Code Insight surfaced multiple real Mac and iOS malware cases that had 0 antivirus detections at submission time, including a multi-stage AppleScript infostealer and an iOS credential-stealing tweak. It also helped identify 30 antivirus false positives, later confirmed and fixed.\n \n By Bernardo Quintero, Tom Bennet",
+      "executive_summary": "TL;DR: \nWe ran our new AI-based Mach-O analysis pipeline in production, no metadata, no prior detections, just raw Apple binaries. On Oct 18, 2025, out of 9,981 first-seen samples, VT Code Insight surfaced multiple real Mac and iOS malware cases that had 0 antivirus detections at submission time, including a multi-stage AppleScript infostealer and an iOS credential-stealing tweak. It also helped identify 30 antivirus false positives, later confirmed and fixed.\n \n By Bernardo Quintero, Tom Bennet",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "November is the Month of Searches: Explore, Learn, and Share with #MonthOfVTSearch",
+      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/2214439122478521961",
+      "published": "2025-11-03",
+      "summary": "This November, we’re celebrating the power of  VirusTotal Enterprise search !\n \nAll  VirusTotal  customers will enjoy  uncapped searches through the GUI  — no quota consumption for the entire month so long as it is manual searches via the web interface.\n \n   \nWhether you’re investigating malware campaigns, analyzing infrastructure, or tracking threat actor activity, this is your chance to  search freely and explore advanced use cases  using  VirusTotal Intelligence .\n \n   \nExperiment with  power",
+      "executive_summary": "This November, we’re celebrating the power of  VirusTotal Enterprise search !\n \nAll  VirusTotal  customers will enjoy  uncapped searches through the GUI  — no quota consumption for the entire month so long as it is manual searches via the web interface.\n \n   \nWhether you’re investigating malware campaigns, analyzing infrastructure, or tracking threat actor activity, this is your chance to  search freely and explore advanced use cases  using  VirusTotal Intelligence .\n \n   \nExperiment with  power",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Hugging Face and VirusTotal: Building Trust in AI Models",
+      "link": "https://blog.virustotal.com/feeds/6256326384040669425/comments/default",
+      "published": "2025-10-23",
+      "summary": "We’re happy to announce a collaboration with  Hugging Face , an open platform that fosters collaboration and transparency in AI, to make security insights more accessible to the community. VirusTotal’s analysis results are now integrated directly into the Hugging Face platform, helping users understand potential risks in model files, datasets, and related artifacts before they download them. \n  Security context where you need it  \n When you browse a file on Hugging Face, you’ll now see security ",
+      "executive_summary": "We’re happy to announce a collaboration with  Hugging Face , an open platform that fosters collaboration and transparency in AI, to make security insights more accessible to the community. VirusTotal’s analysis results are now integrated directly into the Hugging Face platform, helping users understand potential risks in model files, datasets, and related artifacts before they download them. \n  Security context where you need it  \n When you browse a file on Hugging Face, you’ll now see security ",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "VTPRACTITIONERS{SEQRITE}:  Tracking UNG0002, Silent Lynx and DragonClone",
+      "link": "https://blog.virustotal.com/feeds/1745822622926075979/comments/default",
+      "published": "2025-10-21",
+      "summary": "Introduction  \n One of the best parts of being at VirusTotal (VT) is seeing  all the amazing ways our community uses our tools to hunt down threats . We love hearing about your successes, and we think the rest of the community would too.\n  \n That's why we're so excited to start  a new blog series where we'll be sharing success stories from some of our customers . They'll be giving us a behind-the-scenes look at how they pivot from an initial clue to uncover entire campaigns.\n\n  \n To\n            ",
+      "executive_summary": "Introduction  \n One of the best parts of being at VirusTotal (VT) is seeing  all the amazing ways our community uses our tools to hunt down threats . We love hearing about your successes, and we think the rest of the community would too.\n  \n That's why we're so excited to start  a new blog series where we'll be sharing success stories from some of our customers . They'll be giving us a behind-the-scenes look at how they pivot from an initial clue to uncover entire campaigns.\n\n  \n To\n            ",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Simpler Access for a Stronger VirusTotal",
+      "link": "https://blog.virustotal.com/feeds/9130046505099765194/comments/default",
+      "published": "2025-10-08",
+      "summary": "VirusTotal (VT) was founded on a simple principle: we are all stronger when we work together. Every file shared, every engine integrated, and every rule contributed strengthens our collective defense against cyber threats. \n In the spirit of that collaboration, and in light of recent community discussions, we want to share our vision for the future of the platform. We have heard your feedback on the need for simplicity and accessibility, and we are taking action. VT will continue to be broadly a",
+      "executive_summary": "VirusTotal (VT) was founded on a simple principle: we are all stronger when we work together. Every file shared, every engine integrated, and every rule contributed strengthens our collective defense against cyber threats. \n In the spirit of that collaboration, and in light of recent community discussions, we want to share our vision for the future of the platform. We have heard your feedback on the need for simplicity and accessibility, and we are taking action. VT will continue to be broadly a",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Crowdsourced AI += Exodia Labs",
+      "link": "https://blog.virustotal.com/feeds/1216520618434039541/comments/default",
+      "published": "2025-10-01",
+      "summary": "We’re adding a new specialist to VirusTotal’s Crowdsourced AI lineup:  Exodia Labs , with an AI engine focused on analyzing Chrome extension (.CRX) files. This complements our existing Code Insight and other AI contributors by helping users better understand this format and detect possible threats.\n \n  What you get in VirusTotal  \n \n    Second opinion for .CRX : Exodia Labs adds another AI analysis stream alongside Code Insight. It gives a fresh, independent view on the same sample type. Like al",
+      "executive_summary": "We’re adding a new specialist to VirusTotal’s Crowdsourced AI lineup:  Exodia Labs , with an AI engine focused on analyzing Chrome extension (.CRX) files. This complements our existing Code Insight and other AI contributors by helping users better understand this format and detect possible threats.\n \n  What you get in VirusTotal  \n \n    Second opinion for .CRX : Exodia Labs adds another AI analysis stream alongside Code Insight. It gives a fresh, independent view on the same sample type. Like al",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Advanced Threat Hunting: Automating Large-Scale Operations with LLMs",
+      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/6216817297905041406",
+      "published": "2025-09-30",
+      "summary": "Last week, we were fortunate enough to attend the fantastic  LABScon conference , organized by the SentinelOne Labs team. While there, we presented a workshop titled ' Advanced Threat Hunting: Automating Large-Scale Operations with LLMs .' The main goal of this workshop was to show attendees how they could automate their research using the  VirusTotal API  and  Gemini . Specifically, we demonstrated how to integrate the power of   Google Colab   to quickly and efficiently generate  Jupyter noteb",
+      "executive_summary": "Last week, we were fortunate enough to attend the fantastic  LABScon conference , organized by the SentinelOne Labs team. While there, we presented a workshop titled ' Advanced Threat Hunting: Automating Large-Scale Operations with LLMs .' The main goal of this workshop was to show attendees how they could automate their research using the  VirusTotal API  and  Gemini . Specifically, we demonstrated how to integrate the power of   Google Colab   to quickly and efficiently generate  Jupyter noteb",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Supercharging Your Threat Hunts: Join VirusTotal at Labscon for a Workshop on Automation and LLMs",
+      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/866218449506319840",
+      "published": "2025-09-05",
+      "summary": "We are excited to announce that our colleague Joseliyo Sánchez, will be at Labscon to present our workshop:  Advanced Threat Hunting: Automating Large-Scale Operations with LLMs . This workshop is a joint effort with SentinelOne and their researcher, Aleksandar Milenkoski.&nbsp;    In today's rapidly evolving threat landscape, security professionals face an overwhelming tide of data and increasingly sophisticated adversaries. This hands-on workshop is designed to empower you to move beyond the t",
+      "executive_summary": "We are excited to announce that our colleague Joseliyo Sánchez, will be at Labscon to present our workshop:  Advanced Threat Hunting: Automating Large-Scale Operations with LLMs . This workshop is a joint effort with SentinelOne and their researcher, Aleksandar Milenkoski.&nbsp;    In today's rapidly evolving threat landscape, security professionals face an overwhelming tide of data and increasingly sophisticated adversaries. This hands-on workshop is designed to empower you to move beyond the t",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Uncovering a Colombian Malware Campaign with AI Code Analysis",
+      "link": "https://blog.virustotal.com/feeds/6205447284513287923/comments/default",
+      "published": "2025-09-04",
+      "summary": "VirusTotal Code Insight keeps adding new file formats. This time, we’re looking at two vector-based formats from very different eras: SWF and SVG. Curiously, right after we rolled out this update in production, one of the very first submitted files gave us a perfect, and unexpected, example of Code Insight in action: it uncovered an undetected malware campaign using SVG files that impersonated the Colombian justice system.\n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n",
+      "executive_summary": "VirusTotal Code Insight keeps adding new file formats. This time, we’re looking at two vector-based formats from very different eras: SWF and SVG. Curiously, right after we rolled out this update in production, one of the very first submitted files gave us a perfect, and unexpected, example of Code Insight in action: it uncovered an undetected malware campaign using SVG files that impersonated the Colombian justice system.\n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Integrating Code Insight into Reverse Engineering Workflows",
+      "link": "https://blog.virustotal.com/feeds/7975854707725214389/comments/default",
+      "published": "2025-08-28",
+      "summary": "More than two years have passed since we announced the launch of Code Insight at  RSA 2023 . From that time on, we have been applying this technology in  different scenarios , expanding its use in new file formats ( 1 ,&nbsp; 2 ).  As we advance in the automated analysis of new files with Code Insight, we want to offer an alternative that enables the integration of this type of technology into the analysis of disassembled or decompiled code.  \n \n \n  Audio version of this post, created with Noteb",
+      "executive_summary": "More than two years have passed since we announced the launch of Code Insight at  RSA 2023 . From that time on, we have been applying this technology in  different scenarios , expanding its use in new file formats ( 1 ,&nbsp; 2 ).  As we advance in the automated analysis of new files with Code Insight, we want to offer an alternative that enables the integration of this type of technology into the analysis of disassembled or decompiled code.  \n \n \n  Audio version of this post, created with Noteb",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Applying AI Analysis to PDF Threats",
+      "link": "https://blog.virustotal.com/feeds/8380171794973197322/comments/default",
+      "published": "2025-08-25",
+      "summary": "In our  previous post  we extended VirusTotal Code Insights to browser extensions and supply-chain artifacts. A key finding from that analysis was how our AI could apply contextual knowledge to its evaluation. It wasn’t just analyzing code in isolation, it was correlating a package's stated purpose (its name and description) with its actual behavior, flagging malicious logic that contradicted its public description. We’re now applying the same idea to one of the most common file formats in the w",
+      "executive_summary": "In our  previous post  we extended VirusTotal Code Insights to browser extensions and supply-chain artifacts. A key finding from that analysis was how our AI could apply contextual knowledge to its evaluation. It wasn’t just analyzing code in isolation, it was correlating a package's stated purpose (its name and description) with its actual behavior, flagging malicious logic that contradicted its public description. We’re now applying the same idea to one of the most common file formats in the w",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Code Insight Expands to Uncover Risks Across the Software Supply Chain",
+      "link": "https://blog.virustotal.com/feeds/2406002829759311383/comments/default",
+      "published": "2025-08-14",
+      "summary": "When we launched Code Insight, we started by analyzing PowerShell scripts. Since then, we have been continuously expanding its capabilities to cover more file types. Today, we announce that Code Insight can now analyze a broader range of formats crucial to the software supply chain. This includes browser extensions (CRX for Chrome, XPI for Firefox, VSIX for VS Code), software packages (Python Wheel, NPM), and protocols like MCP that enable Large Language Models to interact with external tools.\n ",
+      "executive_summary": "When we launched Code Insight, we started by analyzing PowerShell scripts. Since then, we have been continuously expanding its capabilities to cover more file types. Today, we announce that Code Insight can now analyze a broader range of formats crucial to the software supply chain. This includes browser extensions (CRX for Chrome, XPI for Firefox, VSIX for VS Code), software packages (Python Wheel, NPM), and protocols like MCP that enable Large Language Models to interact with external tools.\n ",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "YARA-X 1.0.0: The Stable Release and Its Advantages",
+      "link": "https://blog.virustotal.com/feeds/6568274798103895274/comments/default",
+      "published": "2025-06-04",
+      "summary": "Short note for everyone who already lives and breathes YARA: \n\n \n  Victor (aka  plusvic ) just launched YARA-X 1.0.0.\nFull details:  https://virustotal.github.io/yara-x/blog/yara-x-is-stable/ \n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n \n   What changes for you \n \n   \n     \n         \n            Area  \n            YARA 4.x  \n             YARA-X   \n         \n     \n     \n         \n             Engine",
+      "executive_summary": "Short note for everyone who already lives and breathes YARA: \n\n \n  Victor (aka  plusvic ) just launched YARA-X 1.0.0.\nFull details:  https://virustotal.github.io/yara-x/blog/yara-x-is-stable/ \n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n \n   What changes for you \n \n   \n     \n         \n            Area  \n            YARA 4.x  \n             YARA-X   \n         \n     \n     \n         \n             Engine",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "What 17,845 GitHub Repos Taught Us About Malicious MCP Servers",
+      "link": "https://blog.virustotal.com/feeds/7711892136698127976/comments/default",
+      "published": "2025-06-04",
+      "summary": "Spoiler: VirusTotal Code Insight’s preliminary audit flagged nearly 8% of MCP (Model Context Protocol) servers on GitHub as potentially forged for evil, though the sad truth is, bad intentions aren’t required to follow bad practices and publish code with critical vulnerabilities.\n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n Before we get started, a quick personal note. A couple of weeks ago, I annou",
+      "executive_summary": "Spoiler: VirusTotal Code Insight’s preliminary audit flagged nearly 8% of MCP (Model Context Protocol) servers on GitHub as potentially forged for evil, though the sad truth is, bad intentions aren’t required to follow bad practices and publish code with critical vulnerabilities.\n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n Before we get started, a quick personal note. A couple of weeks ago, I annou",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Research that builds detections",
+      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/5748745563833150278",
+      "published": "2025-01-09",
+      "summary": "Note:  You can view the full content of the blog  here .\n  \n  Introduction  \n  Detection engineering is becoming increasingly important in surfacing new malicious activity. Threat actors might take advantage of previously unknown malware families - but a successful detection of certain methodologies or artifacts can help expose the entire infection chain. \n \n In previous blog posts, we announced the integration of  Sigma rules for macOS and Linux  into VirusTotal, as well as ways in which  Sigma",
+      "executive_summary": "Note:  You can view the full content of the blog  here .\n  \n  Introduction  \n  Detection engineering is becoming increasingly important in surfacing new malicious activity. Threat actors might take advantage of previously unknown malware families - but a successful detection of certain methodologies or artifacts can help expose the entire infection chain. \n \n In previous blog posts, we announced the integration of  Sigma rules for macOS and Linux  into VirusTotal, as well as ways in which  Sigma",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    }
+  ]
+}

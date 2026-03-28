@@ -1,0 +1,207 @@
+{
+  "source": "https://www.ncsc.gov.uk",
+  "fetched_at": "2026-03-28T00:19:49.597914+00:00",
+  "total": 20,
+  "items": [
+    {
+      "title": "Impact of AI on cyber threat from now to 2027",
+      "link": "https://www.ncsc.gov.uk/report/impact-ai-cyber-threat-now-2027",
+      "published": "Wed, 07 Ma",
+      "summary": "An NCSC assessment highlighting the impacts on cyber threat from AI developments between now and 2027.",
+      "executive_summary": "An NCSC assessment highlighting the impacts on cyber threat from AI developments between now and 2027.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "A method to assess 'forgivable' vs 'unforgivable' vulnerabilities",
+      "link": "https://www.ncsc.gov.uk/report/a-method-to-assess-forgivable-vs-unforgivable-vulnerabilities",
+      "published": "Tue, 28 Ja",
+      "summary": "Research from the NCSC designed to eradicate vulnerability classes and make the top-level mitigations easier to implement.",
+      "executive_summary": "Research from the NCSC designed to eradicate vulnerability classes and make the top-level mitigations easier to implement.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "The near-term impact of AI on the cyber threat",
+      "link": "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat",
+      "published": "Wed, 24 Ja",
+      "summary": "An NCSC assessment focusing on how AI will impact the efficacy of cyber operations and the implications for the cyber threat over the next two years.",
+      "executive_summary": "An NCSC assessment focusing on how AI will impact the efficacy of cyber operations and the implications for the cyber threat over the next two years.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "ACD - The Sixth Year",
+      "link": "https://www.ncsc.gov.uk/report/acd-the-sixth-year",
+      "published": "Thu, 06 Ju",
+      "summary": "Key findings and full report from the 6th year of the Active Cyber Defence (ACD) programme.",
+      "executive_summary": "Key findings and full report from the 6th year of the Active Cyber Defence (ACD) programme.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Cyber Threat Report: UK Legal Sector",
+      "link": "https://www.ncsc.gov.uk/report/cyber-threat-report-uk-legal-sector",
+      "published": "Thu, 22 Ju",
+      "summary": "An updated report from the NCSC explaining how UK law firms - of all sizes - can protect themselves from common cyber threats.",
+      "executive_summary": "An updated report from the NCSC explaining how UK law firms - of all sizes - can protect themselves from common cyber threats.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "The threat from commercial cyber proliferation",
+      "link": "https://www.ncsc.gov.uk/report/commercial-cyber-proliferation-assessment",
+      "published": "Wed, 19 Ap",
+      "summary": "Report informing readers about the threat to UK industry and society from commercial cyber tools and services.",
+      "executive_summary": "Report informing readers about the threat to UK industry and society from commercial cyber tools and services.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "ACD - The Fifth Year",
+      "link": "https://www.ncsc.gov.uk/report/acd-the-fifth-year",
+      "published": "Tue, 10 Ma",
+      "summary": "Key findings from the 5th year of the Active Cyber Defence (ACD) programme.",
+      "executive_summary": "Key findings from the 5th year of the Active Cyber Defence (ACD) programme.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Organisational use of Enterprise Connected Devices",
+      "link": "https://www.ncsc.gov.uk/report/organisational-use-of-enterprise-connected-devices",
+      "published": "Tue, 10 Ma",
+      "summary": "Assessing the cyber security threat to UK organisations using Enterprise Connected Devices.",
+      "executive_summary": "Assessing the cyber security threat to UK organisations using Enterprise Connected Devices.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Threat report on application stores",
+      "link": "https://www.ncsc.gov.uk/report/threat-report-on-application-stores",
+      "published": "Wed, 04 Ma",
+      "summary": "This report outlines the risks associated with the use of official and third party app stores.",
+      "executive_summary": "This report outlines the risks associated with the use of official and third party app stores.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Malware analysis report on SparrowDoor malware",
+      "link": "https://www.ncsc.gov.uk/report/mar-sparrowdoor",
+      "published": "Mon, 25 Ap",
+      "summary": "A technical analysis of a new variant of the SparrowDoor malware.",
+      "executive_summary": "A technical analysis of a new variant of the SparrowDoor malware.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Vendor Security Assessment",
+      "link": "https://www.ncsc.gov.uk/report/vendor-security-assessment",
+      "published": "Tue, 22 Ma",
+      "summary": "Assessing the security of network equipment.",
+      "executive_summary": "Assessing the security of network equipment.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Decrypting diversity: Diversity and inclusion in cyber security report 2021",
+      "link": "https://www.ncsc.gov.uk/report/decrypting-diversity-2021-diversity-and-inclusion-in-cyber-security",
+      "published": "Tue, 23 No",
+      "summary": "The 2nd joint report between the NCSC and KPMG UK benchmarks against the 2020 findings to gauge what progress has been made.",
+      "executive_summary": "The 2nd joint report between the NCSC and KPMG UK benchmarks against the 2020 findings to gauge what progress has been made.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Active Cyber Defence (ACD) - the fourth year",
+      "link": "https://www.ncsc.gov.uk/report/acd-report-year-four",
+      "published": "Mon, 10 Ma",
+      "summary": "The year four report covers 2020 and aims to highlight the achievements and efforts made by the Active Cyber Defence programme.",
+      "executive_summary": "The year four report covers 2020 and aims to highlight the achievements and efforts made by the Active Cyber Defence programme.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Active Cyber Defence (ACD) - The Third Year",
+      "link": "https://www.ncsc.gov.uk/report/acd-report-year-three",
+      "published": "Fri, 19 Fe",
+      "summary": "The year three report covers 2019 and aims to highlight the achievements and efforts made by the Active Cyber Defence programe.",
+      "executive_summary": "The year three report covers 2019 and aims to highlight the achievements and efforts made by the Active Cyber Defence programe.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Technical report: Responsible use of the Border Gateway Protocol (BGP) for ISP interworking",
+      "link": "https://www.ncsc.gov.uk/report/responsible-use-of-bgp-for-isp-interworking",
+      "published": "Wed, 20 Ja",
+      "summary": "Technical report on best practice use of this fundamental data routing protocol.",
+      "executive_summary": "Technical report on best practice use of this fundamental data routing protocol.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Decrypting diversity: Diversity and inclusion in cyber security report 2020",
+      "link": "https://www.ncsc.gov.uk/report/diversity-and-inclusion-in-cyber-security-report",
+      "published": "Tue, 28 Ju",
+      "summary": "Joint report between the NCSC and KPMG UK is the first in a series to benchmark and track levels of diversity and inclusion in the cyber security industry.",
+      "executive_summary": "Joint report between the NCSC and KPMG UK is the first in a series to benchmark and track levels of diversity and inclusion in the cyber security industry.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "The cyber threat to sports organisations",
+      "link": "https://www.ncsc.gov.uk/report/the-cyber-threat-to-sports-organisations",
+      "published": "Thu, 23 Ju",
+      "summary": "The NCSC report highlights the cyber threats faced by the sports sector and suggests how to stop or lessen their impact on organisations.",
+      "executive_summary": "The NCSC report highlights the cyber threats faced by the sports sector and suggests how to stop or lessen their impact on organisations.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Summary of the NCSC analysis of May 2020 US sanction",
+      "link": "https://www.ncsc.gov.uk/report/summary-of-ncsc-analysis-of-us-may-2020-sanction",
+      "published": "Tue, 14 Ju",
+      "summary": "A summary of the NCSC’s analysis of the May 2020 US sanction which caused the NCSC to modify the scope of its security mitigation strategy for Huawei.",
+      "executive_summary": "A summary of the NCSC’s analysis of the May 2020 US sanction which caused the NCSC to modify the scope of its security mitigation strategy for Huawei.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "High level privacy and security design for NHS COVID-19 contact tracing app",
+      "link": "https://www.ncsc.gov.uk/report/nhs-covid-19-app-privacy-security-report",
+      "published": "Mon, 04 Ma",
+      "summary": "NCSC technical paper about the privacy and security design of the NHS contact tracing app developed to help slow the spread of coronavirus.",
+      "executive_summary": "NCSC technical paper about the privacy and security design of the NHS contact tracing app developed to help slow the spread of coronavirus.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
+    {
+      "title": "Summary of NCSC’s security analysis for the UK telecoms sector",
+      "link": "https://www.ncsc.gov.uk/report/summary-of-ncsc-security-analysis-for-the-uk-telecoms-sector",
+      "published": "Tue, 28 Ja",
+      "summary": "A summary of the NCSC’s security analysis for the UK telecoms sector",
+      "executive_summary": "A summary of the NCSC’s security analysis for the UK telecoms sector",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "source": "https://blog.google/threat-analysis-group",
+  "fetched_at": "2026-03-28T00:19:49.597914+00:00",
+  "total": 20,
+  "items": [
+    {
+      "title": "TAG Bulletin: Q4 2025",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q4-2025/",
+      "published": "Thu, 29 Ja",
+      "summary": "An overview of coordinated influence operation campaigns terminated on our platforms in Q4 2025.",
+      "executive_summary": "An overview of coordinated influence operation campaigns terminated on our platforms in Q4 2025.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q3 2025",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q3-2025/",
+      "published": "Thu, 13 No",
+      "summary": "Our bulletin covering coordinated influence operation campaigns terminated on our platforms in Q3 2025.",
+      "executive_summary": "Our bulletin covering coordinated influence operation campaigns terminated on our platforms in Q3 2025.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q2 2025",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q2-2025/",
+      "published": "Mon, 21 Ju",
+      "summary": "Our bulletin covering coordinated influence operation campaigns terminated on our platforms in Q2 2025.",
+      "executive_summary": "Our bulletin covering coordinated influence operation campaigns terminated on our platforms in Q2 2025.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q1 2025",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q1-2025/",
+      "published": "Thu, 15 Ma",
+      "summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q1 2025. It was last updated on May 15, 2025.JanuaryWe terminated 12 YouT…",
+      "executive_summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q1 2025. It was last updated on May 15, 2025.JanuaryWe terminated 12 YouT…",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q4 2024",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q4-2024/",
+      "published": "Tue, 17 De",
+      "summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q4 2024. It was last updated on February 19, 2024.OctoberWe terminated 11…",
+      "executive_summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q4 2024. It was last updated on February 19, 2024.OctoberWe terminated 11…",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q3 2024",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q3-2024/",
+      "published": "Thu, 12 Se",
+      "summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q3 2024. It was last updated on January 14, 2025.JulyWe terminated 89 You…",
+      "executive_summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q3 2024. It was last updated on January 14, 2025.JulyWe terminated 89 You…",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "State-backed attackers and commercial surveillance vendors repeatedly use the same exploits",
+      "link": "https://blog.google/threat-analysis-group/state-backed-attackers-and-commercial-surveillance-vendors-repeatedly-use-the-same-exploits/",
+      "published": "Thu, 29 Au",
+      "summary": "We’re sharing an update on suspected state-backed attacker APT29 and the use of exploits identical to those used by Intellexa and NSO.",
+      "executive_summary": "We’re sharing an update on suspected state-backed attacker APT29 and the use of exploits identical to those used by Intellexa and NSO.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Iranian backed group steps up phishing campaigns against Israel, U.S.",
+      "link": "https://blog.google/threat-analysis-group/iranian-backed-group-steps-up-phishing-campaigns-against-israel-us/",
+      "published": "Wed, 14 Au",
+      "summary": "Google’s Threat Analysis Group shares insights on APT42, an Iranian government-backed threat actor.",
+      "executive_summary": "Google’s Threat Analysis Group shares insights on APT42, an Iranian government-backed threat actor.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Google disrupted over 10,000 instances of DRAGONBRIDGE activity in Q1 2024",
+      "link": "https://blog.google/threat-analysis-group/google-disrupted-dragonbridge-activity-q1-2024/",
+      "published": "Wed, 26 Ju",
+      "summary": "Today we are sharing updated insights about DRAGONBRIDGE, the most prolific IO actor Google’s Threat Analysis Group (TAG) tracks.",
+      "executive_summary": "Today we are sharing updated insights about DRAGONBRIDGE, the most prolific IO actor Google’s Threat Analysis Group (TAG) tracks.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q2 2024",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q2-2024/",
+      "published": "Tue, 04 Ju",
+      "summary": "Our bulletin covering coordinated influence operation campaigns terminated on our platforms in Q2 2024.",
+      "executive_summary": "Our bulletin covering coordinated influence operation campaigns terminated on our platforms in Q2 2024.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "A review of zero-day in-the-wild exploits in 2023",
+      "link": "https://blog.google/innovation-and-ai/technology/safety-security/a-review-of-zero-day-in-the-wild-exploits-in-2023/",
+      "published": "Wed, 27 Ma",
+      "summary": "Today, Google released its report “We’re All in this Together: A Year in Review of Zero-Days Exploited In-the-Wild in 2023.”",
+      "executive_summary": "Today, Google released its report “We’re All in this Together: A Year in Review of Zero-Days Exploited In-the-Wild in 2023.”",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q1 2024",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q1-2024/",
+      "published": "Wed, 06 Ma",
+      "summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q1 2024. It was last updated on July 8, 2024.JanuaryWe blocked 4 domains …",
+      "executive_summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q1 2024. It was last updated on July 8, 2024.JanuaryWe blocked 4 domains …",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Tool of First Resort: Israel-Hamas War in Cyber",
+      "link": "https://blog.google/innovation-and-ai/technology/safety-security/tool-of-first-resort-israel-hamas-war-in-cyber/",
+      "published": "Wed, 14 Fe",
+      "summary": "An analysis of cyber operations in the Israel-Hamas War.",
+      "executive_summary": "An analysis of cyber operations in the Israel-Hamas War.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Buying Spying: How the commercial surveillance industry works and what can be done about it",
+      "link": "https://blog.google/threat-analysis-group/commercial-surveillance-vendors-google-tag-report/",
+      "published": "Tue, 06 Fe",
+      "summary": "This report documents the rise of commercial surveillance vendors and the industry that threatens free speech, the free press and the open internet.",
+      "executive_summary": "This report documents the rise of commercial surveillance vendors and the industry that threatens free speech, the free press and the open internet.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q4 2023",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q4-2023/",
+      "published": "Fri, 19 Ja",
+      "summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q4 2023. It was last updated on January 19, 2024.OctoberWe terminated 8 Y…",
+      "executive_summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q4 2023. It was last updated on January 19, 2024.OctoberWe terminated 8 Y…",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Russian threat group COLDRIVER expands its targeting of Western officials to include the use of malware",
+      "link": "https://blog.google/threat-analysis-group/google-tag-coldriver-russian-phishing-malware/",
+      "published": "Thu, 18 Ja",
+      "summary": "Threat Analysis Group sheds light on Russian threat COLDRIVER’s use of malware.",
+      "executive_summary": "Threat Analysis Group sheds light on Russian threat COLDRIVER’s use of malware.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Zimbra 0-day used to target international government organizations",
+      "link": "https://blog.google/threat-analysis-group/zimbra-0-day-used-to-target-international-government-organizations/",
+      "published": "Thu, 16 No",
+      "summary": "TAG’s discovery of a 0-day exploit used to steal email data from international government organizations.",
+      "executive_summary": "TAG’s discovery of a 0-day exploit used to steal email data from international government organizations.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Government-backed actors exploiting WinRAR vulnerability",
+      "link": "https://blog.google/threat-analysis-group/government-backed-actors-exploiting-winrar-vulnerability/",
+      "published": "Wed, 18 Oc",
+      "summary": "Google's Threat Analysis Group analyzes recent state-sponsored campaigns exploiting the WinRAR vulnerability, CVE-2023-38831.",
+      "executive_summary": "Google's Threat Analysis Group analyzes recent state-sponsored campaigns exploiting the WinRAR vulnerability, CVE-2023-38831.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "TAG Bulletin: Q3 2023",
+      "link": "https://blog.google/threat-analysis-group/tag-bulletin-q3-2023/",
+      "published": "Thu, 05 Oc",
+      "summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q3 2023. It was last updated on November 8, 2023.",
+      "executive_summary": "This bulletin includes coordinated influence operation campaigns terminated on our platforms in Q3 2023. It was last updated on November 8, 2023.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "0-days exploited by commercial surveillance vendor in Egypt",
+      "link": "https://blog.google/threat-analysis-group/0-days-exploited-by-commercial-surveillance-vendor-in-egypt/",
+      "published": "Fri, 22 Se",
+      "summary": "Last week Google’s Threat Analysis Group (TAG), in partnership with The Citizen Lab, discovered an in-the-wild 0-day exploit chain for iPhones. Developed by the commerci…",
+      "executive_summary": "Last week Google’s Threat Analysis Group (TAG), in partnership with The Citizen Lab, discovered an in-the-wild 0-day exploit chain for iPhones. Developed by the commerci…",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    }
+  ]
+}
