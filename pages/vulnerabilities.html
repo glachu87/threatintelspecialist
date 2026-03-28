@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vulnerability Intelligence | Threat Intel Specialist</title>
 <link rel="icon" href="../images/TIS_Logo.png">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
     --bg: #0b0f1a;
@@ -341,7 +341,7 @@
 <script>
 // ─── CONFIG ───────────────────────────────────────────────
 const NVD_API   = 'https://services.nvd.nist.gov/rest/json/cves/2.0';
-const CISA_KEV  = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
+const CISA_KEV  = '../feeds/cisa/advisories.json'; // Use local feed to avoid CORS
 const PAGE_SIZE = 25;
 
 // ─── STATE ────────────────────────────────────────────────
@@ -363,8 +363,15 @@ let sortDir   = -1; // -1 = desc (newest first)
 async function loadKEV() {
   try {
     const r = await fetch(CISA_KEV);
+    if (!r.ok) return;
     const d = await r.json();
-    (d.vulnerabilities || []).forEach(v => kevSet.add(v.cveID));
+    // Handle both CISA KEV direct format and our local feed format
+    const items = d.vulnerabilities || d.items || [];
+    items.forEach(v => {
+      const id = v.cveID || v.cveId || v.id || '';
+      if (id) kevSet.add(id);
+    });
+    console.log(`KEV loaded: ${kevSet.size} entries`);
   } catch(e) { console.warn('KEV load failed', e); }
 }
 
@@ -548,6 +555,17 @@ let charts = {};
 function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
 
 function renderCharts() {
+  // Safety check - if Chart.js failed to load show message
+  if (typeof Chart === 'undefined') {
+    ['severityChart','avChart','scoreHistChart','cweChart'].forEach(id => {
+      const canvas = document.getElementById(id);
+      if (canvas) {
+        const parent = canvas.parentElement;
+        parent.innerHTML = '<div style="text-align:center;padding:2rem;color:#64748b;font-size:0.8rem">Chart library blocked by browser.<br>Try disabling ad blocker or use Chrome.</div>';
+      }
+    });
+    return;
+  }
   // Severity donut
   destroyChart('sev');
   const chartData = getChartData();
