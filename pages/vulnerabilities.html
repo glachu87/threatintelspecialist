@@ -369,7 +369,7 @@ async function loadVulns(days) {
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const data = await r.json();
     allVulns = (data.vulnerabilities || []).map(parseVuln).filter(Boolean);
-    allVulns.sort((a,b) => (b.score||0) - (a.score||0));
+    allVulns.sort((a,b) => new Date(b.published||0) - new Date(a.published||0));
     applyFilters();
   } catch(e) {
     tbody.innerHTML = `<tr><td colspan="9"><div class="error-msg">⚠️ NVD API error: ${e.message}. This may be a CORS/rate-limit issue. In production, use a GitHub Actions proxy that stores data as JSON in the repo. <a href="#setup" style="color:var(--accent)">Setup guide below.</a></div></td></tr>`;
@@ -443,8 +443,11 @@ function applyFilters() {
 
   // Sort
   filtered.sort((a,b) => {
+    if (sortKey === 'published') {
+      const da = new Date(a.published||0), db = new Date(b.published||0);
+      return sortDir === -1 ? db - da : da - db;
+    }
     let va = a[sortKey], vb = b[sortKey];
-    if (sortKey === 'published') { va = new Date(va); vb = new Date(vb); }
     if (va < vb) return sortDir;
     if (va > vb) return -sortDir;
     return 0;
