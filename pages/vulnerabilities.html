@@ -374,7 +374,7 @@ async function loadVulns(days) {
   tbody.innerHTML = '<tr><td colspan="9"><div class="loading"><div class="spinner"></div><br>Loading vulnerability data...</div></td></tr>';
 
   // Try multiple paths since page can be served from different locations
-  const paths = ['../public/data/vulnerabilities.json', '/public/data/vulnerabilities.json', 'public/data/vulnerabilities.json'];
+  const paths = ['../feeds/nvd/vulnerabilities.json', '/feeds/nvd/vulnerabilities.json'];
   let data = null;
 
   for (const path of paths) {
