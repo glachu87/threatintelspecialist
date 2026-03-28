@@ -350,30 +350,35 @@ async function loadKEV() {
   } catch(e) { console.warn('KEV load failed', e); }
 }
 
-// ─── LOAD NVD ─────────────────────────────────────────────
+// ─── LOAD VULNERABILITIES (from repo JSON, fallback to demo) ──
 async function loadVulns(days) {
   const tbody = document.getElementById('vuln-tbody');
-  tbody.innerHTML = '<tr><td colspan="9"><div class="loading"><div class="spinner"></div><br>Fetching from NVD API...</div></td></tr>';
-
-  const end   = new Date();
-  const start = new Date(Date.now() - days * 86400000);
-  const fmt   = d => d.toISOString().replace(/\.\d{3}Z$/, '.000');
-  const params = new URLSearchParams({
-    pubStartDate: fmt(start),
-    pubEndDate:   fmt(end),
-    resultsPerPage: 2000,
-  });
+  tbody.innerHTML = '<tr><td colspan="9"><div class="loading"><div class="spinner"></div><br>Loading vulnerability data...</div></td></tr>';
 
   try {
-    const r = await fetch(`${NVD_API}?${params}`);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    // Load from GitHub Actions-generated JSON file
+    const r = await fetch('/public/data/vulnerabilities.json', {cache:'no-store'});
+    if (!r.ok) throw new Error('Data file not found');
     const data = await r.json();
-    allVulns = (data.vulnerabilities || []).map(parseVuln).filter(Boolean);
+
+    // Update last refreshed timestamp
+    if (data.lastUpdated) {
+      document.getElementById('refresh-time').textContent =
+        new Date(data.lastUpdated).toLocaleString('en-GB', {timeZone:'UTC'}) + ' UTC';
+    }
+
+    // Parse and filter by days
+    const cutoff = Date.now() - days * 86400000;
+    allVulns = (data.vulnerabilities || [])
+      .filter(v => v && v.score !== null)
+      .filter(v => !days || !v.published || new Date(v.published).getTime() >= cutoff);
+
+    // Default sort: newest first
     allVulns.sort((a,b) => new Date(b.published||0) - new Date(a.published||0));
     applyFilters();
+
   } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="error-msg">⚠️ NVD API error: ${e.message}. This may be a CORS/rate-limit issue. In production, use a GitHub Actions proxy that stores data as JSON in the repo. <a href="#setup" style="color:var(--accent)">Setup guide below.</a></div></td></tr>`;
-    // Load demo data for local preview
+    console.warn('Could not load vulnerability JSON:', e.message);
     loadDemoData();
   }
 }
