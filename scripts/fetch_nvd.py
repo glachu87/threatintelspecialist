@@ -28,9 +28,9 @@ else:
     print("No NVD API key — using public rate limit (may be slower)")
 
 # ── DATE RANGE ─────────────────────────────────────────────────────────────
-end   = datetime.now(timezone.utc)
+end   = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
 start = end - timedelta(days=DAYS)
-fmt   = lambda d: d.strftime("%Y-%m-%dT%H:%M:%S")
+fmt   = lambda d: d.strftime("%Y-%m-%dT00:00:00.000")
 
 print(f"Fetching CVEs from {fmt(start)} to {fmt(end)} ...")
 
