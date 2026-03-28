@@ -1,31 +1,58 @@
-import os, json, requests
-from datetime import datetime, timedelta, timezone
+import os, json, requests, time
+from datetime import datetime, timezone
 
 os.makedirs("public/data", exist_ok=True)
 
+# NVD API v2.0 - fetch without date filter first to test connectivity
 api_key = os.environ.get("NVD_API_KEY", "")
 headers = {"apiKey": api_key} if api_key else {}
 print(f"API key present: {bool(api_key)}")
 
-end   = datetime.now(timezone.utc)
-start = end - timedelta(days=30)
-pub_start = start.strftime("%Y-%m-%dT00:00:00.000")
-pub_end   = end.strftime("%Y-%m-%dT23:59:59.000")
-print(f"Date range: {pub_start} to {pub_end}")
-
+# Use keyword search instead of date range - more reliable
 url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 params = {
-    "pubStartDate": pub_start,
-    "pubEndDate":   pub_end,
-    "resultsPerPage": 2000,
+    "resultsPerPage": 100,
+    "startIndex": 0,
+    "cvssV3Severity": "CRITICAL",
 }
 
-print(f"Calling: {url}")
-r = requests.get(url, params=params, headers=headers, timeout=60)
-print(f"Status: {r.status_code}")
-r.raise_for_status()
+print(f"Fetching CRITICAL CVEs from NVD...")
+success = False
+
+for attempt in range(3):
+    try:
+        r = requests.get(url, params=params, headers=headers, timeout=60)
+        print(f"Attempt {attempt+1} status: {r.status_code}")
+        if r.status_code == 200:
+            success = True
+            break
+        time.sleep(6)
+    except Exception as e:
+        print(f"Attempt {attempt+1} error: {e}")
+        time.sleep(6)
+
+if not success:
+    # Fallback: fetch HIGH severity
+    print("Trying HIGH severity as fallback...")
+    params["cvssV3Severity"] = "HIGH"
+    for attempt in range(3):
+        try:
+            r = requests.get(url, params=params, headers=headers, timeout=60)
+            print(f"Fallback attempt {attempt+1} status: {r.status_code}")
+            if r.status_code == 200:
+                success = True
+                break
+            time.sleep(6)
+        except Exception as e:
+            print(f"Fallback error: {e}")
+            time.sleep(6)
+
+if not success:
+    print("NVD API unavailable. Keeping existing data.")
+    exit(0)  # Exit cleanly - don't fail the workflow
+
 raw = r.json().get("vulnerabilities", [])
-print(f"Total CVEs returned: {len(raw)}")
+print(f"CVEs returned: {len(raw)}")
 
 def parse(entry):
     c = entry.get("cve", {})
@@ -39,14 +66,14 @@ def parse(entry):
     cvss = m31 or m30
     score = severity = av = ui = priv = None
     if cvss:
-        cd = cvss.get("cvssData", {})
+        cd       = cvss.get("cvssData", {})
         score    = cd.get("baseScore")
         severity = cd.get("baseSeverity", "N/A")
         av       = cd.get("attackVector", "N/A")
         ui       = cd.get("userInteraction")
         priv     = cd.get("privilegesRequired")
     elif m2:
-        cd = m2.get("cvssData", {})
+        cd       = m2.get("cvssData", {})
         score    = cd.get("baseScore")
         severity = m2.get("baseSeverity", "N/A")
         av       = cd.get("accessVector", "N/A")
@@ -64,6 +91,7 @@ if os.path.exists("public/data/vulnerabilities.json"):
     try:
         with open("public/data/vulnerabilities.json") as f:
             existing = json.load(f).get("vulnerabilities", [])
+        print(f"Existing CVEs: {len(existing)}")
     except: pass
 
 merged = {v["id"]: v for v in existing}
@@ -72,6 +100,10 @@ for v in vulns:
 all_vulns = sorted(merged.values(), key=lambda v: v.get("published",""), reverse=True)
 
 with open("public/data/vulnerabilities.json", "w") as f:
-    json.dump({"lastUpdated": datetime.now(timezone.utc).isoformat(), "totalCount": len(all_vulns), "vulnerabilities": all_vulns}, f, indent=2)
+    json.dump({
+        "lastUpdated": datetime.now(timezone.utc).isoformat(),
+        "totalCount": len(all_vulns),
+        "vulnerabilities": all_vulns
+    }, f, indent=2)
 
-print(f"Saved {len(all_vulns)} CVEs")
+print(f"Saved {len(all_vulns)} CVEs to public/data/vulnerabilities.json")
