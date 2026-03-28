@@ -150,6 +150,11 @@
     .charts-row { grid-template-columns: 1fr; }
   }
 
+  /* CHART RANGE BUTTONS */
+  .chart-range-btn { background: var(--bg2); border: 1px solid var(--border); color: var(--text2); padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; cursor: pointer; transition: all 0.15s; font-family: var(--font); }
+  .chart-range-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .chart-range-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
   /* TOOLTIP */
   .tooltip-wrap { position: relative; cursor: help; }
   .tooltip-text { visibility: hidden; opacity: 0; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: var(--bg3); border: 1px solid var(--border2); color: var(--text); padding: 6px 10px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; z-index: 50; transition: opacity 0.2s; pointer-events: none; max-width: 260px; white-space: normal; text-align: center; }
@@ -221,6 +226,19 @@
       <div class="label">KEV Listed</div>
       <div class="value" style="color:#a78bfa" id="stat-kev">—</div>
       <div class="sub">CISA Known Exploited</div>
+    </div>
+  </div>
+
+  <!-- CHART CONTROLS -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
+    <div style="font-size:0.82rem;color:var(--text2);font-weight:600;">📊 Chart Date Range</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;" id="chart-range-btns">
+      <button class="chart-range-btn active" data-days="30" onclick="setChartRange(30,this)">30 Days</button>
+      <button class="chart-range-btn" data-days="90" onclick="setChartRange(90,this)">90 Days</button>
+      <button class="chart-range-btn" data-days="180" onclick="setChartRange(180,this)">6 Months</button>
+      <button class="chart-range-btn" data-days="365" onclick="setChartRange(365,this)">1 Year</button>
+      <button class="chart-range-btn" data-days="730" onclick="setChartRange(730,this)">2 Years</button>
+      <button class="chart-range-btn" data-days="0" onclick="setChartRange(0,this)">All Time</button>
     </div>
   </div>
 
@@ -355,30 +373,32 @@ async function loadVulns(days) {
   const tbody = document.getElementById('vuln-tbody');
   tbody.innerHTML = '<tr><td colspan="9"><div class="loading"><div class="spinner"></div><br>Loading vulnerability data...</div></td></tr>';
 
-  try {
-    // Load from GitHub Actions-generated JSON file
-    const r = await fetch('/public/data/vulnerabilities.json', {cache:'no-store'});
-    if (!r.ok) throw new Error('Data file not found');
-    const data = await r.json();
+  // Try multiple paths since page can be served from different locations
+  const paths = ['../public/data/vulnerabilities.json', '/public/data/vulnerabilities.json', 'public/data/vulnerabilities.json'];
+  let data = null;
 
+  for (const path of paths) {
+    try {
+      const r = await fetch(path, {cache:'no-store'});
+      if (r.ok) { data = await r.json(); break; }
+    } catch(e) { /* try next */ }
+  }
+
+  if (data && data.vulnerabilities && data.vulnerabilities.length > 0) {
     // Update last refreshed timestamp
     if (data.lastUpdated) {
       document.getElementById('refresh-time').textContent =
         new Date(data.lastUpdated).toLocaleString('en-GB', {timeZone:'UTC'}) + ' UTC';
     }
 
-    // Parse and filter by days
-    const cutoff = Date.now() - days * 86400000;
-    allVulns = (data.vulnerabilities || [])
-      .filter(v => v && v.score !== null)
-      .filter(v => !days || !v.published || new Date(v.published).getTime() >= cutoff);
+    // Load all CVEs — filtering by date happens in applyFilters
+    allVulns = (data.vulnerabilities || []).filter(v => v && v.score !== null);
 
     // Default sort: newest first
     allVulns.sort((a,b) => new Date(b.published||0) - new Date(a.published||0));
     applyFilters();
-
-  } catch(e) {
-    console.warn('Could not load vulnerability JSON:', e.message);
+  } else {
+    console.warn('Could not load vulnerability JSON — using demo data');
     loadDemoData();
   }
 }
@@ -507,6 +527,22 @@ function renderExecSummary() {
   document.getElementById('exec-summary-text').innerHTML = txt;
 }
 
+// ─── CHART RANGE STATE ───────────────────────────────────
+let chartDays = 30;
+
+function setChartRange(days, btn) {
+  chartDays = days;
+  document.querySelectorAll('.chart-range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCharts();
+}
+
+function getChartData() {
+  if (!chartDays) return filtered; // All time
+  const cutoff = Date.now() - chartDays * 86400000;
+  return filtered.filter(v => !v.published || new Date(v.published).getTime() >= cutoff);
+}
+
 // ─── RENDER CHARTS ────────────────────────────────────────
 let charts = {};
 function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
@@ -514,8 +550,9 @@ function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete chart
 function renderCharts() {
   // Severity donut
   destroyChart('sev');
+  const chartData = getChartData();
   const sevCounts = { CRITICAL:0, HIGH:0, MEDIUM:0, LOW:0 };
-  filtered.forEach(v => { if (sevCounts[v.severity]!==undefined) sevCounts[v.severity]++; });
+  chartData.forEach(v => { if (sevCounts[v.severity]!==undefined) sevCounts[v.severity]++; });
   charts['sev'] = new Chart(document.getElementById('severityChart'), {
     type: 'doughnut',
     data: {
@@ -528,7 +565,7 @@ function renderCharts() {
   // AV bar
   destroyChart('av');
   const avCounts = {};
-  filtered.forEach(v => { avCounts[v.av] = (avCounts[v.av]||0)+1; });
+  chartData.forEach(v => { avCounts[v.av] = (avCounts[v.av]||0)+1; });
   const avKeys = Object.keys(avCounts).sort((a,b)=>avCounts[b]-avCounts[a]);
   const avColors = { NETWORK:'#3b82f6', LOCAL:'#f97316', ADJACENT:'#eab308', PHYSICAL:'#22c55e', 'N/A':'#64748b' };
   charts['av'] = new Chart(document.getElementById('avChart'), {
@@ -543,7 +580,7 @@ function renderCharts() {
   // Score histogram
   destroyChart('hist');
   const buckets = Array(10).fill(0);
-  filtered.forEach(v => { if (v.score!=null) { const idx=Math.min(Math.floor(v.score),9); buckets[idx]++; } });
+  chartData.forEach(v => { if (v.score!=null) { const idx=Math.min(Math.floor(v.score),9); buckets[idx]++; } });
   const histLabels = ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9','9-10'];
   const histColors = buckets.map((_,i) => i>=9?'#ef4444':i>=7?'#f97316':i>=4?'#eab308':'#64748b');
   charts['hist'] = new Chart(document.getElementById('scoreHistChart'), {
@@ -555,7 +592,7 @@ function renderCharts() {
   // CWE bar
   destroyChart('cwe');
   const cweCounts = {};
-  filtered.forEach(v => v.cwes.forEach(c => { cweCounts[c]=(cweCounts[c]||0)+1; }));
+  chartData.forEach(v => v.cwes.forEach(c => { cweCounts[c]=(cweCounts[c]||0)+1; }));
   const topCwes = Object.entries(cweCounts).sort((a,b)=>b[1]-a[1]).slice(0,8);
   charts['cwe'] = new Chart(document.getElementById('cweChart'), {
     type: 'bar',
