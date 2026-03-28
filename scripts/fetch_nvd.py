@@ -1,168 +1,119 @@
-#!/usr/bin/env python3
-"""
-fetch_nvd.py
-Fetches recent CVEs from the NIST NVD API v2.0
-and saves them to public/data/vulnerabilities.json
-"""
-
-import os
-import json
-import time
-import requests
+import os, json, time, requests
 from datetime import datetime, timedelta, timezone
 
-# ── CONFIG ─────────────────────────────────────────────────────────────────
-NVD_API  = "https://services.nvd.nist.gov/rest/json/cves/2.0"
-OUTPUT   = "public/data/vulnerabilities.json"
-DAYS     = 30       # Fetch CVEs published in the last 30 days
-MAX_CVEs = 2000     # NVD max per request
-
-# ── SETUP ──────────────────────────────────────────────────────────────────
-os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
+NVD_API = "https://services.nvd.nist.gov/rest/json/cves/2.0"
+OUTPUT  = "public/data/vulnerabilities.json"
+os.makedirs("public/data", exist_ok=True)
 
 api_key = os.environ.get("NVD_API_KEY", "")
 headers = {"apiKey": api_key} if api_key else {}
-if api_key:
-    print("NVD API key found — using higher rate limit")
-else:
-    print("No NVD API key — using public rate limit (may be slower)")
+print(f"API key present: {bool(api_key)}")
 
-# ── DATE RANGE ─────────────────────────────────────────────────────────────
-end   = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-start = end - timedelta(days=DAYS)
-fmt   = lambda d: d.strftime("%Y-%m-%dT00:00:00.000")
+end   = datetime.now(timezone.utc)
+start = end - timedelta(days=30)
 
-print(f"Fetching CVEs from {fmt(start)} to {fmt(end)} ...")
+# NVD v2.0 requires ISO 8601 with milliseconds in this exact format
+def fmt(d):
+    return d.strftime("%Y-%m-%dT%H:%M:%S.000+0000")
 
-# ── FETCH ──────────────────────────────────────────────────────────────────
+print(f"Date range: {fmt(start)} to {fmt(end)}")
+
+# Use lastModStartDate/lastModEndDate — more reliable than pubStartDate
 params = {
-    "pubStartDate":   fmt(start),
-    "pubEndDate":     fmt(end),
-    "resultsPerPage": MAX_CVEs,
+    "lastModStartDate": fmt(start),
+    "lastModEndDate":   fmt(end),
+    "resultsPerPage":   2000,
 }
 
+print(f"Calling NVD API...")
 for attempt in range(3):
     try:
         r = requests.get(NVD_API, params=params, headers=headers, timeout=60)
-        if r.status_code == 403:
-            print("Rate limited by NVD — waiting 30 seconds...")
-            time.sleep(30)
-            continue
+        print(f"  Status code: {r.status_code}")
+        if r.status_code == 404:
+            # Try without timezone suffix
+            params2 = {
+                "lastModStartDate": start.strftime("%Y-%m-%dT%H:%M:%S.000"),
+                "lastModEndDate":   end.strftime("%Y-%m-%dT%H:%M:%S.000"),
+                "resultsPerPage":   2000,
+            }
+            print(f"  Retrying without timezone suffix...")
+            r = requests.get(NVD_API, params=params2, headers=headers, timeout=60)
+            print(f"  Status code: {r.status_code}")
         r.raise_for_status()
         data = r.json()
         break
     except requests.RequestException as e:
-        print(f"Attempt {attempt+1} failed: {e}")
+        print(f"  Attempt {attempt+1} failed: {e}")
         if attempt < 2:
-            time.sleep(10)
+            time.sleep(6 if api_key else 30)
         else:
             raise
 
-raw_vulns = data.get("vulnerabilities", [])
-print(f"Raw CVEs returned by NVD: {len(raw_vulns)}")
+raw = data.get("vulnerabilities", [])
+print(f"CVEs returned: {len(raw)}")
 
-# ── PARSE ──────────────────────────────────────────────────────────────────
 def parse(entry):
     c = entry.get("cve", {})
-    if not c:
-        return None
-
+    if not c: return None
     cid  = c.get("id", "")
     desc = next((d["value"] for d in c.get("descriptions", []) if d.get("lang") == "en"), "")
-
-    metrics  = c.get("metrics", {})
-    m31 = (metrics.get("cvssMetricV31") or [])[0] if metrics.get("cvssMetricV31") else None
-    m30 = (metrics.get("cvssMetricV30") or [])[0] if metrics.get("cvssMetricV30") else None
-    m2  = (metrics.get("cvssMetricV2")  or [])[0] if metrics.get("cvssMetricV2")  else None
+    metrics = c.get("metrics", {})
+    m31 = (metrics.get("cvssMetricV31") or [None])[0]
+    m30 = (metrics.get("cvssMetricV30") or [None])[0]
+    m2  = (metrics.get("cvssMetricV2")  or [None])[0]
     cvss = m31 or m30
-
-    score    = None
-    severity = "N/A"
-    av       = "N/A"
-    ui       = None
-    priv     = None
-
+    score = severity = av = ui = priv = None
     if cvss:
-        cd       = cvss.get("cvssData", {})
+        cd = cvss.get("cvssData", {})
         score    = cd.get("baseScore")
         severity = cd.get("baseSeverity", "N/A")
         av       = cd.get("attackVector", "N/A")
         ui       = cd.get("userInteraction")
         priv     = cd.get("privilegesRequired")
     elif m2:
-        cd       = m2.get("cvssData", {})
+        cd = m2.get("cvssData", {})
         score    = cd.get("baseScore")
         severity = m2.get("baseSeverity", "N/A")
         av       = cd.get("accessVector", "N/A")
-
-    # Skip CVEs with no score — not yet analysed by NVD
-    if score is None:
-        return None
-
+    if score is None: return None
     refs = [ref["url"] for ref in c.get("references", [])[:5]]
     cwes = list(set(
-        d["value"]
-        for w in c.get("weaknesses", [])
+        d["value"] for w in c.get("weaknesses", [])
         for d in w.get("description", [])
         if d.get("value", "").startswith("CWE-")
     ))[:2]
-
     return {
-        "id":           cid,
-        "description":  desc[:500],
-        "score":        score,
-        "severity":     severity.upper() if severity else "N/A",
+        "id": cid, "description": desc[:500], "score": score,
+        "severity": severity.upper() if severity else "N/A",
         "attackVector": av.upper() if av else "N/A",
-        "userInteraction":     ui,
-        "privilegesRequired":  priv,
-        "published":    c.get("published", ""),
-        "references":   refs,
-        "cwes":         cwes,
+        "userInteraction": ui, "privilegesRequired": priv,
+        "published": c.get("published", ""), "references": refs, "cwes": cwes,
     }
 
-parsed = [parse(v) for v in raw_vulns]
-vulns  = [v for v in parsed if v is not None]
+vulns = [v for v in (parse(e) for e in raw) if v]
 vulns.sort(key=lambda v: v.get("score") or 0, reverse=True)
+print(f"CVEs with scores: {len(vulns)}")
 
-print(f"CVEs with scores (ready to display): {len(vulns)}")
-print(f"CVEs skipped (no score yet):          {len(raw_vulns) - len(vulns)}")
-
-# ── MERGE WITH EXISTING ────────────────────────────────────────────────────
 existing = []
 if os.path.exists(OUTPUT):
     try:
         with open(OUTPUT) as f:
             existing = json.load(f).get("vulnerabilities", [])
-        print(f"Existing records in file: {len(existing)}")
-    except Exception as e:
-        print(f"Could not read existing file: {e}")
+    except: pass
 
-# Merge: update existing, add new
 merged = {v["id"]: v for v in existing}
-new_count = 0
 for v in vulns:
-    if v["id"] not in merged:
-        new_count += 1
     merged[v["id"]] = v
-
-all_vulns = sorted(merged.values(), key=lambda v: v.get("published", ""), reverse=True)
-
-print(f"New CVEs added this run: {new_count}")
-print(f"Total CVEs in output:    {len(all_vulns)}")
-
-# ── SAVE ───────────────────────────────────────────────────────────────────
-output = {
-    "lastUpdated":     datetime.now(timezone.utc).isoformat(),
-    "totalCount":      len(all_vulns),
-    "vulnerabilities": all_vulns,
-}
+all_vulns = sorted(merged.values(), key=lambda v: v.get("published",""), reverse=True)
 
 with open(OUTPUT, "w") as f:
-    json.dump(output, f, indent=2)
+    json.dump({
+        "lastUpdated": datetime.now(timezone.utc).isoformat(),
+        "totalCount": len(all_vulns),
+        "vulnerabilities": all_vulns
+    }, f, indent=2)
 
-print(f"\nSaved to {OUTPUT}")
-
-# Print top 3 for verification
-print("\nTop 3 CVEs by score:")
+print(f"Saved {len(all_vulns)} CVEs to {OUTPUT}")
 for v in all_vulns[:3]:
-    print(f"  {v['id']} | Score: {v['score']} | Severity: {v['severity']} | {v['description'][:60]}...")
+    print(f"  {v['id']} | {v['score']} | {v['severity']}")
