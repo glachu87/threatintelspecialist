@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-03-31T23:37:38.805355Z",
+  "fetched_at": "2026-04-01T03:16:12.842348Z",
   "count": 20,
   "items": [
+    {
+      "title": "North Korea-Nexus Threat Actor Compromises Widely Used Axios NPM Package in Supply Chain Attack",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package/",
+      "pubDate": "Tue, 31 Mar 2026 14:00:00 +0000",
+      "description": "Written by: Austin Larsen, Dima Lenz, Adrian Hernandez, Tyler McLellan, Christopher Gardner, Ashley Zaya, Michael Rudden, Mon Liclican\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) is tracking an active software supply chain attack targeting the popular Node Package Manager (NPM) package \"axios.\" Between March 31, 2026, 00:21 and 03:20 UTC, an attacker introduced a malicious dependency named \"plain-crypto-js\" into axios NPM releases versions 1.14.1 and 0.30.4. Axios is the most popular JavaScript library used to simplify HTTP requests, and these packages typically have over 100 million and 83 million weekly downloads, respectively. This malicious dependency is an obfuscated dropper that deploys the WAVESHAPER.V2 backdoor across Windows, macOS, and Linux.\nGTIG attributes this activity to UNC1069, a financially motivated North Korea-nexus threat actor active since at least 2018, based on the use of WAVESHAPER.V2, an updated version of WAVESHAPER previously used by this threat ac"
+    },
     {
       "title": "M-Trends 2026: Data, Insights, and Strategies From the Frontlines",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2026/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/intellexa-zero-day-exploits-continue/",
       "pubDate": "Wed, 03 Dec 2025 14:00:00 +0000",
       "description": "Introduction \nDespite extensive scrutiny and public reporting, commercial surveillance vendors continue to operate unimpeded. A prominent name continues to surface in the world of mercenary spyware, Intellexa. Known for its “Predator” spyware, the company was sanctioned by the US Government. New Google Threat Intelligence Group (GTIG) analysis shows that Intellexa is evading restrictions and thriving. \nIntellexa has adapted, evaded restrictions, and continues selling digital weapons to the highest bidders. Alongside research published by our colleagues from Recorded Future and Amnesty, this blog post will shed light on Intellexa’s recent activities, unveil the real-world impact of their surveillance tools, and detail the actions we are taking against this industry.\nContinued Prolific Exploitation of Zero-Day Vulnerabilities \nOver the past several years, Intellexa has solidified its position as one of, if not the most, prolific spyware vendors exploiting zero-day vulnerabilities against"
-    },
-    {
-      "title": "Beyond the Watering Hole: APT24's Pivot to Multi-Vector Attacks",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/apt24-pivot-to-multi-vector-attacks/",
-      "pubDate": "Thu, 20 Nov 2025 14:00:00 +0000",
-      "description": "Written by: Harsh Parashar, Tierra Duncan, Dan Perez\n\nGoogle Threat Intelligence Group (GTIG) is tracking a long-running and adaptive cyber espionage campaign by APT24, a People's Republic of China (PRC)-nexus threat actor. Spanning three years, APT24 has been deploying BADAUDIO, a highly obfuscated first-stage downloader used to establish persistent access to victim networks.\nWhile earlier operations relied on broad strategic web compromises to compromise legitimate websites, APT24 has recently pivoted to using more sophisticated vectors targeting organizations in Taiwan. This includes the repeated compromise of a regional digital marketing firm to execute supply chain attacks and the use of targeted phishing campaigns.\nThis report provides a technical analysis of the BADAUDIO malware, details the evolution of APT24's delivery mechanisms from 2022 to present, and offers actionable intelligence to help defenders detect and mitigate this persistent threat.\nAs part of our efforts to comb"
     }
   ]
 }
