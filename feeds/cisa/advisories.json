@@ -1,6 +1,6 @@
 {
   "source": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
-  "fetched_at": "2026-04-02T13:15:40.985028+00:00",
+  "fetched_at": "2026-04-02T18:58:01.691528+00:00",
   "total": 50,
   "items": [
     {
@@ -51,7 +51,7 @@
     },
     {
       "cveID": "CVE-2025-53521",
-      "title": "F5 BIG-IP Unspecified Vulnerability",
+      "title": "F5 BIG-IP Stack-Based Buffer Overflow Vulnerability",
       "link": "https://nvd.nist.gov/vuln/detail/CVE-2025-53521",
       "vendor": "F5",
       "affected_products": "BIG-IP",
@@ -59,10 +59,10 @@
       "dueDate": "2026-03-30",
       "published": "2026-03-27",
       "release_date": "2026-03-27",
-      "shortDescription": "F5 BIG-IP APM contains an unspecified vulnerability that could allow a threat actor to achieve remote code execution.",
-      "executive_summary": "F5 BIG-IP APM contains an unspecified vulnerability that could allow a threat actor to achieve remote code execution.",
-      "summary": "F5 BIG-IP APM contains an unspecified vulnerability that could allow a threat actor to achieve remote code execution.",
-      "vulnerability_overview": "F5 BIG-IP APM contains an unspecified vulnerability that could allow a threat actor to achieve remote code execution.",
+      "shortDescription": "F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.",
+      "executive_summary": "F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.",
+      "summary": "F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.",
+      "vulnerability_overview": "F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.",
       "requiredAction": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "mitigations": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "knownRansomwareCampaignUse": "Unknown",
