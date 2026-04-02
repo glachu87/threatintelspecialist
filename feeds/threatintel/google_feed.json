@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-04-02T13:24:06.582644Z",
+  "fetched_at": "2026-04-02T15:00:53.532539Z",
   "count": 20,
   "items": [
+    {
+      "title": "vSphere and BRICKSTORM Malware: A Defender's Guide",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/vsphere-brickstorm-defender-guide/",
+      "pubDate": "Thu, 02 Apr 2026 14:00:00 +0000",
+      "description": "Written by: Stuart Carrera\n\nIntroduction \nBuilding on recent BRICKSTORM research from Google Threat Intelligence Group (GTIG), this post explores the evolving threats facing virtualized environments. These operations directly target the VMware vSphere ecosystem, specifically the vCenter Server Appliance (VCSA) and ESXi hypervisors. To help organizations stay ahead of these risks, we will focus on the essential hardening strategies and mitigating controls necessary to secure these critical assets.\nBy establishing persistence at the virtualization layer, threat actors operate beneath the guest operating system where traditional security protections are ineffective. This strategy takes advantage of a significant visibility gap, as these control planes do not support standard endpoint detection and response (EDR) agents and have historically received less security focus than traditional endpoints.\nThis activity is not the result of a security vulnerability in vendors' products or infrastru"
+    },
     {
       "title": "North Korea-Nexus Threat Actor Compromises Widely Used Axios NPM Package in Supply Chain Attack",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actors-exploit-react2shell-cve-2025-55182/",
       "pubDate": "Fri, 12 Dec 2025 14:00:00 +0000",
       "description": "Written by: Aragorn Tseng, Robert Weiner, Casey Charrier, Zander Work, Genevieve Stark, Austin Larsen\n\nIntroduction\nOn Dec. 3, 2025, a critical unauthenticated remote code execution (RCE) vulnerability in React Server Components, tracked as CVE-2025-55182 (aka \"React2Shell\"), was publicly disclosed. Shortly after disclosure, Google Threat Intelligence Group (GTIG) had begun observing widespread exploitation across many threat clusters, ranging from opportunistic cyber crime actors to suspected espionage groups.\nGTIG has identified distinct campaigns leveraging this vulnerability to deploy a MINOCAT tunneler, SNOWLIGHT downloader, HISONIC backdoor, and COMPOOD backdoor, as well as XMRIG cryptocurrency miners, some of which overlaps with activity previously reported by Huntress. These observed campaigns highlight the risk posed to organizations using unpatched versions of React and Next.js. This post details the observed exploitation chains and post-compromise behaviors and provides inte"
-    },
-    {
-      "title": "Sanctioned but Still Spying: Intellexa’s Prolific Zero-Day Exploits Continue",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/intellexa-zero-day-exploits-continue/",
-      "pubDate": "Wed, 03 Dec 2025 14:00:00 +0000",
-      "description": "Introduction \nDespite extensive scrutiny and public reporting, commercial surveillance vendors continue to operate unimpeded. A prominent name continues to surface in the world of mercenary spyware, Intellexa. Known for its “Predator” spyware, the company was sanctioned by the US Government. New Google Threat Intelligence Group (GTIG) analysis shows that Intellexa is evading restrictions and thriving. \nIntellexa has adapted, evaded restrictions, and continues selling digital weapons to the highest bidders. Alongside research published by our colleagues from Recorded Future and Amnesty, this blog post will shed light on Intellexa’s recent activities, unveil the real-world impact of their surveillance tools, and detail the actions we are taking against this industry.\nContinued Prolific Exploitation of Zero-Day Vulnerabilities \nOver the past several years, Intellexa has solidified its position as one of, if not the most, prolific spyware vendors exploiting zero-day vulnerabilities against"
     }
   ]
 }
