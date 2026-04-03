@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Incident Tracker | Threat Intel Specialist</title>
 <link rel="icon" href="../images/TIS_Logo.png">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
     --bg: #0b0f1a; --bg2: #111827; --bg3: #1a2235; --card: #141c2e;
@@ -411,7 +411,7 @@ let incidentFiltered = [...INCIDENT_DATA];
 function renderLiveFeed() {
   incidentFiltered = [...INCIDENT_DATA];
   renderStats();
-  renderIncidentCharts();
+  chartsReady(renderIncidentCharts);
   renderIncidentCards(incidentFiltered.slice(0, 20));
   renderLiveSummary();
 }
@@ -451,7 +451,11 @@ function renderStats() {
 }
 
 let iCharts = {};
-function destroyChart(id) { if (iCharts[id]) { iCharts[id].destroy(); delete iCharts[id]; } }
+function destroyChart(id) { if (iCharts[id]) { try{iCharts[id].destroy();}catch(e){} delete iCharts[id]; } }
+function chartsReady(cb) {
+  if (typeof Chart !== 'undefined') { cb(); }
+  else { setTimeout(() => chartsReady(cb), 300); }
+}
 
 function renderIncidentCharts() {
   const d30 = incidentFiltered.filter(v=>isWithinDays(v.date,30));
