@@ -220,10 +220,10 @@ footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index
 
   <!-- CHARTS -->
   <div class="charts-grid">
-    <div class="chart-card"><h3>Severity Distribution</h3><div class="chart-wrap"><canvas id="c-sev"></canvas></div></div>
-    <div class="chart-card"><h3>Attack Vector Breakdown</h3><div class="chart-wrap"><canvas id="c-av"></canvas></div></div>
-    <div class="chart-card"><h3>CVSS Score Distribution</h3><div class="chart-wrap"><canvas id="c-score"></canvas></div></div>
-    <div class="chart-card"><h3>Top Weakness Types (CWE)</h3><div class="chart-wrap"><canvas id="c-cwe"></canvas></div></div>
+    <div class="chart-card"><h3>Severity Distribution</h3><div class="chart-wrap" id="c-sev"></div></div>
+    <div class="chart-card"><h3>Attack Vector Breakdown</h3><div class="chart-wrap" id="c-av"></div></div>
+    <div class="chart-card"><h3>CVSS Score Distribution</h3><div class="chart-wrap" id="c-score"></div></div>
+    <div class="chart-card"><h3>Top Weakness Types (CWE)</h3><div class="chart-wrap" id="c-cwe"></div></div>
   </div>
 
   <!-- FILTERS -->
@@ -300,16 +300,12 @@ footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index
 </footer>
 
 <!-- Chart.js from multiple CDNs as fallback -->
-<script>
-window.CHART_LOADED = false;
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" onload="window.CHART_LOADED=true"></script>
+<!-- No external chart library needed - charts built with pure CSS -->
 <script>
 // ── STATE ──────────────────────────────────────────────────────
 let ALL = [], FILTERED = [], KEV = new Set();
 let sortKey = 'published', sortDir = -1, curPage = 1, rangeDays = 30;
 const PAGE = 25;
-const CHARTS = {};
 
 // ── INIT ───────────────────────────────────────────────────────
 (async () => {
@@ -355,6 +351,7 @@ async function loadVulns() {
   }
 
   if (data) {
+    console.log('Data loaded successfully from file');
     const list = data.vulnerabilities || data.items || [];
     if (data.lastUpdated) {
       document.getElementById('refresh-time').textContent =
@@ -366,6 +363,7 @@ async function loadVulns() {
   } else {
     console.warn('No CVE data file found — using demo data');
     ALL = getDemoData();
+    console.log('Demo data loaded:', ALL.length, 'items');
   }
 
   applyFilters();
@@ -481,94 +479,95 @@ function chartData() {
   return FILTERED.filter(v => new Date(v.published||0).getTime() >= cutoff);
 }
 
-function destroyChart(id) {
-  if (CHARTS[id]) { try { CHARTS[id].destroy(); } catch(e){} delete CHARTS[id]; }
-}
-
 function renderCharts() {
-  // If Chart.js isn't loaded yet, wait and retry
-  if (typeof Chart === 'undefined') {
-    setTimeout(renderCharts, 500);
-    return;
-  }
-
   const cd = chartData();
+  console.log('renderCharts called, data points:', cd.length, 'ALL:', ALL.length, 'FILTERED:', FILTERED.length);
+  if (!cd.length) return;
 
-  // 1. Severity donut
-  destroyChart('sev');
+  // 1. SEVERITY — donut using CSS conic-gradient
   const sevC = {CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0};
-  cd.forEach(v => { if (sevC[v.severity]!==undefined) sevC[v.severity]++; });
-  CHARTS['sev'] = new Chart(document.getElementById('c-sev'), {
-    type: 'doughnut',
-    data: {
-      labels: Object.keys(sevC),
-      datasets: [{
-        data: Object.values(sevC),
-        backgroundColor: ['#f43f5e','#f97316','#f59e0b','#10b981'],
-        borderColor: '#0f1628', borderWidth: 3
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position:'right', labels:{ color:'#94a3b8', font:{size:11}, boxWidth:12 } } },
-      cutout: '60%'
-    }
-  });
+  cd.forEach(v => { if(sevC[v.severity]!==undefined) sevC[v.severity]++; });
+  const total = Object.values(sevC).reduce((a,b)=>a+b,0)||1;
+  const sevColors = {CRITICAL:'#f43f5e',HIGH:'#f97316',MEDIUM:'#f59e0b',LOW:'#10b981'};
+  let deg = 0;
+  const conicParts = Object.entries(sevC).map(([k,v])=>{
+    const pct = (v/total)*360;
+    const part = `${sevColors[k]} ${deg}deg ${deg+pct}deg`;
+    deg += pct;
+    return part;
+  }).join(', ');
+  const sevLegend = Object.entries(sevC).map(([k,v])=>
+    `<div style="display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#94a3b8">
+      <div style="width:10px;height:10px;border-radius:2px;background:${sevColors[k]};flex-shrink:0"></div>
+      <span>${k} <strong style="color:#e2e8f0">${v}</strong></span>
+    </div>`
+  ).join('');
+  document.getElementById('c-sev').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:center;gap:24px;height:100%">
+      <div style="position:relative;width:140px;height:140px;flex-shrink:0">
+        <div style="width:140px;height:140px;border-radius:50%;background:conic-gradient(${conicParts})"></div>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:#0f1628;display:flex;align-items:center;justify-content:center;flex-direction:column">
+          <span style="font-size:1.3rem;font-weight:700;color:#e2e8f0;font-family:var(--mono)">${total}</span>
+          <span style="font-size:0.62rem;color:#475569;text-transform:uppercase">Total</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">${sevLegend}</div>
+    </div>`;
 
-  // 2. Attack vector bar
-  destroyChart('av');
+  // 2. ATTACK VECTOR — horizontal bar chart
   const avC = {};
-  cd.forEach(v => { const k = v.attackVector||'N/A'; avC[k]=(avC[k]||0)+1; });
+  cd.forEach(v => { const k=v.attackVector||'N/A'; avC[k]=(avC[k]||0)+1; });
   const avKeys = Object.keys(avC).sort((a,b)=>avC[b]-avC[a]);
-  const avCol = {NETWORK:'#3b82f6',LOCAL:'#f97316',ADJACENT:'#f59e0b',PHYSICAL:'#10b981'};
-  CHARTS['av'] = new Chart(document.getElementById('c-av'), {
-    type: 'bar',
-    data: {
-      labels: avKeys,
-      datasets: [{ data: avKeys.map(k=>avC[k]), backgroundColor: avKeys.map(k=>avCol[k]||'#64748b'), borderRadius:4 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend:{display:false} },
-      scales: { x:{ticks:{color:'#94a3b8'}}, y:{ticks:{color:'#94a3b8'},grid:{color:'rgba(255,255,255,0.05)'}} }
-    }
-  });
+  const avMax = Math.max(...Object.values(avC))||1;
+  const avColors = {NETWORK:'#3b82f6',LOCAL:'#f97316',ADJACENT:'#f59e0b',PHYSICAL:'#10b981','N/A':'#475569'};
+  const avBars = avKeys.map(k=>{
+    const pct = Math.round((avC[k]/avMax)*100);
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:80px;font-size:0.72rem;color:#94a3b8;text-align:right;flex-shrink:0">${k}</div>
+      <div style="flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${avColors[k]||'#475569'};border-radius:4px;display:flex;align-items:center;padding-left:8px;transition:width 0.5s ease">
+          <span style="font-size:0.72rem;font-weight:600;color:#fff;font-family:var(--mono)">${avC[k]}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('c-av').innerHTML = `<div style="padding:8px 0;height:100%;overflow:auto">${avBars}</div>`;
 
-  // 3. CVSS score histogram
-  destroyChart('score');
+  // 3. CVSS SCORE DISTRIBUTION — vertical bar chart
   const bins = Array(10).fill(0);
-  cd.forEach(v => { if (v.score!=null){ const i=Math.min(Math.floor(v.score),9); bins[i]++; }});
-  const binCols = bins.map((_,i)=>i>=9?'#f43f5e':i>=7?'#f97316':i>=4?'#f59e0b':'#64748b');
-  CHARTS['score'] = new Chart(document.getElementById('c-score'), {
-    type: 'bar',
-    data: {
-      labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9','9-10'],
-      datasets: [{ data: bins, backgroundColor: binCols, borderRadius:3 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend:{display:false} },
-      scales: { x:{ticks:{color:'#94a3b8',font:{size:10}}}, y:{ticks:{color:'#94a3b8'},grid:{color:'rgba(255,255,255,0.05)'}} }
-    }
-  });
+  cd.forEach(v => { if(v.score!=null){ const i=Math.min(Math.floor(v.score),9); bins[i]++; }});
+  const binMax = Math.max(...bins)||1;
+  const binLabels = ['0','1','2','3','4','5','6','7','8','9'];
+  const binColors = bins.map((_,i)=>i>=9?'#f43f5e':i>=7?'#f97316':i>=4?'#f59e0b':'#475569');
+  const scoreBars = bins.map((v,i)=>{
+    const h = Math.round((v/binMax)*120);
+    return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:0.65rem;color:#94a3b8;font-family:var(--mono)">${v||''}</span>
+      <div style="width:100%;background:rgba(255,255,255,0.05);border-radius:3px 3px 0 0;height:130px;display:flex;align-items:flex-end">
+        <div style="width:100%;height:${h}px;background:${binColors[i]};border-radius:3px 3px 0 0;min-height:${v?2:0}px"></div>
+      </div>
+      <span style="font-size:0.65rem;color:#475569">${binLabels[i]}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('c-score').innerHTML = `<div style="display:flex;align-items:flex-end;gap:3px;height:100%;padding:8px 0">${scoreBars}</div>`;
 
-  // 4. CWE bar (horizontal)
-  destroyChart('cwe');
+  // 4. TOP CWEs — horizontal bars
   const cweC = {};
   cd.forEach(v => (v.cwes||[]).forEach(c=>{ cweC[c]=(cweC[c]||0)+1; }));
-  const topCWE = Object.entries(cweC).sort((a,b)=>b[1]-a[1]).slice(0,8);
-  CHARTS['cwe'] = new Chart(document.getElementById('c-cwe'), {
-    type: 'bar',
-    data: {
-      labels: topCWE.map(x=>x[0]),
-      datasets: [{ data: topCWE.map(x=>x[1]), backgroundColor:'#06b6d4', borderRadius:3 }]
-    },
-    options: {
-      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: { legend:{display:false} },
-      scales: { x:{ticks:{color:'#94a3b8'}}, y:{ticks:{color:'#94a3b8',font:{size:10}}} }
-    }
-  });
+  const topCWE = Object.entries(cweC).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  const cweMax = topCWE[0]?.[1]||1;
+  const cweBars = topCWE.map(([k,v])=>{
+    const pct = Math.round((v/cweMax)*100);
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="width:64px;font-size:0.7rem;color:#94a3b8;text-align:right;font-family:var(--mono);flex-shrink:0">${k}</div>
+      <div style="flex:1;height:20px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:#06b6d4;border-radius:3px;display:flex;align-items:center;padding-left:6px">
+          <span style="font-size:0.68rem;font-weight:600;color:#fff;font-family:var(--mono)">${v}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('c-cwe').innerHTML = `<div style="padding:4px 0;height:100%;overflow:auto">${cweBars||'<p style="color:#475569;font-size:0.8rem;text-align:center;padding-top:2rem">No CWE data</p>'}</div>`;
 }
 
 // ── TABLE ──────────────────────────────────────────────────────
