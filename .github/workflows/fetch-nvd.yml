@@ -1,42 +1,26 @@
 name: Fetch NVD Vulnerabilities
-
 on:
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   fetch-nvd:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Fetch NVD CVE data
+      - run: pip install requests
+      - run: python scripts/fetch_nvd.py
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: python scripts/fetch_nvd.py
-
-      - name: Commit and push
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.name 'TIS Bot'
-          git config --global user.email 'bot@threatintelspecialist.com'
-          git add feeds/nvd/vulnerabilities.json
-          git diff --staged --quiet && { echo "No changes"; exit 0; }
-          git commit -m "chore: update NVD data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          git fetch origin main
-          git rebase origin/main
-          git push origin main
+          gh api --method PUT repos/glachu87/threatintelspecialist/contents/feeds/nvd/vulnerabilities.json \
+            --field message="update NVD data" \
+            --field content="$(base64 -w 0 feeds/nvd/vulnerabilities.json)" \
+            --field sha="$(gh api repos/glachu87/threatintelspecialist/contents/feeds/nvd/vulnerabilities.json --jq '.sha' 2>/dev/null || echo '')"
