@@ -307,26 +307,41 @@ let ALL = [], FILTERED = [], KEV = new Set();
 let sortKey = 'published', sortDir = -1, curPage = 1, rangeDays = 30;
 const PAGE = 25;
 
-// ── INIT ───────────────────────────────────────────────────────
-(async () => {
-  document.getElementById('refresh-time').textContent =
-    new Date().toLocaleString('en-GB', {timeZone:'UTC'}) + ' UTC';
+// ── HELPER: fetch with timeout ────────────────────────────────
+async function fetchWithTimeout(url, ms=5000) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  try {
+    const r = await fetch(url, {signal: ctrl.signal});
+    clearTimeout(timer);
+    return r;
+  } catch(e) {
+    clearTimeout(timer);
+    throw e;
+  }
+}
 
-  await loadKEV();
-  await loadVulns();
-})();
+// ── INIT ───────────────────────────────────────────────────────
+document.getElementById('refresh-time').textContent =
+  new Date().toLocaleString('en-GB', {timeZone:'UTC'}) + ' UTC';
+
+// Load KEV and vulns independently - don't let KEV block vulns
+loadKEV();
+loadVulns();
 
 // ── LOAD KEV ───────────────────────────────────────────────────
 async function loadKEV() {
   try {
-    const r = await fetch('../feeds/cisa/advisories.json');
+    const r = await fetchWithTimeout('../feeds/cisa/advisories.json', 4000);
     if (!r.ok) return;
     const d = await r.json();
     (d.items || d.vulnerabilities || []).forEach(v => {
       const id = v.cveID || v.id || '';
       if (id) KEV.add(id);
     });
-  } catch(e) {}
+  } catch(e) {
+    console.log('KEV load skipped:', e.message);
+  }
 }
 
 // ── LOAD VULNS ─────────────────────────────────────────────────
@@ -342,7 +357,7 @@ async function loadVulns() {
   let data = null;
   for (const p of PATHS) {
     try {
-      const r = await fetch(p + '?v=' + Date.now());
+      const r = await fetchWithTimeout(p + '?v=' + Date.now(), 5000);
       if (r.ok) {
         const d = await r.json();
         if (d && (d.vulnerabilities || d.items)) { data = d; break; }
@@ -372,14 +387,14 @@ async function loadVulns() {
 // ── DEMO DATA ──────────────────────────────────────────────────
 function getDemoData() {
   return [
-    {id:'CVE-2025-0001',score:9.8,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Remote code execution in Apache HTTP Server via crafted requests.',cwes:['CWE-78'],references:['https://nvd.nist.gov'],published:'2025-03-10T00:00:00'},
-    {id:'CVE-2025-0002',score:9.1,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Authentication bypass in Microsoft Exchange allowing NTLM relay attacks.',cwes:['CWE-287'],references:['https://nvd.nist.gov'],published:'2025-03-08T00:00:00'},
-    {id:'CVE-2025-0003',score:8.8,severity:'HIGH',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'LOW',description:'SQL injection in Cisco IOS XE Web UI enables arbitrary query execution.',cwes:['CWE-89'],references:['https://nvd.nist.gov'],published:'2025-03-05T00:00:00'},
-    {id:'CVE-2025-0004',score:8.1,severity:'HIGH',attackVector:'NETWORK',userInteraction:'REQUIRED',privilegesRequired:'NONE',description:'Heap buffer overflow in Chrome V8 engine via crafted HTML pages.',cwes:['CWE-122'],references:['https://nvd.nist.gov'],published:'2025-03-01T00:00:00'},
-    {id:'CVE-2025-0005',score:7.5,severity:'HIGH',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Fortinet FortiOS SSL-VPN RCE without authentication.',cwes:['CWE-20'],references:['https://nvd.nist.gov'],published:'2025-02-25T00:00:00'},
-    {id:'CVE-2025-0006',score:6.5,severity:'MEDIUM',attackVector:'NETWORK',userInteraction:'REQUIRED',privilegesRequired:'LOW',description:'XSS in WordPress core allows authenticated script injection.',cwes:['CWE-79'],references:['https://nvd.nist.gov'],published:'2025-02-20T00:00:00'},
-    {id:'CVE-2025-0007',score:5.9,severity:'MEDIUM',attackVector:'ADJACENT',userInteraction:'NONE',privilegesRequired:'LOW',description:'Race condition in Linux kernel network stack allows privilege escalation.',cwes:['CWE-362'],references:['https://nvd.nist.gov'],published:'2025-02-15T00:00:00'},
-    {id:'CVE-2025-0008',score:9.9,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Zero-day RCE in Ivanti Connect Secure allows unauthenticated command execution.',cwes:['CWE-78'],references:['https://nvd.nist.gov'],published:'2025-02-10T00:00:00'},
+    {id:'CVE-2026-0001',score:9.8,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Remote code execution in Apache HTTP Server via crafted requests.',cwes:['CWE-78'],references:['https://nvd.nist.gov'],published:'2026-04-02T00:00:00'},
+    {id:'CVE-2026-0002',score:9.1,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Authentication bypass in Microsoft Exchange allowing NTLM relay attacks.',cwes:['CWE-287'],references:['https://nvd.nist.gov'],published:'2026-03-30T00:00:00'},
+    {id:'CVE-2026-0003',score:8.8,severity:'HIGH',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'LOW',description:'SQL injection in Cisco IOS XE Web UI enables arbitrary query execution.',cwes:['CWE-89'],references:['https://nvd.nist.gov'],published:'2026-03-26T00:00:00'},
+    {id:'CVE-2026-0004',score:8.1,severity:'HIGH',attackVector:'NETWORK',userInteraction:'REQUIRED',privilegesRequired:'NONE',description:'Heap buffer overflow in Chrome V8 engine via crafted HTML pages.',cwes:['CWE-122'],references:['https://nvd.nist.gov'],published:'2026-03-21T00:00:00'},
+    {id:'CVE-2026-0005',score:7.5,severity:'HIGH',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Fortinet FortiOS SSL-VPN RCE without authentication.',cwes:['CWE-20'],references:['https://nvd.nist.gov'],published:'2026-03-15T00:00:00'},
+    {id:'CVE-2026-0006',score:6.5,severity:'MEDIUM',attackVector:'NETWORK',userInteraction:'REQUIRED',privilegesRequired:'LOW',description:'XSS in WordPress core allows authenticated script injection.',cwes:['CWE-79'],references:['https://nvd.nist.gov'],published:'2026-03-10T00:00:00'},
+    {id:'CVE-2026-0007',score:5.9,severity:'MEDIUM',attackVector:'ADJACENT',userInteraction:'NONE',privilegesRequired:'LOW',description:'Race condition in Linux kernel network stack allows privilege escalation.',cwes:['CWE-362'],references:['https://nvd.nist.gov'],published:'2026-03-04T00:00:00'},
+    {id:'CVE-2026-0008',score:9.9,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Zero-day RCE in Ivanti Connect Secure allows unauthenticated command execution.',cwes:['CWE-78'],references:['https://nvd.nist.gov'],published:'2026-02-25T00:00:00'},
   ];
 }
 
