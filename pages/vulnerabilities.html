@@ -21,9 +21,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh}
 a{color:inherit;text-decoration:none}
 .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(56,139,253,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,139,253,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
-
-/* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(6,10,18,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav{position:sticky;top:0;z-index:100;background:rgba(6,10,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:64px;display:flex;align-items:center;gap:2rem}
 .nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .nav-brand img{height:30px}
@@ -34,11 +32,9 @@ a{color:inherit;text-decoration:none}
 .nav-links a.active{color:var(--accent)}
 .nav-cta{margin-left:0.75rem;padding:7px 16px!important;background:var(--accent)!important;color:#fff!important;border-radius:8px!important;font-weight:600!important}
 .menu-toggle{display:none;background:none;border:1px solid var(--border2);color:var(--text2);border-radius:6px;padding:6px 10px;cursor:pointer;margin-left:auto;font-size:1rem}
-
-/* PAGE */
 .page-wrap{max-width:1280px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}
-.page-header{margin-bottom:1.5rem}
 .page-eyebrow{font-family:var(--mono);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
+.page-header{margin-bottom:1.5rem}
 .page-header h1{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:6px}
 .page-header p{font-size:0.9rem;color:var(--text2)}
 .last-updated{font-size:0.75rem;color:var(--text3);font-family:var(--mono);margin-top:6px}
@@ -46,30 +42,37 @@ a{color:inherit;text-decoration:none}
 
 /* EXEC BANNER */
 .exec-banner{background:linear-gradient(135deg,rgba(59,130,246,0.07),rgba(6,182,212,0.04));border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
-.exec-banner h2{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent2);font-weight:600;margin-bottom:6px;font-family:var(--mono)}
-.exec-banner p{font-size:0.88rem;color:var(--text2);line-height:1.7}
+.exec-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent2);font-weight:600;margin-bottom:8px;font-family:var(--mono)}
+.exec-text{font-size:0.88rem;color:var(--text2);line-height:1.75}
+.exec-text strong{color:var(--text)}
 
-/* STAT CARDS */
+/* STAT CARDS — clickable */
 .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1.5rem}
-.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;cursor:pointer;transition:border-color 0.15s,background 0.15s}
+.stat-card:hover{border-color:var(--border2);background:var(--surface)}
+.stat-card.active-filter{border-color:var(--accent);background:rgba(59,130,246,0.08)}
 .stat-card .lbl{font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
 .stat-card .val{font-size:1.8rem;font-weight:700;font-family:var(--mono)}
 .stat-card .sub{font-size:0.72rem;color:var(--text3);margin-top:3px}
 
-/* CHART CONTROLS */
-.chart-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem}
-.chart-controls-label{font-size:0.82rem;color:var(--text2);font-weight:600}
-.range-btns{display:flex;gap:6px;flex-wrap:wrap}
+/* DATE RANGE — single control for BOTH charts and table */
+.range-row{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;flex-wrap:wrap}
+.range-label{font-size:0.78rem;color:var(--text2);font-weight:600;font-family:var(--mono)}
 .range-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:5px 14px;border-radius:6px;font-size:0.78rem;cursor:pointer;transition:all 0.15s;font-family:var(--body)}
 .range-btn:hover{border-color:var(--accent);color:var(--accent)}
 .range-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.active-filter-bar{background:rgba(59,130,246,0.08);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:0.78rem;color:var(--accent2);display:none;align-items:center;gap:10px;margin-bottom:1rem}
+.active-filter-bar.show{display:flex}
+.clear-btn{background:none;border:1px solid var(--border2);color:var(--text3);border-radius:4px;padding:2px 8px;font-size:0.72rem;cursor:pointer;font-family:var(--body)}
+.clear-btn:hover{color:var(--red);border-color:var(--red)}
 
 /* CHARTS GRID */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
 @media(max-width:768px){.charts-grid{grid-template-columns:1fr}}
 .chart-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
-.chart-card h3{font-size:0.78rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;font-family:var(--mono)}
-.chart-wrap{position:relative;height:220px}
+.chart-card h3{font-size:0.75rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;font-family:var(--mono)}
+.chart-wrap{position:relative;height:220px;overflow:hidden}
+.clickable-hint{font-size:0.68rem;color:var(--text3);margin-top:6px;font-family:var(--mono)}
 
 /* FILTER BAR */
 .filter-bar{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.75rem;align-items:flex-end}
@@ -85,7 +88,7 @@ a{color:inherit;text-decoration:none}
 
 /* TABLE */
 .table-wrap-outer{background:var(--bg3);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
-.table-head-row{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.table-head-row{padding:0.875rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);gap:1rem;flex-wrap:wrap}
 .table-head-row h3{font-size:0.85rem;font-weight:600}
 .table-head-row span{font-size:0.75rem;color:var(--text3);font-family:var(--mono)}
 .table-scroll{overflow-x:auto}
@@ -95,68 +98,51 @@ th:hover{color:var(--accent)}
 td{padding:0.7rem 1rem;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:rgba(255,255,255,0.02)}
-
-/* BADGES */
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;font-family:var(--mono)}
 .CRITICAL{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.25)}
 .HIGH{background:rgba(249,115,22,0.12);color:#fdba74;border:1px solid rgba(249,115,22,0.25)}
 .MEDIUM{background:rgba(234,179,8,0.12);color:#fde047;border:1px solid rgba(234,179,8,0.25)}
 .LOW{background:rgba(34,197,94,0.12);color:#86efac;border:1px solid rgba(34,197,94,0.25)}
 .KEV-badge{background:rgba(139,92,246,0.12);color:#c4b5fd;border:1px solid rgba(139,92,246,0.25);font-size:0.63rem;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:middle}
-
-/* SCORE */
 .score{font-family:var(--mono);font-weight:700;font-size:0.85rem}
 .sc{color:var(--red)}.sh{color:var(--orange)}.sm{color:var(--yellow)}.sl{color:var(--green)}
-
-/* AV */
-.av-pill{font-size:0.75rem;display:inline-flex;align-items:center;gap:4px}
-
-/* CWE */
 .cwe-tag{display:inline-block;background:var(--surface);border:1px solid var(--border);color:var(--text3);font-family:var(--mono);font-size:0.68rem;padding:1px 6px;border-radius:3px;margin:1px}
-
-/* DESC */
-.desc-cell{max-width:300px;color:var(--text2);font-size:0.79rem;line-height:1.45}
+.desc-cell{max-width:280px;color:var(--text2);font-size:0.79rem;line-height:1.45}
 .desc-trunc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-
-/* EXPLOIT */
 .exploit-cell{font-size:0.75rem;color:var(--text2);line-height:1.7}
-
-/* AGE */
 .age-new{color:var(--red);font-family:var(--mono);font-size:0.75rem}
 .age-week{color:var(--orange);font-family:var(--mono);font-size:0.75rem}
 .age-old{color:var(--text3);font-family:var(--mono);font-size:0.75rem}
-
-/* DETAIL LINKS */
 .detail-links{display:flex;flex-direction:column;gap:3px}
 .detail-links a{font-size:0.75rem;color:var(--accent);white-space:nowrap}
-.detail-links a.vendor{color:var(--text3);font-size:0.7rem}
-
-/* PAGINATION */
+.detail-links a.v{color:var(--text3);font-size:0.7rem}
 .pagination{display:flex;justify-content:center;align-items:center;gap:6px;padding:1rem}
 .pg-btn{background:var(--bg2);border:1px solid var(--border);color:var(--text2);padding:5px 10px;border-radius:5px;font-size:0.78rem;cursor:pointer;transition:all 0.15s}
 .pg-btn:hover,.pg-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .pg-btn:disabled{opacity:0.3;cursor:default}
-
-/* LOADING */
 .loading{text-align:center;padding:3rem;color:var(--text3)}
 .spinner{display:inline-block;width:28px;height:28px;border:3px solid rgba(56,139,253,0.2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
+.no-data-msg{text-align:center;padding:3rem 2rem;color:var(--text3)}
+.no-data-msg .icon{font-size:2.5rem;margin-bottom:1rem}
+.no-data-msg h3{font-size:1rem;color:var(--text2);margin-bottom:0.5rem}
+.no-data-msg p{font-size:0.85rem;line-height:1.6}
+.no-data-msg code{font-family:var(--mono);font-size:0.78rem;background:var(--bg2);padding:2px 6px;border-radius:3px;color:var(--accent2)}
 footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index:1}
 .footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-brand{display:flex;align-items:center;gap:10px}
 .footer-brand img{height:22px;opacity:0.6}
 .footer-text{font-size:0.77rem;color:var(--text3)}
 .footer-links{display:flex;gap:1.5rem}
-.footer-links a{font-size:0.77rem;color:var(--text3);transition:color 0.15s}
+.footer-links a{font-size:0.77rem;color:var(--text3)}
 .footer-links a:hover{color:var(--text2)}
-
 @media(max-width:768px){
   .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem;gap:4px}
   .nav-links.open{display:flex}
   .nav-cta{display:none!important}
   .menu-toggle{display:block}
   .page-wrap{padding:1rem}
+  .charts-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -186,94 +172,137 @@ footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index
 
   <div class="page-header">
     <div class="page-eyebrow">Vulnerability Intelligence</div>
-    <h1>🛡️ Vulnerability Feed</h1>
-    <p>CVEs from NIST NVD — scored, filtered, and ready for action.</p>
-    <div class="last-updated">Last refreshed: <span id="refresh-time">Loading…</span></div>
+    <h1>🛡️ CVE Intelligence Feed</h1>
+    <p>Real CVEs from NIST NVD — scored, categorised, and ready for action. Data refreshed every 6 hours.</p>
+    <div class="last-updated">Last refreshed: <span id="refresh-time">—</span></div>
   </div>
 
+  <!-- EXECUTIVE SUMMARY -->
   <div class="exec-banner">
-    <h2>Executive Summary</h2>
-    <p id="exec-text">Loading vulnerability intelligence…</p>
+    <div class="exec-label">📋 Weekly Executive Summary</div>
+    <div class="exec-text" id="exec-text">Loading intelligence summary…</div>
   </div>
 
+  <!-- STAT CARDS — click to filter table -->
   <div class="stats-row">
-    <div class="stat-card"><div class="lbl">Critical (≥9.0)</div><div class="val" style="color:var(--red)" id="s-crit">—</div><div class="sub">CVSSv3 ≥ 9.0</div></div>
-    <div class="stat-card"><div class="lbl">High (7.0–8.9)</div><div class="val" style="color:var(--orange)" id="s-high">—</div><div class="sub">CVSSv3 7.0–8.9</div></div>
-    <div class="stat-card"><div class="lbl">Medium (4.0–6.9)</div><div class="val" style="color:var(--yellow)" id="s-med">—</div><div class="sub">CVSSv3 4.0–6.9</div></div>
-    <div class="stat-card"><div class="lbl">Total Loaded</div><div class="val" style="color:var(--accent)" id="s-total">—</div><div class="sub">All CVEs</div></div>
-    <div class="stat-card"><div class="lbl">Network Vector</div><div class="val" style="color:var(--accent2)" id="s-net">—</div><div class="sub">AV:Network</div></div>
-    <div class="stat-card"><div class="lbl">KEV Listed</div><div class="val" style="color:#c4b5fd" id="s-kev">—</div><div class="sub">CISA Known Exploited</div></div>
+    <div class="stat-card" id="sc-crit" onclick="filterByStat('CRITICAL')" title="Click to filter table">
+      <div class="lbl">Critical (≥9.0)</div>
+      <div class="val" style="color:var(--red)" id="s-crit">—</div>
+      <div class="sub">Click to filter ↓</div>
+    </div>
+    <div class="stat-card" id="sc-high" onclick="filterByStat('HIGH')" title="Click to filter table">
+      <div class="lbl">High (7.0–8.9)</div>
+      <div class="val" style="color:var(--orange)" id="s-high">—</div>
+      <div class="sub">Click to filter ↓</div>
+    </div>
+    <div class="stat-card" id="sc-med" onclick="filterByStat('MEDIUM')" title="Click to filter table">
+      <div class="lbl">Medium (4.0–6.9)</div>
+      <div class="val" style="color:var(--yellow)" id="s-med">—</div>
+      <div class="sub">Click to filter ↓</div>
+    </div>
+    <div class="stat-card" id="sc-total" onclick="filterByStat(null)" title="Show all">
+      <div class="lbl">Total Loaded</div>
+      <div class="val" style="color:var(--accent)" id="s-total">—</div>
+      <div class="sub">All severities</div>
+    </div>
+    <div class="stat-card" id="sc-net" onclick="filterByStat(null,'NETWORK')" title="Click to filter table">
+      <div class="lbl">Network Vector</div>
+      <div class="val" style="color:var(--accent2)" id="s-net">—</div>
+      <div class="sub">Click to filter ↓</div>
+    </div>
+    <div class="stat-card" id="sc-kev" onclick="filterByStat(null,null,true)" title="Click to filter table">
+      <div class="lbl">KEV Listed</div>
+      <div class="val" style="color:#c4b5fd" id="s-kev">—</div>
+      <div class="sub">CISA Known Exploited</div>
+    </div>
   </div>
 
-  <!-- CHART CONTROLS -->
-  <div class="chart-controls">
-    <div class="chart-controls-label">📊 Chart Date Range</div>
-    <div class="range-btns">
-      <button class="range-btn active" onclick="setRange(30,this)">30 Days</button>
-      <button class="range-btn" onclick="setRange(90,this)">90 Days</button>
-      <button class="range-btn" onclick="setRange(180,this)">6 Months</button>
-      <button class="range-btn" onclick="setRange(365,this)">1 Year</button>
-      <button class="range-btn" onclick="setRange(730,this)">2 Years</button>
-      <button class="range-btn" onclick="setRange(0,this)">All Time</button>
-    </div>
+  <!-- SINGLE DATE RANGE CONTROL — affects BOTH charts AND table -->
+  <div class="range-row">
+    <span class="range-label">📅 Period:</span>
+    <button class="range-btn active" data-days="7" onclick="setRange(7,this)">7 Days</button>
+    <button class="range-btn" data-days="30" onclick="setRange(30,this)">30 Days</button>
+    <button class="range-btn" data-days="90" onclick="setRange(90,this)">90 Days</button>
+    <button class="range-btn" data-days="180" onclick="setRange(180,this)">6 Months</button>
+    <button class="range-btn" data-days="365" onclick="setRange(365,this)">1 Year</button>
+    <button class="range-btn" data-days="0" onclick="setRange(0,this)">All Time</button>
+  </div>
+
+  <!-- ACTIVE FILTER INDICATOR -->
+  <div class="active-filter-bar" id="filter-bar-indicator">
+    <span id="filter-bar-text">Filtered by: —</span>
+    <button class="clear-btn" onclick="clearAllFilters()">✕ Clear filter</button>
   </div>
 
   <!-- CHARTS -->
   <div class="charts-grid">
-    <div class="chart-card"><h3>Severity Distribution</h3><div class="chart-wrap" id="c-sev"></div></div>
-    <div class="chart-card"><h3>Attack Vector Breakdown</h3><div class="chart-wrap" id="c-av"></div></div>
-    <div class="chart-card"><h3>CVSS Score Distribution</h3><div class="chart-wrap" id="c-score"></div></div>
-    <div class="chart-card"><h3>Top Weakness Types (CWE)</h3><div class="chart-wrap" id="c-cwe"></div></div>
+    <div class="chart-card">
+      <h3>Severity Distribution</h3>
+      <div class="chart-wrap" id="c-sev"></div>
+      <div class="clickable-hint">↑ Click segments to filter table</div>
+    </div>
+    <div class="chart-card">
+      <h3>Attack Vector Breakdown</h3>
+      <div class="chart-wrap" id="c-av"></div>
+      <div class="clickable-hint">↑ Click bars to filter table</div>
+    </div>
+    <div class="chart-card">
+      <h3>CVSS Score Distribution</h3>
+      <div class="chart-wrap" id="c-score"></div>
+      <div class="clickable-hint">↑ Click bars to filter table</div>
+    </div>
+    <div class="chart-card">
+      <h3>Top Weakness Types (CWE)</h3>
+      <div class="chart-wrap" id="c-cwe"></div>
+      <div class="clickable-hint">↑ Click bars to filter table</div>
+    </div>
   </div>
 
-  <!-- FILTERS -->
+  <!-- SEARCH/FILTER BAR -->
   <div class="filter-bar">
     <div class="fg" style="flex:2;min-width:180px">
-      <label>Search CVE / Keyword</label>
-      <input type="text" id="f-q" placeholder="e.g. CVE-2024-1234, Apache…">
+      <label>Search CVE / Keyword / Vendor</label>
+      <input type="text" id="f-q" placeholder="e.g. Apache, CVE-2024-1234, SQL…" oninput="applyFilters()">
     </div>
     <div class="fg">
       <label>Severity</label>
-      <select id="f-sev">
-        <option value="">All</option>
+      <select id="f-sev" onchange="applyFilters()">
+        <option value="">All Severities</option>
         <option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option>
       </select>
     </div>
     <div class="fg">
       <label>Attack Vector</label>
-      <select id="f-av">
-        <option value="">All</option>
+      <select id="f-av" onchange="applyFilters()">
+        <option value="">All Vectors</option>
         <option>NETWORK</option><option>LOCAL</option><option>ADJACENT</option><option>PHYSICAL</option>
       </select>
     </div>
     <div class="fg">
-      <label>Min Score</label>
-      <input type="number" id="f-score" placeholder="0.0" min="0" max="10" step="0.1">
+      <label>Min CVSS Score</label>
+      <input type="number" id="f-score" placeholder="0.0" min="0" max="10" step="0.1" oninput="applyFilters()">
     </div>
-    <div style="display:flex;gap:6px;align-self:flex-end">
-      <button class="btn" onclick="applyFilters()">Apply</button>
-      <button class="btn ghost" onclick="resetFilters()">Reset</button>
-    </div>
+    <button class="btn ghost" onclick="clearAllFilters()">Reset All</button>
   </div>
 
   <!-- TABLE -->
   <div class="table-wrap-outer">
     <div class="table-head-row">
       <h3>Vulnerability Feed</h3>
-      <span id="tbl-count">Loading…</span>
+      <span id="tbl-count">—</span>
     </div>
     <div class="table-scroll">
       <table>
         <thead>
           <tr>
-            <th onclick="sort('id')">CVE ID</th>
-            <th onclick="sort('score')">Score</th>
-            <th onclick="sort('severity')">Severity</th>
+            <th onclick="sortBy('id')">CVE ID ↕</th>
+            <th onclick="sortBy('score')">Score ↕</th>
+            <th onclick="sortBy('severity')">Severity ↕</th>
             <th>Attack Vector</th>
             <th>Exploitability</th>
             <th>Weakness</th>
             <th>Description</th>
-            <th onclick="sort('published')">Age ↓</th>
+            <th onclick="sortBy('published')">Published ↕</th>
             <th>Details</th>
           </tr>
         </thead>
@@ -299,55 +328,70 @@ footer{border-top:1px solid var(--border);padding:2rem;position:relative;z-index
   </div>
 </footer>
 
-<!-- Chart.js from multiple CDNs as fallback -->
-<!-- No external chart library needed - charts built with pure CSS -->
 <script>
-// ── STATE ──────────────────────────────────────────────────────
-let ALL = [], FILTERED = [], KEV = new Set();
-let sortKey = 'published', sortDir = -1, curPage = 1, rangeDays = 30;
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+let ALL = [];          // All CVEs loaded from file
+let DISPLAY = [];      // CVEs after date range filter
+let FILTERED = [];     // CVEs after all filters (what table shows)
+let KEV = new Set();
+let sortKey = 'published', sortDir = -1, curPage = 1;
+let rangeDays = 7;     // Default: 7 days (weekly view)
+let activeChartFilter = null; // {type, value} - from chart click
 const PAGE = 25;
 
-// ── HELPER: fetch with timeout ────────────────────────────────
-async function fetchWithTimeout(url, ms=5000) {
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+document.getElementById('refresh-time').textContent = '—';
+loadKEV();   // Non-blocking
+loadVulns(); // Main data load
+
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ═══════════════════════════════════════════════════════════════
+// FETCH WITH TIMEOUT
+// ═══════════════════════════════════════════════════════════════
+async function fetchWithTimeout(url, ms = 6000) {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), ms);
+  const t = setTimeout(() => ctrl.abort(), ms);
   try {
-    const r = await fetch(url, {signal: ctrl.signal});
-    clearTimeout(timer);
+    const r = await fetch(url, { signal: ctrl.signal, cache: 'no-store' });
+    clearTimeout(t);
     return r;
   } catch(e) {
-    clearTimeout(timer);
+    clearTimeout(t);
     throw e;
   }
 }
 
-// ── INIT ───────────────────────────────────────────────────────
-document.getElementById('refresh-time').textContent =
-  new Date().toLocaleString('en-GB', {timeZone:'UTC'}) + ' UTC';
-
-// Load KEV and vulns independently - don't let KEV block vulns
-loadKEV();
-loadVulns();
-
-// ── LOAD KEV ───────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// LOAD KEV (CISA Known Exploited Vulnerabilities)
+// ═══════════════════════════════════════════════════════════════
 async function loadKEV() {
-  try {
-    const r = await fetchWithTimeout('../feeds/cisa/advisories.json', 4000);
-    if (!r.ok) return;
-    const d = await r.json();
-    (d.items || d.vulnerabilities || []).forEach(v => {
-      const id = v.cveID || v.id || '';
-      if (id) KEV.add(id);
-    });
-  } catch(e) {
-    console.log('KEV load skipped:', e.message);
+  const paths = ['../feeds/cisa/advisories.json', '/feeds/cisa/advisories.json'];
+  for (const p of paths) {
+    try {
+      const r = await fetchWithTimeout(p, 4000);
+      if (!r.ok) continue;
+      const d = await r.json();
+      (d.items || d.vulnerabilities || []).forEach(v => {
+        const id = v.cveID || v.id || '';
+        if (id) KEV.add(id);
+      });
+      return;
+    } catch(e) { /* try next */ }
   }
 }
 
-// ── LOAD VULNS ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// LOAD VULNS — real data only, no fake demo
+// ═══════════════════════════════════════════════════════════════
 async function loadVulns() {
-  // Try all possible paths where the JSON file might be
-  const PATHS = [
+  const paths = [
     '../feeds/nvd/vulnerabilities.json',
     '/feeds/nvd/vulnerabilities.json',
     '../public/data/vulnerabilities.json',
@@ -355,60 +399,97 @@ async function loadVulns() {
   ];
 
   let data = null;
-  for (const p of PATHS) {
+  for (const p of paths) {
     try {
-      const r = await fetchWithTimeout(p + '?v=' + Date.now(), 5000);
-      if (r.ok) {
-        const d = await r.json();
-        if (d && (d.vulnerabilities || d.items)) { data = d; break; }
+      const r = await fetchWithTimeout(p);
+      if (!r.ok) continue;
+      const d = await r.json();
+      if (d && Array.isArray(d.vulnerabilities) && d.vulnerabilities.length > 0) {
+        data = d;
+        break;
       }
-    } catch(e) {}
+    } catch(e) { /* try next */ }
   }
 
   if (data) {
-    console.log('Data loaded successfully from file');
-    const list = data.vulnerabilities || data.items || [];
     if (data.lastUpdated) {
       document.getElementById('refresh-time').textContent =
-        new Date(data.lastUpdated).toLocaleString('en-GB',{timeZone:'UTC'}) + ' UTC';
+        new Date(data.lastUpdated).toLocaleString('en-GB', { timeZone: 'UTC' }) + ' UTC';
     }
-    ALL = list.filter(v => v && v.score != null && v.score !== 'N/A');
-    ALL.sort((a,b) => new Date(b.published||0) - new Date(a.published||0));
-    console.log('Loaded', ALL.length, 'CVEs from', data.lastUpdated || 'file');
+    // Only include CVEs that have been fully processed by NVD (have a score)
+    ALL = data.vulnerabilities
+      .filter(v => v && v.id && v.score != null && v.severity && v.severity !== 'N/A')
+      .sort((a,b) => new Date(b.published||0) - new Date(a.published||0));
   } else {
-    console.warn('No CVE data file found — using demo data');
-    ALL = getDemoData();
-    console.log('Demo data loaded:', ALL.length, 'items');
+    showNoDataMessage();
+    return;
   }
 
+  applyDateRange();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// NO DATA MESSAGE
+// ═══════════════════════════════════════════════════════════════
+function showNoDataMessage() {
+  document.getElementById('tbl-body').innerHTML = `
+    <tr><td colspan="9">
+      <div class="no-data-msg">
+        <div class="icon">🔄</div>
+        <h3>Vulnerability data not yet loaded</h3>
+        <p>The NVD workflow needs to run to populate data.<br>
+        Go to <strong>GitHub Actions → Fetch NVD Vulnerabilities → Run workflow</strong>.<br>
+        Data will appear within 60 seconds after the workflow completes.<br><br>
+        Expected file location: <code>feeds/nvd/vulnerabilities.json</code></p>
+      </div>
+    </td></tr>`;
+  document.getElementById('exec-text').textContent = 'No CVE data loaded yet. Run the NVD workflow to populate this dashboard.';
+  document.getElementById('tbl-count').textContent = '0 vulnerabilities';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// DATE RANGE — filters BOTH charts AND table
+// ═══════════════════════════════════════════════════════════════
+function setRange(days, btn) {
+  rangeDays = days;
+  document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeChartFilter = null;
+  applyDateRange();
+}
+
+function applyDateRange() {
+  if (!rangeDays) {
+    DISPLAY = [...ALL];
+  } else {
+    const cutoff = Date.now() - rangeDays * 86400000;
+    DISPLAY = ALL.filter(v => new Date(v.published || 0).getTime() >= cutoff);
+  }
   applyFilters();
 }
 
-// ── DEMO DATA ──────────────────────────────────────────────────
-function getDemoData() {
-  return [
-    {id:'CVE-2026-0001',score:9.8,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Remote code execution in Apache HTTP Server via crafted requests.',cwes:['CWE-78'],references:['https://nvd.nist.gov'],published:'2026-04-02T00:00:00'},
-    {id:'CVE-2026-0002',score:9.1,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Authentication bypass in Microsoft Exchange allowing NTLM relay attacks.',cwes:['CWE-287'],references:['https://nvd.nist.gov'],published:'2026-03-30T00:00:00'},
-    {id:'CVE-2026-0003',score:8.8,severity:'HIGH',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'LOW',description:'SQL injection in Cisco IOS XE Web UI enables arbitrary query execution.',cwes:['CWE-89'],references:['https://nvd.nist.gov'],published:'2026-03-26T00:00:00'},
-    {id:'CVE-2026-0004',score:8.1,severity:'HIGH',attackVector:'NETWORK',userInteraction:'REQUIRED',privilegesRequired:'NONE',description:'Heap buffer overflow in Chrome V8 engine via crafted HTML pages.',cwes:['CWE-122'],references:['https://nvd.nist.gov'],published:'2026-03-21T00:00:00'},
-    {id:'CVE-2026-0005',score:7.5,severity:'HIGH',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Fortinet FortiOS SSL-VPN RCE without authentication.',cwes:['CWE-20'],references:['https://nvd.nist.gov'],published:'2026-03-15T00:00:00'},
-    {id:'CVE-2026-0006',score:6.5,severity:'MEDIUM',attackVector:'NETWORK',userInteraction:'REQUIRED',privilegesRequired:'LOW',description:'XSS in WordPress core allows authenticated script injection.',cwes:['CWE-79'],references:['https://nvd.nist.gov'],published:'2026-03-10T00:00:00'},
-    {id:'CVE-2026-0007',score:5.9,severity:'MEDIUM',attackVector:'ADJACENT',userInteraction:'NONE',privilegesRequired:'LOW',description:'Race condition in Linux kernel network stack allows privilege escalation.',cwes:['CWE-362'],references:['https://nvd.nist.gov'],published:'2026-03-04T00:00:00'},
-    {id:'CVE-2026-0008',score:9.9,severity:'CRITICAL',attackVector:'NETWORK',userInteraction:'NONE',privilegesRequired:'NONE',description:'Zero-day RCE in Ivanti Connect Secure allows unauthenticated command execution.',cwes:['CWE-78'],references:['https://nvd.nist.gov'],published:'2026-02-25T00:00:00'},
-  ];
-}
-
-// ── FILTERS ────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// FILTERS — applied on top of DISPLAY
+// ═══════════════════════════════════════════════════════════════
 function applyFilters() {
-  const q     = document.getElementById('f-q').value.toLowerCase().trim();
-  const sev   = document.getElementById('f-sev').value;
-  const av    = document.getElementById('f-av').value;
-  const minS  = parseFloat(document.getElementById('f-score').value) || 0;
+  const q    = (document.getElementById('f-q').value || '').toLowerCase().trim();
+  const sev  = document.getElementById('f-sev').value;
+  const av   = document.getElementById('f-av').value;
+  const minS = parseFloat(document.getElementById('f-score').value) || 0;
 
-  FILTERED = ALL.filter(v => {
+  FILTERED = DISPLAY.filter(v => {
     if (sev && v.severity !== sev) return false;
     if (av  && v.attackVector !== av) return false;
     if (v.score < minS) return false;
+    if (activeChartFilter) {
+      if (activeChartFilter.type === 'severity' && v.severity !== activeChartFilter.value) return false;
+      if (activeChartFilter.type === 'av'       && v.attackVector !== activeChartFilter.value) return false;
+      if (activeChartFilter.type === 'cwe'      && !(v.cwes||[]).includes(activeChartFilter.value)) return false;
+      if (activeChartFilter.type === 'score') {
+        const bucket = Math.min(Math.floor(v.score), 9);
+        if (bucket !== activeChartFilter.value) return false;
+      }
+    }
     if (q) {
       const hay = [v.id, v.description, ...(v.cwes||[])].join(' ').toLowerCase();
       if (!hay.includes(q)) return false;
@@ -421,15 +502,50 @@ function applyFilters() {
   renderStats();
   renderCharts();
   renderTable();
-  renderExec();
+  renderExecSummary();
+  updateFilterIndicator();
 }
 
-function resetFilters() {
-  ['f-q','f-score'].forEach(id => document.getElementById(id).value = '');
-  ['f-sev','f-av'].forEach(id => document.getElementById(id).value = '');
+function clearAllFilters() {
+  document.getElementById('f-q').value = '';
+  document.getElementById('f-sev').value = '';
+  document.getElementById('f-av').value = '';
+  document.getElementById('f-score').value = '';
+  document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active-filter'));
+  activeChartFilter = null;
   applyFilters();
 }
 
+function updateFilterIndicator() {
+  const bar = document.getElementById('filter-bar-indicator');
+  const txt = document.getElementById('filter-bar-text');
+  if (activeChartFilter) {
+    bar.classList.add('show');
+    txt.textContent = `Chart filter: ${activeChartFilter.type} = ${activeChartFilter.value}`;
+  } else {
+    bar.classList.remove('show');
+  }
+}
+
+// Stat card click filter
+function filterByStat(severity, av, kevOnly) {
+  clearAllFilters();
+  if (severity) document.getElementById('f-sev').value = severity;
+  if (av)       document.getElementById('f-av').value = av;
+  // KEV filter via chart filter
+  if (kevOnly) {
+    activeChartFilter = null;
+    FILTERED = DISPLAY.filter(v => KEV.has(v.id));
+    doSort(); curPage = 1;
+    renderStats(); renderCharts(); renderTable(); renderExecSummary();
+    return;
+  }
+  applyFilters();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SORT
+// ═══════════════════════════════════════════════════════════════
 function doSort() {
   FILTERED.sort((a,b) => {
     if (sortKey === 'published') {
@@ -437,99 +553,162 @@ function doSort() {
         ? new Date(b.published||0) - new Date(a.published||0)
         : new Date(a.published||0) - new Date(b.published||0);
     }
-    const va = a[sortKey], vb = b[sortKey];
+    const va = a[sortKey]||'', vb = b[sortKey]||'';
     if (va < vb) return sortDir;
     if (va > vb) return -sortDir;
     return 0;
   });
 }
 
-function sort(key) {
+function sortBy(key) {
   if (sortKey === key) sortDir = -sortDir;
-  else { sortKey = key; sortDir = -1; }
-  doSort();
-  curPage = 1;
-  renderTable();
+  else { sortKey = key; sortDir = key === 'published' ? -1 : -1; }
+  doSort(); curPage = 1; renderTable();
 }
 
-// ── STATS ──────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════════════════════════════
 function renderStats() {
-  document.getElementById('s-crit').textContent  = FILTERED.filter(v=>v.severity==='CRITICAL').length;
-  document.getElementById('s-high').textContent  = FILTERED.filter(v=>v.severity==='HIGH').length;
-  document.getElementById('s-med').textContent   = FILTERED.filter(v=>v.severity==='MEDIUM').length;
-  document.getElementById('s-total').textContent = FILTERED.length;
-  document.getElementById('s-net').textContent   = FILTERED.filter(v=>v.attackVector==='NETWORK').length;
-  document.getElementById('s-kev').textContent   = FILTERED.filter(v=>KEV.has(v.id)).length;
-  document.getElementById('tbl-count').textContent = `${FILTERED.length} vulnerabilities`;
+  const D = DISPLAY; // stats always show period totals, not filtered
+  document.getElementById('s-crit').textContent  = D.filter(v=>v.severity==='CRITICAL').length;
+  document.getElementById('s-high').textContent  = D.filter(v=>v.severity==='HIGH').length;
+  document.getElementById('s-med').textContent   = D.filter(v=>v.severity==='MEDIUM').length;
+  document.getElementById('s-total').textContent = D.length;
+  document.getElementById('s-net').textContent   = D.filter(v=>v.attackVector==='NETWORK').length;
+  document.getElementById('s-kev').textContent   = D.filter(v=>KEV.has(v.id)).length;
+  document.getElementById('tbl-count').textContent = `${FILTERED.length} of ${DISPLAY.length} CVEs`;
 }
 
-// ── EXEC SUMMARY ───────────────────────────────────────────────
-function renderExec() {
-  const crit = FILTERED.filter(v=>v.severity==='CRITICAL').length;
-  const high = FILTERED.filter(v=>v.severity==='HIGH').length;
-  const kev  = FILTERED.filter(v=>KEV.has(v.id)).length;
-  const net  = FILTERED.filter(v=>v.attackVector==='NETWORK').length;
-  const pct  = FILTERED.length ? Math.round(net/FILTERED.length*100) : 0;
-  const top  = FILTERED[0];
-  let t = `<strong>${FILTERED.length} vulnerabilities</strong> loaded. `;
-  if (crit) t += `<strong style="color:#fb7185">${crit} CRITICAL</strong> and `;
-  t += `<strong style="color:#fdba74">${high} HIGH</strong> severity CVEs require immediate attention. `;
-  if (kev)  t += `<strong style="color:#c4b5fd">${kev}</strong> on CISA KEV — patch urgently. `;
-  t += `${pct}% exploitable over the <strong>network</strong>.`;
-  if (top)  t += ` Top priority: <strong style="color:var(--accent)">${top.id}</strong> (CVSS ${top.score}).`;
-  document.getElementById('exec-text').innerHTML = t;
+// ═══════════════════════════════════════════════════════════════
+// EXECUTIVE SUMMARY — weekly narrative
+// ═══════════════════════════════════════════════════════════════
+function renderExecSummary() {
+  const D = DISPLAY;
+  if (!D.length) {
+    document.getElementById('exec-text').textContent = 'No CVE data available for the selected period.';
+    return;
+  }
+
+  const now = new Date();
+  const periodLabel = rangeDays === 0 ? 'all time'
+    : rangeDays === 7 ? 'the past 7 days'
+    : rangeDays === 30 ? 'the past 30 days'
+    : rangeDays === 90 ? 'the past 90 days'
+    : rangeDays === 180 ? 'the past 6 months'
+    : 'the past year';
+
+  const crit  = D.filter(v=>v.severity==='CRITICAL');
+  const high  = D.filter(v=>v.severity==='HIGH');
+  const kev   = D.filter(v=>KEV.has(v.id));
+  const net   = D.filter(v=>v.attackVector==='NETWORK');
+  const noAuth = D.filter(v=>v.privilegesRequired==='NONE' && v.userInteraction==='NONE');
+
+  // Top CVE by score
+  const topCVE = [...D].sort((a,b)=>(b.score||0)-(a.score||0))[0];
+
+  // New this week (last 7 days)
+  const weekCutoff = Date.now() - 7*86400000;
+  const newThisWeek = D.filter(v=>new Date(v.published||0).getTime()>=weekCutoff);
+
+  // Most common CWE
+  const cweCount = {};
+  D.forEach(v=>(v.cwes||[]).forEach(c=>{cweCount[c]=(cweCount[c]||0)+1;}));
+  const topCWE = Object.entries(cweCount).sort((a,b)=>b[1]-a[1])[0];
+
+  let html = `In <strong>${periodLabel}</strong>, `;
+  html += `<strong style="color:#e2e8f0">${D.length} CVEs</strong> have been published and scored by NIST NVD. `;
+
+  if (newThisWeek.length && rangeDays !== 7) {
+    html += `Of these, <strong style="color:#fb7185">${newThisWeek.length} were published in the last 7 days</strong>. `;
+  }
+
+  html += `<strong style="color:#fb7185">${crit.length} CRITICAL</strong> and `;
+  html += `<strong style="color:#fdba74">${high.length} HIGH</strong> severity vulnerabilities require prioritised patching. `;
+
+  if (noAuth.length) {
+    html += `<strong style="color:#fde047">${noAuth.length} CVEs</strong> require no authentication and no user interaction — posing the highest exploitation risk. `;
+  }
+
+  if (net.length) {
+    const pct = Math.round(net.length/D.length*100);
+    html += `${pct}% are remotely exploitable over the <strong>network</strong>. `;
+  }
+
+  if (kev.length) {
+    html += `⚠️ <strong style="color:#c4b5fd">${kev.length} CVE${kev.length>1?'s':''}</strong> appear on CISA's Known Exploited Vulnerabilities catalog — these must be patched immediately. `;
+  }
+
+  if (topCVE) {
+    html += `The highest-severity finding is <strong style="color:#3b82f6">${topCVE.id}</strong> `;
+    html += `(CVSS <strong>${topCVE.score}</strong>, ${topCVE.severity}) — ${topCVE.description?.slice(0,100)}…`;
+  }
+
+  if (topCWE) {
+    html += ` The most prevalent weakness type is <strong>${topCWE[0]}</strong>, appearing in ${topCWE[1]} CVEs.`;
+  }
+
+  document.getElementById('exec-text').innerHTML = html;
 }
 
-// ── CHARTS ─────────────────────────────────────────────────────
-function setRange(days, btn) {
-  rangeDays = days;
-  document.querySelectorAll('.range-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCharts();
-}
-
-function chartData() {
-  if (!rangeDays) return FILTERED;
-  const cutoff = Date.now() - rangeDays * 86400000;
-  return FILTERED.filter(v => new Date(v.published||0).getTime() >= cutoff);
+// ═══════════════════════════════════════════════════════════════
+// CHARTS — clickable, filter from DISPLAY (date-filtered ALL)
+// ═══════════════════════════════════════════════════════════════
+function chartClick(type, value) {
+  if (activeChartFilter && activeChartFilter.type === type && activeChartFilter.value === value) {
+    activeChartFilter = null; // toggle off
+  } else {
+    activeChartFilter = { type, value };
+  }
+  applyFilters();
+  // Scroll to table
+  document.querySelector('.table-wrap-outer').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderCharts() {
-  const cd = chartData();
-  console.log('renderCharts called, data points:', cd.length, 'ALL:', ALL.length, 'FILTERED:', FILTERED.length);
-  if (!cd.length) return;
+  const cd = DISPLAY; // charts always show full date-range data
+  if (!cd.length) {
+    ['c-sev','c-av','c-score','c-cwe'].forEach(id => {
+      document.getElementById(id).innerHTML = '<p style="color:var(--text3);font-size:0.8rem;text-align:center;padding-top:4rem">No data for this period</p>';
+    });
+    return;
+  }
 
-  // 1. SEVERITY — donut using CSS conic-gradient
+  // 1. SEVERITY DONUT
   const sevC = {CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0};
   cd.forEach(v => { if(sevC[v.severity]!==undefined) sevC[v.severity]++; });
-  const total = Object.values(sevC).reduce((a,b)=>a+b,0)||1;
+  const sevTotal = Object.values(sevC).reduce((a,b)=>a+b,0)||1;
   const sevColors = {CRITICAL:'#f43f5e',HIGH:'#f97316',MEDIUM:'#f59e0b',LOW:'#10b981'};
   let deg = 0;
   const conicParts = Object.entries(sevC).map(([k,v])=>{
-    const pct = (v/total)*360;
-    const part = `${sevColors[k]} ${deg}deg ${deg+pct}deg`;
+    const pct = (v/sevTotal)*360;
+    const part = `${sevColors[k]} ${deg.toFixed(1)}deg ${(deg+pct).toFixed(1)}deg`;
     deg += pct;
     return part;
-  }).join(', ');
-  const sevLegend = Object.entries(sevC).map(([k,v])=>
-    `<div style="display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#94a3b8">
+  }).join(',');
+  const isActive = activeChartFilter?.type === 'severity';
+  const sevLegend = Object.entries(sevC).map(([k,v])=> {
+    const active = isActive && activeChartFilter.value === k;
+    return `<div onclick="chartClick('severity','${k}')" style="display:flex;align-items:center;gap:8px;font-size:0.75rem;cursor:pointer;padding:4px 8px;border-radius:5px;transition:background 0.15s;background:${active?'rgba(59,130,246,0.15)':'transparent'}" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='${active?'rgba(59,130,246,0.15)':'transparent'}'">
       <div style="width:10px;height:10px;border-radius:2px;background:${sevColors[k]};flex-shrink:0"></div>
-      <span>${k} <strong style="color:#e2e8f0">${v}</strong></span>
-    </div>`
-  ).join('');
+      <span style="color:#94a3b8">${k}</span>
+      <strong style="color:#e2e8f0;margin-left:auto">${v}</strong>
+      ${active?'<span style="color:#3b82f6;font-size:0.65rem">✓</span>':''}
+    </div>`;
+  }).join('');
   document.getElementById('c-sev').innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:center;gap:24px;height:100%">
-      <div style="position:relative;width:140px;height:140px;flex-shrink:0">
-        <div style="width:140px;height:140px;border-radius:50%;background:conic-gradient(${conicParts})"></div>
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:#0f1628;display:flex;align-items:center;justify-content:center;flex-direction:column">
-          <span style="font-size:1.3rem;font-weight:700;color:#e2e8f0;font-family:var(--mono)">${total}</span>
-          <span style="font-size:0.62rem;color:#475569;text-transform:uppercase">Total</span>
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;height:100%">
+      <div style="position:relative;width:130px;height:130px;flex-shrink:0;cursor:pointer" onclick="chartClick('severity',null)">
+        <div style="width:130px;height:130px;border-radius:50%;background:conic-gradient(${conicParts})"></div>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;background:#0f1628;display:flex;align-items:center;justify-content:center;flex-direction:column">
+          <span style="font-size:1.2rem;font-weight:700;color:#e2e8f0;font-family:var(--mono)">${sevTotal}</span>
+          <span style="font-size:0.58rem;color:#475569;text-transform:uppercase">Total</span>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px">${sevLegend}</div>
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:140px">${sevLegend}</div>
     </div>`;
 
-  // 2. ATTACK VECTOR — horizontal bar chart
+  // 2. ATTACK VECTOR BARS
   const avC = {};
   cd.forEach(v => { const k=v.attackVector||'N/A'; avC[k]=(avC[k]||0)+1; });
   const avKeys = Object.keys(avC).sort((a,b)=>avC[b]-avC[a]);
@@ -537,92 +716,109 @@ function renderCharts() {
   const avColors = {NETWORK:'#3b82f6',LOCAL:'#f97316',ADJACENT:'#f59e0b',PHYSICAL:'#10b981','N/A':'#475569'};
   const avBars = avKeys.map(k=>{
     const pct = Math.round((avC[k]/avMax)*100);
-    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="width:80px;font-size:0.72rem;color:#94a3b8;text-align:right;flex-shrink:0">${k}</div>
-      <div style="flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden">
-        <div style="height:100%;width:${pct}%;background:${avColors[k]||'#475569'};border-radius:4px;display:flex;align-items:center;padding-left:8px;transition:width 0.5s ease">
-          <span style="font-size:0.72rem;font-weight:600;color:#fff;font-family:var(--mono)">${avC[k]}</span>
+    const active = activeChartFilter?.type==='av' && activeChartFilter.value===k;
+    return `<div onclick="chartClick('av','${k}')" style="display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;padding:4px;border-radius:5px;background:${active?'rgba(59,130,246,0.1)':'transparent'};transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='${active?'rgba(59,130,246,0.1)':'transparent'}'">
+      <div style="width:72px;font-size:0.7rem;color:#94a3b8;text-align:right;flex-shrink:0;font-family:var(--mono)">${k}</div>
+      <div style="flex:1;height:22px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${avColors[k]||'#475569'};border-radius:4px;display:flex;align-items:center;padding-left:8px">
+          <span style="font-size:0.7rem;font-weight:600;color:#fff;font-family:var(--mono)">${avC[k]}</span>
         </div>
       </div>
+      ${active?'<span style="color:#3b82f6;font-size:0.7rem">✓</span>':''}
     </div>`;
   }).join('');
-  document.getElementById('c-av').innerHTML = `<div style="padding:8px 0;height:100%;overflow:auto">${avBars}</div>`;
+  document.getElementById('c-av').innerHTML = `<div style="padding:12px 0;height:100%;overflow:auto">${avBars||'<p style="color:var(--text3);text-align:center;padding:2rem;font-size:0.8rem">No data</p>'}</div>`;
 
-  // 3. CVSS SCORE DISTRIBUTION — vertical bar chart
+  // 3. CVSS SCORE HISTOGRAM
   const bins = Array(10).fill(0);
   cd.forEach(v => { if(v.score!=null){ const i=Math.min(Math.floor(v.score),9); bins[i]++; }});
   const binMax = Math.max(...bins)||1;
-  const binLabels = ['0','1','2','3','4','5','6','7','8','9'];
-  const binColors = bins.map((_,i)=>i>=9?'#f43f5e':i>=7?'#f97316':i>=4?'#f59e0b':'#475569');
+  const binColors = bins.map((_,i)=>i>=9?'#f43f5e':i>=7?'#f97316':i>=5?'#f59e0b':'#475569');
+  const scoreLabels = ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9','9-10'];
   const scoreBars = bins.map((v,i)=>{
-    const h = Math.round((v/binMax)*120);
-    return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:0.65rem;color:#94a3b8;font-family:var(--mono)">${v||''}</span>
-      <div style="width:100%;background:rgba(255,255,255,0.05);border-radius:3px 3px 0 0;height:130px;display:flex;align-items:flex-end">
+    const h = Math.round((v/binMax)*110);
+    const active = activeChartFilter?.type==='score' && activeChartFilter.value===i;
+    return `<div onclick="chartClick('score',${i})" style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;cursor:pointer;padding:2px;border-radius:4px;background:${active?'rgba(59,130,246,0.1)':'transparent'};transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='${active?'rgba(59,130,246,0.1)':'transparent'}'">
+      <span style="font-size:0.62rem;color:#94a3b8;font-family:var(--mono)">${v||''}</span>
+      <div style="width:100%;background:rgba(255,255,255,0.05);border-radius:3px 3px 0 0;height:115px;display:flex;align-items:flex-end">
         <div style="width:100%;height:${h}px;background:${binColors[i]};border-radius:3px 3px 0 0;min-height:${v?2:0}px"></div>
       </div>
-      <span style="font-size:0.65rem;color:#475569">${binLabels[i]}</span>
+      <span style="font-size:0.58rem;color:#475569">${scoreLabels[i]}</span>
     </div>`;
   }).join('');
   document.getElementById('c-score').innerHTML = `<div style="display:flex;align-items:flex-end;gap:3px;height:100%;padding:8px 0">${scoreBars}</div>`;
 
-  // 4. TOP CWEs — horizontal bars
+  // 4. CWE HORIZONTAL BARS
   const cweC = {};
   cd.forEach(v => (v.cwes||[]).forEach(c=>{ cweC[c]=(cweC[c]||0)+1; }));
   const topCWE = Object.entries(cweC).sort((a,b)=>b[1]-a[1]).slice(0,7);
   const cweMax = topCWE[0]?.[1]||1;
   const cweBars = topCWE.map(([k,v])=>{
     const pct = Math.round((v/cweMax)*100);
-    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-      <div style="width:64px;font-size:0.7rem;color:#94a3b8;text-align:right;font-family:var(--mono);flex-shrink:0">${k}</div>
+    const active = activeChartFilter?.type==='cwe' && activeChartFilter.value===k;
+    return `<div onclick="chartClick('cwe','${k}')" style="display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;padding:3px;border-radius:4px;background:${active?'rgba(59,130,246,0.1)':'transparent'};transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='${active?'rgba(59,130,246,0.1)':'transparent'}'">
+      <div style="width:60px;font-size:0.68rem;color:#94a3b8;text-align:right;font-family:var(--mono);flex-shrink:0">${k}</div>
       <div style="flex:1;height:20px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden">
         <div style="height:100%;width:${pct}%;background:#06b6d4;border-radius:3px;display:flex;align-items:center;padding-left:6px">
-          <span style="font-size:0.68rem;font-weight:600;color:#fff;font-family:var(--mono)">${v}</span>
+          <span style="font-size:0.66rem;font-weight:600;color:#fff;font-family:var(--mono)">${v}</span>
         </div>
       </div>
+      ${active?'<span style="color:#3b82f6;font-size:0.7rem">✓</span>':''}
     </div>`;
   }).join('');
-  document.getElementById('c-cwe').innerHTML = `<div style="padding:4px 0;height:100%;overflow:auto">${cweBars||'<p style="color:#475569;font-size:0.8rem;text-align:center;padding-top:2rem">No CWE data</p>'}</div>`;
+  document.getElementById('c-cwe').innerHTML = `<div style="padding:8px 0;height:100%;overflow:auto">${cweBars||'<p style="color:var(--text3);font-size:0.8rem;text-align:center;padding-top:2rem">No CWE data</p>'}</div>`;
 }
 
-// ── TABLE ──────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// TABLE
+// ═══════════════════════════════════════════════════════════════
 function renderTable() {
   const tbody = document.getElementById('tbl-body');
   const start = (curPage-1)*PAGE;
   const slice = FILTERED.slice(start, start+PAGE);
 
   if (!slice.length) {
-    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:2rem;color:var(--text3)">No CVEs match the current filters.</td></tr>`;
+    const msg = DISPLAY.length === 0 
+      ? 'No CVEs in this time period. Try selecting a wider range.'
+      : 'No CVEs match the current filters.';
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:2rem;color:var(--text3);font-size:0.85rem">${msg}</td></tr>`;
     renderPagination();
     return;
   }
 
   tbody.innerHTML = slice.map(v => {
-    const sc = v.score>=9?'sc':v.score>=7?'sh':v.score>=4?'sm':'sl';
+    const sc    = v.score>=9?'sc':v.score>=7?'sh':v.score>=4?'sm':'sl';
     const avIcon = {NETWORK:'🌐',LOCAL:'💻',ADJACENT:'📡',PHYSICAL:'🖐'}[v.attackVector]||'';
-    const avCol  = {NETWORK:'#f43f5e',LOCAL:'#f97316',ADJACENT:'#f59e0b',PHYSICAL:'#10b981'}[v.attackVector]||'#64748b';
-    const ui   = v.userInteraction==='NONE'?'🔓 No interaction':v.userInteraction==='REQUIRED'?'🖱️ User interaction':'—';
-    const priv = v.privilegesRequired==='NONE'?'🔑 No auth':v.privilegesRequired==='LOW'?'🔑 Low priv':v.privilegesRequired==='HIGH'?'🔑 High priv':'';
+    const avCol  = {NETWORK:'#60a5fa',LOCAL:'#f97316',ADJACENT:'#f59e0b',PHYSICAL:'#10b981'}[v.attackVector]||'#64748b';
+    const ui   = v.userInteraction==='NONE'?'🔓 No interaction'
+               : v.userInteraction==='REQUIRED'?'🖱️ User required':'—';
+    const priv = v.privilegesRequired==='NONE'?'🔑 No auth'
+               : v.privilegesRequired==='LOW'?'🔑 Low priv'
+               : v.privilegesRequired==='HIGH'?'🔑 High priv':'';
     const kev  = KEV.has(v.id) ? '<span class="KEV-badge">KEV</span>' : '';
     const cwes = (v.cwes||[]).map(c=>`<span class="cwe-tag">${c}</span>`).join('');
     const daysAgo = v.published ? Math.floor((Date.now()-new Date(v.published))/86400000) : null;
-    const ageStr  = daysAgo===null?'—':daysAgo===0?'Today':daysAgo===1?'1d ago':`${daysAgo}d ago`;
+    const ageStr  = daysAgo===null?'—':daysAgo===0?'Today':daysAgo===1?'Yesterday':`${daysAgo}d ago`;
     const ageCls  = daysAgo!==null&&daysAgo<=3?'age-new':daysAgo<=7?'age-week':'age-old';
-    const nvdUrl  = `https://nvd.nist.gov/vuln/detail/${v.id}`;
-    const vendor  = (v.references||[]).find(r=>!r.includes('nvd.nist.gov'));
+    // Only link to NVD if the CVE looks real (starts with CVE- followed by year-number)
+    const isReal = /^CVE-\d{4}-\d+$/.test(v.id);
+    const nvdUrl = `https://nvd.nist.gov/vuln/detail/${v.id}`;
+    const vendor = (v.references||[]).find(r=>r&&!r.includes('nvd.nist.gov')&&r.startsWith('http'));
 
     return `<tr>
-      <td><a href="${nvdUrl}" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--mono);font-size:0.79rem">${v.id}</a>${kev}</td>
+      <td><a ${isReal?`href="${nvdUrl}" target="_blank" rel="noopener"`:''}
+        style="color:var(--accent);font-family:var(--mono);font-size:0.79rem;${!isReal?'cursor:default':''}"
+      >${v.id}</a>${kev}</td>
       <td><span class="score ${sc}">${(+v.score).toFixed(1)}</span></td>
       <td><span class="badge ${v.severity}">${v.severity}</span></td>
-      <td><span class="av-pill" style="color:${avCol}">${avIcon} ${v.attackVector||'—'}</span></td>
+      <td><span style="font-size:0.75rem;color:${avCol}">${avIcon} ${v.attackVector||'—'}</span></td>
       <td class="exploit-cell">${ui}${priv?'<br>'+priv:''}</td>
       <td>${cwes||'<span style="color:var(--text3)">—</span>'}</td>
       <td class="desc-cell"><div class="desc-trunc">${esc(v.description||'')}</div></td>
       <td><span class="${ageCls}" title="${v.published||''}">${ageStr}</span></td>
       <td class="detail-links">
-        <a href="${nvdUrl}" target="_blank" rel="noopener">NVD ↗</a>
-        ${vendor?`<a href="${vendor}" target="_blank" rel="noopener" class="vendor">Vendor ↗</a>`:''}
+        ${isReal?`<a href="${nvdUrl}" target="_blank" rel="noopener">NVD ↗</a>`:'<span style="color:var(--text3);font-size:0.75rem">Pending</span>'}
+        ${vendor?`<a href="${vendor}" target="_blank" rel="noopener" class="v">Vendor ↗</a>`:''}
       </td>
     </tr>`;
   }).join('');
@@ -630,40 +826,40 @@ function renderTable() {
   renderPagination();
 }
 
+// ═══════════════════════════════════════════════════════════════
+// PAGINATION
+// ═══════════════════════════════════════════════════════════════
 function renderPagination() {
   const total = Math.ceil(FILTERED.length/PAGE);
   const pg = document.getElementById('pagination');
-  if (total<=1){pg.innerHTML='';return;}
+  if (total <= 1) { pg.innerHTML = ''; return; }
   let h = `<button class="pg-btn" onclick="goPage(${curPage-1})" ${curPage<=1?'disabled':''}>◀</button>`;
-  const range = pageRange(curPage,total);
-  range.forEach(p=>{
-    if(p==='…') h+=`<span style="color:var(--text3);padding:0 4px">…</span>`;
-    else h+=`<button class="pg-btn${p===curPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
+  pageRange(curPage,total).forEach(p => {
+    if (p==='…') h += `<span style="color:var(--text3);padding:0 4px">…</span>`;
+    else h += `<button class="pg-btn${p===curPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
   });
-  h+=`<button class="pg-btn" onclick="goPage(${curPage+1})" ${curPage>=total?'disabled':''}>▶</button>`;
-  pg.innerHTML=h;
+  h += `<button class="pg-btn" onclick="goPage(${curPage+1})" ${curPage>=total?'disabled':''}>▶</button>`;
+  pg.innerHTML = h;
 }
 
-function pageRange(c,t){
-  if(t<=7) return [...Array(t).keys()].map(i=>i+1);
-  if(c<=4) return [1,2,3,4,5,'…',t];
-  if(c>=t-3) return [1,'…',t-4,t-3,t-2,t-1,t];
+function pageRange(c,t) {
+  if (t<=7) return [...Array(t).keys()].map(i=>i+1);
+  if (c<=4) return [1,2,3,4,5,'…',t];
+  if (c>=t-3) return [1,'…',t-4,t-3,t-2,t-1,t];
   return [1,'…',c-1,c,c+1,'…',t];
 }
 
-function goPage(p){
-  const t=Math.ceil(FILTERED.length/PAGE);
-  if(p<1||p>t)return;
-  curPage=p;
+function goPage(p) {
+  const t = Math.ceil(FILTERED.length/PAGE);
+  if (p<1||p>t) return;
+  curPage = p;
   renderTable();
-  window.scrollTo({top:400,behavior:'smooth'});
+  window.scrollTo({ top: document.querySelector('.table-wrap-outer').offsetTop - 80, behavior: 'smooth' });
 }
 
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-document.getElementById('menuToggle').addEventListener('click',()=>{
-  document.getElementById('navLinks').classList.toggle('open');
-});
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
 </script>
 </body>
 </html>
