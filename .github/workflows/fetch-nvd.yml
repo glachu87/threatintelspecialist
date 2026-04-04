@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,7 +34,10 @@ jobs:
           git config --global user.name 'TIS Bot'
           git config --global user.email 'bot@threatintelspecialist.com'
           git add feeds/nvd/vulnerabilities.json
-          git diff --staged --quiet && echo "No changes to commit" || \
-            (git commit -m "chore: update NVD data [$(date -u '+%Y-%m-%d %H:%M UTC')]" && \
-             git pull --rebase && \
-             git push)
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update NVD data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git pull --rebase origin main
+            git push origin main
+          fi
