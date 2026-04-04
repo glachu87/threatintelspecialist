@@ -1,63 +1,48 @@
-import os, json, requests, time
+#!/usr/bin/env python3
+"""
+fetch_nvd.py — Fetches CRITICAL CVEs from NVD API v2.0
+Saves to feeds/nvd/vulnerabilities.json
+"""
+import os, sys, json, time, requests
 from datetime import datetime, timezone
 
+OUTPUT = "feeds/nvd/vulnerabilities.json"
 os.makedirs("feeds/nvd", exist_ok=True)
+print(f"Output path: {os.path.abspath(OUTPUT)}")
 
-# NVD API v2.0 - fetch without date filter first to test connectivity
 api_key = os.environ.get("NVD_API_KEY", "")
 headers = {"apiKey": api_key} if api_key else {}
 print(f"API key present: {bool(api_key)}")
 
-# Use keyword search instead of date range - more reliable
 url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
-params = {
-    "resultsPerPage": 100,
-    "startIndex": 0,
-    "cvssV3Severity": "CRITICAL",
-}
 
-print(f"Fetching CRITICAL CVEs from NVD...")
-success = False
-
-for attempt in range(3):
-    try:
-        r = requests.get(url, params=params, headers=headers, timeout=60)
-        print(f"Attempt {attempt+1} status: {r.status_code}")
-        if r.status_code == 200:
-            success = True
-            break
-        time.sleep(6)
-    except Exception as e:
-        print(f"Attempt {attempt+1} error: {e}")
-        time.sleep(6)
-
-if not success:
-    # Fallback: fetch HIGH severity
-    print("Trying HIGH severity as fallback...")
-    params["cvssV3Severity"] = "HIGH"
+# Fetch CRITICAL CVEs
+all_vulns = []
+for severity in ["CRITICAL", "HIGH"]:
+    params = {"cvssV3Severity": severity, "resultsPerPage": 200, "startIndex": 0}
+    print(f"\nFetching {severity} CVEs...")
     for attempt in range(3):
         try:
             r = requests.get(url, params=params, headers=headers, timeout=60)
-            print(f"Fallback attempt {attempt+1} status: {r.status_code}")
+            print(f"  Attempt {attempt+1}: status {r.status_code}")
             if r.status_code == 200:
-                success = True
+                data = r.json()
+                vulns = data.get("vulnerabilities", [])
+                print(f"  Got {len(vulns)} CVEs (total available: {data.get('totalResults','?')})")
+                all_vulns.extend(vulns)
                 break
             time.sleep(6)
         except Exception as e:
-            print(f"Fallback error: {e}")
+            print(f"  Error: {e}")
             time.sleep(6)
 
-if not success:
-    print("NVD API unavailable. Keeping existing data.")
-    exit(0)  # Exit cleanly - don't fail the workflow
-
-raw = r.json().get("vulnerabilities", [])
-print(f"CVEs returned: {len(raw)}")
+print(f"\nTotal raw CVEs: {len(all_vulns)}")
 
 def parse(entry):
     c = entry.get("cve", {})
     if not c: return None
-    cid  = c.get("id", "")
+    cid = c.get("id", "")
+    if not cid: return None
     desc = next((d["value"] for d in c.get("descriptions", []) if d.get("lang") == "en"), "")
     metrics = c.get("metrics", {})
     m31 = (metrics.get("cvssMetricV31") or [None])[0]
@@ -78,32 +63,69 @@ def parse(entry):
         severity = m2.get("baseSeverity", "N/A")
         av       = cd.get("accessVector", "N/A")
     if score is None: return None
-    refs = [ref["url"] for ref in c.get("references", [])[:5]]
-    cwes = list(set(d["value"] for w in c.get("weaknesses", []) for d in w.get("description", []) if d.get("value","").startswith("CWE-")))[:2]
-    return {"id":cid,"description":desc[:500],"score":score,"severity":severity.upper() if severity else "N/A","attackVector":av.upper() if av else "N/A","userInteraction":ui,"privilegesRequired":priv,"published":c.get("published",""),"references":refs,"cwes":cwes}
+    cwes = list(set(
+        d["value"] for w in c.get("weaknesses", [])
+        for d in w.get("description", [])
+        if d.get("value", "").startswith("CWE-")
+    ))[:3]
+    refs = [r["url"] for r in c.get("references", [])[:5]]
+    return {
+        "id":                  cid,
+        "description":         desc[:600],
+        "score":               score,
+        "severity":            severity.upper() if severity else "N/A",
+        "attackVector":        av.upper() if av else "N/A",
+        "userInteraction":     ui,
+        "privilegesRequired":  priv,
+        "published":           c.get("published", ""),
+        "lastModified":        c.get("lastModified", ""),
+        "cwes":                cwes,
+        "references":          refs,
+    }
 
-vulns = [v for v in (parse(e) for e in raw) if v]
-vulns.sort(key=lambda v: v.get("score") or 0, reverse=True)
-print(f"CVEs with scores: {len(vulns)}")
+parsed = [parse(v) for v in all_vulns]
+good   = [v for v in parsed if v is not None]
 
-existing = []
-if os.path.exists("feeds/nvd/vulnerabilities.json"):
+# Deduplicate by ID
+seen = {}
+for v in good:
+    seen[v["id"]] = v
+unique = sorted(seen.values(), key=lambda v: v.get("published", ""), reverse=True)
+
+print(f"CVEs with scores: {len(unique)}")
+
+# Load existing to merge
+existing = {}
+if os.path.exists(OUTPUT):
     try:
-        with open("feeds/nvd/vulnerabilities.json") as f:
-            existing = json.load(f).get("vulnerabilities", [])
-        print(f"Existing CVEs: {len(existing)}")
-    except: pass
+        with open(OUTPUT) as f:
+            old = json.load(f)
+        for v in old.get("vulnerabilities", []):
+            existing[v["id"]] = v
+        print(f"Existing records: {len(existing)}")
+    except Exception as e:
+        print(f"Could not read existing: {e}")
 
-merged = {v["id"]: v for v in existing}
-for v in vulns:
-    merged[v["id"]] = v
-all_vulns = sorted(merged.values(), key=lambda v: v.get("published",""), reverse=True)
+# Merge new into existing
+existing.update(seen)
+final = sorted(existing.values(), key=lambda v: v.get("published", ""), reverse=True)
 
-with open("feeds/nvd/vulnerabilities.json", "w") as f:
-    json.dump({
-        "lastUpdated": datetime.now(timezone.utc).isoformat(),
-        "totalCount": len(all_vulns),
-        "vulnerabilities": all_vulns
-    }, f, indent=2)
+output = {
+    "lastUpdated":     datetime.now(timezone.utc).isoformat(),
+    "totalCount":      len(final),
+    "vulnerabilities": final,
+}
 
-print(f"Saved {len(all_vulns)} CVEs to feeds/nvd/vulnerabilities.json")
+with open(OUTPUT, "w") as f:
+    json.dump(output, f, indent=2)
+
+# Verify file was written
+size = os.path.getsize(OUTPUT)
+print(f"\n✅ Saved {len(final)} CVEs to {OUTPUT} ({size:,} bytes)")
+print(f"Top 5 CVEs:")
+for v in final[:5]:
+    print(f"  {v['id']} | {v['severity']} | Score: {v['score']} | {v['published'][:10]}")
+
+if len(final) == 0:
+    print("ERROR: No CVEs saved!", file=sys.stderr)
+    sys.exit(1)
