@@ -36,8 +36,14 @@ jobs:
           git add feeds/nvd/vulnerabilities.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
-          else
-            git commit -m "chore: update NVD data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-            git pull --rebase origin main
-            git push origin main
+            exit 0
           fi
+          git commit -m "chore: update NVD data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          # Retry push up to 5 times with pull --rebase between attempts
+          for i in 1 2 3 4 5; do
+            git push origin main && echo "Push succeeded on attempt $i" && exit 0
+            echo "Push failed (attempt $i), pulling and retrying..."
+            git pull --rebase origin main
+          done
+          echo "All push attempts failed"
+          exit 1
