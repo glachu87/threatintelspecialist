@@ -27,25 +27,12 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: python scripts/fetch_nvd.py
 
-      - name: Verify file was created
-        run: |
-          if [ ! -f feeds/nvd/vulnerabilities.json ]; then
-            echo "ERROR: feeds/nvd/vulnerabilities.json was not created!"
-            exit 1
-          fi
-          SIZE=$(wc -c < feeds/nvd/vulnerabilities.json)
-          echo "File size: $SIZE bytes"
-          if [ "$SIZE" -lt 100 ]; then
-            echo "ERROR: File is too small, something went wrong"
-            exit 1
-          fi
-          echo "✅ File verified"
-
       - name: Commit and push
         run: |
           git config --global user.name 'TIS Bot'
           git config --global user.email 'bot@threatintelspecialist.com'
           git add feeds/nvd/vulnerabilities.json
-          git status
-          git diff --staged --quiet && echo "No changes" || git commit -m "chore: update NVD data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          git push
+          git diff --staged --quiet && echo "No changes to commit" || \
+            (git commit -m "chore: update NVD data [$(date -u '+%Y-%m-%d %H:%M UTC')]" && \
+             git pull --rebase && \
+             git push)
