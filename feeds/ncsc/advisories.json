@@ -1,6 +1,6 @@
 {
   "source": "https://www.ncsc.gov.uk",
-  "fetched_at": "2026-04-09T07:54:13.126150+00:00",
+  "fetched_at": "2026-04-09T13:42:27.978137+00:00",
   "total": 20,
   "items": [
     {
@@ -137,8 +137,8 @@
       "title": "Active Cyber Defence (ACD) - The Third Year",
       "link": "https://www.ncsc.gov.uk/report/acd-report-year-three",
       "published": "Fri, 19 Fe",
-      "summary": "The year three report covers 2019 and aims to highlight the achievements and efforts made by the Active Cyber Defence programe.",
-      "executive_summary": "The year three report covers 2019 and aims to highlight the achievements and efforts made by the Active Cyber Defence programe.",
+      "summary": "The year three report covers 2019 and aims to highlight the achievements and efforts made by the Active Cyber Defence programme.",
+      "executive_summary": "The year three report covers 2019 and aims to highlight the achievements and efforts made by the Active Cyber Defence programme.",
       "vendor": "",
       "affected_products": "",
       "source": "UK NCSC"
