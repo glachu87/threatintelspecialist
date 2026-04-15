@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-04-15T21:57:37.069018Z",
+  "fetched_at": "2026-04-15T22:51:55.234275Z",
   "count": 20,
   "items": [
+    {
+      "title": "The German Cyber Criminal Überfall: Shifts in Europe's Data Leak Landscape",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/europe-data-leak-landscape/",
+      "pubDate": "Wed, 15 Apr 2026 14:00:00 +0000",
+      "description": "Written by: Jamie Collier, Robin Grunewald\n\nGermany has reclaimed its position as a primary focus for cyber extortion in Europe. While data leak site (DLS) posts rose almost 50% globally in 2025, Google Threat Intelligence (GTI) data shows that the surge is hitting German infrastructure harder and faster than its regional neighbors, marking a significant return to the high-pressure levels previously observed in the country during 2022 and 2023.\nCyber Criminals Pivoting Back to Germany\nGermany moved to the forefront of European data leak targets in 2025. Following a 2024 period where the UK led in DLS victims, this pivot reflects a resurgence of the intense pressure observed across German infrastructure during 2022 and 2023.\nThis targeting is not a result of the overall number of companies within Europe, as Germany has fewer active enterprises than France or Italy. Instead, its sustained appeal to extortion groups is driven by its status as an advanced European economy with an increasin"
+    },
     {
       "title": "vSphere and BRICKSTORM Malware: A Defender's Guide",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/vsphere-brickstorm-defender-guide/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/auditing-salesforce-aura-data-exposure/",
       "pubDate": "Mon, 12 Jan 2026 14:00:00 +0000",
       "description": "Written by: Amine Ismail, Anirudha Kanodia\n\nIntroduction \nMandiant is releasing AuraInspector, a new open-source tool designed to help defenders identify and audit access control misconfigurations within the Salesforce Aura framework.\nSalesforce Experience Cloud is a foundational platform for many businesses, but Mandiant Offensive Security Services (OSS) frequently identifies misconfigurations that allow unauthorized users to access sensitive data including credit card numbers, identity documents, and health information. These access control gaps often go unnoticed until it is too late.\nThis post details the mechanics of these common misconfigurations and introduces a previously undocumented technique using GraphQL to bypass standard record retrieval limits. To help administrators secure their environments, we are releasing AuraInspector, a command-line tool that automates the detection of these exposures and provides actionable insights for remediation.\n\n    aside_block\n    &lt;ListV"
-    },
-    {
-      "title": "Multiple Threat Actors Exploit React2Shell (CVE-2025-55182)",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actors-exploit-react2shell-cve-2025-55182/",
-      "pubDate": "Fri, 12 Dec 2025 14:00:00 +0000",
-      "description": "Written by: Aragorn Tseng, Robert Weiner, Casey Charrier, Zander Work, Genevieve Stark, Austin Larsen\n\nIntroduction\nOn Dec. 3, 2025, a critical unauthenticated remote code execution (RCE) vulnerability in React Server Components, tracked as CVE-2025-55182 (aka \"React2Shell\"), was publicly disclosed. Shortly after disclosure, Google Threat Intelligence Group (GTIG) had begun observing widespread exploitation across many threat clusters, ranging from opportunistic cyber crime actors to suspected espionage groups.\nGTIG has identified distinct campaigns leveraging this vulnerability to deploy a MINOCAT tunneler, SNOWLIGHT downloader, HISONIC backdoor, and COMPOOD backdoor, as well as XMRIG cryptocurrency miners, some of which overlaps with activity previously reported by Huntress. These observed campaigns highlight the risk posed to organizations using unpatched versions of React and Next.js. This post details the observed exploitation chains and post-compromise behaviors and provides inte"
     }
   ]
 }
