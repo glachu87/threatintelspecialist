@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-04-16T10:18:17.393894Z",
+  "fetched_at": "2026-04-16T11:59:51.160894Z",
   "count": 20,
   "items": [
+    {
+      "title": "Defending Your Enterprise When AI Models Can Find Vulnerabilities Faster Than Ever",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/defending-enterprise-ai-vulnerabilities/",
+      "pubDate": "Thu, 16 Apr 2026 14:00:00 +0000",
+      "description": "Introduction \nAdvances in AI model-powered exploitation have demonstrated that general-purpose AI models can excel at vulnerability discovery, even without being purpose-built for the task. Eventually, capabilities such as these will be integrated directly into the development cycle, and code will be more difficult to exploit than ever; however, this transition creates a critical window of risk. As we harden existing software with AI, threat actors will use it to discover and exploit novel vulnerabilities.\nFaced with this scenario, defenders have two critical tasks: hardening the software we use as rapidly as possible, and preparing to defend systems that have not yet been hardened.\nAs noted in Wiz’s blog post, Claude Mythos: Preparing for a World Where AI Finds and Exploits Vulnerabilities Faster Than Ever, now is the time to strengthen playbooks, reduce exposure, and incorporate AI into security programs. The following blog provides an overview of the evolving attack lifecycle, how t"
+    },
     {
       "title": "The German Cyber Criminal Überfall: Shifts in Europe's Data Leak Landscape",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/europe-data-leak-landscape/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/net-ntlmv1-deprecation-rainbow-tables/",
       "pubDate": "Thu, 15 Jan 2026 14:00:00 +0000",
       "description": "Written by: Nic Losby\n\nIntroduction\nMandiant is publicly releasing a comprehensive dataset of Net-NTLMv1 rainbow tables to underscore the urgency of migrating away from this outdated protocol. Despite Net-NTLMv1 being deprecated and known to be insecure for over two decades—with cryptanalysis dating back to 1999—Mandiant consultants continue to identify its use in active environments. This legacy protocol leaves organizations vulnerable to trivial credential theft, yet it remains prevalent due to inertia and a lack of demonstrated immediate risk.\nBy releasing these tables, Mandiant aims to lower the barrier for security professionals to demonstrate the insecurity of Net-NTLMv1. While tools to exploit this protocol have existed for years, they often required uploading sensitive data to third-party services or expensive hardware to brute-force keys. The release of this dataset allows defenders and researchers to recover keys in under 12 hours using consumer hardware costing less than $60"
-    },
-    {
-      "title": "AuraInspector: Auditing Salesforce Aura for Data Exposure",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/auditing-salesforce-aura-data-exposure/",
-      "pubDate": "Mon, 12 Jan 2026 14:00:00 +0000",
-      "description": "Written by: Amine Ismail, Anirudha Kanodia\n\nIntroduction \nMandiant is releasing AuraInspector, a new open-source tool designed to help defenders identify and audit access control misconfigurations within the Salesforce Aura framework.\nSalesforce Experience Cloud is a foundational platform for many businesses, but Mandiant Offensive Security Services (OSS) frequently identifies misconfigurations that allow unauthorized users to access sensitive data including credit card numbers, identity documents, and health information. These access control gaps often go unnoticed until it is too late.\nThis post details the mechanics of these common misconfigurations and introduces a previously undocumented technique using GraphQL to bypass standard record retrieval limits. To help administrators secure their environments, we are releasing AuraInspector, a command-line tool that automates the detection of these exposures and provides actionable insights for remediation.\n\n    aside_block\n    &lt;ListV"
     }
   ]
 }
