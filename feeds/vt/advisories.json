@@ -1,8 +1,18 @@
 {
   "source": "https://blog.virustotal.com",
-  "fetched_at": "2026-04-16T13:46:02.245378+00:00",
+  "fetched_at": "2026-04-16T19:16:00.044735+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "VirusTotal Inside the Agent Loop",
+      "link": "https://blog.virustotal.com/feeds/7086169678615086768/comments/default",
+      "published": "2026-04-16",
+      "summary": "At VirusTotal, we are closely following how AI agents are evolving and how we can be useful in that space. Part of that is analysis: the new generation of AI-native artifacts (skills, plugins, IDE extensions, agent configs) that attackers are starting to weaponize as supply-chain vectors. The other is access: making VirusTotal usable from inside agents, so reputation and Code Insight become part of their decisions, not something a human checks afterwards. \n This post focuses on that second part.",
+      "executive_summary": "At VirusTotal, we are closely following how AI agents are evolving and how we can be useful in that space. Part of that is analysis: the new generation of AI-native artifacts (skills, plugins, IDE extensions, agent configs) that attackers are starting to weaponize as supply-chain vectors. The other is access: making VirusTotal usable from inside agents, so reputation and Code Insight become part of their decisions, not something a human checks afterwards. \n This post focuses on that second part.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
     {
       "title": "From Automation to Infection (Part II): Reverse Shells, Semantic Worms, and Cognitive Rootkits in OpenClaw Skills",
       "link": "https://blog.virustotal.com/feeds/7091495964134854859/comments/default",
@@ -189,16 +199,6 @@
       "published": "2025-06-04",
       "summary": "Spoiler: VirusTotal Code Insight’s preliminary audit flagged nearly 8% of MCP (Model Context Protocol) servers on GitHub as potentially forged for evil, though the sad truth is, bad intentions aren’t required to follow bad practices and publish code with critical vulnerabilities.\n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n Before we get started, a quick personal note. A couple of weeks ago, I annou",
       "executive_summary": "Spoiler: VirusTotal Code Insight’s preliminary audit flagged nearly 8% of MCP (Model Context Protocol) servers on GitHub as potentially forged for evil, though the sad truth is, bad intentions aren’t required to follow bad practices and publish code with critical vulnerabilities.\n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n Before we get started, a quick personal note. A couple of weeks ago, I annou",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "Research that builds detections",
-      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/5748745563833150278",
-      "published": "2025-01-09",
-      "summary": "Note:  You can view the full content of the blog  here .\n  \n  Introduction  \n  Detection engineering is becoming increasingly important in surfacing new malicious activity. Threat actors might take advantage of previously unknown malware families - but a successful detection of certain methodologies or artifacts can help expose the entire infection chain. \n \n In previous blog posts, we announced the integration of  Sigma rules for macOS and Linux  into VirusTotal, as well as ways in which  Sigma",
-      "executive_summary": "Note:  You can view the full content of the blog  here .\n  \n  Introduction  \n  Detection engineering is becoming increasingly important in surfacing new malicious activity. Threat actors might take advantage of previously unknown malware families - but a successful detection of certain methodologies or artifacts can help expose the entire infection chain. \n \n In previous blog posts, we announced the integration of  Sigma rules for macOS and Linux  into VirusTotal, as well as ways in which  Sigma",
       "vendor": "",
       "affected_products": "",
       "source": "VirusTotal"
