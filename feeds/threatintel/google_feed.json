@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-04-23T14:06:14.465494Z",
+  "fetched_at": "2026-04-23T16:46:35.659872Z",
   "count": 20,
   "items": [
+    {
+      "title": "Snow Flurries: How UNC6692 Employed Social Engineering to Deploy a Custom Malware Suite",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6692-social-engineering-custom-malware/",
+      "pubDate": "Thu, 23 Apr 2026 14:00:00 +0000",
+      "description": "Written by: JP Glab, Tufail Ahmed, Josh Kelley, Muhammad Umair\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) identified a multistage intrusion campaign by a newly tracked threat group, UNC6692, that leveraged persistent social engineering, a custom modular malware suite, and deft pivoting inside the victim’s environment to achieve deep network penetration. \nAs with many other intrusions in recent years, UNC6692 relied heavily on impersonating IT helpdesk employees, convincing their victim to accept a Microsoft Teams chat invitation from an account outside their organization. The UNC6692 campaign demonstrates an interesting evolution in tactics, particularly the use of social engineering, custom malware, and a malicious browser extension, playing on the victim’s inherent trust in several different enterprise software providers. \nThreat Details\nIn late December 2025, UNC6692 conducted a large email campaign designed to overwhelm the target with messages, creating a sense of urge"
+    },
     {
       "title": "Defending Your Enterprise When AI Models Can Find Vulnerabilities Faster Than Ever",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/defending-enterprise-ai-vulnerabilities/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/exploiting-critical-winrar-vulnerability/",
       "pubDate": "Tue, 27 Jan 2026 14:00:00 +0000",
       "description": "Introduction \nThe Google Threat Intelligence Group (GTIG) has identified widespread, active exploitation of the critical vulnerability CVE-2025-8088 in WinRAR, a popular file archiver tool for Windows, to establish initial access and deliver diverse payloads. Discovered and patched in July 2025, government-backed threat actors linked to Russia and China as well as financially motivated threat actors continue to exploit this n-day across disparate operations. The consistent exploitation method, a path traversal flaw allowing files to be dropped into the Windows Startup folder for persistence, underscores a defensive gap in fundamental application security and user awareness.\nIn this blog post, we provide details on CVE-2025-8088 and the typical exploit chain, highlight exploitation by financially motivated and state-sponsored espionage actors, and provide IOCs to help defenders detect and hunt for the activity described in this post.\nTo protect against this threat, we urge organizations"
-    },
-    {
-      "title": "Closing the Door on Net-NTLMv1: Releasing Rainbow Tables to Accelerate Protocol Deprecation",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/net-ntlmv1-deprecation-rainbow-tables/",
-      "pubDate": "Thu, 15 Jan 2026 14:00:00 +0000",
-      "description": "Written by: Nic Losby\n\nIntroduction\nMandiant is publicly releasing a comprehensive dataset of Net-NTLMv1 rainbow tables to underscore the urgency of migrating away from this outdated protocol. Despite Net-NTLMv1 being deprecated and known to be insecure for over two decades—with cryptanalysis dating back to 1999—Mandiant consultants continue to identify its use in active environments. This legacy protocol leaves organizations vulnerable to trivial credential theft, yet it remains prevalent due to inertia and a lack of demonstrated immediate risk.\nBy releasing these tables, Mandiant aims to lower the barrier for security professionals to demonstrate the insecurity of Net-NTLMv1. While tools to exploit this protocol have existed for years, they often required uploading sensitive data to third-party services or expensive hardware to brute-force keys. The release of this dataset allows defenders and researchers to recover keys in under 12 hours using consumer hardware costing less than $60"
     }
   ]
 }
