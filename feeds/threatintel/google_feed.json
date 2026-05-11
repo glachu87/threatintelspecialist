@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-05-11T12:13:31.019229Z",
+  "fetched_at": "2026-05-11T15:56:53.154118Z",
   "count": 20,
   "items": [
+    {
+      "title": "GTIG AI Threat Tracker: Adversaries Leverage AI for Vulnerability Exploitation, Augmented Operations, and Initial Access",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access/",
+      "pubDate": "Mon, 11 May 2026 14:00:00 +0000",
+      "description": "Executive Summary\nSince our February 2026 report on AI-related threat activity, Google Threat Intelligence Group (GTIG) has continued to track a maturing transition from nascent AI-enabled operations to the industrial-scale application of generative models within adversarial workflows. This report, based on insights derived from Mandiant incident response engagements, Gemini, and GTIG’s proactive research, highlights the dual nature of the current threat environment where AI serves as both a sophisticated engine for adversary operations and a high-value target for attacks. We explore the following developments:\n\n\nVulnerability Discovery and Exploit Generation: For the first time, GTIG has identified a threat actor using a zero-day exploit that we believe was developed with AI. The criminal threat actor planned to use it in a mass exploitation event but our proactive counter discovery may have prevented its use. Threat actors associated with the People’s Republic of China (PRC) and the "
+    },
     {
       "title": "Snow Flurries: How UNC6692 Employed Social Engineering to Deploy a Custom Malware Suite",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6692-social-engineering-custom-malware/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/disrupting-largest-residential-proxy-network/",
       "pubDate": "Wed, 28 Jan 2026 14:00:00 +0000",
       "description": "Introduction \nThis week Google and partners took action to disrupt what we believe is one of the largest residential proxy networks in the world, the IPIDEA proxy network. IPIDEA’s proxy infrastructure is a little-known component of the digital ecosystem leveraged by a wide array of bad actors.\nThis disruption, led by Google Threat Intelligence Group (GTIG) in partnership with other teams, included three main actions:\n\n\nTook legal action to take down domains used to control devices and proxy traffic through them.\n\n\nShared technical intelligence on discovered IPIDEA software development kits (SDKs) and proxy software with platform providers, law enforcement, and research firms to help drive ecosystem-wide awareness and enforcement. These SDKs, which are offered to developers across multiple mobile and desktop platforms, surreptitiously enroll user devices into the IPIDEA network. Driving collective enforcement against these SDKs helps protect users across the digital ecosystem and restr"
-    },
-    {
-      "title": "Diverse Threat Actors Exploiting Critical WinRAR Vulnerability CVE-2025-8088",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/exploiting-critical-winrar-vulnerability/",
-      "pubDate": "Tue, 27 Jan 2026 14:00:00 +0000",
-      "description": "Introduction \nThe Google Threat Intelligence Group (GTIG) has identified widespread, active exploitation of the critical vulnerability CVE-2025-8088 in WinRAR, a popular file archiver tool for Windows, to establish initial access and deliver diverse payloads. Discovered and patched in July 2025, government-backed threat actors linked to Russia and China as well as financially motivated threat actors continue to exploit this n-day across disparate operations. The consistent exploitation method, a path traversal flaw allowing files to be dropped into the Windows Startup folder for persistence, underscores a defensive gap in fundamental application security and user awareness.\nIn this blog post, we provide details on CVE-2025-8088 and the typical exploit chain, highlight exploitation by financially motivated and state-sponsored espionage actors, and provide IOCs to help defenders detect and hunt for the activity described in this post.\nTo protect against this threat, we urge organizations"
     }
   ]
 }
