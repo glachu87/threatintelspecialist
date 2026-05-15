@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-05-15T15:20:49.153684Z",
+  "fetched_at": "2026-05-15T17:43:10.874286Z",
   "count": 20,
   "items": [
+    {
+      "title": "Welcome to BlackFile: Inside a Vishing Extortion Operation",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation/",
+      "pubDate": "Fri, 15 May 2026 14:00:00 +0000",
+      "description": "Written by: Austin Larsen, Tyler McLellan, Genevieve Stark, Dan Ebreo\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) has continued to track an expansive extortion campaign by UNC6671, a threat actor operating under the \"BlackFile\" brand, that targets organizations via sophisticated voice phishing (vishing) and single sign-on (SSO) compromise. By leveraging adversary-in-the-middle (AiTM) techniques to bypass traditional perimeter defenses and multi-factor authentication (MFA), UNC6671 gains deep access to cloud environments. The group primarily targets Microsoft 365 and Okta infrastructure, leveraging Python and PowerShell scripts to programmatically exfiltrate sensitive corporate data for subsequent extortion attempts. This post details UNC6671’s attack lifecycle and provides defenders with actionable guidance to detect and mitigate these identity-centric threats.\nSince emerging in early 2026, UNC6671 has maintained a high operational cadence. GTIG assesses that the group has t"
+    },
     {
       "title": "GTIG AI Threat Tracker: Adversaries Leverage AI for Vulnerability Exploitation, Augmented Operations, and Initial Access",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/defense-against-shinyhunters-cybercrime-saas/",
       "pubDate": "Fri, 30 Jan 2026 14:00:00 +0000",
       "description": "Introduction\nMandiant is tracking a significant expansion and escalation in the operations of threat clusters associated with ShinyHunters-branded extortion. As detailed in our companion report, 'Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft', these campaigns leverage evolved voice phishing (vishing) and victim-branded credential harvesting to successfully compromise single sign-on (SSO) credentials and enroll unauthorized devices into victim multi-factor authentication (MFA) solutions.\nThis activity is not the result of a security vulnerability in vendors' products or infrastructure. Instead, these intrusions rely on the effectiveness of social engineering to bypass identity controls and pivot into cloud-based software-as-a-service (SaaS) environments.\nThis post provides actionable hardening, logging, and detection recommendations to help organizations protect against these threats. Organizations responding to an active incident should focus on rap"
-    },
-    {
-      "title": "No Place Like Home Network: Disrupting the World's Largest Residential Proxy Network",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/disrupting-largest-residential-proxy-network/",
-      "pubDate": "Wed, 28 Jan 2026 14:00:00 +0000",
-      "description": "Introduction \nThis week Google and partners took action to disrupt what we believe is one of the largest residential proxy networks in the world, the IPIDEA proxy network. IPIDEA’s proxy infrastructure is a little-known component of the digital ecosystem leveraged by a wide array of bad actors.\nThis disruption, led by Google Threat Intelligence Group (GTIG) in partnership with other teams, included three main actions:\n\n\nTook legal action to take down domains used to control devices and proxy traffic through them.\n\n\nShared technical intelligence on discovered IPIDEA software development kits (SDKs) and proxy software with platform providers, law enforcement, and research firms to help drive ecosystem-wide awareness and enforcement. These SDKs, which are offered to developers across multiple mobile and desktop platforms, surreptitiously enroll user devices into the IPIDEA network. Driving collective enforcement against these SDKs helps protect users across the digital ecosystem and restr"
     }
   ]
 }
