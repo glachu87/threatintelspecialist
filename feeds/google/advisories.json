@@ -1,8 +1,18 @@
 {
   "source": "https://blog.google/threat-analysis-group",
-  "fetched_at": "2026-05-15T14:07:51.802527+00:00",
+  "fetched_at": "2026-05-15T19:38:43.616046+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "Welcome to BlackFile: Inside a Vishing Extortion Operation",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation/",
+      "published": "Fri, 15 Ma",
+      "summary": "Written by: Austin Larsen, Tyler McLellan, Genevieve Stark, Dan Ebreo Introduction Google Threat Intelligence Group (GTIG) has continued to track an expansive extortion campaign by UNC6671, a threat actor operating under the \"BlackFile\" brand, that targets organizations via sophisticated voice phishing (vishing) and single sign-on (SSO) compromise. By leveraging adversary-in-the-middle (AiTM) techniques to bypass traditional perimeter defenses and multi-factor authentication (MFA), UNC6671 gains",
+      "executive_summary": "Written by: Austin Larsen, Tyler McLellan, Genevieve Stark, Dan Ebreo Introduction Google Threat Intelligence Group (GTIG) has continued to track an expansive extortion campaign by UNC6671, a threat actor operating under the \"BlackFile\" brand, that targets organizations via sophisticated voice phishing (vishing) and single sign-on (SSO) compromise. By leveraging adversary-in-the-middle (AiTM) techniques to bypass traditional perimeter defenses and multi-factor authentication (MFA), UNC6671 gains",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
     {
       "title": "GTIG AI Threat Tracker: Adversaries Leverage AI for Vulnerability Exploitation, Augmented Operations, and Initial Access",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access/",
@@ -189,16 +199,6 @@
       "published": "Fri, 30 Ja",
       "summary": "Introduction Mandiant is tracking a significant expansion and escalation in the operations of threat clusters associated with ShinyHunters-branded extortion. As detailed in our companion report, 'Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft' , these campaigns leverage evolved voice phishing (vishing) and victim-branded credential harvesting to successfully compromise single sign-on (SSO) credentials and enroll unauthorized devices into victim multi-factor au",
       "executive_summary": "Introduction Mandiant is tracking a significant expansion and escalation in the operations of threat clusters associated with ShinyHunters-branded extortion. As detailed in our companion report, 'Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft' , these campaigns leverage evolved voice phishing (vishing) and victim-branded credential harvesting to successfully compromise single sign-on (SSO) credentials and enroll unauthorized devices into victim multi-factor au",
-      "vendor": "",
-      "affected_products": "",
-      "source": "Google Threat Intel"
-    },
-    {
-      "title": "No Place Like Home Network: Disrupting the World's Largest Residential Proxy Network",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/disrupting-largest-residential-proxy-network/",
-      "published": "Wed, 28 Ja",
-      "summary": "Introduction This week Google and partners took action to disrupt what we believe is one of the largest residential proxy networks in the world, the IPIDEA proxy network. IPIDEA’s proxy infrastructure is a little-known component of the digital ecosystem leveraged by a wide array of bad actors. This disruption, led by Google Threat Intelligence Group (GTIG) in partnership with other teams, included three main actions: Took legal action to take down domains used to control devices and proxy traffi",
-      "executive_summary": "Introduction This week Google and partners took action to disrupt what we believe is one of the largest residential proxy networks in the world, the IPIDEA proxy network. IPIDEA’s proxy infrastructure is a little-known component of the digital ecosystem leveraged by a wide array of bad actors. This disruption, led by Google Threat Intelligence Group (GTIG) in partnership with other teams, included three main actions: Took legal action to take down domains used to control devices and proxy traffi",
       "vendor": "",
       "affected_products": "",
       "source": "Google Threat Intel"
