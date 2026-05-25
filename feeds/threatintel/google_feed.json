@@ -1,8 +1,20 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-05-25T04:12:39.817310Z",
+  "fetched_at": "2026-05-25T08:58:47.049999Z",
   "count": 20,
   "items": [
+    {
+      "title": "2 PhaaS 2 Furious: The Evolution of Chinese-language Phishing Services",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/chinese-language-phishing-services/",
+      "pubDate": "Mon, 25 May 2026 14:00:00 +0000",
+      "description": "Written by: Jamie Collier\n\nWhile Russian-speaking threat actors have historically dominated the phishing-as-a-service (PhaaS) landscape, a rival ecosystem is rapidly growing within the Chinese-language underground. Google Threat Intelligence Group (GTIG) analyzed a dozen current PhaaS offerings in the Chinese underground, all of them mature services and many likely tied intricately to the broader criminal ecosystem in that region. These services not only lower the barrier to entry for Chinese cyber criminals, but reveal broader patterns on the evolution of social engineering and credential theft. Late last year, Google took legal action against one PhaaS provider and has worked since then to endorse legislation and enact technical safeguards against these types of scams.\nWithin this ecosystem, GTIG has observed a fundamental move away from static password harvesting towards real-time interception and tokenization. By utilizing live administration panels, attackers can interact with vic"
+    },
+    {
+      "title": "Exploitation of KnowledgeDeliver via ViewState Deserialization Vulnerability",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/knowledgedeliver-viewstate-deserialization-vulnerability/",
+      "pubDate": "Mon, 25 May 2026 14:00:00 +0000",
+      "description": "Written by: Takahiro Sugiyama, Peter Revelant, Mathew Potaczek\n\nIntroduction\nIn late 2025, Mandiant responded to a security incident involving a compromised web server running KnowledgeDeliver. KnowledgeDeliver is a Learning Management System (LMS) developed by Digital Knowledge commonly used in Japan. Mandiant identified a critical vulnerability that allowed unauthenticated Remote Code Execution (RCE). An unknown threat actor leveraged this access to inject malicious code into the LMS platform, with the goal of infecting users visiting the site.\nThis vulnerability stems from the use of identical pre-shared ASP.NET machine keys across multiple customer deployments. The vulnerability was initially exploited as a zero-day, now tracked as CVE-2026-5426.\nThe Vulnerability\nKnowledgeDeliver installations deployed before Feb. 24, 2026 relied on a standardized web.config file provided by the vendor. This configuration file contained hardcoded machineKey values used by the ASP.NET framework to "
+    },
     {
       "title": "Welcome to BlackFile: Inside a Vishing Extortion Operation",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation/",
@@ -110,18 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering/",
       "pubDate": "Mon, 09 Feb 2026 14:00:00 +0000",
       "description": "Written by: Ross Inman, Adrian Hernandez\n\nIntroduction\nNorth Korean threat actors continue to evolve their tradecraft to target the cryptocurrency and decentralized finance (DeFi) verticals. Mandiant recently investigated an intrusion targeting a FinTech entity within this sector, attributed to UNC1069, a financially motivated threat actor active since at least 2018. This investigation revealed a tailored intrusion resulting in the deployment of seven unique malware families, including a new set of tooling designed to capture host and victim data: SILENCELIFT, DEEPBREATH and CHROMEPUSH. The intrusion relied on a social engineering scheme involving a compromised Telegram account, a fake Zoom meeting, a ClickFix infection vector, and reported usage of AI-generated video to deceive the victim.\nThese tactics build upon a shift first documented in the November 2025 publication GTIG AI Threat Tracker: Advances in Threat Actor Usage of AI Tools where Google Threat Intelligence Group (GTIG) id"
-    },
-    {
-      "title": "Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/expansion-shinyhunters-saas-data-theft/",
-      "pubDate": "Fri, 30 Jan 2026 14:00:00 +0000",
-      "description": "Introduction \nMandiant has identified an expansion in threat activity that uses tactics, techniques, and procedures (TTPs) consistent with prior ShinyHunters-branded extortion operations. These operations primarily leverage sophisticated voice phishing (vishing) and victim-branded credential harvesting sites to gain initial access to corporate environments by obtaining single sign-on (SSO) credentials and multi-factor authentication (MFA) codes. Once inside, the threat actors target cloud-based software-as-a-service (SaaS) applications to exfiltrate sensitive data and internal communications for use in subsequent extortion demands.\nGoogle Threat Intelligence Group (GTIG) is currently tracking this activity under multiple threat clusters (UNC6661, UNC6671, and UNC6240) to enable a more granular understanding of evolving partnerships and account for potential impersonation activity. While this methodology of targeting identity providers and SaaS platforms is consistent with our prior obs"
-    },
-    {
-      "title": "Guidance from the Frontlines: Proactive Defense Against ShinyHunters-Branded Data Theft Targeting SaaS",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/defense-against-shinyhunters-cybercrime-saas/",
-      "pubDate": "Fri, 30 Jan 2026 14:00:00 +0000",
-      "description": "Introduction\nMandiant is tracking a significant expansion and escalation in the operations of threat clusters associated with ShinyHunters-branded extortion. As detailed in our companion report, 'Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft', these campaigns leverage evolved voice phishing (vishing) and victim-branded credential harvesting to successfully compromise single sign-on (SSO) credentials and enroll unauthorized devices into victim multi-factor authentication (MFA) solutions.\nThis activity is not the result of a security vulnerability in vendors' products or infrastructure. Instead, these intrusions rely on the effectiveness of social engineering to bypass identity controls and pivot into cloud-based software-as-a-service (SaaS) environments.\nThis post provides actionable hardening, logging, and detection recommendations to help organizations protect against these threats. Organizations responding to an active incident should focus on rap"
     }
   ]
 }
