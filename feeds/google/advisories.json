@@ -1,24 +1,24 @@
 {
   "source": "https://blog.google/threat-analysis-group",
-  "fetched_at": "2026-05-26T10:17:02.633847+00:00",
+  "fetched_at": "2026-05-26T15:29:42.640768+00:00",
   "total": 20,
   "items": [
-    {
-      "title": "Exploitation of KnowledgeDeliver via ViewState Deserialization Vulnerability",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/knowledgedeliver-viewstate-deserialization-vulnerability/",
-      "published": "Mon, 25 Ma",
-      "summary": "Written by: Takahiro Sugiyama, Peter Revelant, Mathew Potaczek Introduction In late 2025, Mandiant responded to a security incident involving a compromised web server running KnowledgeDeliver . KnowledgeDeliver is a Learning Management System (LMS) developed by Digital Knowledge commonly used in Japan. Mandiant identified a critical vulnerability that allowed unauthenticated Remote Code Execution (RCE). An unknown threat actor leveraged this access to inject malicious code into the LMS platform,",
-      "executive_summary": "Written by: Takahiro Sugiyama, Peter Revelant, Mathew Potaczek Introduction In late 2025, Mandiant responded to a security incident involving a compromised web server running KnowledgeDeliver . KnowledgeDeliver is a Learning Management System (LMS) developed by Digital Knowledge commonly used in Japan. Mandiant identified a critical vulnerability that allowed unauthenticated Remote Code Execution (RCE). An unknown threat actor leveraged this access to inject malicious code into the LMS platform,",
-      "vendor": "",
-      "affected_products": "",
-      "source": "Google Threat Intel"
-    },
     {
       "title": "2 PhaaS 2 Furious: The Evolution of Chinese-language Phishing Services",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/chinese-language-phishing-services/",
       "published": "Mon, 25 Ma",
       "summary": "While Russian-speaking threat actors have historically dominated the phishing-as-a-service (PhaaS) landscape, a rival ecosystem is rapidly growing within the Chinese-language underground. Google Threat Intelligence Group (GTIG) analyzed a dozen current PhaaS offerings in the Chinese underground, all of them mature services and many likely tied intricately to the broader criminal ecosystem in that region. These services not only lower the barrier to entry for Chinese cyber criminals, but reveal b",
       "executive_summary": "While Russian-speaking threat actors have historically dominated the phishing-as-a-service (PhaaS) landscape, a rival ecosystem is rapidly growing within the Chinese-language underground. Google Threat Intelligence Group (GTIG) analyzed a dozen current PhaaS offerings in the Chinese underground, all of them mature services and many likely tied intricately to the broader criminal ecosystem in that region. These services not only lower the barrier to entry for Chinese cyber criminals, but reveal b",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
+    {
+      "title": "Exploitation of KnowledgeDeliver via ViewState Deserialization Vulnerability",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/knowledgedeliver-viewstate-deserialization-vulnerability/",
+      "published": "Mon, 25 Ma",
+      "summary": "Written by: Takahiro Sugiyama, Peter Revelant, Mathew Potaczek Introduction In late 2025, Mandiant responded to a security incident involving a compromised web server running KnowledgeDeliver . KnowledgeDeliver is a Learning Management System (LMS) developed by Digital Knowledge commonly used in Japan. Mandiant identified a critical vulnerability that allowed unauthenticated Remote Code Execution (RCE). An unknown threat actor leveraged this access to inject malicious code into the LMS platform,",
+      "executive_summary": "Written by: Takahiro Sugiyama, Peter Revelant, Mathew Potaczek Introduction In late 2025, Mandiant responded to a security incident involving a compromised web server running KnowledgeDeliver . KnowledgeDeliver is a Learning Management System (LMS) developed by Digital Knowledge commonly used in Japan. Mandiant identified a critical vulnerability that allowed unauthenticated Remote Code Execution (RCE). An unknown threat actor leveraged this access to inject malicious code into the LMS platform,",
       "vendor": "",
       "affected_products": "",
       "source": "Google Threat Intel"
