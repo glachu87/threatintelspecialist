@@ -1,8 +1,18 @@
 {
   "source": "https://blog.google/threat-analysis-group",
-  "fetched_at": "2026-06-05T10:15:19.121120+00:00",
+  "fetched_at": "2026-06-05T14:51:55.085057+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "Seeking Counsel: Ongoing Targeted Campaign Against US Law Firms",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/targeted-campaign-us-law-firms/",
+      "published": "Fri, 05 Ju",
+      "summary": "Written by: Chad Reams, Tufail Ahmed, Keith Knapp, Ashley Frazer, Tyler McLellan Introduction From January through May 2026, Mandiant identified a financially motivated data theft extortion campaign executed by the threat cluster UNC3753 (also tracked as \"Luna Moth,\" “Chatty Spider,” and \"Silent Ransom Group\") targeting dozens of organizations across professional, legal, and financial services in the United States. UNC3753 leverages voice phishing (vishing) and social engineering deception techn",
+      "executive_summary": "Written by: Chad Reams, Tufail Ahmed, Keith Knapp, Ashley Frazer, Tyler McLellan Introduction From January through May 2026, Mandiant identified a financially motivated data theft extortion campaign executed by the threat cluster UNC3753 (also tracked as \"Luna Moth,\" “Chatty Spider,” and \"Silent Ransom Group\") targeting dozens of organizations across professional, legal, and financial services in the United States. UNC3753 leverages voice phishing (vishing) and social engineering deception techn",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
     {
       "title": "Exploitation of KnowledgeDeliver via ViewState Deserialization Vulnerability",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/knowledgedeliver-viewstate-deserialization-vulnerability/",
@@ -189,16 +199,6 @@
       "published": "Tue, 10 Fe",
       "summary": "Introduction In modern warfare, the front lines are no longer confined to the battlefield; they extend directly into the servers and supply chains of the industry that safeguards the nation. Today, the defense sector faces a relentless barrage of cyber operations conducted by state-sponsored actors and criminal groups alike. In recent years, Google Threat Intelligence Group (GTIG) has observed several distinct areas of focus in adversarial targeting of the defense industrial base (DIB). While no",
       "executive_summary": "Introduction In modern warfare, the front lines are no longer confined to the battlefield; they extend directly into the servers and supply chains of the industry that safeguards the nation. Today, the defense sector faces a relentless barrage of cyber operations conducted by state-sponsored actors and criminal groups alike. In recent years, Google Threat Intelligence Group (GTIG) has observed several distinct areas of focus in adversarial targeting of the defense industrial base (DIB). While no",
-      "vendor": "",
-      "affected_products": "",
-      "source": "Google Threat Intel"
-    },
-    {
-      "title": "UNC1069 Targets Cryptocurrency Sector with New Tooling and AI-Enabled Social Engineering",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering/",
-      "published": "Mon, 09 Fe",
-      "summary": "Written by: Ross Inman, Adrian Hernandez Introduction North Korean threat actors continue to evolve their tradecraft to target the cryptocurrency and decentralized finance (DeFi) verticals. Mandiant recently investigated an intrusion targeting a FinTech entity within this sector, attributed to UNC1069 , a financially motivated threat actor active since at least 2018. This investigation revealed a tailored intrusion resulting in the deployment of seven unique malware families, including a new set",
-      "executive_summary": "Written by: Ross Inman, Adrian Hernandez Introduction North Korean threat actors continue to evolve their tradecraft to target the cryptocurrency and decentralized finance (DeFi) verticals. Mandiant recently investigated an intrusion targeting a FinTech entity within this sector, attributed to UNC1069 , a financially motivated threat actor active since at least 2018. This investigation revealed a tailored intrusion resulting in the deployment of seven unique malware families, including a new set",
       "vendor": "",
       "affected_products": "",
       "source": "Google Threat Intel"
