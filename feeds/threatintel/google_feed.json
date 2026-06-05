@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-06-05T12:45:15.675601Z",
+  "fetched_at": "2026-06-05T15:56:55.924354Z",
   "count": 20,
   "items": [
+    {
+      "title": "Seeking Counsel: Ongoing Targeted Campaign Against US Law Firms",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/targeted-campaign-us-law-firms/",
+      "pubDate": "Fri, 05 Jun 2026 14:00:00 +0000",
+      "description": "Written by: Chad Reams, Tufail Ahmed, Keith Knapp, Ashley Frazer, Tyler McLellan\n\nIntroduction \nFrom January through May 2026, Mandiant identified a financially motivated data theft extortion campaign executed by the threat cluster UNC3753 (also tracked as \"Luna Moth,\" “Chatty Spider,” and \"Silent Ransom Group\") targeting dozens of organizations across professional, legal, and financial services in the United States.\nUNC3753 leverages voice phishing (vishing) and social engineering deception techniques to achieve remote access into corporate environments. Using pretexts such as data migration or invoice related emails, the threat actors initiate phone conversations posing as IT support and convince targets to host screen-sharing sessions and download remote monitoring and management (RMM) utilities. Once inside the environment, the threat actors either directly conduct searches to locate and exfiltrate highly sensitive data, or manipulate the victim into executing these actions on thei"
+    },
     {
       "title": "Exploitation of KnowledgeDeliver via ViewState Deserialization Vulnerability",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/knowledgedeliver-viewstate-deserialization-vulnerability/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/threats-to-defense-industrial-base/",
       "pubDate": "Tue, 10 Feb 2026 14:00:00 +0000",
       "description": "Introduction \nIn modern warfare, the front lines are no longer confined to the battlefield; they extend directly into the servers and supply chains of the industry that safeguards the nation. Today, the defense sector faces a relentless barrage of cyber operations conducted by state-sponsored actors and criminal groups alike. In recent years, Google Threat Intelligence Group (GTIG) has observed several distinct areas of focus in adversarial targeting of the defense industrial base (DIB). While not exhaustive of all actors and means, some of the more prominent themes in the landscape today include: \n\n\nConsistent effort has been dedicated to targeting defense entities fielding technologies on the battlefield in the Russia-Ukraine War. As next-generation capabilities are being operationalized in this environment, Russia-nexus threat actors and hacktivists are seeking to compromise defense contractors alongside military assets and systems, with a focus on organizations involved with unmann"
-    },
-    {
-      "title": "UNC1069 Targets Cryptocurrency Sector with New Tooling and AI-Enabled Social Engineering",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering/",
-      "pubDate": "Mon, 09 Feb 2026 14:00:00 +0000",
-      "description": "Written by: Ross Inman, Adrian Hernandez\n\nIntroduction\nNorth Korean threat actors continue to evolve their tradecraft to target the cryptocurrency and decentralized finance (DeFi) verticals. Mandiant recently investigated an intrusion targeting a FinTech entity within this sector, attributed to UNC1069, a financially motivated threat actor active since at least 2018. This investigation revealed a tailored intrusion resulting in the deployment of seven unique malware families, including a new set of tooling designed to capture host and victim data: SILENCELIFT, DEEPBREATH and CHROMEPUSH. The intrusion relied on a social engineering scheme involving a compromised Telegram account, a fake Zoom meeting, a ClickFix infection vector, and reported usage of AI-generated video to deceive the victim.\nThese tactics build upon a shift first documented in the November 2025 publication GTIG AI Threat Tracker: Advances in Threat Actor Usage of AI Tools where Google Threat Intelligence Group (GTIG) id"
     }
   ]
 }
