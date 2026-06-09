@@ -1,8 +1,18 @@
 {
   "source": "https://blog.virustotal.com",
-  "fetched_at": "2026-06-08T20:16:57.967439+00:00",
+  "fetched_at": "2026-06-09T03:33:13.413182+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "Crowdsourced AI += Knostic",
+      "link": "https://blog.virustotal.com/feeds/2212230208722529565/comments/default",
+      "published": "2026-06-08",
+      "summary": "We’re adding a new specialist to VirusTotal’s Crowdsourced AI lineup:  Knostic 's AgentMesh Agentic Security Supply Chain Reputation Engine. We are partnering with them to analyze Visual Studio Code extension (.VSIX) files. This complements our existing Code Insight and other AI contributors by helping developers, platform engineers, and security teams better understand the security profile of extensions and detect supply-chain threats before installing them.\n \n  Why VS Code Extensions Matter  \n",
+      "executive_summary": "We’re adding a new specialist to VirusTotal’s Crowdsourced AI lineup:  Knostic 's AgentMesh Agentic Security Supply Chain Reputation Engine. We are partnering with them to analyze Visual Studio Code extension (.VSIX) files. This complements our existing Code Insight and other AI contributors by helping developers, platform engineers, and security teams better understand the security profile of extensions and detect supply-chain threats before installing them.\n \n  Why VS Code Extensions Matter  \n",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
     {
       "title": "VirusTotal Inside the Agent Loop",
       "link": "https://blog.virustotal.com/feeds/7086169678615086768/comments/default",
@@ -189,16 +199,6 @@
       "published": "2025-06-04",
       "summary": "Short note for everyone who already lives and breathes YARA: \n\n \n  Victor (aka  plusvic ) just launched YARA-X 1.0.0.\nFull details:  https://virustotal.github.io/yara-x/blog/yara-x-is-stable/ \n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n \n   What changes for you \n \n   \n     \n         \n            Area  \n            YARA 4.x  \n             YARA-X   \n         \n     \n     \n         \n             Engine",
       "executive_summary": "Short note for everyone who already lives and breathes YARA: \n\n \n  Victor (aka  plusvic ) just launched YARA-X 1.0.0.\nFull details:  https://virustotal.github.io/yara-x/blog/yara-x-is-stable/ \n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n \n   What changes for you \n \n   \n     \n         \n            Area  \n            YARA 4.x  \n             YARA-X   \n         \n     \n     \n         \n             Engine",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "What 17,845 GitHub Repos Taught Us About Malicious MCP Servers",
-      "link": "https://blog.virustotal.com/feeds/7711892136698127976/comments/default",
-      "published": "2025-06-04",
-      "summary": "Spoiler: VirusTotal Code Insight’s preliminary audit flagged nearly 8% of MCP (Model Context Protocol) servers on GitHub as potentially forged for evil, though the sad truth is, bad intentions aren’t required to follow bad practices and publish code with critical vulnerabilities.\n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n Before we get started, a quick personal note. A couple of weeks ago, I annou",
-      "executive_summary": "Spoiler: VirusTotal Code Insight’s preliminary audit flagged nearly 8% of MCP (Model Context Protocol) servers on GitHub as potentially forged for evil, though the sad truth is, bad intentions aren’t required to follow bad practices and publish code with critical vulnerabilities.\n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n Before we get started, a quick personal note. A couple of weeks ago, I annou",
       "vendor": "",
       "affected_products": "",
       "source": "VirusTotal"
