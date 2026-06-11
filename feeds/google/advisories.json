@@ -1,8 +1,18 @@
 {
   "source": "https://blog.google/threat-analysis-group",
-  "fetched_at": "2026-06-11T16:01:54.786176+00:00",
+  "fetched_at": "2026-06-11T20:22:13.315944+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "ShinyHunters Targets Education Sector with Oracle PeopleSoft Exploit",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-targets-education-sector-oracle-exploit/",
+      "published": "Thu, 11 Ju",
+      "summary": "Introduction Mandiant and Google Threat Intelligence Group (GTIG) have identified an active compromise and extortion campaign attributed to UNC6240 (ShinyHunters) targeting Oracle PeopleSoft application infrastructure. The activity was observed between May 27, 2026, and June 9, 2026 and is consistent with the exploitation of CVE-2026-35273 , a critical remote code execution vulnerability (CVSS 9.8) in the Environment Management component. The exploitation of this vulnerability directly aligns wi",
+      "executive_summary": "Introduction Mandiant and Google Threat Intelligence Group (GTIG) have identified an active compromise and extortion campaign attributed to UNC6240 (ShinyHunters) targeting Oracle PeopleSoft application infrastructure. The activity was observed between May 27, 2026, and June 9, 2026 and is consistent with the exploitation of CVE-2026-35273 , a critical remote code execution vulnerability (CVSS 9.8) in the Environment Management component. The exploitation of this vulnerability directly aligns wi",
+      "vendor": "",
+      "affected_products": "",
+      "source": "Google Threat Intel"
+    },
     {
       "title": "Seeking Counsel: Ongoing Targeted Campaign Against US Law Firms",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/targeted-campaign-us-law-firms/",
@@ -189,16 +199,6 @@
       "published": "Thu, 12 Fe",
       "summary": "Introduction In the final quarter of 2025, Google Threat Intelligence Group (GTIG) observed threat actors increasingly integrating artificial intelligence (AI) to accelerate the attack lifecycle, achieving productivity gains in reconnaissance, social engineering, and malware development. This report serves as an update to our November 2025 findings regarding the advances in threat actor usage of AI tools. By identifying these early indicators and offensive proofs of concept, GTIG aims to arm def",
       "executive_summary": "Introduction In the final quarter of 2025, Google Threat Intelligence Group (GTIG) observed threat actors increasingly integrating artificial intelligence (AI) to accelerate the attack lifecycle, achieving productivity gains in reconnaissance, social engineering, and malware development. This report serves as an update to our November 2025 findings regarding the advances in threat actor usage of AI tools. By identifying these early indicators and offensive proofs of concept, GTIG aims to arm def",
-      "vendor": "",
-      "affected_products": "",
-      "source": "Google Threat Intel"
-    },
-    {
-      "title": "Beyond the Battlefield: Threats to the Defense Industrial Base",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/threats-to-defense-industrial-base/",
-      "published": "Tue, 10 Fe",
-      "summary": "Introduction In modern warfare, the front lines are no longer confined to the battlefield; they extend directly into the servers and supply chains of the industry that safeguards the nation. Today, the defense sector faces a relentless barrage of cyber operations conducted by state-sponsored actors and criminal groups alike. In recent years, Google Threat Intelligence Group (GTIG) has observed several distinct areas of focus in adversarial targeting of the defense industrial base (DIB). While no",
-      "executive_summary": "Introduction In modern warfare, the front lines are no longer confined to the battlefield; they extend directly into the servers and supply chains of the industry that safeguards the nation. Today, the defense sector faces a relentless barrage of cyber operations conducted by state-sponsored actors and criminal groups alike. In recent years, Google Threat Intelligence Group (GTIG) has observed several distinct areas of focus in adversarial targeting of the defense industrial base (DIB). While no",
       "vendor": "",
       "affected_products": "",
       "source": "Google Threat Intel"
