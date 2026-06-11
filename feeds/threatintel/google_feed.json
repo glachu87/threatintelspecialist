@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-06-11T18:17:48.796862Z",
+  "fetched_at": "2026-06-11T21:23:43.519297Z",
   "count": 20,
   "items": [
+    {
+      "title": "ShinyHunters Targets Education Sector with Oracle PeopleSoft Exploit",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-targets-education-sector-oracle-exploit/",
+      "pubDate": "Thu, 11 Jun 2026 14:00:00 +0000",
+      "description": "Introduction\nMandiant and Google Threat Intelligence Group (GTIG) have identified an active compromise and extortion campaign attributed to UNC6240 (ShinyHunters) targeting Oracle PeopleSoft application infrastructure. The activity was observed between May 27, 2026, and June 9, 2026 and is consistent with the exploitation of CVE-2026-35273, a critical remote code execution vulnerability (CVSS 9.8) in the Environment Management component. The exploitation of this vulnerability directly aligns with the observed targeting of Environment Management Hub (PSEMHUB) endpoints. Because this activity predates Oracle's June 10, 2026 advisory, the vulnerability was exploited as a zero-day.\nUpon becoming aware of active scanning and exploitation, we initiated notifications to over 100 global organizations whose IP addresses correlated with potentially vulnerable endpoints. Most of these organizations were based in the United States, and 68 percent operated within the higher education sector. Subseq"
+    },
     {
       "title": "Seeking Counsel: Ongoing Targeted Campaign Against US Law Firms",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/targeted-campaign-us-law-firms/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/distillation-experimentation-integration-ai-adversarial-use/",
       "pubDate": "Thu, 12 Feb 2026 14:00:00 +0000",
       "description": "Introduction\nIn the final quarter of 2025, Google Threat Intelligence Group (GTIG) observed threat actors increasingly integrating artificial intelligence (AI) to accelerate the attack lifecycle, achieving productivity gains in reconnaissance, social engineering, and malware development. This report serves as an update to our November 2025 findings regarding the advances in threat actor usage of AI tools.\nBy identifying these early indicators and offensive proofs of concept, GTIG aims to arm defenders with the intelligence necessary to anticipate the next phase of AI-enabled threats, proactively thwart malicious activity, and continually strengthen both our classifiers and model.\nExecutive Summary\nGoogle DeepMind and GTIG have identified an increase in model extraction attempts or \"distillation attacks,\" a method of intellectual property theft that violates Google's terms of service. Throughout this report we've noted steps we've taken to thwart malicious activity, including Google det"
-    },
-    {
-      "title": "Beyond the Battlefield: Threats to the Defense Industrial Base",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/threats-to-defense-industrial-base/",
-      "pubDate": "Tue, 10 Feb 2026 14:00:00 +0000",
-      "description": "Introduction \nIn modern warfare, the front lines are no longer confined to the battlefield; they extend directly into the servers and supply chains of the industry that safeguards the nation. Today, the defense sector faces a relentless barrage of cyber operations conducted by state-sponsored actors and criminal groups alike. In recent years, Google Threat Intelligence Group (GTIG) has observed several distinct areas of focus in adversarial targeting of the defense industrial base (DIB). While not exhaustive of all actors and means, some of the more prominent themes in the landscape today include: \n\n\nConsistent effort has been dedicated to targeting defense entities fielding technologies on the battlefield in the Russia-Ukraine War. As next-generation capabilities are being operationalized in this environment, Russia-nexus threat actors and hacktivists are seeking to compromise defense contractors alongside military assets and systems, with a focus on organizations involved with unmann"
     }
   ]
 }
