@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-06-15T06:28:31.549461Z",
+  "fetched_at": "2026-06-15T18:41:47.280573Z",
   "count": 20,
   "items": [
+    {
+      "title": "Public and Private Medical Community Targeted by China-Nexus Threat Actor Pursuing Artificial Intelligence, Cyber, Medical, and National Defense Research",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/prc-targets-us-medical-research/",
+      "pubDate": "Mon, 15 Jun 2026 14:00:00 +0000",
+      "description": "Written by: Patrick Whitsell, John McGuiness\n\nGoogle Threat Intelligence Group (GTIG) has identified a sophisticated campaign attributed to UNC6508, a People's Republic of China (PRC)-nexus threat actor, targeting institutions in the North American academic, medical, and military research community. While remaining undetected for over a year, the threat actor compromised externally facing web applications, deployed bespoke malware, pivoted to sensitive internal systems, and abused enterprise administrative tools for covert data exfiltration. The threat actor had broad collection aspirations, including sensitive defense intelligence related to national security, Indo-Pacific command operations, artificial intelligence, uncrewed vehicle systems, cyber offensive programs, and medical research. \nGTIG disrupted the malicious infrastructure associated with this threat actor. Working with Mandiant Consulting, we notified the affected organizations upon detection and offered our assistance wit"
+    },
     {
       "title": "ShinyHunters Targets Education Sector with Oracle PeopleSoft Exploit",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-targets-education-sector-oracle-exploit/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6201-exploiting-dell-recoverpoint-zero-day/",
       "pubDate": "Tue, 17 Feb 2026 14:00:00 +0000",
       "description": "Written by: Peter Ukhanov, Daniel Sislo, Nick Harbour, John Scarbrough, Fernando Tomlinson, Jr., Rich Reece\n\nIntroduction \nMandiant and Google Threat Intelligence Group (GTIG) have identified the zero-day exploitation of a high-risk vulnerability in Dell RecoverPoint for Virtual Machines, tracked as CVE-2026-22769, with a CVSSv3.1 score of 10.0. Analysis of incident response engagements revealed that UNC6201, a suspected PRC-nexus threat cluster, has exploited this flaw since at least mid-2024 to move laterally, maintain persistent access, and deploy malware including SLAYSTYLE, BRICKSTORM, and a novel backdoor tracked as GRIMBOLT. The initial access vector for these incidents was not confirmed, but UNC6201 is known to target edge appliances (such as VPN concentrators) for initial access. There are notable overlaps between UNC6201 and UNC5221, which has been used synonymously with the actor publicly reported as Silk Typhoon, although GTIG does not currently consider the two clusters to"
-    },
-    {
-      "title": "GTIG AI Threat Tracker: Distillation, Experimentation, and (Continued) Integration of AI for Adversarial Use",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/distillation-experimentation-integration-ai-adversarial-use/",
-      "pubDate": "Thu, 12 Feb 2026 14:00:00 +0000",
-      "description": "Introduction\nIn the final quarter of 2025, Google Threat Intelligence Group (GTIG) observed threat actors increasingly integrating artificial intelligence (AI) to accelerate the attack lifecycle, achieving productivity gains in reconnaissance, social engineering, and malware development. This report serves as an update to our November 2025 findings regarding the advances in threat actor usage of AI tools.\nBy identifying these early indicators and offensive proofs of concept, GTIG aims to arm defenders with the intelligence necessary to anticipate the next phase of AI-enabled threats, proactively thwart malicious activity, and continually strengthen both our classifiers and model.\nExecutive Summary\nGoogle DeepMind and GTIG have identified an increase in model extraction attempts or \"distillation attacks,\" a method of intellectual property theft that violates Google's terms of service. Throughout this report we've noted steps we've taken to thwart malicious activity, including Google det"
     }
   ]
 }
