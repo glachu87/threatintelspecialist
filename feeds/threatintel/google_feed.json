@@ -1,6 +1,6 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-06-26T19:54:55.468837Z",
+  "fetched_at": "2026-06-26T21:22:39.179820Z",
   "count": 20,
   "items": [
     {
@@ -13,7 +13,7 @@
       "title": "Zero-Day Exploitation of Vulnerability (CVE-2026-20245) in Cisco Catalyst SD-WAN Manager",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/zero-day-exploitation-cisco-catalyst-sd-wan-manager/",
       "pubDate": "Wed, 24 Jun 2026 11:00:00 +0000",
-      "description": "Written by: Chester Sng, Pete Boonyakarn, Logeswaran Nadarajan\n\nIntroduction \nIn early 2026, Mandiant identified a threat actor targeting SD-WAN infrastructure at a service provider. After gaining initial access, the threat actor exploited a zero-day vulnerability (CVE-2026-20245) in Cisco Catalyst SD-WAN to escalate privileges from a compromised administrative account to root-level access.\nThe vulnerability stems from the device’s file upload feature lacking the ability to properly filter malicious data.\nThroughout the intrusion, to maintain operational security and avoid detection, the threat actor consistently employed anti-forensic techniques, selectively deleting and restoring system configuration files that were modified during their activities.\nKey Observations\n\n\nRogue Peering and Credential Manipulation: In March 2026, a threat actor established initial access via unauthorized peering connections to facilitate Secure Shell (SSH) access. The threat actor used that access to mani"
+      "description": "Written by: Chester Sng, Pete Boonyakarn, Logeswaran Nadarajan, Lukasz Lamparski\n\nIntroduction \nIn early 2026, Mandiant identified a threat actor targeting SD-WAN infrastructure at a service provider. After gaining initial access, the threat actor exploited a zero-day vulnerability (CVE-2026-20245) in Cisco Catalyst SD-WAN to escalate privileges from a compromised administrative account to root-level access.\nThe vulnerability stems from the device’s file upload feature lacking the ability to properly filter malicious data.\nThroughout the intrusion, to maintain operational security and avoid detection, the threat actor consistently employed anti-forensic techniques, selectively deleting and restoring system configuration files that were modified during their activities.\nKey Observations\n\n\nRogue Peering and Credential Manipulation: In March 2026, a threat actor established initial access via unauthorized peering connections to facilitate Secure Shell (SSH) access. The threat actor used t"
     },
     {
       "title": "Public and Private Medical Community Targeted by China-Nexus Threat Actor Pursuing Artificial Intelligence, Cyber, Medical, and National Defense Research",
