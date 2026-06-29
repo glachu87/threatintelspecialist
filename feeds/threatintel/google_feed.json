@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-06-29T04:19:44.602920Z",
+  "fetched_at": "2026-06-29T17:40:31.959450Z",
   "count": 20,
   "items": [
+    {
+      "title": "The Bear Necessities: A Look at the Drivers, Dynamics, and Applications of the Pro-Russia Influence Ecosystem",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/pro-russia-influence-ecosystem/",
+      "pubDate": "Mon, 29 Jun 2026 14:00:00 +0000",
+      "description": "Written by: James Sadowski, Alden Wahlstrom\n\nIntroduction\nFour years into Russia’s full-scale invasion of Ukraine, the pro-Russia influence ecosystem has evolved from a tool of war back into a global strategic asset. Since the mobilization of this ecosystem to support frontline objectives, we have witnessed the expedited development of new influence assets linked to multiple, expansive, covert information operations (IO) campaigns and a revitalization of pro-Russia hacktivism at an unprecedented scale. While this threat activity initially adapted to encompass Ukraine-related priorities, it is gradually pivoting back to established Russian influence objectives for which the ecosystem was originally honed. This shift is significant because it likely signals increased focus outside of Ukraine, warning that pro-Russia influence activity targeting the European Union (EU), North Atlantic Treaty Organization (NATO), and other top targeting priorities may intensify. \nUltimately, the war in Ukr"
+    },
     {
       "title": "STOCKSTAY Another Day: The Latest Addition to Turla’s Intelligence Gathering Apparatus",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/stockstay-turla-intelligence-gathering/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
       "pubDate": "Thu, 05 Mar 2026 14:00:00 +0000",
       "description": "Written by: Casey Charrier, James Sadowski, Zander Work, Clement Lecigne, Benoît Sevens, Fred Plan\n\nExecutive Summary\nGoogle Threat Intelligence Group (GTIG) tracked 90 zero-day vulnerabilities exploited in-the-wild in 2025. Although that volume of zero-days is lower than the record high observed in 2023 (100), it is higher than 2024’s count (78) and remained within the 60–100 range established over the previous four years, indicating a trend toward stabilization at these levels.\nIn 2025, we continued to observe the structural shift, first identified in 2024, toward increased enterprise exploitation. Both the raw number (43) and proportion (48%) of vulnerabilities impacting enterprise technologies reached all-time highs, accounting for almost 50% of total zero-days exploited in 2025. We observed a sustained decrease in detected browser-based exploitation, which fell to historical lows, while seeing increased abuse of operating system vulnerabilities.\nState-sponsored espionage groups co"
-    },
-    {
-      "title": "Coruna: The Mysterious Journey of a Powerful iOS Exploit Kit",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/coruna-powerful-ios-exploit-kit/",
-      "pubDate": "Tue, 03 Mar 2026 14:00:00 +0000",
-      "description": "Introduction \nGoogle Threat Intelligence Group (GTIG) has identified a new and powerful exploit kit targeting Apple iPhone models running iOS version 13.0 (released in September 2019) up to version 17.2.1 (released in December 2023). The exploit kit, named “Coruna” by its developers, contained five full iOS exploit chains and a total of 23 exploits. The core technical value of this exploit kit lies in its comprehensive collection of iOS exploits, with the most advanced ones using non-public exploitation techniques and mitigation bypasses. \nThe Coruna exploit kit provides another example of how sophisticated capabilities proliferate. Over the course of 2025, GTIG tracked its use in highly targeted operations initially conducted by a customer of a surveillance vendor, then observed its deployment in watering hole attacks targeting Ukrainian users by UNC6353, a suspected Russian espionage group. We then retrieved the complete exploit kit when it was later used in broad-scale campaigns by "
     }
   ]
 }
