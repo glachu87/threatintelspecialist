@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-07-02T17:52:17.845837Z",
+  "fetched_at": "2026-07-02T19:35:46.537410Z",
   "count": 20,
   "items": [
+    {
+      "title": "Google’s Continued Disruption of Malicious Residential Proxy Networks",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/google-continued-disruption-residential-proxy-networks/",
+      "pubDate": "Thu, 02 Jul 2026 14:00:00 +0000",
+      "description": "Background\nToday, in coordination with the FBI, Lumen, and others, Google took action against the NetNut residential proxy network, also known as Popa. This action builds on our disruption of the IPIDEA proxy network that took place in January 2026, and is a continuation of Google’s objective to dismantle malicious residential proxy networks.\nActions Taken\nAs a part of this disruption we took the following actions:\n\n\nDisabled Google accounts and associated Google services used by NetNut for malware command and control (C2), which directly violates Google’s Terms of Service and Acceptable Use Policy. \n\n\nShared technical intelligence on NetNut software development kits (SDKs) and backend C2 infrastructure with platform providers, law enforcement, and research firms to help drive ecosystem-wide awareness and enforcement.\n\n\nWe ensured Google Play Protect, Android’s built-in security protection, automatically warned users and disabled applications known to incorporate NetNut SDKs, and the s"
+    },
     {
       "title": "The Bear Necessities: A Look at the Drivers, Dynamics, and Applications of the Pro-Russia Influence Ecosystem",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/pro-russia-influence-ecosystem/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/preparation-hardening-destructive-attacks/",
       "pubDate": "Fri, 06 Mar 2026 14:00:00 +0000",
       "description": "Written by: Matthew McWhirt, Bhavesh Dhake, Emilio Oropeza, Gautam Krishnan, Stuart Carrera, Greg Blaum, Michael Rudden\n\nUPDATE (March 13): Added guidance around abuse or misuse of endpoint / MDM platforms.\nBackground\nThreat actors leverage destructive malware to destroy data, eliminate evidence of malicious activity, or manipulate systems in a way that renders them inoperable. Destructive cyberattacks can be a powerful means to achieve strategic or tactical objectives; however, the risk of reprisal is likely to limit the frequency of use to very select incidents. Destructive cyberattacks can include destructive malware, wipers, or modified ransomware.\nWhen conflict erupts, cyber attacks are an inexpensive and easily deployable weapon. It should come as no surprise that instability leads to increases in attacks. This blog post provides proactive recommendations for organizations to prioritize for protecting against a destructive attack within an environment. The recommendations include"
-    },
-    {
-      "title": "Look What You Made Us Patch: 2025 Zero-Days in Review",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
-      "pubDate": "Thu, 05 Mar 2026 14:00:00 +0000",
-      "description": "Written by: Casey Charrier, James Sadowski, Zander Work, Clement Lecigne, Benoît Sevens, Fred Plan\n\nExecutive Summary\nGoogle Threat Intelligence Group (GTIG) tracked 90 zero-day vulnerabilities exploited in-the-wild in 2025. Although that volume of zero-days is lower than the record high observed in 2023 (100), it is higher than 2024’s count (78) and remained within the 60–100 range established over the previous four years, indicating a trend toward stabilization at these levels.\nIn 2025, we continued to observe the structural shift, first identified in 2024, toward increased enterprise exploitation. Both the raw number (43) and proportion (48%) of vulnerabilities impacting enterprise technologies reached all-time highs, accounting for almost 50% of total zero-days exploited in 2025. We observed a sustained decrease in detected browser-based exploitation, which fell to historical lows, while seeing increased abuse of operating system vulnerabilities.\nState-sponsored espionage groups co"
     }
   ]
 }
