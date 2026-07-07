@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-07-07T17:19:40.156699Z",
+  "fetched_at": "2026-07-07T20:00:52.800922Z",
   "count": 20,
   "items": [
+    {
+      "title": "The ‘Ghost’ in the Database: Recovering Active ADFS Signing Keys via Machine DPAPI",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/recovering-active-adfs-signing-keys-machine-dpapi/",
+      "pubDate": "Tue, 07 Jul 2026 14:00:00 +0000",
+      "description": "Written by: Shebin Mathew\n\nIntroduction \nThe \"Golden SAML\" technique, first described by CyberArk researchers in 2017, and further detailed by Mandiant researchers in 2021, remains one of the most effective methods for threat actors to forge identity assertions in the Microsoft ecosystem. By obtaining the private key of an ADFS token-signing certificate, an attacker can authenticate as any user to any SAML-federated application, bypassing multifactor authentication (MFA), conditional access, and all identity-based controls.\nHowever, during a recent red team engagement, Mandiant discovered that when ADFS certificates are manually rotated, configuration drift can silently leave active signing keys exposed in Machine DPAPI. Specifically, Mandiant discovered that in environments where AutoCertificateRollover is disabled and certificates are manually rotated, the database often becomes a 'ghost'—a record that still exists, still decrypts successfully, but references a certificate no longer "
+    },
     {
       "title": "Google’s Continued Disruption of Malicious Residential Proxy Networks",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/google-continued-disruption-residential-proxy-networks/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
       "pubDate": "Mon, 16 Mar 2026 14:00:00 +0000",
       "description": "Written by: Bavi Sadayappan, Zach Riddle, Ioana Teaca, Kimberly Goody, Genevieve Stark\n\nIntroduction \nSince 2018, when many financially motivated threat actors began shifting their monetization strategy to post-compromise ransomware deployments, ransomware has become one of the most pervasive threats to organizations across almost every industry vertical and region. In recent years ransomware operations have evolved, creating a robust ecosystem that has lowered the barrier to entry via the commoditization and specialization of the supporting underground communities, which is exemplified by the proliferation of the ransomware-as-a-service (RaaS) business model. While ransomware remains a dominant threat due to the volume of activity and the potential for serious operational disruptions, we have observed multiple indicators that suggest the overall profitability of ransomware operations is in decline. This trend is likely the result of multiple factors, including improved cybersecurity p"
-    },
-    {
-      "title": "Proactive Preparation and Hardening Against Destructive Attacks: 2026 Edition",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/preparation-hardening-destructive-attacks/",
-      "pubDate": "Fri, 06 Mar 2026 14:00:00 +0000",
-      "description": "Written by: Matthew McWhirt, Bhavesh Dhake, Emilio Oropeza, Gautam Krishnan, Stuart Carrera, Greg Blaum, Michael Rudden\n\nUPDATE (March 13): Added guidance around abuse or misuse of endpoint / MDM platforms.\nBackground\nThreat actors leverage destructive malware to destroy data, eliminate evidence of malicious activity, or manipulate systems in a way that renders them inoperable. Destructive cyberattacks can be a powerful means to achieve strategic or tactical objectives; however, the risk of reprisal is likely to limit the frequency of use to very select incidents. Destructive cyberattacks can include destructive malware, wipers, or modified ransomware.\nWhen conflict erupts, cyber attacks are an inexpensive and easily deployable weapon. It should come as no surprise that instability leads to increases in attacks. This blog post provides proactive recommendations for organizations to prioritize for protecting against a destructive attack within an environment. The recommendations include"
     }
   ]
 }
