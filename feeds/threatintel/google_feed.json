@@ -1,6 +1,6 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-07-16T21:04:23.119247Z",
+  "fetched_at": "2026-07-17T00:07:59.985877Z",
   "count": 20,
   "items": [
     {
@@ -49,7 +49,7 @@
       "title": "Public and Private Medical Community Targeted by China-Nexus Threat Actor Pursuing Artificial Intelligence, Cyber, Medical, and National Defense Research",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/prc-targets-us-medical-research/",
       "pubDate": "Mon, 15 Jun 2026 14:00:00 +0000",
-      "description": "Written by: Patrick Whitsell, John McGuiness\n\nGoogle Threat Intelligence Group (GTIG) has identified a sophisticated campaign attributed to UNC6508, a People's Republic of China (PRC)-nexus threat actor, targeting institutions in the North American academic, medical, and military research community. While remaining undetected for over a year, the threat actor compromised externally facing web applications, deployed bespoke malware, pivoted to sensitive internal systems, and abused enterprise administrative tools for covert data exfiltration. The threat actor had broad collection aspirations, including sensitive defense intelligence related to national security, Indo-Pacific command operations, artificial intelligence, uncrewed vehicle systems, cyber offensive programs, and medical research. \nGTIG disrupted the malicious infrastructure associated with this threat actor. Working with Mandiant Consulting, we notified the affected organizations upon detection and offered our assistance wit"
+      "description": "Written by: Patrick Whitsell, John McGuiness, Muhammad Umair\n\nGoogle Threat Intelligence Group (GTIG) has identified a sophisticated campaign attributed to UNC6508, a People's Republic of China (PRC)-nexus threat actor, targeting institutions in the North American academic, medical, and military research community. While remaining undetected for over a year, the threat actor compromised externally facing web applications, deployed bespoke malware, pivoted to sensitive internal systems, and abused enterprise administrative tools for covert data exfiltration. The threat actor had broad collection aspirations, including sensitive defense intelligence related to national security, Indo-Pacific command operations, artificial intelligence, uncrewed vehicle systems, cyber offensive programs, and medical research. \nGTIG disrupted the malicious infrastructure associated with this threat actor. Working with Mandiant Consulting, we notified the affected organizations upon detection and offered ou"
     },
     {
       "title": "ShinyHunters Targets Education Sector with Oracle PeopleSoft Exploit",
