@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-08-06T14:20:36.710328Z",
+  "fetched_at": "2026-08-07T00:41:47.361695Z",
   "count": 20,
   "items": [
+    {
+      "title": "UNC6671 Rebrands: Multi-Brand Vishing Extortion Targets Financial Services and Enterprise Cloud Environments",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6671-targets-financial-services-and-enterprise-cloud-environments/",
+      "pubDate": "Thu, 06 Aug 2026 14:00:00 +0000",
+      "description": "Written by: Tyler McLellan, Austin Larsen\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) continues to track UNC6671 actively conducting compromises leading to data theft extortion, despite the alleged announced retirement of the BlackFile extortion brand in May 2026. Telemetry and infrastructure analysis reveal that rather than disbanding, UNC6671 has diversified its operations across multiple extortion fronts including Redact, Pink, Helix, and Falcon. \nUNC6671 continues to rely on voice phishing (vishing) to target enterprise employees, posing as IT helpdesk staff facilitating mandatory, urgent security migrations. Significantly, the threat actor often contacts employees via their personal mobile devices. These calls lure victims to spoofed login portals where Adversary-in-the-Middle (AiTM) infrastructure intercepts credentials and multi-factor authentication (MFA) tokens. Once session persistence is established, the actors deploy automated scripts for data exfiltration from en"
+    },
     {
       "title": "Batten Down Your Packages: Mitigation Guidance for Supply Chain Compromise",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/mitigation-guidance-for-supply-chain-compromise/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/europe-data-leak-landscape/",
       "pubDate": "Wed, 15 Apr 2026 14:00:00 +0000",
       "description": "Written by: Jamie Collier, Robin Grunewald\n\nGermany has reclaimed its position as a primary focus for cyber extortion in Europe. While data leak site (DLS) posts rose almost 50% globally in 2025, Google Threat Intelligence (GTI) data shows that the surge is hitting German infrastructure harder and faster than its regional neighbors, marking a significant return to the high-pressure levels previously observed in the country during 2022 and 2023.\nCyber Criminals Pivoting Back to Germany\nGermany moved to the forefront of European data leak targets in 2025. Following a 2024 period where the UK led in DLS victims, this pivot reflects a resurgence of the intense pressure observed across German infrastructure during 2022 and 2023.\nThis targeting is not a result of the overall number of companies within Europe, as Germany has fewer active enterprises than France or Italy. Instead, its sustained appeal to extortion groups is driven by its status as an advanced European economy with an increasin"
-    },
-    {
-      "title": "vSphere and BRICKSTORM Malware: A Defender's Guide",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/vsphere-brickstorm-defender-guide/",
-      "pubDate": "Thu, 02 Apr 2026 14:00:00 +0000",
-      "description": "Written by: Stuart Carrera\n\nIntroduction \nBuilding on recent BRICKSTORM research from Google Threat Intelligence Group (GTIG), this post explores the evolving threats facing virtualized environments. These operations directly target the VMware vSphere ecosystem, specifically the vCenter Server Appliance (VCSA) and ESXi hypervisors. To help organizations stay ahead of these risks, we will focus on the essential hardening strategies and mitigating controls necessary to secure these critical assets.\nBy establishing persistence at the virtualization layer, threat actors operate beneath the guest operating system where traditional security protections are ineffective. This strategy takes advantage of a significant visibility gap, as these control planes do not support standard endpoint detection and response (EDR) agents and have historically received less security focus than traditional endpoints.\nThis activity is not the result of a security vulnerability in vendors' products or infrastru"
     }
   ]
 }
