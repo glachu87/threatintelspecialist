@@ -1,8 +1,18 @@
 {
   "source": "https://blog.virustotal.com",
-  "fetched_at": "2026-08-11T13:04:14.771641+00:00",
+  "fetched_at": "2026-08-11T19:01:23.031403+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "Enriched URL Reports: VirusTotal URL Scanning 2.0",
+      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/5882250708142565392",
+      "published": "2026-08-11",
+      "summary": "Introduction \n In today's fast-moving cybersecurity landscape, threat analysts must move beyond basic, binary reputation scores to successfully defend against modern, highly adaptive web threats. Traditional URL analysis has been redefined by the launch of  URL Scanning 2.0 , an update that significantly expands VirusTotal's URL analysis capabilities by introducing automated visits with a full browser instance and deeper historical visibility. \n Instead of relying on static reputation scores alo",
+      "executive_summary": "Introduction \n In today's fast-moving cybersecurity landscape, threat analysts must move beyond basic, binary reputation scores to successfully defend against modern, highly adaptive web threats. Traditional URL analysis has been redefined by the launch of  URL Scanning 2.0 , an update that significantly expands VirusTotal's URL analysis capabilities by introducing automated visits with a full browser instance and deeper historical visibility. \n Instead of relying on static reputation scores alo",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
     {
       "title": "Crowdsourced AI += Knostic",
       "link": "https://blog.virustotal.com/feeds/2212230208722529565/comments/default",
@@ -189,16 +199,6 @@
       "published": "2025-08-14",
       "summary": "When we launched Code Insight, we started by analyzing PowerShell scripts. Since then, we have been continuously expanding its capabilities to cover more file types. Today, we announce that Code Insight can now analyze a broader range of formats crucial to the software supply chain. This includes browser extensions (CRX for Chrome, XPI for Firefox, VSIX for VS Code), software packages (Python Wheel, NPM), and protocols like MCP that enable Large Language Models to interact with external tools.\n ",
       "executive_summary": "When we launched Code Insight, we started by analyzing PowerShell scripts. Since then, we have been continuously expanding its capabilities to cover more file types. Today, we announce that Code Insight can now analyze a broader range of formats crucial to the software supply chain. This includes browser extensions (CRX for Chrome, XPI for Firefox, VSIX for VS Code), software packages (Python Wheel, NPM), and protocols like MCP that enable Large Language Models to interact with external tools.\n ",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "YARA-X 1.0.0: The Stable Release and Its Advantages",
-      "link": "https://blog.virustotal.com/feeds/6568274798103895274/comments/default",
-      "published": "2025-06-04",
-      "summary": "Short note for everyone who already lives and breathes YARA: \n\n \n  Victor (aka  plusvic ) just launched YARA-X 1.0.0.\nFull details:  https://virustotal.github.io/yara-x/blog/yara-x-is-stable/ \n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n \n   What changes for you \n \n   \n     \n         \n            Area  \n            YARA 4.x  \n             YARA-X   \n         \n     \n     \n         \n             Engine",
-      "executive_summary": "Short note for everyone who already lives and breathes YARA: \n\n \n  Victor (aka  plusvic ) just launched YARA-X 1.0.0.\nFull details:  https://virustotal.github.io/yara-x/blog/yara-x-is-stable/ \n \n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n     \n    Your browser does not support the audio element.\n   \n \n \n \n   What changes for you \n \n   \n     \n         \n            Area  \n            YARA 4.x  \n             YARA-X   \n         \n     \n     \n         \n             Engine",
       "vendor": "",
       "affected_products": "",
       "source": "VirusTotal"
