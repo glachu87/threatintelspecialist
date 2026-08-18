@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-08-18T15:34:30.569183Z",
+  "fetched_at": "2026-08-18T16:34:42.410917Z",
   "count": 20,
   "items": [
+    {
+      "title": "Staying Ahead of Adversarial AI Through Agentic Source Code Review",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/staying-ahead-of-adversarial-ai-through-agentic-source-code-review/",
+      "pubDate": "Tue, 18 Aug 2026 14:00:00 +0000",
+      "description": "Written by: Alex Tselevich, Michael Maturi\n\nIntroduction\nAdversarial misuse of AI has increased the risk of data theft and extortion events, because when proprietary source code is exposed, defenders must scramble to identify and patch vulnerabilities while attackers deploy machine-speed AI tools against them.\nBy structuring the analysis process, enforcing skeptical validation steps, and injecting domain-specific human expertise directly into the pipeline, we’ve achieved a leap in efficacy. Combining AI models with a deeply structured, human expert-driven orchestration layer to tip the scales so that defenders can beat adversaries to the punch.\nToday, we use the Agentic Vulnerability Discovery Harness (AVDH) to rapidly analyze code and find exploit paths during proactive reviews, penetration tests, red team operations, and incident response engagements. By combining multi-agent orchestration with our frontline subject-matter expertise, this framework helps to augment the discovery and "
+    },
     {
       "title": "UNC6671 Rebrands: Multi-Brand Vishing Extortion Targets Financial Services and Enterprise Cloud Environments",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6671-targets-financial-services-and-enterprise-cloud-environments/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/defending-enterprise-ai-vulnerabilities/",
       "pubDate": "Thu, 16 Apr 2026 14:00:00 +0000",
       "description": "Introduction \nAdvances in AI model-powered exploitation have demonstrated that general-purpose AI models can excel at vulnerability discovery, even without being purpose-built for the task. Eventually, capabilities such as these will be integrated directly into the development cycle, and code will be more difficult to exploit than ever; however, this transition creates a critical window of risk. As we harden existing software with AI, threat actors will use it to discover and exploit novel vulnerabilities.\nFaced with this scenario, defenders have two critical tasks: hardening the software we use as rapidly as possible, and preparing to defend systems that have not yet been hardened.\nAs noted in Wiz’s blog post, Claude Mythos: Preparing for a World Where AI Finds and Exploits Vulnerabilities Faster Than Ever, now is the time to strengthen playbooks, reduce exposure, and incorporate AI into security programs. The following blog provides an overview of the evolving attack lifecycle, how t"
-    },
-    {
-      "title": "The German Cyber Criminal Überfall: Shifts in Europe's Data Leak Landscape",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/europe-data-leak-landscape/",
-      "pubDate": "Wed, 15 Apr 2026 14:00:00 +0000",
-      "description": "Written by: Jamie Collier, Robin Grunewald\n\nGermany has reclaimed its position as a primary focus for cyber extortion in Europe. While data leak site (DLS) posts rose almost 50% globally in 2025, Google Threat Intelligence (GTI) data shows that the surge is hitting German infrastructure harder and faster than its regional neighbors, marking a significant return to the high-pressure levels previously observed in the country during 2022 and 2023.\nCyber Criminals Pivoting Back to Germany\nGermany moved to the forefront of European data leak targets in 2025. Following a 2024 period where the UK led in DLS victims, this pivot reflects a resurgence of the intense pressure observed across German infrastructure during 2022 and 2023.\nThis targeting is not a result of the overall number of companies within Europe, as Germany has fewer active enterprises than France or Italy. Instead, its sustained appeal to extortion groups is driven by its status as an advanced European economy with an increasin"
     }
   ]
 }
