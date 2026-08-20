@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-08-20T12:55:12.134278Z",
+  "fetched_at": "2026-08-20T14:38:58.084463Z",
   "count": 20,
   "items": [
+    {
+      "title": "Going with the Flow(s): Distinct Clusters Target Individuals of Interest to Russia",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/distinct-clusters-target-individuals-of-interest-to-russia/",
+      "pubDate": "Thu, 20 Aug 2026 14:00:00 +0000",
+      "description": "Written by: Gabby Roncone, Wesley Shields\n\nOverview \nGoogle Threat Intelligence Group (GTIG) is tracking three distinct suspected Russian cyber espionage threat clusters abusing legitimate authentication flows to target individuals working in academia, aerospace and defense, governments and think tanks across Europe, as well as academia and think tanks within the United States. Examples of these techniques can be found in our previous blog on UNC6293’s phishing operations. We now track an additional two distinct suspected Russian clusters, UNC7005 and UNC5976, which conduct phishing, abuse OAuth flows, and/or deploy malware to victims. UNC7005 in particular is tied to the hospitality captive portal redirects reported on by Reliaquest and Microsoft. While each group conducts their campaigns differently, they all ultimately demonstrate a focus on abuse of legitimate authentication workflows to compromise accounts.\nThese clusters engage in persistent, adaptive phishing campaigns, using so"
+    },
     {
       "title": "Staying Ahead of Adversarial AI Through Agentic Source Code Review",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/staying-ahead-of-adversarial-ai-through-agentic-source-code-review/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/unc6692-social-engineering-custom-malware/",
       "pubDate": "Thu, 23 Apr 2026 14:00:00 +0000",
       "description": "Written by: JP Glab, Tufail Ahmed, Josh Kelley, Muhammad Umair\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) identified a multistage intrusion campaign by a newly tracked threat group, UNC6692, that leveraged persistent social engineering, a custom modular malware suite, and deft pivoting inside the victim’s environment to achieve deep network penetration. \nAs with many other intrusions in recent years, UNC6692 relied heavily on impersonating IT helpdesk employees, convincing their victim to accept a Microsoft Teams chat invitation from an account outside their organization. The UNC6692 campaign demonstrates an interesting evolution in tactics, particularly the use of social engineering, custom malware, and a malicious browser extension, playing on the victim’s inherent trust in several different enterprise software providers. \nThreat Details\nIn late December 2025, UNC6692 conducted a large email campaign designed to overwhelm the target with messages, creating a sense of urge"
-    },
-    {
-      "title": "Defending Your Enterprise When AI Models Can Find Vulnerabilities Faster Than Ever",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/defending-enterprise-ai-vulnerabilities/",
-      "pubDate": "Thu, 16 Apr 2026 14:00:00 +0000",
-      "description": "Introduction \nAdvances in AI model-powered exploitation have demonstrated that general-purpose AI models can excel at vulnerability discovery, even without being purpose-built for the task. Eventually, capabilities such as these will be integrated directly into the development cycle, and code will be more difficult to exploit than ever; however, this transition creates a critical window of risk. As we harden existing software with AI, threat actors will use it to discover and exploit novel vulnerabilities.\nFaced with this scenario, defenders have two critical tasks: hardening the software we use as rapidly as possible, and preparing to defend systems that have not yet been hardened.\nAs noted in Wiz’s blog post, Claude Mythos: Preparing for a World Where AI Finds and Exploits Vulnerabilities Faster Than Ever, now is the time to strengthen playbooks, reduce exposure, and incorporate AI into security programs. The following blog provides an overview of the evolving attack lifecycle, how t"
     }
   ]
 }
