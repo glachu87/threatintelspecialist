@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-09-08T12:43:28.564984Z",
+  "fetched_at": "2026-09-08T17:07:48.723014Z",
   "count": 20,
   "items": [
+    {
+      "title": "GTIG AI Threat Tracker: From Prompting to Autonomy – The Evolution of Adversarial AI",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai/",
+      "pubDate": "Tue, 08 Sep 2026 14:00:00 +0000",
+      "description": "Executive Summary \nSince the release of our May 2026 report detailing adversarial misuse of artificial intelligence (AI), Google Threat Intelligence Group (GTIG) has observed forward leaning adversaries transition from basic prompting to agentic AI workflows and AI-enabled automation. In these operations, human-in-the-loop latency is dramatically reduced, compressing the traditional window for defenders to respond. In Q2 2026, GTIG observed threat actors compromise a cloud resource, then plan, build, and execute an agent-enabled mass credential harvesting campaign in under six hours. We also tracked UNC6780 using multiple tactics to trick AI coding assistants and large language model (LLM) security scanners into its open source software supply chain compromises.\nThreat actors are also increasingly targeting AI assets. GTIG observed adversaries with wide-ranging motivations target proprietary AI models and source code, exfiltrate application programming interface (API) credentials, and "
+    },
     {
       "title": "Financially Motivated Threat Actor BREEZE COMET Targets Brazil",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/financially-motivated-threat-actor-breeze-comet-targets-brazil/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation/",
       "pubDate": "Fri, 15 May 2026 14:00:00 +0000",
       "description": "Written by: Austin Larsen, Tyler McLellan, Genevieve Stark, Dan Ebreo\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) has continued to track an expansive extortion campaign by UNC6671, a threat actor operating under the \"BlackFile\" brand, that targets organizations via sophisticated voice phishing (vishing) and single sign-on (SSO) compromise. By leveraging adversary-in-the-middle (AiTM) techniques to bypass traditional perimeter defenses and multi-factor authentication (MFA), UNC6671 gains deep access to cloud environments. The group primarily targets Microsoft 365 and Okta infrastructure, leveraging Python and PowerShell scripts to programmatically exfiltrate sensitive corporate data for subsequent extortion attempts. This post details UNC6671’s attack lifecycle and provides defenders with actionable guidance to detect and mitigate these identity-centric threats.\nSince emerging in early 2026, UNC6671 has maintained a high operational cadence. GTIG assesses that the group has t"
-    },
-    {
-      "title": "GTIG AI Threat Tracker: Adversaries Leverage AI for Vulnerability Exploitation, Augmented Operations, and Initial Access",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access/",
-      "pubDate": "Mon, 11 May 2026 14:00:00 +0000",
-      "description": "Executive Summary\nSince our February 2026 report on AI-related threat activity, Google Threat Intelligence Group (GTIG) has continued to track a maturing transition from nascent AI-enabled operations to the industrial-scale application of generative models within adversarial workflows. This report, based on insights derived from Mandiant incident response engagements, Gemini, and GTIG’s proactive research, highlights the dual nature of the current threat environment where AI serves as both a sophisticated engine for adversary operations and a high-value target for attacks. We explore the following developments:\n\n\nVulnerability Discovery and Exploit Generation: For the first time, GTIG has identified a threat actor using a zero-day exploit that we believe was developed with AI. The criminal threat actor planned to use it in a mass exploitation event but our proactive counter discovery may have prevented its use. Threat actors associated with the People’s Republic of China (PRC) and the "
     }
   ]
 }
