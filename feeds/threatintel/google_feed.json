@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-09-24T14:43:54.924375Z",
+  "fetched_at": "2026-09-24T18:53:34.159649Z",
   "count": 20,
   "items": [
+    {
+      "title": "Proactive Defense: Hardening Code Pipelines and CI/CD Infrastructure",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/hardening-code-pipelines-and-ci-cd-infrastructure/",
+      "pubDate": "Thu, 24 Sep 2026 14:00:00 +0000",
+      "description": "Introduction\nThe landscape of software supply chain security has undergone a significant shift. Recent campaigns demonstrate that sophisticated threat actors are systematically targeting the engineering lifecycle by compromising trusted security and programming tools.\nThese intrusions reveal three key tactics:\n\n\nAttackers target trusted security scanners, utility libraries, and AI developer tools to exploit the elevated privileges granted to these systems within build pipelines.\n\n\nAdversaries target developer workstations and Integrated Development Environments (IDEs) via highly tailored social engineering, malicious extensions, or typosquatted local dependencies to exfiltrate private cryptographic keys, API tokens, and active session credentials directly from local engineering environments.\n\n\nRather than relying solely on compromised static credentials, attackers have escalated to advanced pipeline manipulation techniques, including GitHub Actions cache poisoning, OpenID Connect (OIDC"
+    },
     {
       "title": "GTIG AI Threat Tracker: From Prompting to Autonomy – The Evolution of Adversarial AI",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/chinese-language-phishing-services/",
       "pubDate": "Mon, 25 May 2026 14:00:00 +0000",
       "description": "While Russian-speaking threat actors have historically dominated the phishing-as-a-service (PhaaS) landscape, a rival ecosystem is rapidly growing within the Chinese-language underground. Google Threat Intelligence Group (GTIG) analyzed a dozen current PhaaS offerings in the Chinese underground, all of them mature services and many likely tied intricately to the broader criminal ecosystem in that region. These services not only lower the barrier to entry for Chinese cyber criminals, but reveal broader patterns on the evolution of social engineering and credential theft. Late last year, Google took legal action against one PhaaS provider and has worked since then to endorse legislation and enact technical safeguards against these types of scams.\nWithin this ecosystem, GTIG has observed a fundamental move away from static password harvesting towards real-time interception and tokenization. By utilizing live administration panels, attackers can interact with victims in real-time to captur"
-    },
-    {
-      "title": "Welcome to BlackFile: Inside a Vishing Extortion Operation",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation/",
-      "pubDate": "Fri, 15 May 2026 14:00:00 +0000",
-      "description": "Written by: Austin Larsen, Tyler McLellan, Genevieve Stark, Dan Ebreo\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) has continued to track an expansive extortion campaign by UNC6671, a threat actor operating under the \"BlackFile\" brand, that targets organizations via sophisticated voice phishing (vishing) and single sign-on (SSO) compromise. By leveraging adversary-in-the-middle (AiTM) techniques to bypass traditional perimeter defenses and multi-factor authentication (MFA), UNC6671 gains deep access to cloud environments. The group primarily targets Microsoft 365 and Okta infrastructure, leveraging Python and PowerShell scripts to programmatically exfiltrate sensitive corporate data for subsequent extortion attempts. This post details UNC6671’s attack lifecycle and provides defenders with actionable guidance to detect and mitigate these identity-centric threats.\nSince emerging in early 2026, UNC6671 has maintained a high operational cadence. GTIG assesses that the group has t"
     }
   ]
 }
