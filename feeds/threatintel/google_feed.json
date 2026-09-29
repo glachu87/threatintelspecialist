@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-09-29T08:06:36.814936Z",
+  "fetched_at": "2026-09-29T15:31:20.808442Z",
   "count": 20,
   "items": [
+    {
+      "title": "Defending Against Active Exploitation of Citrix NetScaler ADC and Gateway Appliances",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/defending-against-active-exploitation-of-citrix-netscaler-adc-and-gateway-appliances/",
+      "pubDate": "Tue, 29 Sep 2026 05:00:00 +0000",
+      "description": "Introduction\nIn late September 2026, Mandiant Consulting and Google Threat Intelligence Group (GTIG) identified active, in-the-wild exploitation of a zero-day vulnerability (CVE-2026-88772) affecting Citrix NetScaler ADC and NetScaler Gateway appliances. We have observed evidence that organizations in North America and Europe in the government, financial services, education, legal and professional services sectors were likely impacted by this exploitation campaign, which has been ongoing since at least early September. According to vendor disclosures, threat actors are also actively exploiting a second zero-day vulnerability (CVE-2026-88771). \nExploitation of CVE-2026-88772 bypasses authentication and triggers an unhandled termination of the NetScaler Packet Processing Engine (NSPPE) to establish initial root-level access. Analysis of the actor’s post-exploitation toolkit reveals newly discovered custom PHP web shells, such as WHIPSHOT, capable of disguising Base64-encoded command-and-"
+    },
     {
       "title": "ShinyHunters Renewed Mass Exploitation Campaign Targeting Oracle PeopleSoft",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-renewed-mass-exploitation-campaign-targeting-oracle-peoplesoft/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/targeted-campaign-us-law-firms/",
       "pubDate": "Fri, 05 Jun 2026 14:00:00 +0000",
       "description": "Written by: Chad Reams, Tufail Ahmed, Keith Knapp, Ashley Frazer, Tyler McLellan\n\nIntroduction \nFrom January through May 2026, Mandiant identified a financially motivated data theft extortion campaign executed by the threat cluster UNC3753 (also tracked as \"Luna Moth,\" “Chatty Spider,” and \"Silent Ransom Group\") targeting dozens of organizations across professional, legal, and financial services in the United States.\nUNC3753 leverages voice phishing (vishing) and social engineering deception techniques to achieve remote access into corporate environments. Using pretexts such as data migration or invoice related emails, the threat actors initiate phone conversations posing as IT support and convince targets to host screen-sharing sessions and download remote monitoring and management (RMM) utilities. Once inside the environment, the threat actors either directly conduct searches to locate and exfiltrate highly sensitive data, or manipulate the victim into executing these actions on thei"
-    },
-    {
-      "title": "Exploitation of KnowledgeDeliver via ViewState Deserialization Vulnerability",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/knowledgedeliver-viewstate-deserialization-vulnerability/",
-      "pubDate": "Mon, 25 May 2026 14:00:00 +0000",
-      "description": "Written by: Takahiro Sugiyama, Peter Revelant, Mathew Potaczek\n\nIntroduction\nIn late 2025, Mandiant responded to a security incident involving a compromised web server running KnowledgeDeliver. KnowledgeDeliver is a Learning Management System (LMS) developed by Digital Knowledge commonly used in Japan. Mandiant identified a critical vulnerability that allowed unauthenticated Remote Code Execution (RCE). An unknown threat actor leveraged this access to inject malicious code into the LMS platform, with the goal of infecting users visiting the site.\nThis vulnerability stems from the use of identical pre-shared ASP.NET machine keys across multiple customer deployments. The vulnerability was initially exploited as a zero-day, now tracked as CVE-2026-5426.\nThe Vulnerability\nKnowledgeDeliver installations deployed before Feb. 24, 2026 relied on a standardized web.config file provided by the vendor. This configuration file contained hardcoded machineKey values used by the ASP.NET framework to "
     }
   ]
 }
