@@ -1,8 +1,28 @@
 {
   "source": "https://blog.virustotal.com",
-  "fetched_at": "2026-10-08T04:48:26.941371+00:00",
+  "fetched_at": "2026-10-08T12:54:38.935501+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "From Automation to Infection (Part III): Naming, Measuring, and Detecting Malicious AI Agent Skills",
+      "link": "https://blog.virustotal.com/feeds/1125629161639868984/comments/default",
+      "published": "2026-10-08",
+      "summary": "In  Part I  and  Part II  of this series, we looked at an initial sample of 3,016 AI agent skills and showed how they were becoming a new supply-chain delivery channel. The flow of skills reaching VirusTotal keeps growing, so for this follow-up we expanded the study more than tenfold, to 35,878 skills from a snapshot of VirusTotal submissions, to get a more representative picture. \n\n Two findings stand out. More than half of the skills we analyzed (52.9%) carry some security or abuse risk, and 6",
+      "executive_summary": "In  Part I  and  Part II  of this series, we looked at an initial sample of 3,016 AI agent skills and showed how they were becoming a new supply-chain delivery channel. The flow of skills reaching VirusTotal keeps growing, so for this follow-up we expanded the study more than tenfold, to 35,878 skills from a snapshot of VirusTotal submissions, to get a more representative picture. \n\n Two findings stand out. More than half of the skills we analyzed (52.9%) carry some security or abuse risk, and 6",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "Internet Scanning in VirusTotal: hunting infrastructure by what it exposes",
+      "link": "https://blog.virustotal.com/feeds/2678494843009950238/comments/default",
+      "published": "2026-10-08",
+      "summary": "Until now, an  IP report  in VirusTotal  told you a lot about reputation, who hosts it,  what resolves to it  (passive DNS) and  which files talk to it . It told you nothing about what the machine itself was running. \n\n VirusTotal now scans the public IPv4 space every day and stores, for each IP, the open and closed ports, the service behind each port, its banner and its fingerprints. All of it is searchable. In this post we cover what you will find in the reports and how to use it to hunt and p",
+      "executive_summary": "Until now, an  IP report  in VirusTotal  told you a lot about reputation, who hosts it,  what resolves to it  (passive DNS) and  which files talk to it . It told you nothing about what the machine itself was running. \n\n VirusTotal now scans the public IPv4 space every day and stores, for each IP, the open and closed ports, the service behind each port, its banner and its fingerprints. All of it is searchable. In this post we cover what you will find in the reports and how to use it to hunt and p",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
     {
       "title": "Enriched URL Reports: VirusTotal URL Scanning 2.0",
       "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/5882250708142565392",
@@ -179,26 +199,6 @@
       "published": "2025-08-28",
       "summary": "More than two years have passed since we announced the launch of Code Insight at  RSA 2023 . From that time on, we have been applying this technology in  different scenarios , expanding its use in new file formats ( 1 ,&nbsp; 2 ).  As we advance in the automated analysis of new files with Code Insight, we want to offer an alternative that enables the integration of this type of technology into the analysis of disassembled or decompiled code.  \n \n \n  Audio version of this post, created with Noteb",
       "executive_summary": "More than two years have passed since we announced the launch of Code Insight at  RSA 2023 . From that time on, we have been applying this technology in  different scenarios , expanding its use in new file formats ( 1 ,&nbsp; 2 ).  As we advance in the automated analysis of new files with Code Insight, we want to offer an alternative that enables the integration of this type of technology into the analysis of disassembled or decompiled code.  \n \n \n  Audio version of this post, created with Noteb",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "Applying AI Analysis to PDF Threats",
-      "link": "https://blog.virustotal.com/feeds/8380171794973197322/comments/default",
-      "published": "2025-08-25",
-      "summary": "In our  previous post  we extended VirusTotal Code Insights to browser extensions and supply-chain artifacts. A key finding from that analysis was how our AI could apply contextual knowledge to its evaluation. It wasn’t just analyzing code in isolation, it was correlating a package's stated purpose (its name and description) with its actual behavior, flagging malicious logic that contradicted its public description. We’re now applying the same idea to one of the most common file formats in the w",
-      "executive_summary": "In our  previous post  we extended VirusTotal Code Insights to browser extensions and supply-chain artifacts. A key finding from that analysis was how our AI could apply contextual knowledge to its evaluation. It wasn’t just analyzing code in isolation, it was correlating a package's stated purpose (its name and description) with its actual behavior, flagging malicious logic that contradicted its public description. We’re now applying the same idea to one of the most common file formats in the w",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "Code Insight Expands to Uncover Risks Across the Software Supply Chain",
-      "link": "https://blog.virustotal.com/feeds/2406002829759311383/comments/default",
-      "published": "2025-08-14",
-      "summary": "When we launched Code Insight, we started by analyzing PowerShell scripts. Since then, we have been continuously expanding its capabilities to cover more file types. Today, we announce that Code Insight can now analyze a broader range of formats crucial to the software supply chain. This includes browser extensions (CRX for Chrome, XPI for Firefox, VSIX for VS Code), software packages (Python Wheel, NPM), and protocols like MCP that enable Large Language Models to interact with external tools.\n ",
-      "executive_summary": "When we launched Code Insight, we started by analyzing PowerShell scripts. Since then, we have been continuously expanding its capabilities to cover more file types. Today, we announce that Code Insight can now analyze a broader range of formats crucial to the software supply chain. This includes browser extensions (CRX for Chrome, XPI for Firefox, VSIX for VS Code), software packages (Python Wheel, NPM), and protocols like MCP that enable Large Language Models to interact with external tools.\n ",
       "vendor": "",
       "affected_products": "",
       "source": "VirusTotal"
