@@ -1,6 +1,6 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-10-16T13:49:21.195967Z",
+  "fetched_at": "2026-10-16T17:52:07.655150Z",
   "count": 20,
   "items": [
     {
@@ -8,6 +8,12 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-beyondtrust/",
       "pubDate": "Thu, 15 Oct 2026 14:00:00 +0000",
       "description": "Written by: Jayson Frost, Bryce Greathouse, Brian Meyer, John Palmisano, Rajesh Rajeshirke, Steve Rasch, John Wolfram\n\nIntroduction \nOn October 15, BeyondTrust disclosed a vulnerability, CVE-2026-102764, impacting BeyondTrust Remote Support (formerly Bomgar) appliances. BeyondTrust Remote Support is an enterprise secure remote access solution that enables IT teams to securely access and troubleshoot remote endpoints. The successful exploitation of this vulnerability results in the arbitrary upload of files. \nDuring an incident response engagement, Mandiant identified evidence that ARMORY CASTLE, a suspected PRC-nexus espionage threat actor (formerly tracked as UNC5221), exploited this vulnerability as a zero-day, in late August 2026. This blog describes how ARMORY CASTLE escalated privileges and established persistent access to compromised BeyondTrust Remote Support appliances following exploitation of CVE-2026-102764, and provides actionable guidance for defenders.\nOrganizations shoul"
+    },
+    {
+      "title": "Investigating Ephemeral Supply Chain Tampering",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/investigating-ephemeral-supply-chain-tampering/",
+      "pubDate": "Thu, 15 Oct 2026 11:00:00 +0000",
+      "description": "Written by: Tyler McLellan\n\nIntroduction\nGoogle Threat Intelligence Group (GTIG) and Mandiant investigated a software supply chain compromise campaign targeting the update infrastructure belonging to AOMEI Technology between April 2026 and July 2026. The threat actor conducted repeated, short-burst configuration tampering against AOMEI origin servers. Each tampering window remained active for only five to ten minutes before reverting to authentic versions. This is the first time that we have encountered a software supply chain compromise that was implemented with these very short windows, effectively evading traditional point-in-time triage and automated file scanning.  \nThe campaign delivered a multi-stage payload chain involving the newly tracked CROSSROAD downloader and SHINYROAD backdoor. The threat actor iteratively modified its tradecraft, pivoting its staging infrastructure from cloud providers to dedicated domains and legitimate cloud storage. This evolving staging setup makes "
     },
     {
       "title": "Vulnerability Discovery and Exploitation Trends in the AI Era",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/zero-day-exploitation-cisco-catalyst-sd-wan-manager/",
       "pubDate": "Wed, 24 Jun 2026 11:00:00 +0000",
       "description": "Written by: Chester Sng, Pete Boonyakarn, Logeswaran Nadarajan, Lukasz Lamparski\n\nIntroduction \nIn early 2026, Mandiant identified a threat actor targeting SD-WAN infrastructure at a service provider. After gaining initial access, the threat actor exploited a zero-day vulnerability (CVE-2026-20245) in Cisco Catalyst SD-WAN to escalate privileges from a compromised administrative account to root-level access.\nThe vulnerability stems from the device’s file upload feature lacking the ability to properly filter malicious data.\nThroughout the intrusion, to maintain operational security and avoid detection, the threat actor consistently employed anti-forensic techniques, selectively deleting and restoring system configuration files that were modified during their activities.\nKey Observations\n\n\nRogue Peering and Credential Manipulation: In March 2026, a threat actor established initial access via unauthorized peering connections to facilitate Secure Shell (SSH) access. The threat actor used t"
-    },
-    {
-      "title": "Public and Private Medical Community Targeted by China-Nexus Threat Actor Pursuing Artificial Intelligence, Cyber, Medical, and National Defense Research",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/prc-targets-us-medical-research/",
-      "pubDate": "Mon, 15 Jun 2026 14:00:00 +0000",
-      "description": "Written by: Patrick Whitsell, John McGuiness, Muhammad Umair\n\nGoogle Threat Intelligence Group (GTIG) has identified a sophisticated campaign attributed to UNC6508, a People's Republic of China (PRC)-nexus threat actor, targeting institutions in the North American academic, medical, and military research community. While remaining undetected for over a year, the threat actor compromised externally facing web applications, deployed bespoke malware, pivoted to sensitive internal systems, and abused enterprise administrative tools for covert data exfiltration. The threat actor had broad collection aspirations, including sensitive defense intelligence related to national security, Indo-Pacific command operations, artificial intelligence, uncrewed vehicle systems, cyber offensive programs, and medical research. \nGTIG disrupted the malicious infrastructure associated with this threat actor. Working with Mandiant Consulting, we notified the affected organizations upon detection and offered ou"
     }
   ]
 }
