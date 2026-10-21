@@ -1,8 +1,28 @@
 {
   "source": "https://blog.virustotal.com",
-  "fetched_at": "2026-10-21T03:33:03.883905+00:00",
+  "fetched_at": "2026-10-21T11:16:29.640653+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "Sizing the PHP exposure window for CVE-2026-109618 and CVE-2026-109619 with VirusTotal",
+      "link": "https://blog.virustotal.com/feeds/3646311941088373222/comments/default",
+      "published": "2026-10-21",
+      "summary": "On October 20, the PHP security team  announced  an out-of-band security release for  Wednesday, October 21, 2026 at 14:00 UTC , fixing two critical vulnerabilities rated  CVSS v4.0 9.2  (CVE-2026-109618 and CVE-2026-109619). Hours before the release, technical details leaked publicly. They point to the  session.upload_progress  feature, which has been part of PHP since 5.4.0 and is  enabled by default . The community quickly converged on an interim mitigation: set  session.upload_progress.enabl",
+      "executive_summary": "On October 20, the PHP security team  announced  an out-of-band security release for  Wednesday, October 21, 2026 at 14:00 UTC , fixing two critical vulnerabilities rated  CVSS v4.0 9.2  (CVE-2026-109618 and CVE-2026-109619). Hours before the release, technical details leaked publicly. They point to the  session.upload_progress  feature, which has been part of PHP since 5.4.0 and is  enabled by default . The community quickly converged on an interim mitigation: set  session.upload_progress.enabl",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
+    {
+      "title": "How Some Malicious AI Skills Hide Instructions from Reviewers",
+      "link": "https://blog.virustotal.com/feeds/8798777705260577087/comments/default",
+      "published": "2026-10-21",
+      "summary": "In  Part III  of our \"From Automation to Infection\" series (following  Part I  and  Part II ), we analyzed 35,878 AI agent skills submitted to VirusTotal and found that 62% of the 6,637 malicious skills contain no malicious code. Their payload is written as plain-language instructions inside the skill documentation. \n\n A common recommendation is to read  SKILL.md  and any bundled scripts before installing a skill. In most malicious skills in our data, nothing is concealed: a reviewer who reads t",
+      "executive_summary": "In  Part III  of our \"From Automation to Infection\" series (following  Part I  and  Part II ), we analyzed 35,878 AI agent skills submitted to VirusTotal and found that 62% of the 6,637 malicious skills contain no malicious code. Their payload is written as plain-language instructions inside the skill documentation. \n\n A common recommendation is to read  SKILL.md  and any bundled scripts before installing a skill. In most malicious skills in our data, nothing is concealed: a reviewer who reads t",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
     {
       "title": "Introducing macOS Mirage: Next-Generation Apple Silicon Dynamic Analysis and Sigma Detections",
       "link": "https://blog.virustotal.com/feeds/3466952665242788665/comments/default",
@@ -179,26 +199,6 @@
       "published": "2025-09-30",
       "summary": "Last week, we were fortunate enough to attend the fantastic  LABScon conference , organized by the SentinelOne Labs team. While there, we presented a workshop titled ' Advanced Threat Hunting: Automating Large-Scale Operations with LLMs .' The main goal of this workshop was to show attendees how they could automate their research using the  VirusTotal API  and  Gemini . Specifically, we demonstrated how to integrate the power of   Google Colab   to quickly and efficiently generate  Jupyter noteb",
       "executive_summary": "Last week, we were fortunate enough to attend the fantastic  LABScon conference , organized by the SentinelOne Labs team. While there, we presented a workshop titled ' Advanced Threat Hunting: Automating Large-Scale Operations with LLMs .' The main goal of this workshop was to show attendees how they could automate their research using the  VirusTotal API  and  Gemini . Specifically, we demonstrated how to integrate the power of   Google Colab   to quickly and efficiently generate  Jupyter noteb",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "Supercharging Your Threat Hunts: Join VirusTotal at Labscon for a Workshop on Automation and LLMs",
-      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/866218449506319840",
-      "published": "2025-09-05",
-      "summary": "We are excited to announce that our colleague Joseliyo Sánchez, will be at Labscon to present our workshop:  Advanced Threat Hunting: Automating Large-Scale Operations with LLMs . This workshop is a joint effort with SentinelOne and their researcher, Aleksandar Milenkoski.&nbsp;    In today's rapidly evolving threat landscape, security professionals face an overwhelming tide of data and increasingly sophisticated adversaries. This hands-on workshop is designed to empower you to move beyond the t",
-      "executive_summary": "We are excited to announce that our colleague Joseliyo Sánchez, will be at Labscon to present our workshop:  Advanced Threat Hunting: Automating Large-Scale Operations with LLMs . This workshop is a joint effort with SentinelOne and their researcher, Aleksandar Milenkoski.&nbsp;    In today's rapidly evolving threat landscape, security professionals face an overwhelming tide of data and increasingly sophisticated adversaries. This hands-on workshop is designed to empower you to move beyond the t",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "Uncovering a Colombian Malware Campaign with AI Code Analysis",
-      "link": "https://blog.virustotal.com/feeds/6205447284513287923/comments/default",
-      "published": "2025-09-04",
-      "summary": "VirusTotal Code Insight keeps adding new file formats. This time, we’re looking at two vector-based formats from very different eras: SWF and SVG. Curiously, right after we rolled out this update in production, one of the very first submitted files gave us a perfect, and unexpected, example of Code Insight in action: it uncovered an undetected malware campaign using SVG files that impersonated the Colombian justice system.\n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n",
-      "executive_summary": "VirusTotal Code Insight keeps adding new file formats. This time, we’re looking at two vector-based formats from very different eras: SWF and SVG. Curiously, right after we rolled out this update in production, one of the very first submitted files gave us a perfect, and unexpected, example of Code Insight in action: it uncovered an undetected malware campaign using SVG files that impersonated the Colombian justice system.\n \n \n  Audio version of this post, created with NotebookLM Deep Dive \n   \n",
       "vendor": "",
       "affected_products": "",
       "source": "VirusTotal"
