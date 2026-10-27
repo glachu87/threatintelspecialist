@@ -1,8 +1,18 @@
 {
   "source": "https://blog.virustotal.com",
-  "fetched_at": "2026-10-27T12:09:15.592570+00:00",
+  "fetched_at": "2026-10-27T17:33:56.905662+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "Process trees in Livehunt: YARA rules that know who launched what",
+      "link": "https://blog.virustotal.com/feeds/6994575910653140370/comments/default",
+      "published": "2026-10-27",
+      "summary": "Note:  YARA-X v1.21.0 adds a parent_name field to the items in vt.behaviour.processes_list, and v1.22.0 adds ancestor_names. VirusTotal now fills that list for every sandbox report that includes a process tree, by flattening it. The result is one entry per process, and each entry knows the name of the process that created it and of the processes above it.  Read the YARA-X blog. \n  \n\n If you have written  Livehunt  rules on top of sandbox behavior, you have probably used  vt.behaviour.processes_c",
+      "executive_summary": "Note:  YARA-X v1.21.0 adds a parent_name field to the items in vt.behaviour.processes_list, and v1.22.0 adds ancestor_names. VirusTotal now fills that list for every sandbox report that includes a process tree, by flattening it. The result is one entry per process, and each entry knows the name of the process that created it and of the processes above it.  Read the YARA-X blog. \n  \n\n If you have written  Livehunt  rules on top of sandbox behavior, you have probably used  vt.behaviour.processes_c",
+      "vendor": "",
+      "affected_products": "",
+      "source": "VirusTotal"
+    },
     {
       "title": "Sizing the PHP exposure window for CVE-2026-109618 and CVE-2026-109619 with VirusTotal",
       "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/3646311941088373222",
@@ -189,16 +199,6 @@
       "published": "2025-10-01",
       "summary": "We’re adding a new specialist to VirusTotal’s Crowdsourced AI lineup:  Exodia Labs , with an AI engine focused on analyzing Chrome extension (.CRX) files. This complements our existing Code Insight and other AI contributors by helping users better understand this format and detect possible threats.\n \n  What you get in VirusTotal  \n \n    Second opinion for .CRX : Exodia Labs adds another AI analysis stream alongside Code Insight. It gives a fresh, independent view on the same sample type. Like al",
       "executive_summary": "We’re adding a new specialist to VirusTotal’s Crowdsourced AI lineup:  Exodia Labs , with an AI engine focused on analyzing Chrome extension (.CRX) files. This complements our existing Code Insight and other AI contributors by helping users better understand this format and detect possible threats.\n \n  What you get in VirusTotal  \n \n    Second opinion for .CRX : Exodia Labs adds another AI analysis stream alongside Code Insight. It gives a fresh, independent view on the same sample type. Like al",
-      "vendor": "",
-      "affected_products": "",
-      "source": "VirusTotal"
-    },
-    {
-      "title": "Advanced Threat Hunting: Automating Large-Scale Operations with LLMs",
-      "link": "https://www.blogger.com/feeds/6871606241422173914/posts/default/6216817297905041406",
-      "published": "2025-09-30",
-      "summary": "Last week, we were fortunate enough to attend the fantastic  LABScon conference , organized by the SentinelOne Labs team. While there, we presented a workshop titled ' Advanced Threat Hunting: Automating Large-Scale Operations with LLMs .' The main goal of this workshop was to show attendees how they could automate their research using the  VirusTotal API  and  Gemini . Specifically, we demonstrated how to integrate the power of   Google Colab   to quickly and efficiently generate  Jupyter noteb",
-      "executive_summary": "Last week, we were fortunate enough to attend the fantastic  LABScon conference , organized by the SentinelOne Labs team. While there, we presented a workshop titled ' Advanced Threat Hunting: Automating Large-Scale Operations with LLMs .' The main goal of this workshop was to show attendees how they could automate their research using the  VirusTotal API  and  Gemini . Specifically, we demonstrated how to integrate the power of   Google Colab   to quickly and efficiently generate  Jupyter noteb",
       "vendor": "",
       "affected_products": "",
       "source": "VirusTotal"
