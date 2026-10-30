@@ -1,6 +1,6 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-10-30T15:42:44.306800Z",
+  "fetched_at": "2026-10-30T20:34:02.384643Z",
   "count": 20,
   "items": [
     {
@@ -30,8 +30,8 @@
     {
       "title": "ShinyHunters Renewed Mass Exploitation Campaign Targeting Oracle PeopleSoft",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-renewed-mass-exploitation-campaign-targeting-oracle-peoplesoft/",
-      "pubDate": "Fri, 25 Sep 2026 14:00:00 +0000",
-      "description": "Introduction \nAs an update to the June 2026 post, ShinyHunters Targets Education Sector with Oracle PeopleSoft Exploit, Mandiant and Google Threat Intelligence Group (GTIG) have identified renewed mass exploitation of CVE-2026-35273 by UNC6240 (ShinyHunters), along with expanded global targeting across multiple sectors. In June, the threat actor exploited this vulnerability as a zero-day predominantly against academic institutions. This new wave of activity stems from UNC6240 modifying its exploit to bypass web application firewall (WAF) rules blocking the vulnerable Environment Management Hub (PSEMHUB) endpoint.\nThe threat actor bypassed these string-based WAF rules by URL-encoding a single character in the request path, requesting /%50SEMHUB/ in place of /PSEMHUB/. Many WAF and reverse proxy rules match the literal path before URL decoding, while the PeopleSoft application server decodes the request and routes it to the vulnerable servlet. This allows the threat actor to reach the en"
+      "pubDate": "",
+      "description": ""
     },
     {
       "title": "Proactive Defense: Hardening Code Pipelines and CI/CD Infrastructure",
