@@ -1,8 +1,14 @@
 {
   "source": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
-  "fetched_at": "2026-11-01T16:39:33.287374Z",
+  "fetched_at": "2026-11-01T21:00:40.963633Z",
   "count": 20,
   "items": [
+    {
+      "title": "ARTEX and Friends: Enter Agentic Offensive Frameworks",
+      "link": "https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks/",
+      "pubDate": "Fri, 30 Oct 2026 14:00:00 +0000",
+      "description": "Written by: Aurora Blum, David Mainor, Rohit Nambiar, Omar ElAhdan, Matthew McWhirt, Will Silverstone, Bhavesh Dhake, Chris Busse\n\nIntroduction \nRecent intrusions in which threat actors have been observed weaponizing agentic frameworks to execute highly-automated intrusions has put a spotlight on evolving adversarial use of LLMs. In our September 2026 report, Google Threat Intelligence Group (GTIG) noted that forward leaning adversaries were beginning to transition from basic prompting to agentic workflows and LLM-enabled automation. \nSince this publication, GTIG and Mandiant have observed multiple threat actors abusing the open-source, agentic pentesting frameworks ARTEX, Hexstrike and CAIRN in incident response engagements to conduct a broad range of actions across multiple phases of the attack life cycle. This activity has been seen across the threat landscape, as noted in a recent Wiz report. The emergence of Artex and similar agentic offensive intrusion frameworks underscores a br"
+    },
     {
       "title": "ARMORY CASTLE Exploits BeyondTrust",
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-beyondtrust/",
@@ -116,12 +122,6 @@
       "link": "https://cloud.google.com/blog/topics/threat-intelligence/stockstay-turla-intelligence-gathering/",
       "pubDate": "Thu, 25 Jun 2026 14:00:00 +0000",
       "description": "Written by: Jordan Jones\n\nIntroduction \nGoogle Threat Intelligence Group (GTIG) has conducted an in-depth analysis of a .NET backdoor, tracked as STOCKSTAY, that has been continually developed and deployed by the Russia-linked threat actor Turla (aka SUMMIT, Secret Blizzard, VENOMOUS BEAR, UAC-0194) since at least December 2022. Turla has deployed STOCKSTAY against government and military organizations in Ukraine, as well as entities with an interest in Italian foreign policy. Used for ongoing cyber espionage, this backdoor shares significant code and functional overlaps with KAZUAR, a successful toolkit previously attributed to Turla. The group has a long history of targeting a wide range of industries, with a particular focus on western Ministries of Foreign Affairs, and defense organizations within the context of heightened political tensions. \nTurla, and specifically their longstanding Snake implant, has been publicly attributed by the United States Cybersecurity and Infrastructure"
-    },
-    {
-      "title": "Zero-Day Exploitation of Vulnerability (CVE-2026-20245) in Cisco Catalyst SD-WAN Manager",
-      "link": "https://cloud.google.com/blog/topics/threat-intelligence/zero-day-exploitation-cisco-catalyst-sd-wan-manager/",
-      "pubDate": "Wed, 24 Jun 2026 11:00:00 +0000",
-      "description": "Written by: Chester Sng, Pete Boonyakarn, Logeswaran Nadarajan, Lukasz Lamparski\n\nIntroduction \nIn early 2026, Mandiant identified a threat actor targeting SD-WAN infrastructure at a service provider. After gaining initial access, the threat actor exploited a zero-day vulnerability (CVE-2026-20245) in Cisco Catalyst SD-WAN to escalate privileges from a compromised administrative account to root-level access.\nThe vulnerability stems from the device’s file upload feature lacking the ability to properly filter malicious data.\nThroughout the intrusion, to maintain operational security and avoid detection, the threat actor consistently employed anti-forensic techniques, selectively deleting and restoring system configuration files that were modified during their activities.\nKey Observations\n\n\nRogue Peering and Credential Manipulation: In March 2026, a threat actor established initial access via unauthorized peering connections to facilitate Secure Shell (SSH) access. The threat actor used t"
     }
   ]
 }
