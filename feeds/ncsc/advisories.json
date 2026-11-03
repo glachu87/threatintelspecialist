@@ -1,8 +1,18 @@
 {
   "source": "https://www.ncsc.gov.uk",
-  "fetched_at": "2026-11-02T15:47:38.034506+00:00",
+  "fetched_at": "2026-11-03T00:35:57.098346+00:00",
   "total": 20,
   "items": [
+    {
+      "title": "Artificial intelligence and cyber intrusion",
+      "link": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion",
+      "published": "Tue, 03 No",
+      "summary": "An NCSC assessment that examines current AI-enabled threat trends and projections of the threat landscape to 2028.",
+      "executive_summary": "An NCSC assessment that examines current AI-enabled threat trends and projections of the threat landscape to 2028.",
+      "vendor": "",
+      "affected_products": "",
+      "source": "UK NCSC"
+    },
     {
       "title": "Impact of AI on cyber threat from now to 2027",
       "link": "https://www.ncsc.gov.uk/report/impact-ai-cyber-threat-now-2027",
@@ -189,16 +199,6 @@
       "published": "Mon, 04 Ma",
       "summary": "NCSC technical paper about the privacy and security design of the NHS contact tracing app developed to help slow the spread of coronavirus.",
       "executive_summary": "NCSC technical paper about the privacy and security design of the NHS contact tracing app developed to help slow the spread of coronavirus.",
-      "vendor": "",
-      "affected_products": "",
-      "source": "UK NCSC"
-    },
-    {
-      "title": "Summary of NCSC’s security analysis for the UK telecoms sector",
-      "link": "https://www.ncsc.gov.uk/report/summary-of-ncsc-security-analysis-for-the-uk-telecoms-sector",
-      "published": "Tue, 28 Ja",
-      "summary": "A summary of the NCSC’s security analysis for the UK telecoms sector",
-      "executive_summary": "A summary of the NCSC’s security analysis for the UK telecoms sector",
       "vendor": "",
       "affected_products": "",
       "source": "UK NCSC"
