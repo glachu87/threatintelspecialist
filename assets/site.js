@@ -95,8 +95,15 @@
   };
 
   T.status = function (status) {
-    var ok = status === "confirmed";
-    return h("span", { class: "status " + (ok ? "confirmed" : "unconfirmed"), text: ok ? "Confirmed" : "Unconfirmed" });
+    var labels = {
+      confirmed: "Confirmed",
+      corroborated: "Corroborated",
+      reported: "Reported",
+      claimed: "Claimed",
+      disputed: "Disputed"
+    };
+    var key = labels[status] ? status : "reported";
+    return h("span", { class: "status " + key, text: labels[key] });
   };
 
   T.failed = function (container, what) {
