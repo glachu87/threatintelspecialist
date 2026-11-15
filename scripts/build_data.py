@@ -579,7 +579,8 @@ ORG_LEAD_RE = re.compile(
     r"data breach|hacked|ransomware attack|cyber ?attack|shuts?|restores?|takes|blames|denies|fined|to pay|agrees|"
     r"reveals|acknowledges|faces|data leak|outage|customers?|attack)\b")
 ORG_TAIL_RE = re.compile(
-    rf"\b(?:breach|attack|hack|incident|intrusion|outage)\s+(?:at|on|of|against|hits|impacts|affects)\s+"
+    rf"\b(?:cyber ?attack|ransomware attack|data breach|breach|attack|hack|incident|intrusion|outage)\s+"
+    rf"(?:at|on|of|against|hits|impacts|affects)\s+"
     rf"(?P<org>{_ORG_WORD}(?:\s+{_ORG_WORD}){{0,4}})")
 ORG_STOP = {
     "hackers", "hacker", "ransomware", "new", "police", "fbi", "cisa", "researchers", "chinese", "russian",
