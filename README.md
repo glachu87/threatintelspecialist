@@ -48,6 +48,8 @@ Incidents are labelled by an AI model when one is reachable, and by keyword rule
 
 Recent entries that were labelled by rules are re-checked once an AI service answers again.
 
+Exploited vulnerabilities combine CISA's KEV catalogue with ENISA's EU list. Their publication dates come from the CVE Project and are cached in `data/vuln_cache.json`. The Insights tab on the Vulnerabilities page is computed in the browser from these records.
+
 New vulnerabilities come from NVD's "recent" download file. If that fails, the NVD search API is used; the optional `NVD_API_KEY` secret makes that fallback faster.
 
 Optional repository variables (Settings, Secrets and variables, Actions, Variables): `GITHUB_MODELS_MODEL` to pin a GitHub model (for example `openai/gpt-4.1`), `GEMINI_MODEL` to pin a Gemini model.

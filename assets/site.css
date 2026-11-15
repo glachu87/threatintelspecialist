@@ -353,3 +353,12 @@ button { font: inherit; }
 @media (max-width: 40rem) { .hist > summary { grid-template-columns: minmax(0, 1fr) auto; } .hist .vuln-body { margin-left: 0; } }
 .tip { max-width: min(21rem, 96%); white-space: normal; text-align: center; z-index: 2; }
 @media (min-width: 50rem) { .hbars.two { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; } }
+
+/* ── vulnerability trends ── */
+.hbars li:has(.hbar-label.wide) { grid-template-columns: minmax(9rem, 42%) minmax(0, 1fr) 5.2rem; }
+.hbar-label.wide { white-space: normal; }
+#trends .panels { margin-top: 0.5rem; }
+.bar-ransom, .swatch.ransom { background: var(--chart-claimed); fill: var(--chart-claimed); }
+.bar-other, .swatch.other { background: var(--chart-reported); fill: var(--chart-reported); }
+.flag.warn { color: var(--claimed); }
+#ins-due > li { padding-block: 0.6rem; }
