@@ -1,5 +1,5 @@
 {
-  "_comment": "Feeds read by scripts/build_data.py. kind: news (press; also scanned for incidents), research (vendor and researcher blogs), official (government bodies). Add or remove a line to change what the site covers.",
+  "_comment": "Feeds read by scripts/build_data.py. kind: news (press), research (vendor/researcher), official (government/CERT), claim (threat-actor leak-site aggregator; never treated as confirmation). All kinds may contribute incident evidence. Add or remove a line to change coverage.",
   "feeds": [
     {"name": "BleepingComputer", "url": "https://www.bleepingcomputer.com/feed/", "kind": "news"},
     {"name": "The Hacker News", "url": "https://feeds.feedburner.com/TheHackersNews", "kind": "news"},
@@ -20,6 +20,8 @@
     {"name": "VirusTotal", "url": "https://blog.virustotal.com/feeds/posts/default", "kind": "research"},
     {"name": "Schneier on Security", "url": "https://www.schneier.com/feed/atom/", "kind": "research"},
     {"name": "CISA", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml", "kind": "official"},
-    {"name": "UK NCSC", "url": "https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml", "kind": "official"}
+    {"name": "UK NCSC", "url": "https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml", "kind": "official"},
+    {"name": "FBI National Press Releases", "url": "https://www.fbi.gov/feeds/national-press-releases/rss.xml", "kind": "official"},
+    {"name": "Ransomware.live", "url": "https://api.ransomware.live/feed", "kind": "claim"}
   ]
 }
