@@ -4,7 +4,7 @@
   var T = window.TIS, h = T.h;
   var $ = function (id) { return document.getElementById(id); };
   var q = $("q"), type = $("type"), sector = $("sector"), country = $("country"), period = $("period");
-  var list = $("list"), more = $("more"), count = $("count"), reset = $("reset-filters");
+  var list = $("list"), more = $("more"), count = $("count"), reset = $("reset-filters"), exportFiltered = $("export-filtered");
   var seg = Array.prototype.slice.call(document.querySelectorAll("#status button"));
   var analyticsSeg = Array.prototype.slice.call(document.querySelectorAll("#analytics-window button"));
   var states = ["confirmed", "corroborated", "reported", "claimed", "disputed"];
@@ -16,7 +16,7 @@
     disputed: "Disputed"
   };
   var strength = { claimed: 1, reported: 2, corroborated: 3, confirmed: 4 };
-  var status = "", items = [], statusData = null, analyticsDays = 30;
+  var status = "", items = [], filteredItems = [], statusData = null, analyticsDays = 30;
   var DAY = 86400000;
   var SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -100,6 +100,7 @@
         i.sector, i.country, i.threat_actor
       ].join(" "), q.value);
     });
+    filteredItems = out;
     var bits = states.map(function (state) {
       var n = out.filter(function (i) { return i.status === state; }).length;
       return n ? number(n) + " " + labels[state].toLowerCase() : "";
@@ -117,6 +118,33 @@
     T.paged(list, more, out, row, 40, items.length
       ? "No incidents match. Widen the period or clear a filter."
       : "No incidents recorded yet. The agent scans public sources every 30 minutes and lists what it finds here.");
+  }
+
+  function csvCell(value) {
+    var s = String(value == null ? "" : value);
+    return /[",\n\r]/.test(s) ? "\"" + s.replace(/"/g, "\"\"") + "\"" : s;
+  }
+
+  function downloadFilteredCsv() {
+    var columns = [
+      ["id", "ID"], ["title", "Headline"], ["organisation", "Organisation"], ["type", "Type"],
+      ["sector", "Sector"], ["country", "Country"], ["status", "Verification"],
+      ["threat_actor", "Threat actor"], ["first_reported", "First reported"], ["last_reported", "Last reported"],
+      ["summary", "Summary"], ["why_it_matters", "Why it matters"]
+    ];
+    var lines = [columns.map(function (c) { return csvCell(c[1]); }).join(",")];
+    filteredItems.forEach(function (i) {
+      lines.push(columns.map(function (c) { return csvCell(i[c[0]]); }).join(","));
+    });
+    var blob = new Blob([lines.join("\r\n") + "\r\n"], { type: "text/csv;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "threat-intel-incidents-filtered-" + new Date().toISOString().slice(0, 10) + ".csv";
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
   function setListPeriodFromAnalytics() {
@@ -547,6 +575,7 @@
     });
     [type, sector, country, period].forEach(function (el) { el.addEventListener("change", render); });
     q.addEventListener("input", T.debounce(render));
+    exportFiltered.addEventListener("click", downloadFilteredCsv);
     reset.addEventListener("click", function () {
       q.value = "";
       type.value = "";
