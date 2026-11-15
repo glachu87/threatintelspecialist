@@ -108,6 +108,7 @@ class Classification(unittest.TestCase):
     def test_org_extraction_ignores_generic_subjects(self):
         self.assertIsNone(bd.extract_org("Hackers breach 20 banks in a week"))
         self.assertEqual(bd.extract_org("Ransomware attack on Wayne Enterprises halts production"), "Wayne Enterprises")
+        self.assertEqual(bd.extract_org("Cyberattack at Acme disrupts services"), "Acme")
 
 
 class Incidents(unittest.TestCase):
