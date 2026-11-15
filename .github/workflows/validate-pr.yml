@@ -56,3 +56,5 @@ jobs:
         run: |
           node --check assets/site.js
           node --check assets/incidents.js
+          node --check assets/history.js
+          node --check assets/home.js

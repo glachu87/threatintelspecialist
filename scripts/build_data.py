@@ -855,7 +855,11 @@ Return a JSON array with one object per item, in the same order:
   "threat_actor": <name or null>,
   "headline": <neutral, catchy headline, 6-14 words>,
   "summary": <one factual sentence in your own words, max 35 words>,
-  "why_it_matters": <one sentence, max 24 words, explaining practical impact>}}
+  "why_it_matters": <one sentence, max 24 words, explaining practical impact>,
+  "lessons": <array of 1 or 2 short practical lessons for other organisations, max 22 words each>}}
+
+Base the lessons on how the incident happened if the text says. If it does not say, give the lessons that
+most often apply to this type of incident. Never present a guess about the cause as fact.
 
 Evidence rules:
 - confirmed ONLY when the affected organisation, regulator, court, law-enforcement body or government
@@ -968,6 +972,8 @@ def classify_ai(items: list[dict], fetch_json=None, providers: list[dict] | None
                     "headline": truncate(clean_text(str(row.get("headline") or "")), 140),
                     "summary": truncate(clean_text(str(row.get("summary") or "")), 260),
                     "why_it_matters": truncate(clean_text(str(row.get("why_it_matters") or "")), 200),
+                    "lessons": [truncate(clean_text(x), 170) for x in row.get("lessons") if isinstance(x, str) and x.strip()][:2]
+                               if isinstance(row.get("lessons"), list) else [],
                     "threat_actor": truncate(clean_text(str(row["threat_actor"])), 60) if row.get("threat_actor") else None,
                     "ai": True,
                 }
@@ -1060,6 +1066,8 @@ def relabel_with_ai(incidents: list[dict], ai, now: datetime) -> tuple[int, set[
             inc["title"] = v["headline"]
         inc["summary"] = v.get("summary") or inc.get("summary", "")
         inc["why_it_matters"] = v.get("why_it_matters") or inc.get("why_it_matters", "")
+        if v.get("lessons"):
+            inc["lessons"] = v["lessons"]
         inc["status"] = aggregate_verification(inc)
         inc["basis"] = BASIS[inc["status"]]
         if inc["status"] != old_status:
@@ -1162,6 +1170,8 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
                     match["title"] = label["headline"]
                 match["summary"] = label.get("summary") or match.get("summary", "")
                 match["why_it_matters"] = label.get("why_it_matters") or match.get("why_it_matters", "")
+                if label.get("lessons"):
+                    match["lessons"] = label["lessons"]
                 match["ai"] = True
             continue
 
@@ -1176,6 +1186,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             "basis": BASIS[label["status"]],
             "summary": truncate(label.get("summary") or "", 260),
             "why_it_matters": truncate(label.get("why_it_matters") or "", 200),
+            **({"lessons": label["lessons"]} if label.get("lessons") else {}),
             "threat_actor": label.get("threat_actor"),
             "first_reported": item["published"],
             "last_reported": item["published"],
