@@ -5,6 +5,8 @@ on:
 
 permissions:
   contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   test:
@@ -17,12 +19,40 @@ jobs:
           python-version: "3.12"
 
       - name: Python tests
-        run: python -m unittest discover tests
+        id: python_tests
+        shell: bash
+        run: |
+          set +e
+          python -m unittest discover tests 2>&1 | tee /tmp/python-tests.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=${code}" >> "${GITHUB_OUTPUT}"
+          exit "${code}"
+
+      - name: Report Python test failure
+        if: failure() && steps.python_tests.outputs.exit_code != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const text = fs.readFileSync('/tmp/python-tests.log', 'utf8').slice(-12000);
+            const marker = '<!-- incident-agent-ci -->';
+            const body = marker + '\n### Incident agent validation failed\n\n```text\n' + text + '\n```';
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.rest.issues.listComments({ owner, repo, issue_number, per_page: 100 });
+            const existing = comments.data.find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
 
       - name: Python syntax
+        if: success()
         run: python -m py_compile scripts/*.py
 
       - name: JavaScript syntax
+        if: success()
         run: |
           node --check assets/site.js
           node --check assets/incidents.js
