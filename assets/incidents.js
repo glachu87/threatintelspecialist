@@ -7,15 +7,16 @@
   var list = $("list"), more = $("more"), count = $("count"), reset = $("reset-filters"), exportFiltered = $("export-filtered");
   var seg = Array.prototype.slice.call(document.querySelectorAll("#status button"));
   var analyticsSeg = Array.prototype.slice.call(document.querySelectorAll("#analytics-window button"));
-  var states = ["confirmed", "corroborated", "reported", "claimed", "disputed"];
+  var states = ["confirmed", "corroborated", "unverified"];
   var labels = {
-    confirmed: "Confirmed",
-    corroborated: "Corroborated",
-    reported: "Reported",
+    confirmed: "Organisation-confirmed incident",
+    corroborated: "Corroborated report",
+    unverified: "Unverified claim",
+    reported: "Unverified claim",
     claimed: "Claimed",
     disputed: "Disputed"
   };
-  var strength = { claimed: 1, reported: 2, corroborated: 3, confirmed: 4 };
+  var strength = { unverified: 1, claimed: 1, reported: 2, corroborated: 3, confirmed: 4 };
   var status = "", items = [], filteredItems = [], statusData = null, analyticsDays = 30;
   var DAY = 86400000;
   var SVG_NS = "http://www.w3.org/2000/svg";
@@ -49,7 +50,7 @@
   }
 
   function row(i) {
-    var history = i.history || [];
+    var history = i.evidence_history || [];
     var changed = history.length > 1;
     var lastChange = changed ? history[history.length - 1] : null;
     var sources = i.sources || [];
@@ -63,6 +64,9 @@
           i.sector && i.sector !== "Other" ? h("span", { text: i.sector }) : null,
           i.country ? h("span", { text: i.country }) : null,
           h("span", { text: "First reported " + T.date(i.first_reported, true) }),
+          h("span", { text: "Claimed incident date: " + (i.claimed_incident_date || (i.incident_date_conflict ? "conflicting source dates" : "not provided")) }),
+          i.disputed ? h("strong", { text: "Disputed allegation" }) : null,
+          i.last_observed ? h("span", { text: "Last observed in feed: " + T.datetime(i.last_observed) }) : null,
           h("span", { text: T.plural(sources.length, "source") }),
           i.threat_actor ? h("span", { text: "Attributed to or claimed by: " + i.threat_actor }) : null),
         i.summary ? h("p", { class: "excerpt", text: i.summary }) : null,
@@ -72,11 +76,19 @@
           changed && lastChange ? " Latest verification change: " + T.date(lastChange.date, true) + " — " + lastChange.note + "." : "",
           i.ai ? " Headline/summary prepared with AI assistance from the cited source text." : ""),
         h("ul", { class: "sources" }, sources.slice(0, 8).map(function (src) {
-          var evidence = src.verification && labels[src.verification] ? " · " + labels[src.verification] : "";
+          var evidence = src.kind === "claim" ? " · Attacker claim via aggregator" : " · Source report";
           return h("li", null,
             T.ext(src.link, src.title || src.name),
             " ",
-            h("span", { class: "basis", text: "— " + src.name + (src.published ? ", " + T.date(src.published, true) : "") + evidence }));
+            h("span", { class: "basis", text: "— " + src.name + (src.published ? ", " + T.date(src.published, true) : "") + evidence }),
+            src.published_basis ? h("small", { class: "basis", text: src.published_basis }) : null,
+            src.feed_last_checked ? h("small", { class: "basis", text: "Feed last checked: " + T.datetime(src.feed_last_checked) + " (linked article not rechecked)" }) : null,
+            src.excerpt ? h("p", { class: "basis", text: "Source excerpt: " + src.excerpt }) : null);
+        })),
+        h("ul", { class: "sources" }, (i.evidence_reviews || []).map(function (review) {
+          return h("li", null, T.ext(review.url, "Reviewed evidence"),
+            h("p", { text: review.excerpt }),
+            h("small", { text: "Reviewed " + review.reviewed_at + " · " + review.reviewer }));
         }))));
   }
 
@@ -122,6 +134,7 @@
 
   function csvCell(value) {
     var s = String(value == null ? "" : value);
+    if (/^[=+@\-\t\r]/.test(s)) s = "'" + s;
     return /[",\n\r]/.test(s) ? "\"" + s.replace(/"/g, "\"\"") + "\"" : s;
   }
 
@@ -130,7 +143,9 @@
       ["id", "ID"], ["title", "Headline"], ["organisation", "Organisation"], ["type", "Type"],
       ["sector", "Sector"], ["country", "Country"], ["status", "Verification"],
       ["threat_actor", "Threat actor"], ["first_reported", "First reported"], ["last_reported", "Last reported"],
-      ["summary", "Summary"], ["why_it_matters", "Why it matters"]
+      ["summary", "Summary"], ["why_it_matters", "Why it matters"],
+      ["claimed_incident_date", "Claimed incident date"], ["last_observed", "Last observed"],
+      ["source_urls", "Source URLs"], ["evidence_label", "Evidence label"]
     ];
     var lines = [columns.map(function (c) { return csvCell(c[1]); }).join(",")];
     filteredItems.forEach(function (i) {
@@ -171,7 +186,7 @@
   function renderKpis(rows) {
     var total = rows.length;
     var strong = rows.filter(function (i) { return i.status === "confirmed" || i.status === "corroborated"; }).length;
-    var claims = rows.filter(function (i) { return i.status === "claimed"; }).length;
+    var claims = rows.filter(function (i) { return i.status === "unverified"; }).length;
     var multi = rows.filter(function (i) { return sourceCount(i) >= 2; }).length;
     var located = rows.filter(function (i) { return !!i.country; }).length;
     var healthRows = statusData ? (statusData.feeds || []).concat(statusData.apis || []) : [];
@@ -182,7 +197,7 @@
     $("analytics-kpis").replaceChildren(
       metric("Incidents in window", number(total), number(overall) + " retained in the corpus"),
       metric("Confirmed / corroborated", number(strong), percentage(strong, total) + "% of this window"),
-      metric("Claimed", number(claims), percentage(claims, total) + "% early-warning records"),
+      metric("Unverified claims", number(claims), percentage(claims, total) + "% awaiting evidence review"),
       metric("Multi-source evidence", number(multi), percentage(multi, total) + "% cite 2+ sources"),
       metric("Location coverage", percentage(located, total) + "%", number(located) + " incidents have country data"),
       metric("Source health", healthRows.length ? healthy + "/" + healthRows.length : "—",
@@ -475,7 +490,7 @@
     var oldest = days ? now - days * DAY : -Infinity;
     var upgrades = [];
     items.forEach(function (inc) {
-      var history = (inc.history || []).slice().sort(function (a, b) {
+      var history = (inc.evidence_history || []).slice().sort(function (a, b) {
         return String(a.date).localeCompare(String(b.date));
       });
       if (history.length < 2) return;
@@ -534,13 +549,53 @@
     renderMovement();
   }
 
+  function renderCoverage(registry, discovery) {
+    var target = $("source-health");
+    if (!registry) {
+      $("coverage-summary").textContent = "Source monitoring status unavailable. Coverage cannot be verified.";
+      return;
+    }
+    var stale = !registry.updated || Date.now() - new Date(registry.updated).getTime() > 2 * 60 * 60 * 1000;
+    $("coverage-summary").textContent = (stale ? "Monitoring data is stale. " : "") +
+      "Registry updated " + T.datetime(registry.updated) + ". " +
+      ((discovery && discovery.groups) ? discovery.groups.length : 0) +
+      " group profiles discovered via public aggregator; these are not directly monitored onion sites.";
+    $("coverage-gaps").replaceChildren.apply($("coverage-gaps"), (registry.gaps || []).map(function (gap) {
+      return h("li", { text: gap });
+    }));
+    target.replaceChildren();
+    (registry.sources || []).forEach(function (source) {
+      var old = !source.checked || Date.now() - new Date(source.checked).getTime() > 2 * 60 * 60 * 1000;
+      var state = old ? "stale / not checked" : source.status;
+      target.append(h("tr", null,
+        h("td", null, source.url ? T.ext(source.url, source.name) : source.name),
+        h("td", { text: source.mode || "Public source" }),
+        h("td", { text: state + (source.items != null ? " · " + source.items + " records" : "") }),
+        h("td", { text: source.checked ? T.datetime(source.checked) : "Never recorded" }),
+        h("td", { text: source.last_success ? T.datetime(source.last_success) : "No successful check recorded" }),
+        h("td", { text: source.error || (source.status === "empty" ? "No records returned; coverage may be missing" : "—") })
+      ));
+    });
+  }
+
   Promise.all([
     T.data("incidents"),
-    T.data("status").catch(function () { return null; })
+    T.data("status").catch(function () { return null; }),
+    T.data("source_registry").catch(function () { return null; }),
+    T.data("source_discovery").catch(function () { return null; })
   ]).then(function (result) {
     var d = result[0];
-    statusData = result[1];
-    items = d.incidents || [];
+    statusData = result[2] ? {feeds: (result[2].sources || []).map(function (s) {
+      return {ok: s.status === "ok" && !!s.checked && Date.now() - new Date(s.checked).getTime() < 2 * 60 * 60 * 1000};
+    }), apis: []} : null;
+    items = (d.incidents || []).map(function (i) {
+      i.status = i.evidence_state || "unverified";
+      i.basis = i.evidence_basis || "Evidence review pending; legacy classification is not confirmation.";
+      i.history = i.evidence_history || [];
+      i.source_urls = (i.sources || []).map(function (s) { return s.link; }).join(" | ");
+      return i;
+    });
+    renderCoverage(result[2], result[3]);
 
     T.fill(type, T.unique(items.map(function (i) { return i.type; })), "All types");
     T.fill(sector, T.unique(items.map(function (i) { return i.sector; }).filter(function (v) { return v && v !== "Other"; })), "All sectors");

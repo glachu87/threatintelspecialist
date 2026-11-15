@@ -51,6 +51,11 @@
       : { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   };
 
+  T.datetime = function (value) {
+    var d = new Date(value);
+    return isNaN(d) ? "Unknown" : d.toLocaleString("en-GB", {day:"numeric", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit", timeZone:"UTC"}) + " UTC";
+  };
+
   T.ago = function (iso) {
     var d = new Date(iso && iso.length === 10 ? iso + "T00:00:00Z" : iso);
     if (isNaN(d)) return "";
@@ -96,8 +101,9 @@
 
   T.status = function (status) {
     var labels = {
-      confirmed: "Confirmed",
-      corroborated: "Corroborated",
+      confirmed: "Organisation-confirmed incident",
+      corroborated: "Corroborated report",
+      unverified: "Unverified claim",
       reported: "Reported",
       claimed: "Claimed",
       disputed: "Disputed"
@@ -153,7 +159,6 @@
     ["/news/", "News", "news"],
     ["/vulnerabilities/", "Vulnerabilities", "vulnerabilities"],
     ["/incidents/", "Incidents", "incidents"],
-    ["/incidents/history/", "History", "history"],
     ["/blog/", "Blog", "blog"],
     ["/learn/", "Learn", "learn"],
     ["/about/", "About", "about"],

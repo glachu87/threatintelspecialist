@@ -26,7 +26,7 @@
     out.replaceChildren(
       h("p", { class: "count", text: total ? T.plural(total, "result") + " for “" + q + "”" : "" }),
       section("Incidents", "/incidents/?q=" + e, inc, function (i) {
-        return h("li", { class: "incident" }, T.status(i.status), h("div", null,
+        return h("li", { class: "incident" }, T.status(i.evidence_state || "unverified"), h("div", null,
           h("p", { class: "row-title" }, h("a", { href: "/incidents/?q=" + encodeURIComponent(i.id), text: i.title })),
           h("p", { class: "meta" }, h("span", { text: i.type }), h("span", { text: T.date(i.first_reported, true) }))));
       }),

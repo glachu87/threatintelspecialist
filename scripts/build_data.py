@@ -21,6 +21,8 @@ Run from the repository root:  python scripts/build_data.py
 from __future__ import annotations
 
 import csv
+from concurrent.futures import ThreadPoolExecutor
+import incident_monitor as monitor
 import gzip
 import hashlib
 import html
@@ -249,23 +251,35 @@ def collect_news(sources: list[dict], previous: dict, status: dict, fetch=http_g
     now = now_utc()
     cutoff = now - timedelta(days=NEWS_KEEP_DAYS)
     items = {i["id"]: i for i in previous.get("items", []) if i.get("id")}
-    for src in sources:
+    def read_source(src):
+        try:
+            return fetch(src['url']) if fetch is not http_get else fetch(src['url'], timeout=15, retries=1)
+        except Exception as exc:
+            return exc
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        responses = list(pool.map(read_source, sources))
+    for src, response in zip(sources, responses):
         entry = {"name": src["name"], "kind": src.get("kind", "news"), "url": src["url"], "checked": iso(now)}
         try:
-            parsed = parse_feed(fetch(src["url"]))
+            if isinstance(response, Exception):
+                raise response
+            parsed = parse_feed(response)
             added = 0
             for it in parsed[:60]:
                 published = it["published"] or now
                 if published > now + timedelta(hours=12):
                     published = now
-                item_id = short_hash(it["link"])
+                item_id = short_hash(monitor.canonical_url(it["link"]))
                 if item_id in items:
+                    items[item_id]["observed_at"] = iso(now)
                     continue
                 items[item_id] = {
                     "id": item_id,
                     "title": truncate(it["title"], 200),
                     "link": it["link"],
                     "source": src["name"],
+                    "observed_at": iso(now),
+                    "published_basis": "Publisher date" if it["published"] else "Collection date; publisher date unavailable",
                     "kind": src.get("kind", "news"),
                     "published": iso(published),
                     "summary": truncate(tidy_summary(it["summary"]), SUMMARY_CHARS),
@@ -334,6 +348,9 @@ def collect_ransomware_live(status: dict, fetch=http_get) -> list[dict]:
                 "title": truncate(title, 200),
                 "link": link,
                 "source": "Ransomware.live cyberattacks",
+                "observed_at": iso(now),
+                "origin_id": short_hash(key),
+                "claimed_incident_date": monitor.date_only(row.get("attackdate")),
                 "kind": "aggregate",
                 "published": iso(when),
                 "summary": truncate(summary, SUMMARY_CHARS),
@@ -376,6 +393,12 @@ def collect_ransomware_live(status: dict, fetch=http_get) -> list[dict]:
                 "title": truncate(f"{victim} by {group}", 200),
                 "link": link,
                 "source": "Ransomware.live victim claims",
+                "organisation": victim,
+                "threat_actor": group,
+                "observed_at": iso(now),
+                "origin_id": short_hash(key),
+                "claimed_incident_date": monitor.date_only(row.get("attackdate")),
+                "published_basis": "Aggregator discovery/disclosure date",
                 "kind": "claim",
                 "published": iso(when),
                 "summary": truncate(desc or f"Ransomware leak-site claim attributed to {group}.", SUMMARY_CHARS),
@@ -853,15 +876,13 @@ Return a JSON array with one object per item, in the same order:
   "type": one of {types}, "sector": one of {sectors},
   "status": "confirmed"|"reported"|"claimed"|"disputed",
   "threat_actor": <name or null>,
+  "claimed_incident_date": <YYYY-MM-DD or null>, "date_evidence": <exact short quote from supplied text or null>,
   "headline": <neutral, catchy headline, 6-14 words>,
   "summary": <one factual sentence in your own words, max 35 words>,
-  "why_it_matters": <one sentence, max 24 words, explaining practical impact>,
-  "lessons": <array of 1 or 2 short practical lessons for other organisations, max 22 words each>}}
-
-Base the lessons on how the incident happened if the text says. If it does not say, give the lessons that
-most often apply to this type of incident. Never present a guess about the cause as fact.
+  "why_it_matters": <one sentence, max 24 words, explaining practical impact>}}
 
 Evidence rules:
+- Extract an incident date ONLY if explicitly stated in supplied text. Never substitute publication/discovery date. Include its verbatim supporting quote.
 - confirmed ONLY when the affected organisation, regulator, court, law-enforcement body or government
   authority acknowledges the incident. Do not infer confirmation merely because a journalist states it.
 - claimed for attacker/ransomware/leak-site claims that lack independent acknowledgement.
@@ -962,7 +983,15 @@ def classify_ai(items: list[dict], fetch_json=None, providers: list[dict] | None
                     status = "reported"
                 if batch[n].get("kind") == "claim" and status not in ("confirmed", "disputed"):
                     status = "claimed"
+                date_evidence = str(row.get("date_evidence") or "")
+                supplied = batch[n].get("title", "") + " " + batch[n].get("summary", "")
+                claimed_date = monitor.date_only(row.get("claimed_incident_date"))
+                # Require a verbatim quote and the actual date string; ambiguous dates stay unknown.
+                if not date_evidence or date_evidence not in supplied or not claimed_date or claimed_date not in date_evidence:
+                    claimed_date = None
                 verdicts[batch[n]["id"]] = {
+                    "claimed_incident_date": claimed_date,
+                    "date_evidence": date_evidence if claimed_date else None,
                     "is_incident": bool(row.get("is_incident")),
                     "organisation": truncate(clean_text(str(row["organisation"])), 80) if row.get("organisation") else None,
                     "type": row.get("type") if row.get("type") in AI_TYPES else "Cyberattack",
@@ -972,8 +1001,6 @@ def classify_ai(items: list[dict], fetch_json=None, providers: list[dict] | None
                     "headline": truncate(clean_text(str(row.get("headline") or "")), 140),
                     "summary": truncate(clean_text(str(row.get("summary") or "")), 260),
                     "why_it_matters": truncate(clean_text(str(row.get("why_it_matters") or "")), 200),
-                    "lessons": [truncate(clean_text(x), 170) for x in row.get("lessons") if isinstance(x, str) and x.strip()][:2]
-                               if isinstance(row.get("lessons"), list) else [],
                     "threat_actor": truncate(clean_text(str(row["threat_actor"])), 60) if row.get("threat_actor") else None,
                     "ai": True,
                 }
@@ -1017,11 +1044,20 @@ def title_tokens(title: str) -> set[str]:
     return {w for w in re.findall(r"[a-z0-9]+", title.lower()) if len(w) > 2 and w not in STOPWORDS}
 
 
-def same_incident(a: dict, title: str, org: str | None, when: datetime) -> bool:
-    last = parse_date(a.get("last_reported")) or when
+def same_incident(a: dict, title: str, org: str | None, when: datetime, actor=None, event_date=None) -> bool:
+    # Conflicting explicit dates/actors should go to separate records for review.
+    existing_dates = {monitor.date_only(x.get("claimed_incident_date")) for x in a.get("sources", [])} - {None}
+    if event_date and existing_dates and event_date not in existing_dates:
+        return False
+    if actor and a.get("threat_actor") and actor.casefold() != a["threat_actor"].casefold():
+        return False
+    normal = lambda value: re.sub(r"[\W_]", "", value.casefold())
+    if org and a.get("organisation") and normal(org) != normal(a["organisation"]):
+        return False
+    last = parse_date(a.get("first_reported") or a.get("last_reported")) or when
     if abs((when - last).days) > 30:
         return False
-    if org and a.get("organisation") and org.lower() == a["organisation"].lower():
+    if org and a.get("organisation") and normal(org) == normal(a["organisation"]):
         return True
     ta, tb = title_tokens(a["title"]), title_tokens(title)
     if not ta or not tb:
@@ -1066,8 +1102,6 @@ def relabel_with_ai(incidents: list[dict], ai, now: datetime) -> tuple[int, set[
             inc["title"] = v["headline"]
         inc["summary"] = v.get("summary") or inc.get("summary", "")
         inc["why_it_matters"] = v.get("why_it_matters") or inc.get("why_it_matters", "")
-        if v.get("lessons"):
-            inc["lessons"] = v["lessons"]
         inc["status"] = aggregate_verification(inc)
         inc["basis"] = BASIS[inc["status"]]
         if inc["status"] != old_status:
@@ -1083,7 +1117,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
                     archive_path: str | None = None) -> dict:
     now = now_utc()
     # The incident corpus is durable. Rule changes must never erase historical rows.
-    incidents = [i for i in previous.get("incidents", []) if not i.get("curated")]
+    incidents = monitor.repair_claim_clusters([i for i in previous.get("incidents", []) if not i.get("curated")])
     for inc in incidents:
         inc["status"] = normalise_verification(inc.get("status"))
         inc["basis"] = BASIS[inc["status"]]
@@ -1140,11 +1174,20 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             "kind": item.get("kind", "news"),
             "verification": label["status"],
             "country": item.get("country", ""),
+            "origin_id": item["id"],
+            "observed_at": item.get("observed_at"),
+            "published_basis": item.get("published_basis", "Publisher/aggregator date"),
+            "claimed_incident_date": monitor.date_only(item.get("claimed_incident_date") or label.get("claimed_incident_date")),
+            "date_evidence": label.get("date_evidence"),
+            "excerpt": truncate(clean_text(item.get("summary", "")), 220),
         }
-        match = next((i for i in incidents if same_incident(i, item["title"], label.get("organisation"), when)), None)
+        match = next((i for i in incidents if same_incident(i, item["title"], label.get("organisation"), when, label.get("threat_actor"), source["claimed_incident_date"])), None)
         if match:
             old_status = normalise_verification(match.get("status"))
-            match["sources"].append(source)
+            if not any(monitor.canonical_url(x.get("link")) == monitor.canonical_url(source["link"])
+                       and (source["kind"] not in ("claim", "aggregate") or (x.get("origin_id") or x.get("title")) == (source.get("origin_id") or source.get("title")))
+                       for x in match["sources"]):
+                match["sources"].append(source)
             match["last_reported"] = max(match["last_reported"], item["published"])
             for field in ("organisation", "threat_actor"):
                 if not match.get(field) and label.get(field):
@@ -1170,8 +1213,6 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
                     match["title"] = label["headline"]
                 match["summary"] = label.get("summary") or match.get("summary", "")
                 match["why_it_matters"] = label.get("why_it_matters") or match.get("why_it_matters", "")
-                if label.get("lessons"):
-                    match["lessons"] = label["lessons"]
                 match["ai"] = True
             continue
 
@@ -1186,7 +1227,6 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             "basis": BASIS[label["status"]],
             "summary": truncate(label.get("summary") or "", 260),
             "why_it_matters": truncate(label.get("why_it_matters") or "", 200),
-            **({"lessons": label["lessons"]} if label.get("lessons") else {}),
             "threat_actor": label.get("threat_actor"),
             "first_reported": item["published"],
             "last_reported": item["published"],
@@ -1217,6 +1257,10 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             "basis": BASIS["reported"], "summary": "", "why_it_matters": "", "threat_actor": None,
             "sources": [], "history": [], **c, "curated": True, "ai": False,
         }
+        prior = next((i for i in previous.get("incidents", []) if i.get("id") == entry["id"]), {})
+        for field in ("evidence_state", "evidence_history"):
+            if field in prior:
+                entry[field] = prior[field]
         entry["status"] = normalise_verification(entry.get("status"))
         entry["basis"] = entry.get("basis") or BASIS[entry["status"]]
         entry.setdefault("last_reported", entry.get("first_reported", iso(now)))
@@ -1232,6 +1276,21 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
         incidents = [i for i in incidents if i["id"] != entry["id"]]
         incidents.append(entry)
 
+    # Refresh observations only when the record actually appeared in a successful fetch.
+    observations = {x["id"]: x for x in news_items if x.get("observed_at")}
+    observation_links = {(monitor.canonical_url(x.get("link")), x.get("title")): x
+                         for x in news_items if x.get("observed_at")}
+    for inc in incidents:
+        for src in inc.get("sources", []):
+            observed = observations.get(src.get("origin_id")) or observation_links.get(
+                (monitor.canonical_url(src.get("link")), src.get("title")))
+            if observed:
+                src["observed_at"] = observed["observed_at"]
+                src.setdefault("origin_id", observed["id"])
+                if observed.get("claimed_incident_date"):
+                    src["claimed_incident_date"] = observed["claimed_incident_date"]
+                src.setdefault("excerpt", truncate(clean_text(observed.get("summary", "")), 220))
+                src.setdefault("published_basis", observed.get("published_basis", "Publisher/aggregator date"))
     incidents.sort(key=lambda i: i.get("last_reported") or "", reverse=True)
     counts = {state: sum(1 for i in incidents if normalise_verification(i.get("status")) == state)
               for state in VERIFICATION_STATES}
@@ -1254,32 +1313,39 @@ def save_incidents_csv(path: str, incidents: list[dict]) -> None:
         "id", "headline", "organisation", "type", "sector", "country", "verification", "basis",
         "summary", "why_it_matters", "threat_actor", "first_reported", "last_reported",
         "source_count", "source_kinds", "sources", "source_urls",
+        "evidence_label", "claimed_incident_date", "incident_date_conflict", "last_observed", "evidence_reviews",
     ]
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=fields)
+        writer = csv.DictWriter(fh, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for inc in incidents:
             sources = inc.get("sources", [])
-            writer.writerow({
+            record = {
                 "id": inc.get("id", ""),
                 "headline": inc.get("title", ""),
                 "organisation": inc.get("organisation") or "",
                 "type": inc.get("type", ""),
                 "sector": inc.get("sector", ""),
                 "country": inc.get("country", ""),
-                "verification": normalise_verification(inc.get("status")),
-                "basis": inc.get("basis", ""),
+                "verification": inc.get("evidence_state", "unverified"),
+                "basis": inc.get("evidence_basis", "Evidence review pending"),
                 "summary": inc.get("summary", ""),
                 "why_it_matters": inc.get("why_it_matters", ""),
                 "threat_actor": inc.get("threat_actor") or "",
                 "first_reported": inc.get("first_reported", ""),
                 "last_reported": inc.get("last_reported", ""),
+                "evidence_label": inc.get("evidence_label", "Unverified claim"),
+                "claimed_incident_date": inc.get("claimed_incident_date") or "",
+                "incident_date_conflict": inc.get("incident_date_conflict", False),
+                "last_observed": inc.get("last_observed") or "",
+                "evidence_reviews": json.dumps(inc.get("evidence_reviews", []), ensure_ascii=False),
                 "source_count": len(sources),
                 "source_kinds": " | ".join(sorted({src.get("kind", "") for src in sources if src.get("kind")})),
                 "sources": " | ".join(src.get("name", "") for src in sources),
                 "source_urls": " | ".join(src.get("link", "") for src in sources),
-            })
+            }
+            writer.writerow({k: ("'" + v if isinstance(v, str) and v.startswith(("=", "+", "-", "@", "\t", "\r")) else v) for k, v in record.items()})
     os.replace(tmp, path)
 
 
@@ -1287,19 +1353,28 @@ def save_incidents_csv(path: str, incidents: list[dict]) -> None:
 
 def main() -> int:
     os.makedirs(DATA, exist_ok=True)
-    sources = load_json(SOURCES_FILE, {}).get("feeds", [])
+    config = load_json(SOURCES_FILE, {})
+    sources = config.get("feeds", [])
+    prior_status = load_json(os.path.join(DATA, "status.json"), {})
+    prior_registry = load_json(os.path.join(DATA, "source_registry.json"), {})
+    if not prior_registry:
+        prior_registry = monitor.source_registry(config, prior_status)
     status = {"updated": iso(now_utc()), "feeds": [], "apis": []}
 
     print("News…")
     news = collect_news(sources, load_json(os.path.join(DATA, "news.json"), {}), status)
     ransomware = collect_ransomware_live(status)
+    extra_claims, discovery = monitor.collect_ransomlook(status, http_get, load_json(os.path.join(DATA, "source_discovery.json"), {}))
+    ransomware.extend(extra_claims)
+    save_json(os.path.join(DATA, "source_discovery.json"), discovery)
     save_json(os.path.join(DATA, "news.json"), news)
-    print(f"  {len(news['items'])} headlines, {len(ransomware)} Ransomware.live records")
+    print(f"  {len(news['items'])} headlines, {len(ransomware)} public ransomware-intelligence records")
 
-    print("Vulnerabilities…")
-    vulns = collect_vulnerabilities(load_json(os.path.join(DATA, "vulnerabilities.json"), {}), status)
-    save_json(os.path.join(DATA, "vulnerabilities.json"), vulns)
-    print(f"  {vulns['kev']['total']} exploited, {len(vulns['recent']['items'])} new high/critical")
+    if "--incidents-only" not in sys.argv:
+        print("Vulnerabilities…")
+        vulns = collect_vulnerabilities(load_json(os.path.join(DATA, "vulnerabilities.json"), {}), status)
+        save_json(os.path.join(DATA, "vulnerabilities.json"), vulns)
+        print(f"  {vulns['kev']['total']} exploited, {len(vulns['recent']['items'])} new high/critical")
 
     print("Incidents…")
     curated = load_json(os.path.join(DATA, "incidents_curated.json"), {}).get("incidents", [])
@@ -1309,6 +1384,17 @@ def main() -> int:
         curated,
         archive_path=BREACHSENSE_ARCHIVE,
     )
+    registry = monitor.source_registry(config, status, prior_registry)
+    save_json(os.path.join(DATA, "source_registry.json"), registry)
+    monitor.apply_evidence_policy(incidents["incidents"],
+        load_json(os.path.join(DATA, "incident_evidence_reviews.json"), {}).get("reviews", {}),
+        {s["name"]: s.get("checked") for s in registry["sources"]})
+    queue = [{"id": i["id"], "organisation": i.get("organisation"), "title": i["title"],
+              "source_urls": [s["link"] for s in i["sources"]], "first_reported": i.get("first_reported")}
+             for i in incidents["incidents"] if i["evidence_state"] == "unverified"]
+    save_json(os.path.join(DATA, "incident_review_queue.json"), {"updated": incidents["updated"],
+        "total_pending": len(queue), "items": queue[:200], "note": "Most recently reported 200 pending records; full corpus remains in incidents.json"})
+    incidents["evidence_counts"] = {key: sum(i["evidence_state"] == key for i in incidents["incidents"]) for key in monitor.LABELS}
     save_json(os.path.join(DATA, "incidents.json"), incidents)
     save_incidents_csv(os.path.join(DATA, "incidents.csv"), incidents["incidents"])
     print(f"  {len(incidents['incidents'])} incidents ({incidents['new_in_last_scan']} new, "

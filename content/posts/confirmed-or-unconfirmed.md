@@ -1,104 +1,46 @@
 ---
-title: Claimed, reported, corroborated or confirmed? How to read a cyber incident
+title: Unverified, corroborated or organisation-confirmed? How to read an incident
 date: 2026-11-15
-summary: A ransomware post, a news report and an official breach notice are not the same evidence. This is how the incident tracker keeps them separate.
+summary: Evidence labels, source health, incident dates and the limits of public-source monitoring.
 tags: Guide, Incidents, Threat Intelligence
 ---
 
-Cybersecurity stories often move faster than the evidence. A ransomware group may name a victim before the organisation says anything. A journalist may then report disruption or leaked data. Later, a regulator, law-enforcement body or the affected organisation may confirm what actually happened.
+The tracker distinguishes what a source claims from what reviewed evidence supports. A leak-site listing, several articles repeating that listing, and an organisation's own statement are different kinds of evidence.
 
-The incident tracker therefore uses **five evidence states** instead of putting every story into a simple true-or-false bucket.
+## Three public evidence labels
 
-## Confirmed
+**Unverified claim** is the default. It includes attacker allegations, single-source reports and records awaiting evidence review. A headline containing “confirmed” does not itself qualify an incident for a stronger label.
 
-**Confirmed** means the affected organisation or a competent authority has acknowledged the incident.
+**Corroborated report** requires reviewed reports with at least two independent evidence origins. Two publishers repeating one attacker statement do not count as independent corroboration.
 
-Examples of strong confirmation include:
+**Organisation-confirmed incident** requires a reviewed statement or filing from the affected organisation acknowledging the incident. That does not automatically verify the attacker, incident date, financial loss or every detail of the report.
 
-- A statement, customer notice or stock-exchange filing from the affected organisation
-- A regulator's breach notice or enforcement document
-- A court filing, indictment or law-enforcement statement that identifies the incident
-- A government or national cyber authority explicitly acknowledging the event
+Disputes and denials remain visible separately. Labels can change when evidence is reviewed or corrected. Older automatic labels are not treated as proof.
 
-Confirmed does **not** mean every reported detail is proven. The organisation may confirm an incident while the number of records affected, the initial access vector or attacker attribution remains uncertain.
+## What runs automatically
 
-## Corroborated
+The existing collector is scheduled every 30 minutes. It reads configured public news, research and official feeds plus public ransomware-intelligence APIs. GitHub can delay scheduled jobs.
 
-**Corroborated** means at least two independent reputable sources report the same incident, but the tracker has not found an explicit acknowledgement from the victim or a competent authority.
+RansomLook's group directory discovers relevant profiles and records their first and last observation. RansomLook and Ransomware.live provide indirect access to publicly reported leak-site disclosures. They are not independent confirmation when they repeat the same actor claim.
 
-This is stronger than a single report, but it is deliberately kept separate from confirmation.
+The cumulative incident database retains older records. New reports are matched using organisation, dates, actor and source links. Conflicting known actors or attack dates prevent an automatic merge. Clearly different victims in older claim-only clusters have been separated while preserving their evidence. Ambiguous cases can still need correction.
 
-## Reported
+AI can assist with organisation, actor, incident type, headline, summary and explicit date extraction when the configured model is available. Deterministic processing continues without it. AI does not independently certify public evidence labels.
 
-**Reported** means one reputable source reports a specific incident and there is not yet enough evidence to call it corroborated or confirmed.
+## Which date is shown?
 
-This often happens during the first few hours of a developing incident.
+**First reported** means a publication or aggregator-discovery date. **Claimed incident date** is only populated when the source explicitly supplies an attack date. Missing dates remain unknown; conflicting dates are flagged. The first time a collector saw a post is not necessarily the date an attack happened.
 
-## Claimed
+## Source health and monitoring gaps
 
-**Claimed** is an early-warning state. It is used when the evidence originates from a threat actor, ransomware leak site or similar criminal claim and has not been independently verified.
+The monitoring panel shows source links, latest check, last successful check, empty responses and failures. Status becomes stale when no check is recorded for more than two hours. A successful HTTP request is not proof that an aggregator captured every disclosure.
 
-Ransomware groups have incentives to exaggerate, recycle old data, misidentify organisations or publish misleading claims. A listing can be useful intelligence without being proof.
+Feed last-checked means the feed was requested. It does not mean every linked article was re-opened. Last-observed timestamps identify records actually returned by a source, not merely carried forward from history.
 
-The tracker monitors Ransomware.live through its JSON API for these early signals and imports the repository’s historical 2025 ransomware archive as claim-only evidence. A leak-site or archive entry by itself can never make an incident confirmed.
+This collector does not directly crawl onion sites, access private communities or discover undisclosed addresses. Recent API and RSS windows can leave gaps after downtime. The charts describe this monitored corpus, not all cyber incidents worldwide.
 
-## Disputed
+## Evidence review
 
-**Disputed** means the affected organisation has denied or directly challenged the allegation.
+Reviewed evidence appears with its source URL, short supporting excerpt, review date and reviewer. Records awaiting review stay unverified. A review queue and version-controlled evidence records support corrections; old records are not automatically certified simply because they have several source links.
 
-A dispute does not automatically prove that nothing happened, but readers should know that the claim is actively contested.
-
-## How an incident changes over time
-
-The agent scans its live sources every 30 minutes and keeps the evidence attached to each incident. The incident database is cumulative: older rows are retained rather than falling out of the CSV when a news-feed retention window expires.
-
-A typical sequence could be:
-
-**Claimed → Reported → Corroborated → Confirmed**
-
-For example, a ransomware group may first list an organisation. A reputable publication may then report operational disruption. A second independent publication may corroborate the event. Finally, the affected company may issue a statement confirming a cyber incident.
-
-The tracker records those verification changes rather than silently replacing the earlier state.
-
-## What the AI does
-
-AI assists with:
-
-- Deciding whether an item describes a specific cyber incident rather than general security news
-- Grouping multiple reports that appear to describe the same incident
-- Producing a short neutral headline and summary
-- Extracting the organisation, sector, incident type and named threat actor when the source supports them
-- Writing a short **Why it matters** explanation
-
-The model is instructed not to invent confirmation, victims, attackers, numbers or impact. Threat-actor material is treated as untrusted input, and embedded instructions are ignored.
-
-Keyword rules remain as a fallback when an AI service is unavailable.
-
-## What the AI does not decide alone
-
-The incident-level evidence state is not simply whatever an AI model says.
-
-The tracker also applies deterministic rules:
-
-- A leak-site feed is treated as a claim source
-- Two independent reputable reports can produce **Corroborated**
-- Explicit acknowledgement is required for **Confirmed**
-- A denial can produce **Disputed**
-- The source links and verification history remain visible to the reader
-
-## Questions worth asking
-
-1. Who made the original claim?
-2. Has the affected organisation acknowledged anything?
-3. Are multiple reports genuinely independent, or are they repeating one source?
-4. Is the stolen data new, recycled or unverifiable?
-5. Which details are confirmed and which remain attribution or attacker claims?
-
-Automated classification can still make mistakes. Every incident links to its evidence so you can inspect the original reporting before relying on it.
-
-
-## Coverage and completeness
-
-The downloadable CSV is intended to be the cumulative record of incidents found across the sources monitored by this site. It includes both verified reporting and clearly labelled unverified claims.
-
-It should not be interpreted as a list of literally every cyber incident in existence. Some incidents are never disclosed, some sources are inaccessible or delayed, and global reporting is uneven. The tracker therefore exposes source and verification fields so coverage gaps are visible rather than hidden.
+Always consult the original evidence before making a decision based on an incident. Automated extraction and deduplication can make mistakes.
