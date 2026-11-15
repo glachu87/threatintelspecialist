@@ -137,6 +137,8 @@ def http_get(url: str, headers: dict | None = None, timeout: int = 40, retries: 
                 return body
         except Exception as exc:  # noqa: BLE001 - any failure means "try again, then give up"
             last = exc
+            if isinstance(exc, urllib.error.HTTPError) and exc.code in (400, 401, 403, 404):
+                break  # the request itself is wrong; repeating it will not help
             if attempt < retries:
                 busy = isinstance(exc, urllib.error.HTTPError) and exc.code in (429, 500, 502, 503, 504)
                 time.sleep((12 if busy else 3) * (attempt + 1))
@@ -353,15 +355,24 @@ def fetch_nvd(fetch=http_get) -> list[dict]:
         start_index = 0
         while True:
             qs = urllib.parse.urlencode({
-                "pubStartDate": start.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                "pubEndDate": end.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                "pubStartDate": start.strftime("%Y-%m-%dT%H:%M:%S.000"),
+                "pubEndDate": end.strftime("%Y-%m-%dT%H:%M:%S.000"),
                 param: severity,
                 "resultsPerPage": 2000,
                 "startIndex": start_index,
             })
             if n or start_index:
                 time.sleep(pause)
-            doc = json.loads(fetch(f"{NVD_URL}?{qs}", headers=headers, timeout=90, retries=4))
+            try:
+                doc = json.loads(fetch(f"{NVD_URL}?{qs}", headers=headers, timeout=90, retries=4))
+            except RuntimeError as exc:
+                # NVD answers 403/404 to a bad or expired key; the public rate still works without one.
+                if not headers or not re.search(r"HTTP Error 40[34]", str(exc)):
+                    raise
+                print("  ! NVD rejected the request with the API key; retrying without it", file=sys.stderr)
+                headers, pause = {}, 7
+                time.sleep(pause)
+                doc = json.loads(fetch(f"{NVD_URL}?{qs}", timeout=90, retries=4))
             for item in parse_nvd(doc):
                 found.setdefault(item["cve"], item)
             start_index += doc.get("resultsPerPage", 0) or 2000
@@ -595,6 +606,8 @@ def classify_rules(item: dict) -> dict | None:
 AI_TYPES = ["Ransomware", "Data breach", "Supply chain", "DDoS", "Crypto theft", "Espionage", "Phishing", "Cyberattack"]
 AI_SECTORS = [n for n, _ in SECTOR_RULES] + ["Other"]
 
+AI_TIME_BUDGET = 300  # seconds per run spent waiting on the AI service
+
 AI_PROMPT = """You label cybersecurity news for a public incident tracker.
 For each numbered article decide whether it reports a specific security incident affecting a named
 organisation or group of organisations (an attack, breach, leak, outage caused by an attack, or theft).
@@ -632,14 +645,14 @@ def classify_ai(items: list[dict], fetch_json=None) -> dict[str, dict]:
         req = urllib.request.Request(
             GEMINI_URL.format(model=model), data=body, method="POST",
             headers={"Content-Type": "application/json", "x-goog-api-key": key, "User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=90) as resp:
+        with urllib.request.urlopen(req, timeout=75) as resp:
             doc = json.loads(resp.read())
         return doc["candidates"][0]["content"]["parts"][0]["text"]
 
     def call(prompt: str) -> str:
         last = None
         for model in dict.fromkeys(models):
-            for attempt in range(3):
+            for attempt in range(2):
                 try:
                     return call_model(model, prompt)
                 except urllib.error.HTTPError as exc:
@@ -647,11 +660,18 @@ def classify_ai(items: list[dict], fetch_json=None) -> dict[str, dict]:
                     if exc.code not in (429, 500, 502, 503, 504):
                         break
                     time.sleep(8 * (attempt + 1))
+                except Exception as exc:  # noqa: BLE001 - timeouts and dropped connections: try the next model
+                    last = exc
+                    break
         raise last
 
     call = fetch_json or call
-    for start in range(0, len(items), 15):
-        batch = items[start:start + 15]
+    deadline = time.monotonic() + AI_TIME_BUDGET
+    for start in range(0, len(items), 8):
+        if time.monotonic() > deadline:
+            print("  ! Gemini time budget used up; the rest waits for the next run", file=sys.stderr)
+            break
+        batch = items[start:start + 8]
         articles = "\n\n".join(
             f"[{n + 1}] Source: {it['source']}\nTitle: {it['title']}\nExcerpt: {it.get('summary', '')}"
             for n, it in enumerate(batch))
@@ -703,6 +723,32 @@ def same_incident(a: dict, title: str, org: str | None, when: datetime) -> bool:
     # looser match for differently worded reports: several shared words, one of them distinctive
     distinctive = (ta & tb) - WEAK_WORDS
     return abs((when - last).days) <= 10 and shared >= 3 and bool(distinctive) and shared / min(len(ta), len(tb)) >= 0.4
+
+
+def relabel_with_ai(incidents: list[dict], ai, now: datetime) -> tuple[int, set[str]]:
+    """Entries the keyword rules created while the AI service was down get a second look."""
+    todo = [i for i in incidents if not i.get("ai") and not i.get("curated") and i.get("sources")
+            and (now - (parse_date(i.get("first_reported")) or now)) <= timedelta(days=7)][:32]
+    if not todo:
+        return 0, set()
+    verdicts = ai([{"id": i["id"], "title": i["title"], "summary": i.get("summary", ""), "source": i["sources"][0]["name"]} for i in todo])
+    changed, removed = 0, set()
+    for inc in todo:
+        v = verdicts.get(inc["id"])
+        if v is None:
+            continue
+        if not v["is_incident"]:
+            removed.add(inc["id"])
+            continue
+        if v["status"] != inc["status"]:
+            inc["history"].append({"date": iso(now), "status": v["status"], "note": "Re-checked with AI assistance"})
+            changed += v["status"] == "confirmed"
+        for field in ("organisation", "type", "sector", "status", "basis", "threat_actor"):
+            if v.get(field):
+                inc[field] = v[field]
+        inc["summary"] = v.get("summary") or inc["summary"]
+        inc["ai"] = True
+    return changed, removed
 
 
 def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict], ai=classify_ai) -> dict:
@@ -767,6 +813,11 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             "ai": bool(label.get("ai")),
         })
         added += 1
+
+    if ai_expected:
+        relabelled, removed = relabel_with_ai(incidents, ai, now)
+        upgraded += relabelled
+        incidents = [i for i in incidents if i["id"] not in removed]
 
     for n in fresh:
         if n["id"] not in deferred:
