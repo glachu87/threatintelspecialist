@@ -1,41 +1,97 @@
 ---
-title: Confirmed or unconfirmed: how to read a breach report
+title: Claimed, reported, corroborated or confirmed? How to read a cyber incident
 date: 2026-11-15
-summary: Many "breaches" in the news are claims that nobody has verified yet. Here is how to tell the difference, and how this site labels each incident.
-tags: Guide, Incidents
+summary: A ransomware post, a news report and an official breach notice are not the same evidence. This is how the incident tracker keeps them separate.
+tags: Guide, Incidents, Threat Intelligence
 ---
 
-A headline that says a company was hacked can mean very different things. Sometimes the company has told its customers and regulators. Sometimes the only evidence is a post by a criminal group that wants attention or a ransom. This site marks every incident as **confirmed** or **unconfirmed** so you can tell them apart quickly.
+Cybersecurity stories often move faster than the evidence. A ransomware group may name a victim before the organisation says anything. A journalist may then report disruption or leaked data. Later, a regulator, law-enforcement body or the affected organisation may confirm what actually happened.
 
-## What confirmed means
+The incident tracker therefore uses **five evidence states** instead of putting every story into a simple true-or-false bucket.
 
-An incident is confirmed when the affected organisation, a regulator, a court or a government body has acknowledged it. Typical evidence:
+## Confirmed
 
-- A public statement, customer notice or stock-exchange filing from the organisation
-- A notice from a data protection regulator
-- An advisory, indictment or sanction from a government body
+**Confirmed** means the affected organisation or a competent authority has acknowledged the incident.
 
-Confirmed does not mean every detail is settled. Companies often confirm an incident first and revise the number of people affected weeks later.
+Examples of strong confirmation include:
 
-## What unconfirmed means
+- A statement, customer notice or stock-exchange filing from the affected organisation
+- A regulator's breach notice or enforcement document
+- A court filing, indictment or law-enforcement statement that identifies the incident
+- A government or national cyber authority explicitly acknowledging the event
 
-Everything else is unconfirmed. That covers three common situations:
+Confirmed does **not** mean every reported detail is proven. The organisation may confirm an incident while the number of records affected, the initial access vector or attacker attribution remains uncertain.
 
-- **Attacker claims.** Ransomware groups list victims on leak sites to pressure them to pay. Some listings are accurate. Others are exaggerated, recycled from old breaches, or name the wrong company.
-- **Unverified reporting.** A story based on anonymous sources or a sample of data nobody has checked.
-- **No statement yet.** A press report exists, but the organisation has not commented.
+## Corroborated
 
-Unconfirmed does not mean false. It means you should wait before acting on the details.
+**Corroborated** means at least two independent reputable sources report the same incident, but the tracker has not found an explicit acknowledgement from the victim or a competent authority.
 
-## How labels change
+This is stronger than a single report, but it is deliberately kept separate from confirmation.
 
-The tracker reads the news every hour. If a later report says the organisation has acknowledged an incident, the label changes from unconfirmed to confirmed and the entry records the date. Labels are never downgraded automatically. If an organisation disputes a claim, the entry says so and stays unconfirmed.
+## Reported
+
+**Reported** means one reputable source reports a specific incident and there is not yet enough evidence to call it corroborated or confirmed.
+
+This often happens during the first few hours of a developing incident.
+
+## Claimed
+
+**Claimed** is an early-warning state. It is used when the evidence originates from a threat actor, ransomware leak site or similar criminal claim and has not been independently verified.
+
+Ransomware groups have incentives to exaggerate, recycle old data, misidentify organisations or publish misleading claims. A listing can be useful intelligence without being proof.
+
+The tracker monitors Ransomware.live for these early signals, but a Ransomware.live entry by itself can never make an incident confirmed.
+
+## Disputed
+
+**Disputed** means the affected organisation has denied or directly challenged the allegation.
+
+A dispute does not automatically prove that nothing happened, but readers should know that the claim is actively contested.
+
+## How an incident changes over time
+
+The agent scans its sources every 30 minutes and keeps the evidence attached to each incident.
+
+A typical sequence could be:
+
+**Claimed → Reported → Corroborated → Confirmed**
+
+For example, a ransomware group may first list an organisation. A reputable publication may then report operational disruption. A second independent publication may corroborate the event. Finally, the affected company may issue a statement confirming a cyber incident.
+
+The tracker records those verification changes rather than silently replacing the earlier state.
+
+## What the AI does
+
+AI assists with:
+
+- Deciding whether an item describes a specific cyber incident rather than general security news
+- Grouping multiple reports that appear to describe the same incident
+- Producing a short neutral headline and summary
+- Extracting the organisation, sector, incident type and named threat actor when the source supports them
+- Writing a short **Why it matters** explanation
+
+The model is instructed not to invent confirmation, victims, attackers, numbers or impact. Threat-actor material is treated as untrusted input, and embedded instructions are ignored.
+
+Keyword rules remain as a fallback when an AI service is unavailable.
+
+## What the AI does not decide alone
+
+The incident-level evidence state is not simply whatever an AI model says.
+
+The tracker also applies deterministic rules:
+
+- A leak-site feed is treated as a claim source
+- Two independent reputable reports can produce **Corroborated**
+- Explicit acknowledgement is required for **Confirmed**
+- A denial can produce **Disputed**
+- The source links and verification history remain visible to the reader
 
 ## Questions worth asking
 
-1. Who is the source: the organisation, an authority, a journalist, or the attacker?
-2. Has anyone independent checked the stolen data?
-3. Is this a new incident, or old data being sold again?
-4. Does the report say what was taken, or only that something was?
+1. Who made the original claim?
+2. Has the affected organisation acknowledged anything?
+3. Are multiple reports genuinely independent, or are they repeating one source?
+4. Is the stolen data new, recycled or unverifiable?
+5. Which details are confirmed and which remain attribution or attacker claims?
 
-The labels are produced automatically from wording in news reports, so they can be wrong. Every entry links to its sources. Read them before you rely on an entry, and [tell us](/about/) if one needs correcting.
+Automated classification can still make mistakes. Every incident links to its evidence so you can inspect the original reporting before relying on it.
