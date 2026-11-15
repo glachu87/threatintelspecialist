@@ -339,6 +339,7 @@ def collect_ransomware_live(status: dict, fetch=http_get) -> list[dict]:
                 "published": iso(when),
                 "summary": truncate(summary, SUMMARY_CHARS),
                 "country": country,
+                "organisation": victim or None,
                 "topics": topics_for(f"{title} {summary}"),
             })
         status["apis"].append({
@@ -1089,11 +1090,9 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
                 existing_ids.add(archived["id"])
                 archive_added += 1
     seen = set(scanned)
-    known_links = {src["link"] for inc in incidents for src in inc.get("sources", [])}
-
     supported_kinds = {"news", "research", "official", "claim", "aggregate"}
     fresh = [n for n in news_items if n.get("kind", "news") in supported_kinds
-             and n["id"] not in seen and n["link"] not in known_links]
+             and n["id"] not in seen]
     fresh.sort(key=lambda n: n["published"])
     candidates = [
         n for n in fresh
@@ -1164,7 +1163,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             continue
 
         incidents.append({
-            "id": "INC-" + short_hash(item["link"], 8).upper(),
+            "id": "INC-" + short_hash(f"{item['id']}|{item['link']}", 8).upper(),
             "title": label.get("headline") or item["title"],
             "organisation": label.get("organisation"),
             "type": label["type"],
@@ -1194,7 +1193,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
     for item in fresh:
         if item["id"] not in deferred:
             scanned.append(item["id"])
-    scanned = scanned[-6000:]
+    scanned = scanned[-100000:]
 
     for c in curated:
         if not c.get("id") or not c.get("title"):
