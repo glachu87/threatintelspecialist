@@ -34,7 +34,7 @@ Commit it to `main`. The workflow builds the page within a couple of minutes. Ad
 
 **Add or correct an incident.** Edit `data/incidents_curated.json`. Entries there override the automatic tracker. To correct an automatic entry, reuse its `id`.
 
-**Add or remove a source.** Edit `scripts/sources.json`. Use `"kind": "news"` for established press, `"research"` for vendor/researcher reporting, `"official"` for government/CERT sources, and `"claim"` only for threat-actor/leak-site aggregators. Claim sources are incident-only and never count as confirmation.
+**Add or remove a feed source.** Edit `scripts/sources.json`. Use `"kind": "news"` for established press, `"research"` for vendor/researcher reporting and `"official"` for government/CERT sources. Ransomware.live is ingested separately through its JSON API so reported cyberattacks and leak-site claims remain distinct.
 
 **Refresh now.** Actions tab, "Update site data", "Run workflow".
 
@@ -62,7 +62,7 @@ The tracker uses five evidence states:
 - **Claimed** — a threat actor or leak site claims the incident; this is an early-warning signal, not proof.
 - **Disputed** — the affected organisation denies or directly challenges the allegation.
 
-Every source stored against an incident has its own evidence state. The incident-level state is derived from those sources, so verification can strengthen as new reporting appears. The tracker also exports `data/incidents.csv` for analysis.
+Every source stored against an incident has its own evidence state. The incident-level state is derived from those sources, so verification can strengthen as new reporting appears. The incident corpus is cumulative: rule changes do not erase old records. The workflow also imports the repository’s 2025 ransomware archive as **Claimed** evidence and ingests Ransomware.live’s JSON cyberattack/victim data. `data/incidents.csv` is the full cumulative export.
 
 ## Run it locally
 
@@ -74,3 +74,18 @@ python -m http.server 8000            # then open http://localhost:8000
 ```
 
 Python 3.10 or newer. No packages to install.
+
+
+## Incident coverage
+
+The CSV is designed to contain **all incidents discovered by the configured public sources**, retained over time. It is not possible to guarantee every cyber incident worldwide because many incidents are never disclosed and no single authoritative global registry exists.
+
+Coverage currently combines:
+
+- Monitored security-news, research and official/CERT feeds
+- Ransomware.live reported-cyberattack JSON data
+- Ransomware.live leak-site victim claims, always marked **Claimed**
+- The repository's 2025 ransomware archive, imported as **Claimed**
+- Manual corrections in `data/incidents_curated.json`
+
+Ransomware.live aggregate records do not count as an independent second source for **Corroborated**, preventing a syndicated article from being counted twice.
