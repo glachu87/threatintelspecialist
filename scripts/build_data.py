@@ -62,6 +62,11 @@ NVD_MAX_ITEMS = 700
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 NVD_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 EPSS_URL = "https://api.first.org/data/v1/epss"
+EU_KEV_URL = "https://raw.githubusercontent.com/enisaeu/CNW/refs/heads/main/advisories/eukev/eukev.json"
+CVE_RECORD_URL = "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/{year}/{bucket}xxx/{cve}.json"
+CVE_DATES_PER_RUN = 250     # publication dates looked up per run until the cache is complete
+TREND_WEEKS = 26
+WEEK_COUNTS_PER_RUN = 6     # weekly totals asked of NVD per run until the cache is complete
 NVD_RECENT_FEED = "https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-recent.json.gz"
 GITHUB_MODELS_URL = "https://models.github.ai/inference/chat/completions"
 AI_USED: dict[str, str] = {}
@@ -599,8 +604,127 @@ def fetch_epss(cves: list[str], fetch=http_get) -> dict[str, float]:
     return scores
 
 
-def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get) -> dict:
+def _slash_date(value: str | None) -> str:
+    """ENISA writes dates as 2026/08/10."""
+    m = re.match(r"^(\d{4})[/-](\d{2})[/-](\d{2})", (value or "").strip())
+    return f"{m[1]}-{m[2]}-{m[3]}" if m else ""
+
+
+def build_eu_kev(raw: bytes) -> dict[str, dict]:
+    """ENISA's list of vulnerabilities seen exploited across the EU CSIRTs network."""
+    out = {}
+    for v in json.loads(raw):
+        cve = (v.get("cveID") or "").strip().upper()
+        if not re.match(r"^CVE-\d{4}-\d+$", cve):
+            continue
+        out[cve] = {
+            "cve": cve,
+            "vendor": clean_text(v.get("vendorProject")),
+            "product": clean_text(v.get("product")),
+            "reported": _slash_date(v.get("dateReported")),
+            "patched": _slash_date(v.get("patchedSince")),
+            "description": truncate(clean_text(v.get("shortDescription")), 320),
+        }
+    return out
+
+
+def merge_eu_kev(kev: dict, eu: dict[str, dict]) -> None:
+    """Mark which catalogues list each vulnerability; add the ones only ENISA lists."""
+    known = {i["cve"]: i for i in kev["items"] if "CISA" in i.get("catalogs", ["CISA"])}
+    items = list(known.values())
+    for item in items:
+        item["catalogs"] = ["CISA"]
+        for key in ("eu_reported", "eu_patched"):
+            item.pop(key, None)
+    for cve, e in eu.items():
+        item = known.get(cve)
+        if item is None:
+            if not e["reported"]:
+                continue
+            item = {"cve": cve, "vendor": e["vendor"], "product": e["product"],
+                    "name": f"{e['vendor']} {e['product']}".strip() + " vulnerability",
+                    "added": e["reported"], "due": "", "description": e["description"],
+                    "ransomware": False, "catalogs": []}
+            items.append(item)
+        item["catalogs"].append("ENISA")
+        if e["reported"]:
+            item["eu_reported"] = e["reported"]
+            item["added"] = min(item["added"], e["reported"]) if item["added"] else e["reported"]
+        if e["patched"]:
+            item["eu_patched"] = e["patched"]
+    items.sort(key=lambda i: (i["added"], i["cve"]), reverse=True)
+    kev["items"], kev["total"] = items, len(items)
+
+
+def cve_record_url(cve: str) -> str:
+    _, year, number = cve.split("-")
+    return CVE_RECORD_URL.format(year=year, bucket=number[:-3] or "0", cve=cve)
+
+
+def add_publication_dates(kev: dict, cache: dict[str, str], fetch=http_get, limit: int = CVE_DATES_PER_RUN) -> int:
+    """Attach each exploited CVE's publication date, looking up a batch of unknown ones per run."""
+    looked_up = failures = 0
+    for item in kev["items"]:
+        cve = item["cve"]
+        if cve not in cache and looked_up < limit and failures < 5:
+            looked_up += 1
+            try:
+                meta = json.loads(fetch(cve_record_url(cve), timeout=20, retries=0)).get("cveMetadata", {})
+                cache[cve] = (meta.get("datePublished") or "")[:10]
+                failures = 0
+            except Exception as exc:  # noqa: BLE001
+                if "404" in str(exc):
+                    cache[cve] = ""   # no public record; do not ask again
+                else:
+                    failures += 1     # five in a row means the source is down: stop for this run
+        if cache.get(cve):
+            item["published"] = cache[cve]
+    return looked_up
+
+
+def week_start(day: datetime) -> datetime:
+    day = day.astimezone(timezone.utc)
+    return (day - timedelta(days=day.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+
+
+def weekly_trend(kev: dict, cache: dict[str, int], fetch=http_get, limit: int = WEEK_COUNTS_PER_RUN) -> list[dict]:
+    """Per complete week: CVEs published (NVD, cached) and CVEs first listed as exploited (our catalogues)."""
+    this_week = week_start(now_utc())
+    weeks = [this_week - timedelta(weeks=n) for n in range(TREND_WEEKS, 0, -1)]
+    listed: dict[str, int] = {}
+    for item in kev["items"]:
+        d = parse_date(item.get("added"))
+        if d:
+            key = week_start(d).strftime("%Y-%m-%d")
+            listed[key] = listed.get(key, 0) + 1
+    asked = 0
+    for start in reversed(weeks):                      # newest first
+        key = start.strftime("%Y-%m-%d")
+        if key in cache or asked >= limit:
+            continue
+        asked += 1
+        end = start + timedelta(days=7) - timedelta(seconds=1)
+        qs = urllib.parse.urlencode({
+            "pubStartDate": start.strftime("%Y-%m-%dT%H:%M:%S.000"),
+            "pubEndDate": end.strftime("%Y-%m-%dT%H:%M:%S.000"),
+            "resultsPerPage": 1,
+        }) + "&noRejected"
+        try:
+            if asked > 1:
+                time.sleep(7)
+            cache[key] = int(json.loads(fetch(f"{NVD_URL}?{qs}", timeout=60, retries=1)).get("totalResults", 0))
+        except Exception as exc:  # noqa: BLE001
+            print(f"  ! weekly CVE count for {key}: {truncate(str(exc), 100)}", file=sys.stderr)
+            break
+    return [{"week": w.strftime("%Y-%m-%d"), "published": cache.get(w.strftime("%Y-%m-%d")),
+             "exploited": listed.get(w.strftime("%Y-%m-%d"), 0)} for w in weeks]
+
+
+def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get, cache: dict | None = None) -> dict:
     now = iso(now_utc())
+    cache = cache if cache is not None else {}
+    cache.setdefault("published", {})
+    cache.setdefault("weeks", {})
     kev = previous.get("kev") or {"updated": "", "total": 0, "items": []}
     recent = previous.get("recent") or {"updated": "", "window_days": NVD_WINDOW_DAYS, "items": []}
 
@@ -619,6 +743,25 @@ def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get) -> dic
         status["apis"].append({"name": "NIST National Vulnerability Database", "ok": False, "error": truncate(str(exc), 160), "checked": now})
         print(f"  ! NVD: {exc}", file=sys.stderr)
 
+    try:
+        eu = build_eu_kev(fetch(EU_KEV_URL, timeout=40))
+        merge_eu_kev(kev, eu)
+        status["apis"].append({"name": "ENISA EU Known Exploited Vulnerabilities", "ok": True, "items": len(eu), "checked": now})
+    except Exception as exc:  # noqa: BLE001
+        status["apis"].append({"name": "ENISA EU Known Exploited Vulnerabilities", "ok": False, "error": truncate(str(exc), 160), "checked": now})
+        print(f"  ! EU KEV: {exc}", file=sys.stderr)
+    for item in kev["items"]:
+        item.setdefault("catalogs", ["CISA"])
+
+    try:
+        looked_up = add_publication_dates(kev, cache["published"], fetch)
+        known = sum(1 for i in kev["items"] if i.get("published"))
+        status["apis"].append({"name": "CVE Project publication dates", "ok": True, "items": known, "checked": now})
+        if looked_up:
+            print(f"  looked up {looked_up} CVE publication dates ({known}/{len(kev['items'])} known)")
+    except Exception as exc:  # noqa: BLE001
+        status["apis"].append({"name": "CVE Project publication dates", "ok": False, "error": truncate(str(exc), 160), "checked": now})
+
     kev_ids = {i["cve"] for i in kev["items"]}
     for item in recent["items"]:
         item["kev"] = item["cve"] in kev_ids
@@ -635,7 +778,13 @@ def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get) -> dic
         status["apis"].append({"name": "FIRST EPSS", "ok": False, "error": truncate(str(exc), 160), "checked": now})
         print(f"  ! EPSS: {exc}", file=sys.stderr)
 
-    return {"updated": now, "kev": kev, "recent": recent}
+    trend = previous.get("trend") or []
+    try:
+        trend = weekly_trend(kev, cache["weeks"], fetch)
+    except Exception as exc:  # noqa: BLE001
+        print(f"  ! weekly trend: {exc}", file=sys.stderr)
+
+    return {"updated": now, "kev": kev, "recent": recent, "trend": trend}
 
 
 # ───────────────────────── incidents ─────────────────────────
@@ -1297,7 +1446,9 @@ def main() -> int:
     print(f"  {len(news['items'])} headlines, {len(ransomware)} Ransomware.live records")
 
     print("Vulnerabilities…")
-    vulns = collect_vulnerabilities(load_json(os.path.join(DATA, "vulnerabilities.json"), {}), status)
+    vuln_cache = load_json(os.path.join(DATA, "vuln_cache.json"), {})
+    vulns = collect_vulnerabilities(load_json(os.path.join(DATA, "vulnerabilities.json"), {}), status, cache=vuln_cache)
+    save_json(os.path.join(DATA, "vuln_cache.json"), vuln_cache)
     save_json(os.path.join(DATA, "vulnerabilities.json"), vulns)
     print(f"  {vulns['kev']['total']} exploited, {len(vulns['recent']['items'])} new high/critical")
 

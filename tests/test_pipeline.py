@@ -359,9 +359,20 @@ class NewsAndVulns(unittest.TestCase):
                      "metrics": {"cvssMetricV31": [{"type": "Primary", "cvssData": {"baseScore": 9.8, "baseSeverity": "CRITICAL", "attackVector": "NETWORK"}}]}}},
             {"cve": {"id": "CVE-2026-0002", "published": "2026-11-09T10:00:00.000", "descriptions": [],
                      "metrics": {"cvssMetricV31": [{"cvssData": {"baseScore": 5.0, "baseSeverity": "MEDIUM"}}]}}}]}
+        eukev = [{"cveID": "CVE-2026-0001", "vendorProject": "Foo", "product": "Bar", "dateReported": "2026/11/08", "patchedSince": "2026/11/05"},
+                 {"cveID": "CVE-2026-0777", "vendorProject": "Acme", "product": "Router", "dateReported": "2026/10/01", "shortDescription": "EU only."},
+                 {"cveID": "not-a-cve"}]
         def fetch(url, **kw):
             if "known_exploited" in url:
                 return json.dumps(kev).encode()
+            if "eukev" in url:
+                return json.dumps(eukev).encode()
+            if "cvelistV5" in url:
+                if "CVE-2026-0777" in url:
+                    raise RuntimeError("HTTP Error 404: Not Found")
+                return json.dumps({"cveMetadata": {"datePublished": "2026-11-09T10:00:00.000Z"}}).encode()
+            if "resultsPerPage=1&" in url:
+                return json.dumps({"totalResults": 1234}).encode()
             if "feeds/json" in url:
                 raise RuntimeError("feed down")
             if "nvd.nist" in url:
@@ -370,7 +381,18 @@ class NewsAndVulns(unittest.TestCase):
         bd.time.sleep = lambda s: None
         status = {"feeds": [], "apis": []}
         v = bd.collect_vulnerabilities({}, status, fetch=fetch)
-        self.assertEqual(v["kev"]["total"], 1)
+        self.assertEqual(v["kev"]["total"], 2, "the EU-only entry is added")
+        both = next(i for i in v["kev"]["items"] if i["cve"] == "CVE-2026-0001")
+        self.assertEqual((both["catalogs"], both["eu_reported"], both["eu_patched"], both["added"], both["published"]),
+                         (["CISA", "ENISA"], "2026-11-08", "2026-11-05", "2026-11-08", "2026-11-09"), "earliest listing wins")
+        eu_only = next(i for i in v["kev"]["items"] if i["cve"] == "CVE-2026-0777")
+        self.assertEqual((eu_only["catalogs"], eu_only["added"], "published" in eu_only), (["ENISA"], "2026-10-01", False))
+        self.assertEqual(len(v["trend"]), bd.TREND_WEEKS)
+        self.assertEqual(sum(w["exploited"] for w in v["trend"]), 2)
+        self.assertEqual(sum(1 for w in v["trend"] if w["published"] == 1234), bd.WEEK_COUNTS_PER_RUN, "weekly totals are filled a few per run")
+        self.assertTrue(bd.cve_record_url("CVE-2021-44228").endswith("/2021/44xxx/CVE-2021-44228.json"))
+        self.assertTrue(bd.cve_record_url("CVE-2026-123039").endswith("/2026/123xxx/CVE-2026-123039.json"))
+        self.assertTrue(bd.cve_record_url("CVE-2019-0708").endswith("/2019/0xxx/CVE-2019-0708.json"))
         self.assertTrue(v["kev"]["items"][0]["ransomware"])
         self.assertNotIn("action", v["kev"]["items"][0])
         self.assertEqual([i["cve"] for i in v["recent"]["items"]], ["CVE-2026-0001"])
@@ -413,7 +435,8 @@ class NewsAndVulns(unittest.TestCase):
         def broken(url, **kw):
             raise RuntimeError("offline")
         kept = bd.collect_vulnerabilities(v, {"feeds": [], "apis": []}, fetch=broken)
-        self.assertEqual(kept["kev"]["total"], 1, "old data is kept when sources fail")
+        self.assertEqual(kept["kev"]["total"], 2, "old data is kept when sources fail")
+        self.assertEqual(sorted(i["catalogs"] for i in kept["kev"]["items"]), [["CISA", "ENISA"], ["ENISA"]])
 
 
 if __name__ == "__main__":

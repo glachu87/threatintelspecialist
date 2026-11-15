@@ -57,4 +57,5 @@ jobs:
           node --check assets/site.js
           node --check assets/incidents.js
           node --check assets/history.js
+          node --check assets/vulns.js
           node --check assets/home.js
