@@ -579,15 +579,15 @@ ORG_LEAD_RE = re.compile(
     r"data breach|hacked|ransomware attack|cyber ?attack|shuts?|restores?|takes|blames|denies|fined|to pay|agrees|"
     r"reveals|acknowledges|faces|data leak|outage|customers?|attack)\b")
 ORG_EVENT_AT_RE = re.compile(
-    rf"(?i:\\b(?:cyber ?attack|ransomware attack|data breach|breach|attack|hack|incident|intrusion|outage)"
-    rf"\\s+(?:at|on|of|against)\\s+)"
-    rf"(?P<org>{_ORG_WORD}(?:\\s+(?:{_ORG_WORD}|of|and|the|de|for|&)){{0,4}}?)"
-    r"(?=\\s+(?i:disrupts?|halts?|stops?|takes?|forces?|hits?|affects?|exposes?|leaks?|shuts?|impacts?|"
-    r"leaves?|causes?|continues?|after|as)\\b|[,;:–—-]|$)")
+    rf"(?i:\b(?:cyber ?attack|ransomware attack|data breach|breach|attack|hack|incident|intrusion|outage)"
+    rf"\s+(?:at|on|of|against)\s+)"
+    rf"(?P<org>{_ORG_WORD}(?:\s+(?:{_ORG_WORD}|of|and|the|de|for|&)){{0,4}}?)"
+    r"(?=\s+(?i:disrupts?|halts?|stops?|takes?|forces?|hits?|affects?|exposes?|leaks?|shuts?|impacts?|"
+    r"leaves?|causes?|continues?|after|as)\b|[,;:–—-]|$)")
 ORG_TAIL_RE = re.compile(
-    rf"\\b(?:cyber ?attack|ransomware attack|data breach|breach|attack|hack|incident|intrusion|outage)\\s+"
-    rf"(?:at|on|of|against|hits|impacts|affects)\\s+"
-    rf"(?P<org>{_ORG_WORD}(?:\\s+{_ORG_WORD}){{0,4}})", re.I)
+    rf"\b(?:cyber ?attack|ransomware attack|data breach|breach|attack|hack|incident|intrusion|outage)\s+"
+    rf"(?:at|on|of|against|hits|impacts|affects)\s+"
+    rf"(?P<org>{_ORG_WORD}(?:\s+{_ORG_WORD}){{0,4}})", re.I)
 ORG_STOP = {
     "hackers", "hacker", "ransomware", "new", "police", "fbi", "cisa", "researchers", "chinese", "russian",
     "north", "iranian", "attackers", "threat", "over", "massive", "critical", "us", "uk", "eu", "the", "a", "an",
