@@ -153,6 +153,7 @@
     ["/news/", "News", "news"],
     ["/vulnerabilities/", "Vulnerabilities", "vulnerabilities"],
     ["/incidents/", "Incidents", "incidents"],
+    ["/incidents/history/", "History", "history"],
     ["/blog/", "Blog", "blog"],
     ["/learn/", "Learn", "learn"],
     ["/about/", "About", "about"],

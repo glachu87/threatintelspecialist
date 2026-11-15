@@ -22,12 +22,14 @@
     if (!news && !vulns && !inc) {
       brief.textContent = "Today's data could not be loaded. Reload the page to try again.";
     } else {
-      brief.replaceChildren(
+      var parts = [
         h("b", { text: T.plural(day, "new headline") }), " in the last 24 hours. ",
         h("b", { text: T.plural(kevWeek, "vulnerability", "vulnerabilities") }),
         " added to the list of flaws attackers are actively using this week. ",
-        h("b", { text: T.plural(incWeek.length, "incident") }), " reported this week",
-        incWeek.length ? [", ", h("b", { text: conf + " confirmed" }), " and ", h("b", { text: (incWeek.length - conf) + " unconfirmed" }), "."] : ".");
+        h("b", { text: T.plural(incWeek.length, "incident") }), " reported this week"];
+      if (incWeek.length) parts.push(", ", h("b", { text: conf + " confirmed" }), " and ", h("b", { text: (incWeek.length - conf) + " not yet confirmed" }));
+      parts.push(".");
+      brief.replaceChildren.apply(brief, parts);
       var updated = (news && news.updated) || (vulns && vulns.updated);
       if (updated) $("fresh").textContent = "Data refreshed " + T.ago(updated) + ".";
     }

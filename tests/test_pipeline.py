@@ -259,6 +259,17 @@ class Incidents(unittest.TestCase):
         self.assertEqual((v["n1"]["status"], v["n1"]["type"], v["n1"]["summary"]), ("reported", "Cyberattack", "x"))
         self.assertEqual(bd.classify_ai([item], fetch_json=lambda prompt: "not json"), {})
 
+    def test_ai_lessons_are_cleaned_and_stored(self):
+        item = self.news(1, "Hooli hit by cyberattack", 3)
+        reply = json.dumps([{"n": 1, "is_incident": True, "organisation": "Hooli", "type": "Ransomware", "sector": "Technology",
+                             "status": "reported", "summary": "s", "lessons": ["Patch VPNs.", "", 7, "Second.", "Third."]}])
+        v = bd.classify_ai([item], fetch_json=lambda prompt: reply)
+        self.assertEqual(v["n1"]["lessons"], ["Patch VPNs.", "Second."])
+        out = bd.merge_incidents({}, [item], [], ai=lambda items: v)
+        self.assertEqual(out["incidents"][0]["lessons"], ["Patch VPNs.", "Second."])
+        plain = bd.merge_incidents({}, [self.news(2, "Globex confirms data breach", 3)], [], ai=lambda items: {})
+        self.assertNotIn("lessons", plain["incidents"][0], "no placeholder lessons are stored; the page supplies general advice")
+
     def test_ai_falls_through_providers(self):
         item = self.news(1, "Hooli hit by cyberattack", 3)
         reply = json.dumps([{"n": 1, "is_incident": True, "organisation": "Hooli", "type": "Ransomware",

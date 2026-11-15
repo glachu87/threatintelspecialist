@@ -13,10 +13,29 @@
       "first_reported": "2025-04-22T00:00:00Z",
       "last_reported": "2025-05-13T00:00:00Z",
       "sources": [
-        {"name": "Marks & Spencer", "title": "Cyber update for customers", "link": "https://corporate.marksandspencer.com/cyber-update"},
-        {"name": "The Record", "title": "British retailer M&S confirms being hit by 'cyber incident' amid store delays", "link": "https://therecord.media/british-retailer-MS-confirms-cyber-incident-store-delays", "published": "2025-04-22T00:00:00Z"}
+        {
+          "name": "Marks & Spencer",
+          "title": "Cyber update for customers",
+          "link": "https://corporate.marksandspencer.com/cyber-update"
+        },
+        {
+          "name": "The Record",
+          "title": "British retailer M&S confirms being hit by 'cyber incident' amid store delays",
+          "link": "https://therecord.media/british-retailer-MS-confirms-cyber-incident-store-delays",
+          "published": "2025-04-22T00:00:00Z"
+        }
       ],
-      "history": [{"date": "2025-04-22T00:00:00Z", "status": "confirmed", "note": "Company statement to the London Stock Exchange"}]
+      "history": [
+        {
+          "date": "2025-04-22T00:00:00Z",
+          "status": "confirmed",
+          "note": "Company statement to the London Stock Exchange"
+        }
+      ],
+      "lessons": [
+        "Verify a caller's identity before any help-desk password or sign-in reset, including requests that come through suppliers.",
+        "Plan how to keep selling and fulfilling orders by hand if core systems must be switched off."
+      ]
     },
     {
       "id": "INC-CHANGE-2024",
@@ -31,9 +50,23 @@
       "first_reported": "2024-02-21T00:00:00Z",
       "last_reported": "2025-02-27T00:00:00Z",
       "sources": [
-        {"name": "UnitedHealth Group", "title": "Annual report (Form 10-K) for 2024, section on the Change Healthcare cyberattack", "link": "https://www.sec.gov/Archives/edgar/data/731766/000073176625000063/unh-20241231.htm"}
+        {
+          "name": "UnitedHealth Group",
+          "title": "Annual report (Form 10-K) for 2024, section on the Change Healthcare cyberattack",
+          "link": "https://www.sec.gov/Archives/edgar/data/731766/000073176625000063/unh-20241231.htm"
+        }
       ],
-      "history": [{"date": "2024-02-22T00:00:00Z", "status": "confirmed", "note": "Disclosed in a filing with the US Securities and Exchange Commission"}]
+      "history": [
+        {
+          "date": "2024-02-22T00:00:00Z",
+          "status": "confirmed",
+          "note": "Disclosed in a filing with the US Securities and Exchange Commission"
+        }
+      ],
+      "lessons": [
+        "Require multi-factor sign-in on every remote-access portal, with no exceptions for older systems.",
+        "If many others depend on your service, plan and test how they will cope while it is down."
+      ]
     },
     {
       "id": "INC-COLONIAL-2021",
@@ -48,10 +81,29 @@
       "first_reported": "2021-05-08T00:00:00Z",
       "last_reported": "2021-05-11T00:00:00Z",
       "sources": [
-        {"name": "FBI", "title": "FBI statement on compromise of Colonial Pipeline networks", "link": "https://www.fbi.gov/news/pressrel/press-releases/fbi-statement-on-compromise-of-colonial-pipeline-networks"},
-        {"name": "US Congressional Research Service", "title": "Colonial Pipeline: The DarkSide Strikes", "link": "https://www.congress.gov/crs_external_products/IN/PDF/IN11667/IN11667.2.pdf", "published": "2021-05-11T00:00:00Z"}
+        {
+          "name": "FBI",
+          "title": "FBI statement on compromise of Colonial Pipeline networks",
+          "link": "https://www.fbi.gov/news/pressrel/press-releases/fbi-statement-on-compromise-of-colonial-pipeline-networks"
+        },
+        {
+          "name": "US Congressional Research Service",
+          "title": "Colonial Pipeline: The DarkSide Strikes",
+          "link": "https://www.congress.gov/crs_external_products/IN/PDF/IN11667/IN11667.2.pdf",
+          "published": "2021-05-11T00:00:00Z"
+        }
       ],
-      "history": [{"date": "2021-05-08T00:00:00Z", "status": "confirmed", "note": "Company announcement"}]
+      "history": [
+        {
+          "date": "2021-05-08T00:00:00Z",
+          "status": "confirmed",
+          "note": "Company announcement"
+        }
+      ],
+      "lessons": [
+        "Close unused accounts and require multi-factor sign-in on VPN access.",
+        "Separate business IT from operational systems so that losing one does not force the other to stop."
+      ]
     }
   ]
 }

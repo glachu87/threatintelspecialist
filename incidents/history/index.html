@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incident history, trends and lessons — Threat Intel Specialist</title>
+<meta name="description" content="A running record of cybersecurity incidents: organisation, industry, dates reported and confirmed, summary, sources and lessons, with trend charts.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.threatintelspecialist.com/incidents/history/">
+<meta property="og:title" content="Incident history, trends and lessons — Threat Intel Specialist">
+<meta property="og:description" content="A running record of cybersecurity incidents: organisation, industry, dates reported and confirmed, summary, sources and lessons, with trend charts.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.threatintelspecialist.com/incidents/history/">
+<link rel="icon" href="/images/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body data-page="history">
+<a class="skip" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<div class="wrap">
+  <header class="page-head">
+    <h1>Incident history</h1>
+    <p>The full record of incidents this site has tracked: who was affected, when it was reported and confirmed, the industry, what happened, the sources and the lessons. New reports are added automatically. <span id="updated"></span></p>
+  </header>
+  <form class="filters" role="search" id="filters">
+    <label>Period <select id="period"><option value="">All time</option></select></label>
+    <label>Evidence <select id="status">
+      <option value="">All</option><option value="confirmed">Confirmed</option><option value="corroborated">Corroborated</option>
+      <option value="reported">Reported</option><option value="claimed">Claimed</option><option value="disputed">Disputed</option>
+    </select></label>
+    <label>Industry <select id="sector"><option value="">All industries</option></select></label>
+    <label>Type <select id="type"><option value="">All types</option></select></label>
+    <label class="grow">Search <input type="search" id="q" placeholder="An organisation, attacker or keyword" autocomplete="off"></label>
+  </form>
+  <p class="note">The filters apply to the figures, the charts and the list.</p>
+
+  <section aria-label="Summary figures">
+    <div class="tiles" id="tiles"></div>
+    <div class="split" id="split" role="img"></div>
+  </section>
+
+  <div class="panels">
+    <section class="panel wide">
+      <h2 id="timeline-title">Incidents first reported</h2>
+      <ul class="legend">
+        <li><span class="swatch confirmed"></span>Confirmed</li>
+        <li><span class="swatch reported"></span>Reported, including corroborated</li>
+        <li><span class="swatch claimed"></span>Claimed, including disputed</li>
+      </ul>
+      <div class="chart"><div class="tip" id="tip" hidden></div><div id="timeline"></div></div>
+      <details class="as-table"><summary>Show these figures as a table</summary><table id="timeline-table"></table></details>
+    </section>
+    <section class="panel"><h2>By type of incident</h2><ul class="hbars" id="by-type"></ul><p class="note" id="by-type-note"></p></section>
+    <section class="panel"><h2>Industries affected most</h2><ul class="hbars" id="by-sector"></ul><p class="note" id="by-sector-note"></p></section>
+    <section class="panel wide"><h2>Attackers named most often</h2><ul class="hbars two" id="by-actor"></ul>
+      <p class="note">Most of these are the attackers' own claims or attributions by others, not proof. <span id="by-actor-note"></span></p></section>
+  </div>
+  <p class="note">Read the trends with care. Most entries are unverified claims taken from ransomware leak-site trackers, coverage before 2025 is thin, and the count reflects the sources this site reads, not every incident worldwide. <a href="/blog/confirmed-or-unconfirmed/">How incidents are found and labelled</a>.</p>
+
+  <div class="list-head">
+    <div><h2>All incidents</h2><p class="count" id="count" aria-live="polite"></p></div>
+    <button class="btn quiet" id="csv" type="button">Download this list with lessons (CSV)</button>
+  </div>
+  <div class="list"><div class="rows" id="list"><p class="empty">Loading incident history…</p></div></div>
+  <p class="more"><button class="btn quiet" id="more" type="button" hidden>Show more incidents</button></p>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<noscript><p class="wrap">This site needs JavaScript to load its live data and menu.</p></noscript>
+<script src="/assets/site.js"></script>
+<script src="/assets/history.js"></script>
+</body>
+</html>
