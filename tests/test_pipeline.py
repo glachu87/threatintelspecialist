@@ -90,6 +90,20 @@ class Classification(unittest.TestCase):
             self.assertEqual(self.label(title)["status"], status, title)
         self.assertIsNone(self.label("New Android malware steals banking credentials via accessibility abuse"))
 
+    def test_live_run_regressions(self):
+        for title in ["White House AI Task Force Urges Leniency on Cyberattack Penalties",
+                      "In Other News: New CISA Director Nominee, Connected Car Hacking, Baker Tilly Data Breach",
+                      "Microsoft Cloud Outage Hits Outlook, Teams, Copilot and AI Services",
+                      "Who Runs the Ransomware Group Qilin?",
+                      "Operation Endgame Takes Down Gootloader Servers, Seizes 6.4M Stolen Logins",
+                      "New Model Beats Rival in Multi-Stage Cyberattack Benchmark"]:
+            self.assertIsNone(self.label(title), title)
+        for title in ["City of Osaka warns of data breach impacting 1 million",
+                      "Railway Says Stolen Customer AI Keys Led to $740,000 in Unauthorized Charges",
+                      "Shipping giant Maersk probes 'IT security incident,' data theft"]:
+            self.assertEqual(self.label(title)["status"], "confirmed", title)
+        self.assertEqual(bd.extract_org("Uber Data Breach: Driver Licenses Stolen via Fireworks AI"), "Uber")
+
     def test_org_extraction_ignores_generic_subjects(self):
         self.assertIsNone(bd.extract_org("Hackers breach 20 banks in a week"))
         self.assertEqual(bd.extract_org("Ransomware attack on Wayne Enterprises halts production"), "Wayne Enterprises")
@@ -118,6 +132,32 @@ class Incidents(unittest.TestCase):
 
         again = bd.merge_incidents(out, second, [], ai=lambda items: {})
         self.assertEqual(len(again["incidents"][0]["sources"]), 2, "re-running must not duplicate sources")
+
+    def test_related_headlines_group(self):
+        items = [self.news(1, "Vanderbilt University reels following ransomware attack claimed by BYOD group", 9),
+                 self.news(2, "Ransomware threat blares from Vanderbilt University computers during cyberattack", 3)]
+        out = bd.merge_incidents({}, items, [], ai=lambda items: {})
+        self.assertEqual(len(out["incidents"]), 1)
+
+    def test_articles_wait_for_ai_when_it_is_down(self):
+        import os
+        os.environ["GEMINI_API_KEY"] = "x"
+        real = bd.classify_ai
+        try:
+            bd.classify_ai = lambda items: {}
+            items = [self.news(1, "Hooli confirms data breach", 1), self.news(2, "Initech confirms data breach", 9)]
+            out = bd.merge_incidents({}, items, [], ai=bd.classify_ai)
+            self.assertEqual([i["organisation"] for i in out["incidents"]], ["Initech"], "only the old article falls back to rules")
+            self.assertNotIn("n1", out["scanned"])
+        finally:
+            bd.classify_ai = real
+            del os.environ["GEMINI_API_KEY"]
+
+    def test_rule_change_rebuilds_automatic_entries(self):
+        old = {"rules_version": 1, "scanned": ["n1"], "incidents": [{"id": "INC-OLD", "title": "stale", "sources": [], "last_reported": ""}]}
+        out = bd.merge_incidents(old, [self.news(1, "Hooli confirms data breach", 2)], [], ai=lambda items: {})
+        self.assertEqual([i["organisation"] for i in out["incidents"]], ["Hooli"])
+        self.assertEqual(out["rules_version"], bd.RULES_VERSION)
 
     def test_confirmed_never_downgrades(self):
         items = [self.news(1, "Globex confirms data breach affecting 3M customers", 20),

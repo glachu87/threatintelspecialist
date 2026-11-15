@@ -138,7 +138,8 @@ def http_get(url: str, headers: dict | None = None, timeout: int = 40, retries: 
         except Exception as exc:  # noqa: BLE001 - any failure means "try again, then give up"
             last = exc
             if attempt < retries:
-                time.sleep(3 * (attempt + 1))
+                busy = isinstance(exc, urllib.error.HTTPError) and exc.code in (429, 500, 502, 503, 504)
+                time.sleep((12 if busy else 3) * (attempt + 1))
     raise RuntimeError(f"{url}: {last}")
 
 
@@ -360,7 +361,7 @@ def fetch_nvd(fetch=http_get) -> list[dict]:
             })
             if n or start_index:
                 time.sleep(pause)
-            doc = json.loads(fetch(f"{NVD_URL}?{qs}", headers=headers, timeout=90))
+            doc = json.loads(fetch(f"{NVD_URL}?{qs}", headers=headers, timeout=90, retries=4))
             for item in parse_nvd(doc):
                 found.setdefault(item["cve"], item)
             start_index += doc.get("resultsPerPage", 0) or 2000
@@ -429,17 +430,22 @@ def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get) -> dic
 # claims, anonymous sourcing, or a press report with no statement yet.
 # Status is only ever upgraded automatically (unconfirmed → confirmed).
 
+# Bump this when the rules below change in a way that should re-label existing entries.
+RULES_VERSION = 2
+
 EVENT_RE = re.compile(
     r"\b(ransomware (attack|incident|gang|group)|cyber ?-?attack|cyber incident|security incident|data breach|"
     r"breach(ed|es)?|hacked|hack of|hackers? (stole|steal|breach|hit|leak|access)|data (leak|theft)|leak(ed|s)?|"
-    r"stolen|stole|extort(s|ed|ion)?|ddos attack|outage|hit by|suffers?|suffered|compromised?|defaced|"
+    r"stolen|stole|extort(s|ed|ion)?|ddos attack|hit by|suffers?|suffered|compromised?|defaced|"
     r"intrusion|unauthori[sz]ed access|data exposed|exposes? (data|records|customer)|"
     r"(confirms?|discloses?|investigat\w+|reports?|notif\w+) .{0,40}(attack|breach|incident|hack|intrusion))\b", re.I)
 
 NOT_INCIDENT_RE = re.compile(
     r"\b(patch tuesday|how to|webinar|week in review|weekly (recap|roundup)|podcast|survey|study (finds|shows)|"
     r"report (finds|shows|reveals)|guide|tips|best practices|opinion|what is|explained|roundup|newsletter|"
-    r"lessons|trends|predictions|top \d+|sponsored|interview|q&a|why |year in review|quarterly|annual report)\b", re.I)
+    r"lessons|trends|predictions|top \d+|sponsored|interview|q&a|why |year in review|quarterly|annual report|"
+    r"in other news|resource:|benchmark|what happened|what the law|urges?|push(es)? (for|emergency)|funding|"
+    r"penalt(y|ies)|bill|legislation|takes? down|dismantl\w+|seiz(es|ed|ure)|takedown|who (runs|is)|registry)\b|\?\s*$", re.I)
 
 VULN_STORY_RE = re.compile(r"\b(vulnerabilit(y|ies)|flaws?|bugs?|zero-day|0-day|patch(es|ed)?|cve-\d{4}-\d+|exploit(ed|s|ation)?)\b", re.I)
 TOOL_STORY_RE = re.compile(r"\b(malware|trojan|infostealer|stealer|botnet|campaign|technique|variant|spyware|toolkit|phishing kit)\b", re.I)
@@ -447,7 +453,7 @@ VICTIM_EVENT_RE = re.compile(r"\b(data breach|breached|ransomware attack|cyber ?
 
 CONFIRMED_RE = re.compile(
     r"\b(confirm(s|ed)|disclos(es|ed|ure)|admit(s|ted)|acknowledg(es|ed)|notif(ies|ying|ied)|announc(es|ed)|"
-    r"says (it|its|hackers|attackers|data|customer|a |an |the |cyber ?-?attack|ransomware|breach|hack\w*|incident)|warns (customers|users|clients|patients|employees)|"
+    r"says|warns|probes?|investigat(es|ing)|"
     r"reveals|reports (a |data |security )?(breach|incident|attack)|8-k|sec filing|filing with|apologi[sz]es|"
     r"statement|restor(es|ing|ed)|restart(s|ed|ing)?|resum(es|ed|ing)|recover(s|ing|ed) from|shuts? down (systems|network|it)|takes? systems offline|"
     r"pleads? guilty|sentenced|charged|arrest(s|ed)?|sanction(s|ed)|fined|settle(s|d|ment))\b", re.I)
@@ -496,7 +502,7 @@ _SECTOR_RES = [(n, re.compile(rx, re.I)) for n, rx in SECTOR_RULES]
 _ORG_WORD = r"[A-Z0-9][\w&.'’\-]*"
 ORG_LEAD_RE = re.compile(
     rf"^(?P<org>{_ORG_WORD}(?:\s+(?:{_ORG_WORD}|of|and|the|de|for|&)){{0,5}}?)\s+"
-    r"(?:confirms?|discloses?|says|warns|hit by|suffers?|reports?|investigat\w+|notif\w+|admits?|breach(?:ed)?|"
+    r"(?i:confirms?|discloses?|says|warns|probes?|hit by|suffers?|reports?|investigat\w+|notif\w+|admits?|breach(?:ed)?|"
     r"data breach|hacked|ransomware attack|cyber ?attack|shuts?|restores?|takes|blames|denies|fined|to pay|agrees|"
     r"reveals|acknowledges|faces|data leak|outage|customers?|attack)\b")
 ORG_TAIL_RE = re.compile(
@@ -513,6 +519,12 @@ ORG_STOP = {
 STOPWORDS = set("the a an and or of to in on for with by from at as is are was were be been after over its it into "
                 "that this says say said new via amid about against up out how why what more than has have had "
                 "attack attacks breach data cyber cyberattack hackers hacker hack security incident".split())
+
+
+WEAK_WORDS = set("ransomware university hospital group million billion thousands customers customer records stolen "
+                 "confirms confirmed company systems personal information says claims claimed gang outage services "
+                 "service users employees patients online disrupted disrupts leak leaked theft network city school "
+                 "bank government health police major global massive following during".split())
 
 
 def extract_org(title: str) -> str | None:
@@ -609,10 +621,10 @@ def classify_ai(items: list[dict], fetch_json=None) -> dict[str, dict]:
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key and fetch_json is None:
         return {}
-    model = os.environ.get("GEMINI_MODEL", "").strip() or "gemini-flash-latest"
+    models = [os.environ.get("GEMINI_MODEL", "").strip() or "gemini-flash-latest", "gemini-flash-lite-latest"]
     verdicts: dict[str, dict] = {}
 
-    def call(prompt: str) -> str:
+    def call_model(model: str, prompt: str) -> str:
         body = json.dumps({
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json"},
@@ -623,6 +635,19 @@ def classify_ai(items: list[dict], fetch_json=None) -> dict[str, dict]:
         with urllib.request.urlopen(req, timeout=90) as resp:
             doc = json.loads(resp.read())
         return doc["candidates"][0]["content"]["parts"][0]["text"]
+
+    def call(prompt: str) -> str:
+        last = None
+        for model in dict.fromkeys(models):
+            for attempt in range(3):
+                try:
+                    return call_model(model, prompt)
+                except urllib.error.HTTPError as exc:
+                    last = exc
+                    if exc.code not in (429, 500, 502, 503, 504):
+                        break
+                    time.sleep(8 * (attempt + 1))
+        raise last
 
     call = fetch_json or call
     for start in range(0, len(items), 15):
@@ -672,11 +697,19 @@ def same_incident(a: dict, title: str, org: str | None, when: datetime) -> bool:
     ta, tb = title_tokens(a["title"]), title_tokens(title)
     if not ta or not tb:
         return False
-    return len(ta & tb) / len(ta | tb) >= 0.5
+    shared = len(ta & tb)
+    if shared / len(ta | tb) >= 0.5:
+        return True
+    # looser match for differently worded reports: several shared words, one of them distinctive
+    distinctive = (ta & tb) - WEAK_WORDS
+    return abs((when - last).days) <= 10 and shared >= 3 and bool(distinctive) and shared / min(len(ta), len(tb)) >= 0.4
 
 
 def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict], ai=classify_ai) -> dict:
     now = now_utc()
+    if previous.get("rules_version") != RULES_VERSION:
+        # The labelling rules changed: rebuild automatic entries from the news we still hold.
+        previous = {}
     incidents = [i for i in previous.get("incidents", []) if not i.get("curated")]
     scanned = list(previous.get("scanned", []))
     seen = set(scanned)
@@ -686,10 +719,15 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
     fresh.sort(key=lambda n: n["published"])
     candidates = [n for n in fresh if EVENT_RE.search(n["title"]) and not NOT_INCIDENT_RE.search(n["title"])]
     verdicts = ai(candidates) if candidates else {}
+    ai_expected = ai is classify_ai and bool(os.environ.get("GEMINI_API_KEY", "").strip())
+    deferred: set[str] = set()
 
     added = upgraded = 0
     for item in candidates:
         verdict = verdicts.get(item["id"])
+        if verdict is None and ai_expected and (now - (parse_date(item["published"]) or now)) < timedelta(hours=6):
+            deferred.add(item["id"])
+            continue
         if verdict is not None:
             if not verdict["is_incident"]:
                 continue
@@ -731,7 +769,8 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
         added += 1
 
     for n in fresh:
-        scanned.append(n["id"])
+        if n["id"] not in deferred:
+            scanned.append(n["id"])
     scanned = scanned[-4000:]
 
     curated_ids = set()
@@ -753,6 +792,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
     incidents.sort(key=lambda i: i.get("last_reported") or "", reverse=True)
     return {
         "updated": iso(now),
+        "rules_version": RULES_VERSION,
         "new_in_last_scan": added,
         "upgraded_in_last_scan": upgraded,
         "ai_assisted": any(i.get("ai") for i in incidents),
