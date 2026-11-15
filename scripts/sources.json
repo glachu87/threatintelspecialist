@@ -1,27 +1,110 @@
 {
-  "_comment": "Feeds read by scripts/build_data.py. kind: news (press), research (vendor/researcher), official (government/CERT), claim (threat-actor leak-site aggregator; never treated as confirmation). All kinds may contribute incident evidence. Add or remove a line to change coverage.",
+  "_comment": "RSS/Atom feeds read by scripts/build_data.py. kind: news (press), research (vendor/researcher), official (government/CERT). Ransomware.live is ingested separately through its JSON API so claims and reported cyberattacks can be handled correctly.",
   "feeds": [
-    {"name": "BleepingComputer", "url": "https://www.bleepingcomputer.com/feed/", "kind": "news"},
-    {"name": "The Hacker News", "url": "https://feeds.feedburner.com/TheHackersNews", "kind": "news"},
-    {"name": "The Record", "url": "https://therecord.media/feed", "kind": "news"},
-    {"name": "SecurityWeek", "url": "https://www.securityweek.com/feed/", "kind": "news"},
-    {"name": "Dark Reading", "url": "https://www.darkreading.com/rss.xml", "kind": "news"},
-    {"name": "Krebs on Security", "url": "https://krebsonsecurity.com/feed/", "kind": "news"},
-    {"name": "Help Net Security", "url": "https://www.helpnetsecurity.com/feed/", "kind": "news"},
-    {"name": "CyberScoop", "url": "https://cyberscoop.com/feed/", "kind": "news"},
-    {"name": "Security Affairs", "url": "https://securityaffairs.com/feed", "kind": "news"},
-    {"name": "The Register", "url": "https://www.theregister.com/security/headlines.atom", "kind": "news"},
-    {"name": "Ars Technica", "url": "https://arstechnica.com/security/feed/", "kind": "news"},
-    {"name": "DataBreaches.net", "url": "https://databreaches.net/feed/", "kind": "news"},
-    {"name": "Google Threat Intelligence", "url": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v", "kind": "research"},
-    {"name": "Unit 42", "url": "https://unit42.paloaltonetworks.com/feed/", "kind": "research"},
-    {"name": "Cisco Talos", "url": "https://blog.talosintelligence.com/rss/", "kind": "research"},
-    {"name": "Microsoft Security", "url": "https://www.microsoft.com/en-us/security/blog/feed/", "kind": "research"},
-    {"name": "VirusTotal", "url": "https://blog.virustotal.com/feeds/posts/default", "kind": "research"},
-    {"name": "Schneier on Security", "url": "https://www.schneier.com/feed/atom/", "kind": "research"},
-    {"name": "CISA", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml", "kind": "official"},
-    {"name": "UK NCSC", "url": "https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml", "kind": "official"},
-    {"name": "FBI National Press Releases", "url": "https://www.fbi.gov/feeds/national-press-releases/rss.xml", "kind": "official"},
-    {"name": "Ransomware.live", "url": "https://api.ransomware.live/feed", "kind": "claim"}
+    {
+      "name": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "The Hacker News",
+      "url": "https://feeds.feedburner.com/TheHackersNews",
+      "kind": "news"
+    },
+    {
+      "name": "The Record",
+      "url": "https://therecord.media/feed",
+      "kind": "news"
+    },
+    {
+      "name": "SecurityWeek",
+      "url": "https://www.securityweek.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "Dark Reading",
+      "url": "https://www.darkreading.com/rss.xml",
+      "kind": "news"
+    },
+    {
+      "name": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "Help Net Security",
+      "url": "https://www.helpnetsecurity.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "CyberScoop",
+      "url": "https://cyberscoop.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "Security Affairs",
+      "url": "https://securityaffairs.com/feed",
+      "kind": "news"
+    },
+    {
+      "name": "The Register",
+      "url": "https://www.theregister.com/security/headlines.atom",
+      "kind": "news"
+    },
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/security/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "DataBreaches.net",
+      "url": "https://databreaches.net/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "Google Threat Intelligence",
+      "url": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
+      "kind": "research"
+    },
+    {
+      "name": "Unit 42",
+      "url": "https://unit42.paloaltonetworks.com/feed/",
+      "kind": "research"
+    },
+    {
+      "name": "Cisco Talos",
+      "url": "https://blog.talosintelligence.com/rss/",
+      "kind": "research"
+    },
+    {
+      "name": "Microsoft Security",
+      "url": "https://www.microsoft.com/en-us/security/blog/feed/",
+      "kind": "research"
+    },
+    {
+      "name": "VirusTotal",
+      "url": "https://blog.virustotal.com/feeds/posts/default",
+      "kind": "research"
+    },
+    {
+      "name": "Schneier on Security",
+      "url": "https://www.schneier.com/feed/atom/",
+      "kind": "research"
+    },
+    {
+      "name": "CISA",
+      "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "kind": "official"
+    },
+    {
+      "name": "UK NCSC",
+      "url": "https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml",
+      "kind": "official"
+    },
+    {
+      "name": "FBI National Press Releases",
+      "url": "https://www.fbi.gov/feeds/national-press-releases/rss.xml",
+      "kind": "official"
+    }
   ]
 }
