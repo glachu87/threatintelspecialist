@@ -1,12 +1,12 @@
 name: Update site data
 
-# Refreshes news, vulnerabilities and incidents every hour, and rebuilds the
+# Refreshes news, vulnerabilities and incidents every 30 minutes, and rebuilds the
 # blog whenever a post or script changes. Commits the results to this branch;
 # GitHub Pages then publishes them.
 
 on:
   schedule:
-    - cron: "7 * * * *"
+    - cron: "7,37 * * * *"
   workflow_dispatch:
   push:
     branches: [main]

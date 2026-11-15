@@ -1,5 +1,5 @@
 {
-  "_comment": "Hand-written incident entries and corrections. An entry here always wins over the automatic tracker. To correct an automatic entry, copy its id from data/incidents.json and add an entry with the same id. status must be confirmed or unconfirmed. Dates are YYYY-MM-DDT00:00:00Z.",
+  "_comment": "Hand-written incident entries and corrections. An entry here always wins over the automatic tracker. To correct an automatic entry, copy its id from data/incidents.json and add an entry with the same id. status may be confirmed, corroborated, reported, claimed or disputed. Dates are YYYY-MM-DDT00:00:00Z.",
   "incidents": [
     {
       "id": "INC-MS-2025",

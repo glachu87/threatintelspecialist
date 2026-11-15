@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cybersecurity incident tracker: confirmed and unconfirmed — Threat Intel Specialist</title>
-<meta name="description" content="Ongoing and past cyberattacks, breaches and ransomware incidents, each marked confirmed or unconfirmed with links to the sources. Scanned hourly.">
+<title>Cybersecurity incident tracker: confirmed, reported and claimed — Threat Intel Specialist</title>
+<meta name="description" content="Cyberattacks, breaches and ransomware incidents tracked every 30 minutes with evidence states: confirmed, corroborated, reported, claimed or disputed.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://www.threatintelspecialist.com/incidents/">
-<meta property="og:title" content="Cybersecurity incident tracker: confirmed and unconfirmed — Threat Intel Specialist">
-<meta property="og:description" content="Ongoing and past cyberattacks, breaches and ransomware incidents, each marked confirmed or unconfirmed with links to the sources. Scanned hourly.">
+<meta property="og:title" content="Cybersecurity incident tracker — Threat Intel Specialist">
+<meta property="og:description" content="Public cyber incidents scanned every 30 minutes and separated into confirmed, corroborated, reported, claimed and disputed evidence states.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.threatintelspecialist.com/incidents/">
 <link rel="icon" href="/images/mark.svg" type="image/svg+xml">
@@ -26,18 +26,25 @@
 <div class="wrap">
   <header class="page-head">
     <h1>Incidents</h1>
-    <p>Attacks, breaches and outages reported in the news, ongoing and past. Every entry says whether it is confirmed and links to where it was reported. <span id="updated"></span></p>
+    <p>Attacks, breaches, ransomware and cyber-caused outages gathered from reputable public sources. The agent scans every 30 minutes, separates claims from verified facts, and keeps the evidence trail. <span id="updated"></span></p>
+    <p class="incident-actions"><a href="/data/incidents.csv">Download incident database (CSV)</a> <a href="/blog/confirmed-or-unconfirmed/">How verification works</a></p>
   </header>
   <div class="key">
-    <div><span class="status confirmed">Confirmed</span><p>The affected organisation, a regulator, a court or a government body has acknowledged the incident.</p></div>
-    <div><span class="status unconfirmed">Unconfirmed</span><p>An attacker's claim, an unverified report, or a press story with no official statement yet. It may turn out to be wrong.</p></div>
-    <div><h3>How labels are decided</h3><p>Automatically, from the wording of news reports, so mistakes happen. <a href="/blog/confirmed-or-unconfirmed/">Read how it works</a>.</p></div>
+    <div><span class="status confirmed">Confirmed</span><p>The affected organisation or a competent authority has acknowledged the incident.</p></div>
+    <div><span class="status corroborated">Corroborated</span><p>At least two independent reputable sources report the incident, but official acknowledgement has not been found yet.</p></div>
+    <div><span class="status reported">Reported</span><p>A reputable source reports the incident; official confirmation has not been located yet.</p></div>
+    <div><span class="status claimed">Claimed</span><p>A threat actor or leak site claims an incident. This is an early-warning signal, not proof.</p></div>
+    <div><span class="status disputed">Disputed</span><p>The affected organisation denies or directly challenges the allegation.</p></div>
+    <div><h3>Evidence can change</h3><p>The agent keeps source history, so a claim can move to reported, corroborated or confirmed as better evidence appears.</p></div>
   </div>
   <form class="filters" role="search" id="filters">
-    <div class="seg" id="status" role="group" aria-label="Filter by status">
+    <div class="seg status-seg" id="status" role="group" aria-label="Filter by verification state">
       <button type="button" value="" aria-pressed="true">All</button>
       <button type="button" value="confirmed" aria-pressed="false">Confirmed</button>
-      <button type="button" value="unconfirmed" aria-pressed="false">Unconfirmed</button>
+      <button type="button" value="corroborated" aria-pressed="false">Corroborated</button>
+      <button type="button" value="reported" aria-pressed="false">Reported</button>
+      <button type="button" value="claimed" aria-pressed="false">Claimed</button>
+      <button type="button" value="disputed" aria-pressed="false">Disputed</button>
     </div>
     <label class="grow">Search <input type="search" id="q" placeholder="An organisation, attacker or keyword" autocomplete="off"></label>
     <label>Type <select id="type"><option value="">All types</option></select></label>

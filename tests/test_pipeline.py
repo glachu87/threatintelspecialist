@@ -57,21 +57,22 @@ class Classification(unittest.TestCase):
         r = self.label("Acme Corp confirms ransomware attack disrupted orders")
         self.assertEqual((r["status"], r["type"], r["organisation"]), ("confirmed", "Ransomware", "Acme Corp"))
 
-    def test_attacker_claim_is_unconfirmed(self):
+    def test_attacker_claim_is_claimed(self):
         r = self.label("Hackers claim breach of Globex, company investigating claims")
-        self.assertEqual(r["status"], "unconfirmed")
-        self.assertEqual(r["basis"], bd.BASIS["claim"])
+        self.assertEqual(r["status"], "claimed")
+        self.assertEqual(r["basis"], bd.BASIS["claimed"])
 
     def test_doubt_in_title_beats_confirmation_in_summary(self):
         r = self.label("Initech allegedly breached, 2M records for sale", "The company confirmed it is looking into it.")
-        self.assertEqual(r["status"], "unconfirmed")
+        self.assertEqual(r["status"], "claimed")
 
     def test_denial(self):
-        self.assertEqual(self.label("Umbrella denies data breach after hacker post")["basis"], bd.BASIS["denied"])
+        r = self.label("Umbrella denies data breach after hacker post")
+        self.assertEqual((r["status"], r["basis"]), ("disputed", bd.BASIS["disputed"]))
 
-    def test_no_signal_defaults_to_unconfirmed(self):
+    def test_no_signal_defaults_to_reported(self):
         r = self.label("City of Springfield hit by cyberattack")
-        self.assertEqual((r["status"], r["basis"], r["sector"]), ("unconfirmed", bd.BASIS["press"], "Government"))
+        self.assertEqual((r["status"], r["basis"], r["sector"]), ("reported", bd.BASIS["reported"], "Government"))
 
     def test_non_incidents_rejected(self):
         for title in ["Patch Tuesday fixes 80 flaws", "How to respond to a data breach",
@@ -81,11 +82,11 @@ class Classification(unittest.TestCase):
 
     def test_realistic_headlines(self):
         cases = {"Jaguar Land Rover says cyberattack severely disrupted production": "confirmed",
-                 "Qilin ransomware gang claims attack on Nissan design studio": "unconfirmed",
+                 "Qilin ransomware gang claims attack on Nissan design studio": "claimed",
                  "Police arrest suspect linked to airport check-in system ransomware attack": "confirmed",
                  "Asahi brewery restarts production after ransomware attack": "confirmed",
-                 "Alleged breach of telecom giant: hacker puts 6M records up for sale": "unconfirmed",
-                 "Hackers steal $40 million from crypto exchange in hot wallet hack": "unconfirmed"}
+                 "Alleged breach of telecom giant: hacker puts 6M records up for sale": "claimed",
+                 "Hackers steal $40 million from crypto exchange in hot wallet hack": "reported"}
         for title, status in cases.items():
             self.assertEqual(self.label(title)["status"], status, title)
         self.assertIsNone(self.label("New Android malware steals banking credentials via accessibility abuse"))
@@ -107,6 +108,7 @@ class Classification(unittest.TestCase):
     def test_org_extraction_ignores_generic_subjects(self):
         self.assertIsNone(bd.extract_org("Hackers breach 20 banks in a week"))
         self.assertEqual(bd.extract_org("Ransomware attack on Wayne Enterprises halts production"), "Wayne Enterprises")
+        self.assertEqual(bd.extract_org("Cyberattack at Acme disrupts services"), "Acme")
 
 
 class Incidents(unittest.TestCase):
@@ -118,7 +120,7 @@ class Incidents(unittest.TestCase):
         first = [self.news(1, "Hackers claim breach of Globex, 3M records for sale", 30)]
         out = bd.merge_incidents({}, first, [], ai=lambda items: {})
         self.assertEqual(len(out["incidents"]), 1)
-        self.assertEqual(out["incidents"][0]["status"], "unconfirmed")
+        self.assertEqual(out["incidents"][0]["status"], "claimed")
 
         second = first + [self.news(2, "Globex confirms data breach affecting 3M customers", 2, source="Feed B"),
                           self.news(3, "Vendor blog: tips for breach response", 1, kind="research")]
@@ -127,7 +129,7 @@ class Incidents(unittest.TestCase):
         inc = out["incidents"][0]
         self.assertEqual(inc["status"], "confirmed")
         self.assertEqual(len(inc["sources"]), 2)
-        self.assertEqual([h["status"] for h in inc["history"]], ["unconfirmed", "confirmed"])
+        self.assertEqual([h["status"] for h in inc["history"]], ["claimed", "confirmed"])
         self.assertEqual(out["upgraded_in_last_scan"], 1)
 
         again = bd.merge_incidents(out, second, [], ai=lambda items: {})
@@ -138,6 +140,30 @@ class Incidents(unittest.TestCase):
                  self.news(2, "Ransomware threat blares from Vanderbilt University computers during cyberattack", 3)]
         out = bd.merge_incidents({}, items, [], ai=lambda items: {})
         self.assertEqual(len(out["incidents"]), 1)
+
+    def test_two_independent_reports_become_corroborated(self):
+        items = [self.news(1, "Globex hit by cyberattack disrupting customer portal", 8, source="Feed A"),
+                 self.news(2, "Cyberattack at Globex disrupts customer portal", 2, source="Feed B")]
+        out = bd.merge_incidents({}, items, [], ai=lambda items: {})
+        self.assertEqual(len(out["incidents"]), 1)
+        self.assertEqual(out["incidents"][0]["status"], "corroborated")
+        self.assertEqual(out["incidents"][0]["basis"], bd.BASIS["corroborated"])
+
+    def test_claim_feed_is_early_warning_not_confirmation(self):
+        item = self.news(9, "Acme Manufacturing by DarkCrew", 1, "Listed on the group's leak site.",
+                         kind="claim", source="Ransomware.live")
+        out = bd.merge_incidents({}, [item], [], ai=lambda items: {})
+        self.assertEqual(len(out["incidents"]), 1)
+        inc = out["incidents"][0]
+        self.assertEqual((inc["status"], inc["type"], inc["organisation"], inc["threat_actor"]),
+                         ("claimed", "Ransomware", "Acme Manufacturing", "DarkCrew"))
+
+    def test_research_and_official_sources_can_contribute_incident_evidence(self):
+        items = [self.news(1, "Acme hit by cyberattack disrupting services", 8, kind="research", source="Research Lab"),
+                 self.news(2, "Cyberattack at Acme disrupts services", 2, kind="official", source="National CERT")]
+        out = bd.merge_incidents({}, items, [], ai=lambda items: {})
+        self.assertEqual(len(out["incidents"]), 1)
+        self.assertEqual(out["incidents"][0]["status"], "corroborated")
 
     def test_articles_wait_for_ai_when_it_is_down(self):
         import os
@@ -174,7 +200,7 @@ class Incidents(unittest.TestCase):
                          [("Hooli Inc", "Ransomware", True, "AI summary.")])
 
     def test_rule_change_rebuilds_automatic_entries(self):
-        old = {"rules_version": 1, "scanned": ["n1"], "incidents": [{"id": "INC-OLD", "title": "stale", "sources": [], "last_reported": ""}]}
+        old = {"rules_version": 2, "scanned": ["n1"], "incidents": [{"id": "INC-OLD", "title": "stale", "sources": [], "last_reported": ""}]}
         out = bd.merge_incidents(old, [self.news(1, "Hooli confirms data breach", 2)], [], ai=lambda items: {})
         self.assertEqual([i["organisation"] for i in out["incidents"]], ["Hooli"])
         self.assertEqual(out["rules_version"], bd.RULES_VERSION)
@@ -200,7 +226,7 @@ class Incidents(unittest.TestCase):
         reply = json.dumps([{"n": 1, "is_incident": True, "organisation": "Hooli", "type": "Nonsense",
                              "sector": "Technology", "status": "maybe", "summary": "<b>x</b>"}])
         v = bd.classify_ai([item], fetch_json=lambda prompt: "```json\n" + reply + "\n```")
-        self.assertEqual((v["n1"]["status"], v["n1"]["type"], v["n1"]["summary"]), ("unconfirmed", "Cyberattack", "x"))
+        self.assertEqual((v["n1"]["status"], v["n1"]["type"], v["n1"]["summary"]), ("reported", "Cyberattack", "x"))
         self.assertEqual(bd.classify_ai([item], fetch_json=lambda prompt: "not json"), {})
 
     def test_ai_falls_through_providers(self):

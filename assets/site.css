@@ -1,5 +1,5 @@
 /* Threat Intel Specialist — shared styles.
-   Colour carries meaning here: green = confirmed, amber = unconfirmed, red = being exploited. */
+   Incident states use both text labels and colour; colour is never the only signal. */
 
 :root {
   --bg: #edf1f5;
@@ -9,7 +9,10 @@
   --line: #cbd5e0;
   --link: #1c44c2;
   --confirmed: #0a6b50;
-  --unconfirmed: #9c5600;
+  --corroborated: #176b87;
+  --reported: #51627a;
+  --claimed: #9c5600;
+  --disputed: #b4231a;
   --danger: #b4231a;
   --focus: #1c44c2;
   --display: "Bricolage Grotesque", "Atkinson Hyperlegible Next", system-ui, sans-serif;
@@ -24,7 +27,10 @@
   --line: #2a3d54;
   --link: #93b4ff;
   --confirmed: #4fcfa5;
-  --unconfirmed: #f2b24e;
+  --corroborated: #70c5df;
+  --reported: #b7c2d0;
+  --claimed: #f2b24e;
+  --disputed: #ff8477;
   --danger: #ff8477;
   --focus: #93b4ff;
   color-scheme: dark;
@@ -138,13 +144,22 @@ button { font: inherit; }
 .status::before { content: ""; width: 0.72rem; height: 0.72rem; border-radius: 50%; border: 2.5px solid currentColor; flex: none; }
 .status.confirmed { color: var(--confirmed); }
 .status.confirmed::before { background: currentColor; }
-.status.unconfirmed { color: var(--unconfirmed); }
-.incident { align-items: start; display: grid; grid-template-columns: 8.2rem minmax(0, 1fr); gap: 0.2rem 1rem; }
+.status.corroborated { color: var(--corroborated); }
+.status.corroborated::before { background: currentColor; }
+.status.reported { color: var(--reported); }
+.status.claimed { color: var(--claimed); }
+.status.disputed { color: var(--disputed); }
+.status.disputed::before { border-radius: 2px; }
+.status-seg { max-width: 100%; overflow-x: auto; scrollbar-width: thin; }
+.incident { align-items: start; display: grid; grid-template-columns: 8.7rem minmax(0, 1fr); gap: 0.2rem 1rem; }
 .incident .status { padding-top: 0.15rem; }
 @media (max-width: 34rem) { .incident { grid-template-columns: minmax(0, 1fr); } }
 .sources { margin: 0.5rem 0 0; padding: 0; list-style: none; font-size: 0.95rem; }
 .sources li { margin-top: 0.15rem; }
 .basis { font-size: 0.93rem; color: var(--muted); margin: 0.35rem 0 0; }
+.impact { margin: 0.45rem 0 0; font-size: 0.97rem; }
+.impact strong { font-weight: 700; }
+.incident-actions { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; margin-top: 0.7rem; font-size: 0.95rem; }
 .key { display: grid; gap: 0.75rem 2rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); background: var(--surface);
   border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.25rem; margin-top: 1.25rem; }
 .key p { margin: 0.2rem 0 0; font-size: 0.97rem; }
