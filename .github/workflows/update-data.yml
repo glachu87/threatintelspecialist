@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  models: read   # lets the built-in token use GitHub Models for incident labelling
 
 concurrency:
   group: update-data
@@ -42,6 +43,8 @@ jobs:
 
       - name: Fetch news, vulnerabilities and incidents
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_MODELS_MODEL: ${{ vars.GITHUB_MODELS_MODEL }}
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
