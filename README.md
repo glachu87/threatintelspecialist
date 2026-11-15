@@ -38,16 +38,19 @@ Commit it to `main`. The workflow builds the page within a couple of minutes. Ad
 
 **Refresh now.** Actions tab, "Update site data", "Run workflow".
 
-## Optional secrets
+## AI labelling and optional secrets
 
-Set under Settings, Secrets and variables, Actions. The site works without them.
+Incidents are labelled by an AI model when one is reachable, and by keyword rules when none is. The services are tried in this order:
 
-| Secret | Effect |
-| --- | --- |
-| `NVD_API_KEY` | Faster, more reliable requests to the National Vulnerability Database. |
-| `GEMINI_API_KEY` | Uses Google Gemini to extract the organisation, write a one-line summary and judge confirmed/unconfirmed for each incident. Without it, simpler keyword rules are used. |
+1. **GitHub Models**, using the workflow's built-in token. No key or setup. Free, with daily usage limits.
+2. **Google Gemini**, if the `GEMINI_API_KEY` secret is set.
+3. **Keyword rules** in `scripts/build_data.py`.
 
-The model defaults to `gemini-flash-latest`. To pin another, add a repository variable named `GEMINI_MODEL`.
+Recent entries that were labelled by rules are re-checked once an AI service answers again.
+
+New vulnerabilities come from NVD's "recent" download file. If that fails, the NVD search API is used; the optional `NVD_API_KEY` secret makes that fallback faster.
+
+Optional repository variables (Settings, Secrets and variables, Actions, Variables): `GITHUB_MODELS_MODEL` to pin a GitHub model (for example `openai/gpt-4.1`), `GEMINI_MODEL` to pin a Gemini model.
 
 ## How incidents are labelled
 

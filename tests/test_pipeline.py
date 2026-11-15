@@ -203,6 +203,38 @@ class Incidents(unittest.TestCase):
         self.assertEqual((v["n1"]["status"], v["n1"]["type"], v["n1"]["summary"]), ("unconfirmed", "Cyberattack", "x"))
         self.assertEqual(bd.classify_ai([item], fetch_json=lambda prompt: "not json"), {})
 
+    def test_ai_falls_through_providers(self):
+        item = self.news(1, "Hooli hit by cyberattack", 3)
+        reply = json.dumps([{"n": 1, "is_incident": True, "organisation": "Hooli", "type": "Ransomware",
+                             "sector": "Technology", "status": "confirmed", "summary": "ok"}])
+        tried = []
+        def request(provider, prompt):
+            tried.append(provider["name"])
+            if provider["name"] == "first":
+                raise RuntimeError("503")
+            return reply
+        provs = [{"name": "first", "kind": "github", "model": "m", "key": "k"}, {"name": "second", "kind": "gemini", "model": "m", "key": "k"}]
+        v = bd.classify_ai([item, self.news(2, "Globex hit by cyberattack", 2)] * 6, providers=provs, request=request)
+        self.assertEqual(v["n1"]["status"], "confirmed")
+        self.assertEqual(tried.count("first"), 1, "a failing service is dropped for the rest of the run")
+        self.assertEqual(bd.classify_ai([item], providers=[provs[0]], request=request), {})
+
+    def test_provider_order(self):
+        import os
+        old = {k: os.environ.pop(k, None) for k in ("GITHUB_TOKEN", "GEMINI_API_KEY", "GITHUB_MODELS", "GITHUB_MODELS_MODEL", "GEMINI_MODEL")}
+        try:
+            self.assertEqual(bd.ai_providers(), [])
+            os.environ["GITHUB_TOKEN"] = "t"; os.environ["GEMINI_API_KEY"] = "g"
+            kinds = [p["kind"] for p in bd.ai_providers()]
+            self.assertEqual(kinds[0], "github"); self.assertEqual(kinds[-1], "gemini")
+            os.environ["GITHUB_MODELS"] = "off"
+            self.assertEqual({p["kind"] for p in bd.ai_providers()}, {"gemini"})
+        finally:
+            for k, v in old.items():
+                os.environ.pop(k, None)
+                if v is not None:
+                    os.environ[k] = v
+
     def test_curated_entries_win(self):
         curated = [{"id": "INC-CUR1", "title": "Curated", "status": "confirmed", "first_reported": "2021-05-08T00:00:00Z",
                     "sources": [{"name": "x", "link": "javascript:alert(1)"}, {"name": "y", "link": "https://ok.example"}]}]
@@ -241,6 +273,8 @@ class NewsAndVulns(unittest.TestCase):
         def fetch(url, **kw):
             if "known_exploited" in url:
                 return json.dumps(kev).encode()
+            if "feeds/json" in url:
+                raise RuntimeError("feed down")
             if "nvd.nist" in url:
                 return json.dumps(nvd).encode()
             return json.dumps({"data": [{"cve": "CVE-2026-0001", "epss": "0.91234"}]}).encode()
@@ -257,6 +291,8 @@ class NewsAndVulns(unittest.TestCase):
 
         seen = []
         def picky(url, headers=None, **kw):
+            if "feeds/json" in url:
+                raise RuntimeError("feed down")
             if "nvd.nist" in url:
                 seen.append(url)
                 if headers:
@@ -271,6 +307,19 @@ class NewsAndVulns(unittest.TestCase):
         self.assertEqual(len(again["recent"]["items"]), 1, "falls back to keyless NVD requests")
         self.assertNotIn("Z&", seen[0])
         self.assertRegex(seen[0], r"pubStartDate=\d{4}-\d\d-\d\dT\d\d%3A\d\d%3A\d\d\.000&")
+
+        recent = (bd.now_utc() - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.000")
+        old = (bd.now_utc() - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%S.000")
+        feed = {"vulnerabilities": [dict(nvd["vulnerabilities"][0], cve=dict(nvd["vulnerabilities"][0]["cve"], published=recent)),
+                                    dict(nvd["vulnerabilities"][0], cve=dict(nvd["vulnerabilities"][0]["cve"], id="CVE-2026-0009", published=old))]}
+        calls = []
+        def feed_only(url, **kw):
+            calls.append(url)
+            if "feeds/json" in url:
+                return json.dumps(feed).encode()
+            raise RuntimeError("API must not be called when the feed works")
+        self.assertEqual([i["cve"] for i in bd.fetch_nvd(feed_only)], ["CVE-2026-0001"], "feed is used and filtered to the last week")
+        self.assertEqual(len(calls), 1)
 
         def broken(url, **kw):
             raise RuntimeError("offline")

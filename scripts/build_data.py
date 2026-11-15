@@ -11,8 +11,9 @@ Every source is optional: if one fails, the previous data for it is kept.
 
 Optional environment variables:
     NVD_API_KEY      faster NVD requests
-    GEMINI_API_KEY   better incident extraction (organisation, summary, status)
-    GEMINI_MODEL     defaults to gemini-flash-latest
+    GITHUB_TOKEN     inside GitHub Actions: AI labelling of incidents through GitHub Models
+    GEMINI_API_KEY   second-choice AI service if GitHub Models is unavailable
+    GITHUB_MODELS=off, GITHUB_MODELS_MODEL, GEMINI_MODEL   optional overrides
 
 Run from the repository root:  python scripts/build_data.py
 """
@@ -49,6 +50,9 @@ NVD_MAX_ITEMS = 700
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 NVD_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 EPSS_URL = "https://api.first.org/data/v1/epss"
+NVD_RECENT_FEED = "https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-recent.json.gz"
+GITHUB_MODELS_URL = "https://models.github.ai/inference/chat/completions"
+AI_USED: dict[str, str] = {}
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 
@@ -343,6 +347,21 @@ def parse_nvd(doc: dict) -> list[dict]:
 
 
 def fetch_nvd(fetch=http_get) -> list[dict]:
+    """New high/critical CVEs: NVD's 'recent' download first, the search API if that fails."""
+    try:
+        doc = json.loads(fetch(NVD_RECENT_FEED, timeout=90))
+        if not doc.get("vulnerabilities"):
+            raise ValueError("the feed held no vulnerabilities")
+        since = iso(now_utc() - timedelta(days=NVD_WINDOW_DAYS))
+        items = [i for i in parse_nvd(doc) if i["published"] >= since]
+        items.sort(key=lambda i: (i["published"], i["score"]), reverse=True)
+        return items[:NVD_MAX_ITEMS]
+    except Exception as exc:  # noqa: BLE001
+        print(f"  ! NVD recent feed failed ({truncate(str(exc), 120)}); using the API", file=sys.stderr)
+    return fetch_nvd_api(fetch)
+
+
+def fetch_nvd_api(fetch=http_get) -> list[dict]:
     end = now_utc()
     start = end - timedelta(days=NVD_WINDOW_DAYS)
     key = os.environ.get("NVD_API_KEY", "").strip()
@@ -629,47 +648,69 @@ Articles:
 {articles}"""
 
 
-def classify_ai(items: list[dict], fetch_json=None) -> dict[str, dict]:
-    """Ask Gemini to label candidates. Returns {news_id: verdict}. Empty on any failure."""
+def ai_providers() -> list[dict]:
+    """AI services to try, in order. GitHub Models needs no key inside GitHub Actions."""
+    out = []
+    token = os.environ.get("GITHUB_TOKEN", "").strip()
+    if token and os.environ.get("GITHUB_MODELS", "").strip().lower() != "off":
+        names = os.environ.get("GITHUB_MODELS_MODEL", "").strip()
+        for model in ([names] if names else ["openai/gpt-4.1-mini", "openai/gpt-4.1", "openai/gpt-4o"]):
+            out.append({"name": f"GitHub Models ({model})", "kind": "github", "model": model, "key": token})
     key = os.environ.get("GEMINI_API_KEY", "").strip()
-    if not key and fetch_json is None:
+    if key:
+        for model in dict.fromkeys([os.environ.get("GEMINI_MODEL", "").strip() or "gemini-flash-latest", "gemini-flash-lite-latest"]):
+            out.append({"name": f"Gemini ({model})", "kind": "gemini", "model": model, "key": key})
+    return out
+
+
+def ai_request(provider: dict, prompt: str) -> str:
+    if provider["kind"] == "github":
+        url = GITHUB_MODELS_URL
+        body = {"model": provider["model"], "messages": [{"role": "user", "content": prompt}]}
+        headers = {"Authorization": f"Bearer {provider['key']}", "Accept": "application/vnd.github+json"}
+    else:
+        url = GEMINI_URL.format(model=provider["model"])
+        body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
+                "generationConfig": {"responseMimeType": "application/json"}}
+        headers = {"x-goog-api-key": provider["key"]}
+    req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), method="POST",
+                                 headers={"Content-Type": "application/json", "User-Agent": USER_AGENT, **headers})
+    with urllib.request.urlopen(req, timeout=75) as resp:
+        doc = json.loads(resp.read())
+    if provider["kind"] == "github":
+        return doc["choices"][0]["message"]["content"]
+    return doc["candidates"][0]["content"]["parts"][0]["text"]
+
+
+def classify_ai(items: list[dict], fetch_json=None, providers: list[dict] | None = None, request=ai_request) -> dict[str, dict]:
+    """Ask an AI model to label candidates. Returns {id: verdict}. Empty on any failure."""
+    providers = ai_providers() if providers is None else list(providers)
+    if not providers and fetch_json is None:
         return {}
-    models = [os.environ.get("GEMINI_MODEL", "").strip() or "gemini-flash-latest", "gemini-flash-lite-latest"]
     verdicts: dict[str, dict] = {}
 
-    def call_model(model: str, prompt: str) -> str:
-        body = json.dumps({
-            "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"responseMimeType": "application/json"},
-        }).encode("utf-8")
-        req = urllib.request.Request(
-            GEMINI_URL.format(model=model), data=body, method="POST",
-            headers={"Content-Type": "application/json", "x-goog-api-key": key, "User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=75) as resp:
-            doc = json.loads(resp.read())
-        return doc["candidates"][0]["content"]["parts"][0]["text"]
-
     def call(prompt: str) -> str:
-        last = None
-        for model in dict.fromkeys(models):
-            for attempt in range(2):
-                try:
-                    return call_model(model, prompt)
-                except urllib.error.HTTPError as exc:
-                    last = exc
-                    if exc.code not in (429, 500, 502, 503, 504):
-                        break
-                    time.sleep(8 * (attempt + 1))
-                except Exception as exc:  # noqa: BLE001 - timeouts and dropped connections: try the next model
-                    last = exc
-                    break
+        last: Exception = RuntimeError("no AI service is configured")
+        for provider in list(providers):
+            try:
+                text = request(provider, prompt)
+                if AI_USED.get("provider") != provider["name"]:
+                    AI_USED["provider"] = provider["name"]
+                    print(f"  AI labelling by {provider['name']}")
+                return text
+            except Exception as exc:  # noqa: BLE001 - any failure: drop this service for the run, try the next
+                last = exc
+                providers.remove(provider)
+                print(f"  ! {provider['name']} unavailable: {truncate(str(exc), 120)}", file=sys.stderr)
         raise last
 
     call = fetch_json or call
     deadline = time.monotonic() + AI_TIME_BUDGET
     for start in range(0, len(items), 8):
+        if fetch_json is None and not providers:
+            break
         if time.monotonic() > deadline:
-            print("  ! Gemini time budget used up; the rest waits for the next run", file=sys.stderr)
+            print("  ! AI time budget used up; the rest waits for the next run", file=sys.stderr)
             break
         batch = items[start:start + 8]
         articles = "\n\n".join(
@@ -698,8 +739,8 @@ def classify_ai(items: list[dict], fetch_json=None) -> dict[str, dict]:
                     "ai": True,
                 }
         except Exception as exc:  # noqa: BLE001
-            print(f"  ! Gemini batch skipped: {truncate(str(exc), 200)}", file=sys.stderr)
-        if fetch_json is None:
+            print(f"  ! AI batch skipped: {truncate(str(exc), 200)}", file=sys.stderr)
+        if fetch_json is None and request is ai_request:
             time.sleep(4)
     return verdicts
 
@@ -765,7 +806,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
     fresh.sort(key=lambda n: n["published"])
     candidates = [n for n in fresh if EVENT_RE.search(n["title"]) and not NOT_INCIDENT_RE.search(n["title"])]
     verdicts = ai(candidates) if candidates else {}
-    ai_expected = ai is classify_ai and bool(os.environ.get("GEMINI_API_KEY", "").strip())
+    ai_expected = ai is classify_ai and bool(ai_providers())
     deferred: set[str] = set()
 
     added = upgraded = 0
@@ -876,7 +917,8 @@ def main() -> int:
     print(f"  {len(incidents['incidents'])} incidents ({incidents['new_in_last_scan']} new, "
           f"{incidents['upgraded_in_last_scan']} newly confirmed)")
 
-    status["ai_enabled"] = bool(os.environ.get("GEMINI_API_KEY", "").strip())
+    status["ai_enabled"] = bool(AI_USED.get("provider"))
+    status["ai_provider"] = AI_USED.get("provider", "")
     save_json(os.path.join(DATA, "status.json"), status)
 
     feeds_ok = sum(1 for f in status["feeds"] if f.get("ok"))
