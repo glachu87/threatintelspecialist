@@ -355,7 +355,10 @@ button { font: inherit; }
 @media (min-width: 50rem) { .hbars.two { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; } }
 
 /* ── vulnerability trends ── */
-.chart-label { font: 500 0.95rem var(--body); color: var(--muted); margin: 1rem 0 0.2rem; letter-spacing: 0; }
 .hbars li:has(.hbar-label.wide) { grid-template-columns: minmax(9rem, 42%) minmax(0, 1fr) 5.2rem; }
 .hbar-label.wide { white-space: normal; }
 #trends .panels { margin-top: 0.5rem; }
+.bar-ransom, .swatch.ransom { background: var(--chart-claimed); fill: var(--chart-claimed); }
+.bar-other, .swatch.other { background: var(--chart-reported); fill: var(--chart-reported); }
+.flag.warn { color: var(--claimed); }
+#ins-due > li { padding-block: 0.6rem; }

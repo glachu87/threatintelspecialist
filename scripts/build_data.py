@@ -65,8 +65,6 @@ EPSS_URL = "https://api.first.org/data/v1/epss"
 EU_KEV_URL = "https://raw.githubusercontent.com/enisaeu/CNW/refs/heads/main/advisories/eukev/eukev.json"
 CVE_RECORD_URL = "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/{year}/{bucket}xxx/{cve}.json"
 CVE_DATES_PER_RUN = 250     # publication dates looked up per run until the cache is complete
-TREND_WEEKS = 26
-WEEK_COUNTS_PER_RUN = 6     # weekly totals asked of NVD per run until the cache is complete
 NVD_RECENT_FEED = "https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-recent.json.gz"
 GITHUB_MODELS_URL = "https://models.github.ai/inference/chat/completions"
 AI_USED: dict[str, str] = {}
@@ -591,14 +589,16 @@ def fetch_nvd_api(fetch=http_get) -> list[dict]:
     return items[:NVD_MAX_ITEMS]
 
 
-def fetch_epss(cves: list[str], fetch=http_get) -> dict[str, float]:
+def fetch_epss(cves: list[str], fetch=http_get) -> dict[str, tuple[float, float | None]]:
+    """EPSS score and percentile (where the score ranks among all CVEs) for each CVE."""
     scores = {}
     for i in range(0, len(cves), 100):
         batch = ",".join(cves[i:i + 100])
         doc = json.loads(fetch(f"{EPSS_URL}?cve={batch}", timeout=40))
         for row in doc.get("data", []):
             try:
-                scores[row["cve"]] = round(float(row["epss"]), 4)
+                pct = row.get("percentile")
+                scores[row["cve"]] = (round(float(row["epss"]), 4), round(float(pct), 4) if pct not in (None, "") else None)
             except (KeyError, TypeError, ValueError):
                 continue
     return scores
@@ -634,6 +634,7 @@ def merge_eu_kev(kev: dict, eu: dict[str, dict]) -> None:
     items = list(known.values())
     for item in items:
         item["catalogs"] = ["CISA"]
+        item["added"] = item.setdefault("cisa_added", item["added"])   # undo an earlier merge before redoing it
         for key in ("eu_reported", "eu_patched"):
             item.pop(key, None)
     for cve, e in eu.items():
@@ -682,49 +683,11 @@ def add_publication_dates(kev: dict, cache: dict[str, str], fetch=http_get, limi
     return looked_up
 
 
-def week_start(day: datetime) -> datetime:
-    day = day.astimezone(timezone.utc)
-    return (day - timedelta(days=day.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
-
-
-def weekly_trend(kev: dict, cache: dict[str, int], fetch=http_get, limit: int = WEEK_COUNTS_PER_RUN) -> list[dict]:
-    """Per complete week: CVEs published (NVD, cached) and CVEs first listed as exploited (our catalogues)."""
-    this_week = week_start(now_utc())
-    weeks = [this_week - timedelta(weeks=n) for n in range(TREND_WEEKS, 0, -1)]
-    listed: dict[str, int] = {}
-    for item in kev["items"]:
-        d = parse_date(item.get("added"))
-        if d:
-            key = week_start(d).strftime("%Y-%m-%d")
-            listed[key] = listed.get(key, 0) + 1
-    asked = 0
-    for start in reversed(weeks):                      # newest first
-        key = start.strftime("%Y-%m-%d")
-        if key in cache or asked >= limit:
-            continue
-        asked += 1
-        end = start + timedelta(days=7) - timedelta(seconds=1)
-        qs = urllib.parse.urlencode({
-            "pubStartDate": start.strftime("%Y-%m-%dT%H:%M:%S.000"),
-            "pubEndDate": end.strftime("%Y-%m-%dT%H:%M:%S.000"),
-            "resultsPerPage": 1,
-        }) + "&noRejected"
-        try:
-            if asked > 1:
-                time.sleep(7)
-            cache[key] = int(json.loads(fetch(f"{NVD_URL}?{qs}", timeout=60, retries=1)).get("totalResults", 0))
-        except Exception as exc:  # noqa: BLE001
-            print(f"  ! weekly CVE count for {key}: {truncate(str(exc), 100)}", file=sys.stderr)
-            break
-    return [{"week": w.strftime("%Y-%m-%d"), "published": cache.get(w.strftime("%Y-%m-%d")),
-             "exploited": listed.get(w.strftime("%Y-%m-%d"), 0)} for w in weeks]
-
-
 def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get, cache: dict | None = None) -> dict:
     now = iso(now_utc())
     cache = cache if cache is not None else {}
     cache.setdefault("published", {})
-    cache.setdefault("weeks", {})
+    cache.pop("weeks", None)
     kev = previous.get("kev") or {"updated": "", "total": 0, "items": []}
     recent = previous.get("recent") or {"updated": "", "window_days": NVD_WINDOW_DAYS, "items": []}
 
@@ -772,19 +735,15 @@ def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get, cache:
         scores = fetch_epss(wanted, fetch) if wanted else {}
         for item in kev["items"] + recent["items"]:
             if item["cve"] in scores:
-                item["epss"] = scores[item["cve"]]
+                item["epss"], pct = scores[item["cve"]]
+                if pct is not None:
+                    item["epss_pct"] = pct
         status["apis"].append({"name": "FIRST EPSS", "ok": True, "items": len(scores), "checked": now})
     except Exception as exc:  # noqa: BLE001
         status["apis"].append({"name": "FIRST EPSS", "ok": False, "error": truncate(str(exc), 160), "checked": now})
         print(f"  ! EPSS: {exc}", file=sys.stderr)
 
-    trend = previous.get("trend") or []
-    try:
-        trend = weekly_trend(kev, cache["weeks"], fetch)
-    except Exception as exc:  # noqa: BLE001
-        print(f"  ! weekly trend: {exc}", file=sys.stderr)
-
-    return {"updated": now, "kev": kev, "recent": recent, "trend": trend}
+    return {"updated": now, "kev": kev, "recent": recent}
 
 
 # ───────────────────────── incidents ─────────────────────────
