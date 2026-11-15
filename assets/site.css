@@ -164,6 +164,77 @@ button { font: inherit; }
   border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.25rem; margin-top: 1.25rem; }
 .key p { margin: 0.2rem 0 0; font-size: 0.97rem; }
 
+/* ── incident intelligence analytics ── */
+.intel-dashboard { margin: 1.65rem 0 2rem; }
+.analytics-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 1.5rem; margin-bottom: 1rem; }
+.analytics-head > div:first-child { max-width: 46rem; }
+.analytics-head h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); }
+.analytics-head p:not(.eyebrow) { margin: 0.45rem 0 0; color: var(--muted); }
+.eyebrow { margin: 0 0 0.25rem; color: var(--muted); font: 700 0.78rem/1 var(--body); text-transform: uppercase; letter-spacing: 0.09em; }
+.analytics-window { flex: none; }
+.analytics-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.75rem; margin-bottom: 0.8rem; }
+.analytics-kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 0.85rem 0.95rem; min-height: 6.5rem; }
+.analytics-kpi .kpi-label { color: var(--muted); font-size: 0.87rem; display: block; }
+.analytics-kpi .kpi-value { display: block; font: 800 clamp(1.55rem, 3vw, 2.2rem)/1.05 var(--display); letter-spacing: -0.03em; margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
+.analytics-kpi .kpi-detail { color: var(--muted); font-size: 0.84rem; display: block; margin-top: 0.35rem; line-height: 1.3; }
+.analytics-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+.analytics-card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.05rem; min-width: 0; }
+.analytics-wide { grid-column: span 2; }
+.analytics-card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--line); }
+.analytics-card-head h3 { font-size: 1rem; }
+.analytics-note { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+.analytics-footnote { color: var(--muted); font-size: 0.88rem; margin: 0.8rem 0 0; max-width: 60rem; }
+.trend-chart { min-height: 15rem; padding-top: 0.55rem; }
+.trend-svg { width: 100%; height: 14rem; display: block; overflow: visible; }
+.trend-grid { stroke: var(--line); stroke-width: 1; }
+.trend-axis-text { fill: var(--muted); font: 11px var(--body); }
+.trend-line { fill: none; stroke: var(--link); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.trend-area { fill: var(--link); opacity: 0.08; }
+.trend-point { fill: var(--surface); stroke: var(--link); stroke-width: 2; }
+.chart-summary { color: var(--muted); font-size: 0.88rem; margin: 0.35rem 0 0; }
+.verify-stack { display: flex; height: 1.35rem; border-radius: 4px; overflow: hidden; background: var(--bg); margin: 0.95rem 0 0.8rem; }
+.verify-segment { border: 0; min-width: 0; padding: 0; cursor: pointer; transition: filter 0.12s ease; }
+.verify-segment:hover { filter: brightness(0.9); }
+.verify-segment.confirmed { background: var(--confirmed); }
+.verify-segment.corroborated { background: var(--corroborated); }
+.verify-segment.reported { background: var(--reported); }
+.verify-segment.claimed { background: var(--claimed); }
+.verify-segment.disputed { background: var(--disputed); }
+.verify-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 0.45rem 0.8rem; font-size: 0.88rem; }
+.verify-legend button { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; background: none; border: 0; color: var(--ink); text-align: left; padding: 0; cursor: pointer; }
+.verify-legend .status { font-size: 0.83rem; }
+.verify-count { color: var(--muted); font-variant-numeric: tabular-nums; }
+.rank-chart { padding-top: 0.55rem; }
+.rank-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.35rem 0.75rem; align-items: center; width: 100%; padding: 0.38rem 0; background: none; border: 0; color: var(--ink); text-align: left; cursor: pointer; }
+.rank-row:hover .rank-label { text-decoration: underline; }
+.rank-label { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank-count { color: var(--muted); font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+.rank-track { grid-column: 1 / -1; height: 0.42rem; background: var(--bg); border-radius: 999px; overflow: hidden; }
+.rank-fill { display: block; height: 100%; background: var(--link); border-radius: 999px; }
+.rank-note { color: var(--muted); font-size: 0.82rem; margin-top: 0.55rem; }
+.signal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; padding-top: 0.75rem; }
+.signal { border-left: 3px solid var(--line); padding: 0.25rem 0 0.25rem 0.7rem; min-width: 0; }
+.signal-label { color: var(--muted); font-size: 0.8rem; display: block; }
+.signal strong { display: block; font: 700 1rem/1.25 var(--display); margin-top: 0.18rem; overflow-wrap: anywhere; }
+.signal small { display: block; color: var(--muted); margin-top: 0.25rem; line-height: 1.25; }
+.movement-total { font: 800 2rem/1 var(--display); display: block; margin: 0.85rem 0 0.2rem; }
+.movement-list { list-style: none; padding: 0; margin: 0.65rem 0 0; }
+.movement-list li { border-top: 1px solid var(--line); padding: 0.48rem 0; font-size: 0.88rem; }
+.movement-list strong { display: block; font-weight: 700; }
+.movement-list span { color: var(--muted); }
+.filter-reset { min-height: 2.4rem; align-self: end; }
+.analytics-empty { color: var(--muted); font-size: 0.9rem; padding: 0.7rem 0; }
+@media (max-width: 52rem) {
+  .analytics-grid { grid-template-columns: minmax(0, 1fr); }
+  .analytics-wide { grid-column: auto; }
+  .signal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 34rem) {
+  .analytics-window { width: 100%; overflow-x: auto; }
+  .analytics-window button { flex: 1; }
+  .signal-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* ── vulnerabilities ── */
 .cve { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .vuln > summary { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr) auto; gap: 0.2rem 1rem; cursor: pointer; list-style: none; align-items: start; }

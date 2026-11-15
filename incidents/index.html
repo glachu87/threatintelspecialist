@@ -29,6 +29,54 @@
     <p>Attacks, breaches, ransomware and cyber-caused outages gathered from monitored public sources. The agent scans every 30 minutes, keeps the incident corpus cumulatively, separates claims from verified facts, and preserves the evidence trail. <span id="updated"></span></p>
     <p class="incident-actions"><a href="/data/incidents.csv">Download full cumulative incident database (CSV)</a> <a href="/blog/confirmed-or-unconfirmed/">Coverage &amp; verification methodology</a></p>
   </header>
+  <section class="intel-dashboard" aria-labelledby="analytics-title">
+    <div class="analytics-head">
+      <div>
+        <p class="eyebrow">Intelligence analytics</p>
+        <h2 id="analytics-title">Threat landscape</h2>
+        <p>Explore incident volume, evidence strength, targeted sectors, countries and threat actors. Click a ranked bar or verification segment to filter the incident list below.</p>
+      </div>
+      <div class="seg analytics-window" id="analytics-window" role="group" aria-label="Analytics time window">
+        <button type="button" value="7" aria-pressed="false">7d</button>
+        <button type="button" value="30" aria-pressed="true">30d</button>
+        <button type="button" value="90" aria-pressed="false">90d</button>
+        <button type="button" value="365" aria-pressed="false">1y</button>
+        <button type="button" value="0" aria-pressed="false">All</button>
+      </div>
+    </div>
+    <div class="analytics-kpis" id="analytics-kpis" aria-live="polite"></div>
+    <div class="analytics-grid">
+      <article class="analytics-card analytics-wide">
+        <div class="analytics-card-head"><h3>Incident volume</h3><span id="trend-note" class="analytics-note"></span></div>
+        <div id="trend-chart" class="trend-chart" aria-live="polite"></div>
+      </article>
+      <article class="analytics-card">
+        <div class="analytics-card-head"><h3>Verification mix</h3><span class="analytics-note">Evidence state</span></div>
+        <div id="verification-chart"></div>
+      </article>
+      <article class="analytics-card">
+        <div class="analytics-card-head"><h3>Top sectors</h3><span class="analytics-note">Known sectors</span></div>
+        <div id="sector-chart" class="rank-chart"></div>
+      </article>
+      <article class="analytics-card">
+        <div class="analytics-card-head"><h3>Top countries</h3><span class="analytics-note">Known locations</span></div>
+        <div id="country-chart" class="rank-chart"></div>
+      </article>
+      <article class="analytics-card">
+        <div class="analytics-card-head"><h3>Top threat actors</h3><span class="analytics-note">Named or claimed</span></div>
+        <div id="actor-chart" class="rank-chart"></div>
+      </article>
+      <article class="analytics-card analytics-wide">
+        <div class="analytics-card-head"><h3>What is rising now</h3><span class="analytics-note">Selected period vs previous period</span></div>
+        <div id="rising-signals" class="signal-grid"></div>
+      </article>
+      <article class="analytics-card">
+        <div class="analytics-card-head"><h3>Verification movement</h3><span class="analytics-note">Evidence strengthened</span></div>
+        <div id="verification-movement"></div>
+      </article>
+    </div>
+    <p class="analytics-footnote">Analytics use each incident's first-reported date. Public reporting is incomplete and uneven across countries and sectors, so charts describe the monitored corpus rather than all cyber activity.</p>
+  </section>
   <div class="key">
     <div><span class="status confirmed">Confirmed</span><p>The affected organisation or a competent authority has acknowledged the incident.</p></div>
     <div><span class="status corroborated">Corroborated</span><p>At least two independent reputable sources report the incident, but official acknowledgement has not been found yet.</p></div>
@@ -49,7 +97,10 @@
     <label class="grow">Search <input type="search" id="q" placeholder="An organisation, attacker or keyword" autocomplete="off"></label>
     <label>Type <select id="type"><option value="">All types</option></select></label>
     <label>Sector <select id="sector"><option value="">All sectors</option></select></label>
+    <label>Country <select id="country"><option value="">All countries</option></select></label>
     <label>Period <select id="period"><option value="">All time</option></select></label>
+    <button class="btn quiet filter-reset" id="export-filtered" type="button">Export filtered CSV</button>
+    <button class="btn quiet filter-reset" id="reset-filters" type="button">Reset</button>
   </form>
   <p class="count" id="count" aria-live="polite"></p>
   <div class="list"><ul class="rows" id="list"><li class="empty">Loading incidents…</li></ul></div>
