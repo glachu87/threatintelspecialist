@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vulnerabilities being exploited and new this week — Threat Intel Specialist</title>
+<meta name="description" content="Software vulnerabilities attackers are using right now (CISA KEV), plus this week&#x27;s new high and critical flaws, with severity and likelihood of attack explained.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.threatintelspecialist.com/vulnerabilities/">
+<meta property="og:title" content="Vulnerabilities being exploited and new this week — Threat Intel Specialist">
+<meta property="og:description" content="Software vulnerabilities attackers are using right now (CISA KEV), plus this week&#x27;s new high and critical flaws, with severity and likelihood of attack explained.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.threatintelspecialist.com/vulnerabilities/">
+<link rel="icon" href="/images/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body data-page="vulnerabilities">
+<a class="skip" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<div class="wrap">
+  <header class="page-head">
+    <h1>Vulnerabilities</h1>
+    <p>Software flaws that matter now. Start with the ones attackers are already using. <span id="updated"></span></p>
+  </header>
+  <div class="key">
+    <div><h3>Being exploited</h3><p>Listed by CISA, the US cybersecurity agency, because attacks have been seen in the real world. Fix these first.</p></div>
+    <div><h3>New this week</h3><p>Published in the last 7 days and rated high or critical (7.0 or more out of 10). Serious on paper; attacks may or may not follow.</p></div>
+    <div><h3>Not sure what the labels mean?</h3><p><a href="/blog/how-to-read-a-vulnerability/">CVE, CVSS, EPSS and KEV explained</a> in five minutes.</p></div>
+  </div>
+  <div class="tabs seg" role="group" aria-label="Which list to show">
+    <button type="button" id="tab-kev" aria-pressed="true">Being exploited</button>
+    <button type="button" id="tab-new" aria-pressed="false">New this week</button>
+  </div>
+  <form class="filters" role="search" id="filters">
+    <label class="grow">Search <input type="search" id="q" placeholder="Product, vendor or CVE number" autocomplete="off"></label>
+    <label class="check" id="ransom-wrap"><input type="checkbox" id="ransom"> Used by ransomware groups</label>
+    <label id="sev-wrap" hidden>Severity <select id="sev"><option value="">High and critical</option><option>Critical</option><option>High</option></select></label>
+  </form>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="list"><div class="rows" id="list"><p class="empty">Loading vulnerabilities…</p></div></div>
+  <p class="more"><button class="btn quiet" id="more" type="button" hidden>Show more</button></p>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<noscript><p class="wrap">This site needs JavaScript to load its live data and menu.</p></noscript>
+<script src="/assets/site.js"></script>
+<script src="/assets/vulns.js"></script>
+</body>
+</html>

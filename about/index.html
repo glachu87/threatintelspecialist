@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About and how this site works — Threat Intel Specialist</title>
+<meta name="description" content="Who runs Threat Intel Specialist, where its data comes from, how incidents are labelled confirmed or unconfirmed, and how to report a correction.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.threatintelspecialist.com/about/">
+<meta property="og:title" content="About and how this site works — Threat Intel Specialist">
+<meta property="og:description" content="Who runs Threat Intel Specialist, where its data comes from, how incidents are labelled confirmed or unconfirmed, and how to report a correction.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.threatintelspecialist.com/about/">
+<link rel="icon" href="/images/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body data-page="about">
+<a class="skip" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<div class="wrap">
+  <header class="page-head">
+    <h1>About</h1>
+    <p>Threat Intel Specialist is a free, independent briefing on cybersecurity for anyone who wants to know what is going on, whether or not they work in the field.</p>
+  </header>
+  <div class="prose">
+    <h2>Who runs it</h2>
+    <p>The site is run by a threat intelligence and OT cyber risk specialist (CISSP, CCSP, IEC 62443) who works on critical infrastructure protection. It carries no advertising.</p>
+
+    <h2>Where the data comes from</h2>
+    <p>Everything here comes from public sources and is refreshed every hour.</p>
+    <ul>
+      <li><strong>News</strong> comes from the public feeds of security news sites, research teams and government agencies. Only the headline and a short excerpt are shown, with a link to the original article.</li>
+      <li><strong>Exploited vulnerabilities</strong> come from the Known Exploited Vulnerabilities catalogue published by CISA.</li>
+      <li><strong>New vulnerabilities</strong> come from the US National Vulnerability Database (NVD). This product uses the NVD API but is not endorsed or certified by the NVD.</li>
+      <li><strong>Likelihood of attack</strong> scores come from EPSS, published by FIRST.</li>
+    </ul>
+    <h3>Source status</h3>
+    <p id="health-note">Checking sources…</p>
+    <ul class="health" id="health"></ul>
+
+    <h2>How incidents are labelled</h2>
+    <p>Every hour the site scans press headlines for reports of attacks, breaches and outages. Reports about the same event are grouped into one entry. Each entry is labelled:</p>
+    <ul>
+      <li><strong>Confirmed</strong> when a report says the affected organisation, a regulator, a court or a government body has acknowledged the incident.</li>
+      <li><strong>Unconfirmed</strong> in every other case, including attacker claims and stories with no official statement.</li>
+    </ul>
+    <p>An entry moves from unconfirmed to confirmed when a later report carries an acknowledgement. It never moves the other way automatically. Labels are assigned by software reading the wording of headlines and excerpts, in some cases with help from an AI model, and entries that used AI say so. This process makes mistakes. Treat each entry as a pointer to its sources, not as a finding of fact.</p>
+
+    <h2>Corrections</h2>
+    <p>If an entry is wrong, out of date, or names your organisation unfairly, <a href="https://github.com/glachu87/threatintelspecialist/issues" rel="noopener noreferrer" target="_blank">open an issue on GitHub</a> with a link to the entry and a source. Corrections are applied by hand and take priority over the automatic labels.</p>
+
+    <h2>Limits</h2>
+    <p>This site is for general information. It is not professional security, legal or financial advice, and it is not a complete record of every incident or vulnerability. Check the linked sources before acting on anything here.</p>
+
+    <h2>Privacy</h2>
+    <p>The site uses Google Analytics to count visits. It has no accounts, no comments and no advertising trackers. Your theme choice is stored only in your browser.</p>
+  </div>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<noscript><p class="wrap">This site needs JavaScript to load its live data and menu.</p></noscript>
+<script src="/assets/site.js"></script>
+<script src="/assets/about.js"></script>
+</body>
+</html>
