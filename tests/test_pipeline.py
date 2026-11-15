@@ -153,6 +153,26 @@ class Incidents(unittest.TestCase):
             bd.classify_ai = real
             del os.environ["GEMINI_API_KEY"]
 
+    def test_rule_entries_are_rechecked_when_ai_returns(self):
+        import os
+        items = [self.news(1, "Hooli confirms data breach", 20), self.news(2, "Globex hit by cyberattack", 19)]
+        out = bd.merge_incidents({}, items, [], ai=lambda items: {})
+        self.assertEqual(len(out["incidents"]), 2)
+        ids = {i["organisation"]: i["id"] for i in out["incidents"]}
+        os.environ["GEMINI_API_KEY"] = "x"
+        real = bd.classify_ai
+        try:
+            bd.classify_ai = lambda cands: {
+                ids["Hooli"]: {"is_incident": True, "organisation": "Hooli Inc", "type": "Ransomware", "sector": "Technology",
+                               "status": "confirmed", "basis": bd.BASIS["official"], "summary": "AI summary.", "threat_actor": None, "ai": True},
+                ids["Globex"]: {"is_incident": False}}
+            out = bd.merge_incidents(out, items, [], ai=bd.classify_ai)
+        finally:
+            bd.classify_ai = real
+            del os.environ["GEMINI_API_KEY"]
+        self.assertEqual([(i["organisation"], i["type"], i["ai"], i["summary"]) for i in out["incidents"]],
+                         [("Hooli Inc", "Ransomware", True, "AI summary.")])
+
     def test_rule_change_rebuilds_automatic_entries(self):
         old = {"rules_version": 1, "scanned": ["n1"], "incidents": [{"id": "INC-OLD", "title": "stale", "sources": [], "last_reported": ""}]}
         out = bd.merge_incidents(old, [self.news(1, "Hooli confirms data breach", 2)], [], ai=lambda items: {})
@@ -234,6 +254,23 @@ class NewsAndVulns(unittest.TestCase):
         self.assertTrue(v["recent"]["items"][0]["kev"])
         self.assertEqual(v["recent"]["items"][0]["epss"], 0.9123)
         self.assertTrue(all(a["ok"] for a in status["apis"]))
+
+        seen = []
+        def picky(url, headers=None, **kw):
+            if "nvd.nist" in url:
+                seen.append(url)
+                if headers:
+                    raise RuntimeError(url + ": HTTP Error 404: Not Found")
+                return json.dumps(nvd).encode()
+            return fetch(url)
+        os.environ["NVD_API_KEY"] = "expired"
+        try:
+            again = bd.collect_vulnerabilities({}, {"feeds": [], "apis": []}, fetch=picky)
+        finally:
+            del os.environ["NVD_API_KEY"]
+        self.assertEqual(len(again["recent"]["items"]), 1, "falls back to keyless NVD requests")
+        self.assertNotIn("Z&", seen[0])
+        self.assertRegex(seen[0], r"pubStartDate=\d{4}-\d\d-\d\dT\d\d%3A\d\d%3A\d\d\.000&")
 
         def broken(url, **kw):
             raise RuntimeError("offline")
