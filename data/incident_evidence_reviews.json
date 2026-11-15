@@ -1,0 +1,25 @@
+{
+  "_comment": "Reviewed evidence keyed by incident ID. Each review needs url (matching a cited source), reviewer, reviewed_at (ISO date), excerpt and type: organisation_statement, independent_report or denial. Independent reports additionally need independent_origin: the original evidence origin, not merely the publisher. Never count two reports repeating one claim as independent.",
+  "reviews": {
+    "INC-MS-2025": [
+      {
+        "url": "https://corporate.marksandspencer.com/cyber-update",
+        "type": "organisation_statement",
+        "reviewer": "Codex source review",
+        "reviewed_at": "2026-11-15",
+        "excerpt": "some personal customer data has been taken",
+        "note": "Direct M&S customer notice acknowledges the incident and data theft."
+      }
+    ],
+    "INC-CHANGE-2024": [
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176625000063/unh-20241231.htm",
+        "type": "organisation_statement",
+        "reviewer": "Codex source review",
+        "reviewed_at": "2026-11-15",
+        "excerpt": "cybercrime threat actors had gained access to certain Change Healthcare information technology systems",
+        "note": "UnitedHealth Group 2024 Form 10-K, Change Healthcare Cyberattack section."
+      }
+    ]
+  }
+}

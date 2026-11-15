@@ -18,18 +18,16 @@
     var day = headlines.filter(function (n) { return T.daysSince(n.published) <= 1; }).length;
     var kevWeek = kev.filter(function (v) { return T.daysSince(v.added) <= 7; }).length;
     var incWeek = incidents.filter(function (i) { return T.daysSince(i.first_reported) <= 7; });
-    var conf = incWeek.filter(function (i) { return i.status === "confirmed"; }).length;
+    var conf = incWeek.filter(function (i) { return i.evidence_state === "confirmed"; }).length;
     if (!news && !vulns && !inc) {
       brief.textContent = "Today's data could not be loaded. Reload the page to try again.";
     } else {
-      var parts = [
+      brief.replaceChildren(
         h("b", { text: T.plural(day, "new headline") }), " in the last 24 hours. ",
         h("b", { text: T.plural(kevWeek, "vulnerability", "vulnerabilities") }),
         " added to the list of flaws attackers are actively using this week. ",
-        h("b", { text: T.plural(incWeek.length, "incident") }), " reported this week"];
-      if (incWeek.length) parts.push(", ", h("b", { text: conf + " confirmed" }), " and ", h("b", { text: (incWeek.length - conf) + " not yet confirmed" }));
-      parts.push(".");
-      brief.replaceChildren.apply(brief, parts);
+        h("b", { text: T.plural(incWeek.length, "incident") }), " reported this week",
+        incWeek.length ? ", " + conf + " organisation-confirmed; the remaining records have other evidence states." : ".");
       var updated = (news && news.updated) || (vulns && vulns.updated);
       if (updated) $("fresh").textContent = "Data refreshed " + T.ago(updated) + ".";
     }
@@ -39,7 +37,7 @@
     il.replaceChildren();
     incidents.slice(0, 6).forEach(function (i) {
       il.append(h("li", { class: "incident" },
-        T.status(i.status),
+        T.status(i.evidence_state || "unverified"),
         h("div", null,
           h("p", { class: "row-title" }, h("a", { href: "/incidents/?q=" + encodeURIComponent(i.id), text: i.title })),
           h("p", { class: "meta" },

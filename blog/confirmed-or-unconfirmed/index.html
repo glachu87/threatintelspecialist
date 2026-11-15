@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Claimed, reported, corroborated or confirmed? How to read a cyber incident — Threat Intel Specialist</title>
-<meta name="description" content="A ransomware post, a news report and an official breach notice are not the same evidence. This is how the incident tracker keeps them separate.">
+<title>Unverified, corroborated or organisation-confirmed? How to read an incident — Threat Intel Specialist</title>
+<meta name="description" content="Evidence labels, source health, incident dates and the limits of public-source monitoring.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://www.threatintelspecialist.com/blog/confirmed-or-unconfirmed/">
-<meta property="og:title" content="Claimed, reported, corroborated or confirmed? How to read a cyber incident — Threat Intel Specialist">
-<meta property="og:description" content="A ransomware post, a news report and an official breach notice are not the same evidence. This is how the incident tracker keeps them separate.">
+<meta property="og:title" content="Unverified, corroborated or organisation-confirmed? How to read an incident — Threat Intel Specialist">
+<meta property="og:description" content="Evidence labels, source health, incident dates and the limits of public-source monitoring.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.threatintelspecialist.com/blog/confirmed-or-unconfirmed/">
 <link rel="icon" href="/images/mark.svg" type="image/svg+xml">
@@ -26,51 +26,30 @@
 <main id="main">
 <article class="wrap">
   <header class="page-head">
-    <h1>Claimed, reported, corroborated or confirmed? How to read a cyber incident</h1>
-    <p class="post-meta">Threat Intel Specialist, 15 November 2026. 4 min read.</p>
+    <h1>Unverified, corroborated or organisation-confirmed? How to read an incident</h1>
+    <p class="post-meta">Threat Intel Specialist, 15 November 2026. 2 min read.</p>
   </header>
   <div class="prose">
-<p>Cybersecurity stories often move faster than the evidence. A ransomware group may name a victim before the organisation says anything. A journalist may then report disruption or leaked data. Later, a regulator, law-enforcement body or the affected organisation may confirm what actually happened.</p>
-<p>The incident tracker therefore uses <strong>five evidence states</strong> instead of putting every story into a simple true-or-false bucket.</p>
-<h2>Confirmed</h2>
-<p><strong>Confirmed</strong> means the affected organisation or a competent authority has acknowledged the incident.</p>
-<p>Examples of strong confirmation include:</p>
-<ul><li>A statement, customer notice or stock-exchange filing from the affected organisation</li><li>A regulator&#x27;s breach notice or enforcement document</li><li>A court filing, indictment or law-enforcement statement that identifies the incident</li><li>A government or national cyber authority explicitly acknowledging the event</li></ul>
-<p>Confirmed does <strong>not</strong> mean every reported detail is proven. The organisation may confirm an incident while the number of records affected, the initial access vector or attacker attribution remains uncertain.</p>
-<h2>Corroborated</h2>
-<p><strong>Corroborated</strong> means at least two independent reputable sources report the same incident, but the tracker has not found an explicit acknowledgement from the victim or a competent authority.</p>
-<p>This is stronger than a single report, but it is deliberately kept separate from confirmation.</p>
-<h2>Reported</h2>
-<p><strong>Reported</strong> means one reputable source reports a specific incident and there is not yet enough evidence to call it corroborated or confirmed.</p>
-<p>This often happens during the first few hours of a developing incident.</p>
-<h2>Claimed</h2>
-<p><strong>Claimed</strong> is an early-warning state. It is used when the evidence originates from a threat actor, ransomware leak site or similar criminal claim and has not been independently verified.</p>
-<p>Ransomware groups have incentives to exaggerate, recycle old data, misidentify organisations or publish misleading claims. A listing can be useful intelligence without being proof.</p>
-<p>The tracker monitors Ransomware.live through its JSON API for these early signals and imports the repository’s historical 2025 ransomware archive as claim-only evidence. A leak-site or archive entry by itself can never make an incident confirmed.</p>
-<h2>Disputed</h2>
-<p><strong>Disputed</strong> means the affected organisation has denied or directly challenged the allegation.</p>
-<p>A dispute does not automatically prove that nothing happened, but readers should know that the claim is actively contested.</p>
-<h2>How an incident changes over time</h2>
-<p>The agent scans its live sources every 30 minutes and keeps the evidence attached to each incident. The incident database is cumulative: older rows are retained rather than falling out of the CSV when a news-feed retention window expires.</p>
-<p>A typical sequence could be:</p>
-<p><strong>Claimed → Reported → Corroborated → Confirmed</strong></p>
-<p>For example, a ransomware group may first list an organisation. A reputable publication may then report operational disruption. A second independent publication may corroborate the event. Finally, the affected company may issue a statement confirming a cyber incident.</p>
-<p>The tracker records those verification changes rather than silently replacing the earlier state.</p>
-<h2>What the AI does</h2>
-<p>AI assists with:</p>
-<ul><li>Deciding whether an item describes a specific cyber incident rather than general security news</li><li>Grouping multiple reports that appear to describe the same incident</li><li>Producing a short neutral headline and summary</li><li>Extracting the organisation, sector, incident type and named threat actor when the source supports them</li><li>Writing a short <strong>Why it matters</strong> explanation</li></ul>
-<p>The model is instructed not to invent confirmation, victims, attackers, numbers or impact. Threat-actor material is treated as untrusted input, and embedded instructions are ignored.</p>
-<p>Keyword rules remain as a fallback when an AI service is unavailable.</p>
-<h2>What the AI does not decide alone</h2>
-<p>The incident-level evidence state is not simply whatever an AI model says.</p>
-<p>The tracker also applies deterministic rules:</p>
-<ul><li>A leak-site feed is treated as a claim source</li><li>Two independent reputable reports can produce <strong>Corroborated</strong></li><li>Explicit acknowledgement is required for <strong>Confirmed</strong></li><li>A denial can produce <strong>Disputed</strong></li><li>The source links and verification history remain visible to the reader</li></ul>
-<h2>Questions worth asking</h2>
-<ol><li>Who made the original claim?</li><li>Has the affected organisation acknowledged anything?</li><li>Are multiple reports genuinely independent, or are they repeating one source?</li><li>Is the stolen data new, recycled or unverifiable?</li><li>Which details are confirmed and which remain attribution or attacker claims?</li></ol>
-<p>Automated classification can still make mistakes. Every incident links to its evidence so you can inspect the original reporting before relying on it.</p>
-<h2>Coverage and completeness</h2>
-<p>The downloadable CSV is intended to be the cumulative record of incidents found across the sources monitored by this site. It includes both verified reporting and clearly labelled unverified claims.</p>
-<p>It should not be interpreted as a list of literally every cyber incident in existence. Some incidents are never disclosed, some sources are inaccessible or delayed, and global reporting is uneven. The tracker therefore exposes source and verification fields so coverage gaps are visible rather than hidden.</p>
+<p>The tracker distinguishes what a source claims from what reviewed evidence supports. A leak-site listing, several articles repeating that listing, and an organisation&#x27;s own statement are different kinds of evidence.</p>
+<h2>Three public evidence labels</h2>
+<p><strong>Unverified claim</strong> is the default. It includes attacker allegations, single-source reports and records awaiting evidence review. A headline containing “confirmed” does not itself qualify an incident for a stronger label.</p>
+<p><strong>Corroborated report</strong> requires reviewed reports with at least two independent evidence origins. Two publishers repeating one attacker statement do not count as independent corroboration.</p>
+<p><strong>Organisation-confirmed incident</strong> requires a reviewed statement or filing from the affected organisation acknowledging the incident. That does not automatically verify the attacker, incident date, financial loss or every detail of the report.</p>
+<p>Disputes and denials remain visible separately. Labels can change when evidence is reviewed or corrected. Older automatic labels are not treated as proof.</p>
+<h2>What runs automatically</h2>
+<p>The existing collector is scheduled every 30 minutes. It reads configured public news, research and official feeds plus public ransomware-intelligence APIs. GitHub can delay scheduled jobs.</p>
+<p>RansomLook&#x27;s group directory discovers relevant profiles and records their first and last observation. RansomLook and Ransomware.live provide indirect access to publicly reported leak-site disclosures. They are not independent confirmation when they repeat the same actor claim.</p>
+<p>The cumulative incident database retains older records. New reports are matched using organisation, dates, actor and source links. Conflicting known actors or attack dates prevent an automatic merge. Clearly different victims in older claim-only clusters have been separated while preserving their evidence. Ambiguous cases can still need correction.</p>
+<p>AI can assist with organisation, actor, incident type, headline, summary and explicit date extraction when the configured model is available. Deterministic processing continues without it. AI does not independently certify public evidence labels.</p>
+<h2>Which date is shown?</h2>
+<p><strong>First reported</strong> means a publication or aggregator-discovery date. <strong>Claimed incident date</strong> is only populated when the source explicitly supplies an attack date. Missing dates remain unknown; conflicting dates are flagged. The first time a collector saw a post is not necessarily the date an attack happened.</p>
+<h2>Source health and monitoring gaps</h2>
+<p>The monitoring panel shows source links, latest check, last successful check, empty responses and failures. Status becomes stale when no check is recorded for more than two hours. A successful HTTP request is not proof that an aggregator captured every disclosure.</p>
+<p>Feed last-checked means the feed was requested. It does not mean every linked article was re-opened. Last-observed timestamps identify records actually returned by a source, not merely carried forward from history.</p>
+<p>This collector does not directly crawl onion sites, access private communities or discover undisclosed addresses. Recent API and RSS windows can leave gaps after downtime. The charts describe this monitored corpus, not all cyber incidents worldwide.</p>
+<h2>Evidence review</h2>
+<p>Reviewed evidence appears with its source URL, short supporting excerpt, review date and reviewer. Records awaiting review stay unverified. A review queue and version-controlled evidence records support corrections; old records are not automatically certified simply because they have several source links.</p>
+<p>Always consult the original evidence before making a decision based on an incident. Automated extraction and deduplication can make mistakes.</p>
     <p><a href="/blog/">All writeups</a></p>
   </div>
 </article>

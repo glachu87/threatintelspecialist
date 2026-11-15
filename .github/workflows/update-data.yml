@@ -14,6 +14,7 @@ on:
       - "content/posts/**"
       - "scripts/**"
       - "data/incidents_curated.json"
+      - "data/incident_evidence_reviews.json"
       - ".github/workflows/update-data.yml"
 
 permissions:

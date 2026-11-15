@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cybersecurity incident tracker: confirmed, reported and claimed — Threat Intel Specialist</title>
-<meta name="description" content="Cyberattacks, breaches and ransomware incidents tracked every 30 minutes with evidence states: confirmed, corroborated, reported, claimed or disputed.">
+<meta name="description" content="Cyberattacks, breaches and ransomware incidents tracked every 30 minutes with evidence states: organisation-confirmed, corroborated or unverified.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://www.threatintelspecialist.com/incidents/">
 <meta property="og:title" content="Cybersecurity incident tracker — Threat Intel Specialist">
-<meta property="og:description" content="Public cyber incidents scanned every 30 minutes and separated into confirmed, corroborated, reported, claimed and disputed evidence states.">
+<meta property="og:description" content="Public cyber incidents scanned every 30 minutes and separated into organisation-confirmed, corroborated and unverified evidence states.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.threatintelspecialist.com/incidents/">
 <link rel="icon" href="/images/mark.svg" type="image/svg+xml">
@@ -26,8 +26,8 @@
 <div class="wrap">
   <header class="page-head">
     <h1>Incidents</h1>
-    <p>Attacks, breaches, ransomware and cyber-caused outages gathered from monitored public sources. The agent scans every 30 minutes, keeps the incident corpus cumulatively, separates claims from verified facts, and preserves the evidence trail. <span id="updated"></span></p>
-    <p class="incident-actions"><a href="/data/incidents.csv">Download full cumulative incident database (CSV)</a> <a href="/incidents/history/">Incident history, trends and lessons</a> <a href="/blog/confirmed-or-unconfirmed/">Coverage &amp; verification methodology</a></p>
+    <p>Attacks, breaches, ransomware and cyber-caused outages gathered from monitored public sources. The collector is scheduled every 30 minutes, keeps the incident corpus cumulatively, separates claims from verified facts, and preserves the evidence trail. <span id="updated"></span></p>
+    <p class="incident-actions"><a href="/data/incidents.csv">Download full cumulative incident database (CSV)</a> <a href="/blog/confirmed-or-unconfirmed/">Coverage &amp; verification methodology</a></p>
   </header>
   <section class="intel-dashboard" aria-labelledby="analytics-title">
     <div class="analytics-head">
@@ -77,22 +77,31 @@
     </div>
     <p class="analytics-footnote">Analytics use each incident's first-reported date. Public reporting is incomplete and uneven across countries and sectors, so charts describe the monitored corpus rather than all cyber activity.</p>
   </section>
+  <section class="intel-dashboard" aria-labelledby="coverage-title">
+    <h2 id="coverage-title">Monitoring coverage &amp; gaps</h2>
+    <p id="coverage-summary" aria-live="polite">Loading source monitoring status…</p>
+    <p>Checks are scheduled every 30 minutes; schedules may be delayed. Stale means no recorded check for over two hours. A successful feed check does not verify an incident.</p>
+    <details><summary>View source health and last successful checks</summary>
+      <div class="source-table-wrap"><table class="source-table">
+        <thead><tr><th>Source</th><th>Access</th><th>Status</th><th>Last checked</th><th>Last success</th><th>Gap / error</th></tr></thead>
+        <tbody id="source-health"></tbody>
+      </table></div>
+    </details>
+    <ul id="coverage-gaps"></ul>
+    <p><a href="/data/source_registry.json">Download source registry</a> · <a href="/data/source_discovery.json">Discovered group profiles</a></p>
+  </section>
   <div class="key">
-    <div><span class="status confirmed">Confirmed</span><p>The affected organisation or a competent authority has acknowledged the incident.</p></div>
-    <div><span class="status corroborated">Corroborated</span><p>At least two independent reputable sources report the incident, but official acknowledgement has not been found yet.</p></div>
-    <div><span class="status reported">Reported</span><p>A reputable source reports the incident; official confirmation has not been located yet.</p></div>
-    <div><span class="status claimed">Claimed</span><p>A threat actor or leak site claims an incident. This is an early-warning signal, not proof.</p></div>
-    <div><span class="status disputed">Disputed</span><p>The affected organisation denies or directly challenges the allegation.</p></div>
-    <div><h3>Evidence can change</h3><p>The agent keeps source history, so a claim can move to reported, corroborated or confirmed as better evidence appears.</p></div>
+    <div><span class="status confirmed">Organisation-confirmed incident</span><p>A reviewed statement or filing from the affected organisation acknowledges the incident.</p></div>
+    <div><span class="status corroborated">Corroborated report</span><p>Reviewed evidence establishes at least two independent origins. Repetition of one attacker claim does not qualify.</p></div>
+    <div><span class="status unverified">Unverified claim</span><p>No qualifying evidence review recorded. Includes attacker claims and single-source reports, even when a headline says “confirmed”.</p></div>
+    <div><h3>Dates &amp; evidence</h3><p>First reported means disclosure or discovery, not necessarily the attack date. Missing incident dates are left unknown. Disputes remain visible.</p></div>
   </div>
   <form class="filters" role="search" id="filters">
     <div class="seg status-seg" id="status" role="group" aria-label="Filter by verification state">
       <button type="button" value="" aria-pressed="true">All</button>
-      <button type="button" value="confirmed" aria-pressed="false">Confirmed</button>
-      <button type="button" value="corroborated" aria-pressed="false">Corroborated</button>
-      <button type="button" value="reported" aria-pressed="false">Reported</button>
-      <button type="button" value="claimed" aria-pressed="false">Claimed</button>
-      <button type="button" value="disputed" aria-pressed="false">Disputed</button>
+      <button type="button" value="confirmed" aria-pressed="false">Organisation-confirmed</button>
+      <button type="button" value="corroborated" aria-pressed="false">Corroborated report</button>
+      <button type="button" value="unverified" aria-pressed="false">Unverified claim</button>
     </div>
     <label class="grow">Search <input type="search" id="q" placeholder="An organisation, attacker or keyword" autocomplete="off"></label>
     <label>Type <select id="type"><option value="">All types</option></select></label>
