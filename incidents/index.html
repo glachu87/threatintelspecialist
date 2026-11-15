@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cybersecurity incident tracker: confirmed and unconfirmed — Threat Intel Specialist</title>
+<meta name="description" content="Ongoing and past cyberattacks, breaches and ransomware incidents, each marked confirmed or unconfirmed with links to the sources. Scanned hourly.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.threatintelspecialist.com/incidents/">
+<meta property="og:title" content="Cybersecurity incident tracker: confirmed and unconfirmed — Threat Intel Specialist">
+<meta property="og:description" content="Ongoing and past cyberattacks, breaches and ransomware incidents, each marked confirmed or unconfirmed with links to the sources. Scanned hourly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.threatintelspecialist.com/incidents/">
+<link rel="icon" href="/images/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body data-page="incidents">
+<a class="skip" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<div class="wrap">
+  <header class="page-head">
+    <h1>Incidents</h1>
+    <p>Attacks, breaches and outages reported in the news, ongoing and past. Every entry says whether it is confirmed and links to where it was reported. <span id="updated"></span></p>
+  </header>
+  <div class="key">
+    <div><span class="status confirmed">Confirmed</span><p>The affected organisation, a regulator, a court or a government body has acknowledged the incident.</p></div>
+    <div><span class="status unconfirmed">Unconfirmed</span><p>An attacker's claim, an unverified report, or a press story with no official statement yet. It may turn out to be wrong.</p></div>
+    <div><h3>How labels are decided</h3><p>Automatically, from the wording of news reports, so mistakes happen. <a href="/blog/confirmed-or-unconfirmed/">Read how it works</a>.</p></div>
+  </div>
+  <form class="filters" role="search" id="filters">
+    <div class="seg" id="status" role="group" aria-label="Filter by status">
+      <button type="button" value="" aria-pressed="true">All</button>
+      <button type="button" value="confirmed" aria-pressed="false">Confirmed</button>
+      <button type="button" value="unconfirmed" aria-pressed="false">Unconfirmed</button>
+    </div>
+    <label class="grow">Search <input type="search" id="q" placeholder="An organisation, attacker or keyword" autocomplete="off"></label>
+    <label>Type <select id="type"><option value="">All types</option></select></label>
+    <label>Sector <select id="sector"><option value="">All sectors</option></select></label>
+    <label>Period <select id="period"><option value="">All time</option></select></label>
+  </form>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="list"><ul class="rows" id="list"><li class="empty">Loading incidents…</li></ul></div>
+  <p class="more"><button class="btn quiet" id="more" type="button" hidden>Show more incidents</button></p>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<noscript><p class="wrap">This site needs JavaScript to load its live data and menu.</p></noscript>
+<script src="/assets/site.js"></script>
+<script src="/assets/incidents.js"></script>
+</body>
+</html>

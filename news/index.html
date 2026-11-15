@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cybersecurity news — Threat Intel Specialist</title>
+<meta name="description" content="Cybersecurity headlines from the press, security researchers and government agencies in one list. Filter by topic or source. Updated hourly.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.threatintelspecialist.com/news/">
+<meta property="og:title" content="Cybersecurity news — Threat Intel Specialist">
+<meta property="og:description" content="Cybersecurity headlines from the press, security researchers and government agencies in one list. Filter by topic or source. Updated hourly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.threatintelspecialist.com/news/">
+<link rel="icon" href="/images/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body data-page="news">
+<a class="skip" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<div class="wrap">
+  <header class="page-head">
+    <h1>News</h1>
+    <p>Headlines from security journalists, researchers and government agencies. Each one links to the original article. <span id="updated"></span></p>
+  </header>
+  <form class="filters" role="search" id="filters">
+    <label class="grow">Search headlines <input type="search" id="q" placeholder="A company, product or topic" autocomplete="off"></label>
+    <label>Topic <select id="topic"><option value="">All topics</option></select></label>
+    <label>Source <select id="source"><option value="">All sources</option></select></label>
+    <label>Type <select id="kind"><option value="">All types</option></select></label>
+  </form>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="list"><ul class="rows" id="list"><li class="empty">Loading headlines…</li></ul></div>
+  <p class="more"><button class="btn quiet" id="more" type="button" hidden>Show more headlines</button></p>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<noscript><p class="wrap">This site needs JavaScript to load its live data and menu.</p></noscript>
+<script src="/assets/site.js"></script>
+<script src="/assets/news.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search — Threat Intel Specialist</title>
+<meta name="description" content="Search incidents, vulnerabilities, news and writeups.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.threatintelspecialist.com/search/">
+<meta property="og:title" content="Search — Threat Intel Specialist">
+<meta property="og:description" content="Search incidents, vulnerabilities, news and writeups.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.threatintelspecialist.com/search/">
+<link rel="icon" href="/images/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body data-page="search">
+<a class="skip" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<div class="wrap">
+  <header class="page-head"><h1>Search</h1></header>
+  <form class="filters" action="/search/" method="get" role="search">
+    <label class="grow">Search incidents, vulnerabilities, news and the blog <input type="search" id="q" name="q" placeholder="A company, product, CVE number or topic"></label>
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <div id="results"><p class="empty">Searching…</p></div>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<noscript><p class="wrap">This site needs JavaScript to load its live data and menu.</p></noscript>
+<script src="/assets/site.js"></script>
+<script src="/assets/search.js"></script>
+</body>
+</html>

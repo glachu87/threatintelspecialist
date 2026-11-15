@@ -1,0 +1,61 @@
+name: Update site data
+
+# Refreshes news, vulnerabilities and incidents every hour, and rebuilds the
+# blog whenever a post or script changes. Commits the results to this branch;
+# GitHub Pages then publishes them.
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "content/posts/**"
+      - "scripts/**"
+      - "data/incidents_curated.json"
+      - ".github/workflows/update-data.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run tests
+        run: python -m unittest discover tests
+
+      - name: Build blog pages
+        run: python scripts/build_posts.py
+
+      - name: Fetch news, vulnerabilities and incidents
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+        run: python scripts/build_data.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "TIS data bot"
+          git config user.email "bot@threatintelspecialist.com"
+          git add data blog sitemap.xml
+          if git diff --staged --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "data: refresh $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git pull --rebase --autostash
+            git push
+          fi

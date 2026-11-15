@@ -1,0 +1,43 @@
+{
+ "posts": [
+  {
+   "slug": "confirmed-or-unconfirmed",
+   "url": "/blog/confirmed-or-unconfirmed/",
+   "title": "Confirmed or unconfirmed: how to read a breach report",
+   "date": "2026-11-15",
+   "summary": "Many \"breaches\" in the news are claims that nobody has verified yet. Here is how to tell the difference, and how this site labels each incident.",
+   "tags": [
+    "Guide",
+    "Incidents"
+   ],
+   "author": "Threat Intel Specialist",
+   "minutes": 2
+  },
+  {
+   "slug": "how-to-read-a-vulnerability",
+   "url": "/blog/how-to-read-a-vulnerability/",
+   "title": "CVE, CVSS, EPSS and KEV: how to read a vulnerability entry",
+   "date": "2026-11-14",
+   "summary": "Four abbreviations appear on almost every vulnerability report. This is what each one tells you, and which to look at first.",
+   "tags": [
+    "Guide",
+    "Vulnerabilities"
+   ],
+   "author": "Threat Intel Specialist",
+   "minutes": 2
+  },
+  {
+   "slug": "a-company-you-use-was-breached",
+   "url": "/blog/a-company-you-use-was-breached/",
+   "title": "A company you use was breached. What to do next",
+   "date": "2026-11-13",
+   "summary": "A short checklist for the days after a breach notice, in order of what protects you most.",
+   "tags": [
+    "Guide",
+    "Personal security"
+   ],
+   "author": "Threat Intel Specialist",
+   "minutes": 2
+  }
+ ]
+}
