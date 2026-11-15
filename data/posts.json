@@ -3,15 +3,16 @@
   {
    "slug": "confirmed-or-unconfirmed",
    "url": "/blog/confirmed-or-unconfirmed/",
-   "title": "Confirmed or unconfirmed: how to read a breach report",
+   "title": "Claimed, reported, corroborated or confirmed? How to read a cyber incident",
    "date": "2026-11-15",
-   "summary": "Many \"breaches\" in the news are claims that nobody has verified yet. Here is how to tell the difference, and how this site labels each incident.",
+   "summary": "A ransomware post, a news report and an official breach notice are not the same evidence. This is how the incident tracker keeps them separate.",
    "tags": [
     "Guide",
-    "Incidents"
+    "Incidents",
+    "Threat Intelligence"
    ],
    "author": "Threat Intel Specialist",
-   "minutes": 2
+   "minutes": 3
   },
   {
    "slug": "how-to-read-a-vulnerability",

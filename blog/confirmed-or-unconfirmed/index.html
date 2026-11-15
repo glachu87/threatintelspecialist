@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Confirmed or unconfirmed: how to read a breach report — Threat Intel Specialist</title>
-<meta name="description" content="Many &quot;breaches&quot; in the news are claims that nobody has verified yet. Here is how to tell the difference, and how this site labels each incident.">
+<title>Claimed, reported, corroborated or confirmed? How to read a cyber incident — Threat Intel Specialist</title>
+<meta name="description" content="A ransomware post, a news report and an official breach notice are not the same evidence. This is how the incident tracker keeps them separate.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://www.threatintelspecialist.com/blog/confirmed-or-unconfirmed/">
-<meta property="og:title" content="Confirmed or unconfirmed: how to read a breach report — Threat Intel Specialist">
-<meta property="og:description" content="Many &quot;breaches&quot; in the news are claims that nobody has verified yet. Here is how to tell the difference, and how this site labels each incident.">
+<meta property="og:title" content="Claimed, reported, corroborated or confirmed? How to read a cyber incident — Threat Intel Specialist">
+<meta property="og:description" content="A ransomware post, a news report and an official breach notice are not the same evidence. This is how the incident tracker keeps them separate.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.threatintelspecialist.com/blog/confirmed-or-unconfirmed/">
 <link rel="icon" href="/images/mark.svg" type="image/svg+xml">
@@ -26,24 +26,48 @@
 <main id="main">
 <article class="wrap">
   <header class="page-head">
-    <h1>Confirmed or unconfirmed: how to read a breach report</h1>
-    <p class="post-meta">Threat Intel Specialist, 15 November 2026. 2 min read.</p>
+    <h1>Claimed, reported, corroborated or confirmed? How to read a cyber incident</h1>
+    <p class="post-meta">Threat Intel Specialist, 15 November 2026. 3 min read.</p>
   </header>
   <div class="prose">
-<p>A headline that says a company was hacked can mean very different things. Sometimes the company has told its customers and regulators. Sometimes the only evidence is a post by a criminal group that wants attention or a ransom. This site marks every incident as <strong>confirmed</strong> or <strong>unconfirmed</strong> so you can tell them apart quickly.</p>
-<h2>What confirmed means</h2>
-<p>An incident is confirmed when the affected organisation, a regulator, a court or a government body has acknowledged it. Typical evidence:</p>
-<ul><li>A public statement, customer notice or stock-exchange filing from the organisation</li><li>A notice from a data protection regulator</li><li>An advisory, indictment or sanction from a government body</li></ul>
-<p>Confirmed does not mean every detail is settled. Companies often confirm an incident first and revise the number of people affected weeks later.</p>
-<h2>What unconfirmed means</h2>
-<p>Everything else is unconfirmed. That covers three common situations:</p>
-<ul><li><strong>Attacker claims.</strong> Ransomware groups list victims on leak sites to pressure them to pay. Some listings are accurate. Others are exaggerated, recycled from old breaches, or name the wrong company.</li><li><strong>Unverified reporting.</strong> A story based on anonymous sources or a sample of data nobody has checked.</li><li><strong>No statement yet.</strong> A press report exists, but the organisation has not commented.</li></ul>
-<p>Unconfirmed does not mean false. It means you should wait before acting on the details.</p>
-<h2>How labels change</h2>
-<p>The tracker reads the news every hour. If a later report says the organisation has acknowledged an incident, the label changes from unconfirmed to confirmed and the entry records the date. Labels are never downgraded automatically. If an organisation disputes a claim, the entry says so and stays unconfirmed.</p>
+<p>Cybersecurity stories often move faster than the evidence. A ransomware group may name a victim before the organisation says anything. A journalist may then report disruption or leaked data. Later, a regulator, law-enforcement body or the affected organisation may confirm what actually happened.</p>
+<p>The incident tracker therefore uses <strong>five evidence states</strong> instead of putting every story into a simple true-or-false bucket.</p>
+<h2>Confirmed</h2>
+<p><strong>Confirmed</strong> means the affected organisation or a competent authority has acknowledged the incident.</p>
+<p>Examples of strong confirmation include:</p>
+<ul><li>A statement, customer notice or stock-exchange filing from the affected organisation</li><li>A regulator&#x27;s breach notice or enforcement document</li><li>A court filing, indictment or law-enforcement statement that identifies the incident</li><li>A government or national cyber authority explicitly acknowledging the event</li></ul>
+<p>Confirmed does <strong>not</strong> mean every reported detail is proven. The organisation may confirm an incident while the number of records affected, the initial access vector or attacker attribution remains uncertain.</p>
+<h2>Corroborated</h2>
+<p><strong>Corroborated</strong> means at least two independent reputable sources report the same incident, but the tracker has not found an explicit acknowledgement from the victim or a competent authority.</p>
+<p>This is stronger than a single report, but it is deliberately kept separate from confirmation.</p>
+<h2>Reported</h2>
+<p><strong>Reported</strong> means one reputable source reports a specific incident and there is not yet enough evidence to call it corroborated or confirmed.</p>
+<p>This often happens during the first few hours of a developing incident.</p>
+<h2>Claimed</h2>
+<p><strong>Claimed</strong> is an early-warning state. It is used when the evidence originates from a threat actor, ransomware leak site or similar criminal claim and has not been independently verified.</p>
+<p>Ransomware groups have incentives to exaggerate, recycle old data, misidentify organisations or publish misleading claims. A listing can be useful intelligence without being proof.</p>
+<p>The tracker monitors Ransomware.live for these early signals, but a Ransomware.live entry by itself can never make an incident confirmed.</p>
+<h2>Disputed</h2>
+<p><strong>Disputed</strong> means the affected organisation has denied or directly challenged the allegation.</p>
+<p>A dispute does not automatically prove that nothing happened, but readers should know that the claim is actively contested.</p>
+<h2>How an incident changes over time</h2>
+<p>The agent scans its sources every 30 minutes and keeps the evidence attached to each incident.</p>
+<p>A typical sequence could be:</p>
+<p><strong>Claimed → Reported → Corroborated → Confirmed</strong></p>
+<p>For example, a ransomware group may first list an organisation. A reputable publication may then report operational disruption. A second independent publication may corroborate the event. Finally, the affected company may issue a statement confirming a cyber incident.</p>
+<p>The tracker records those verification changes rather than silently replacing the earlier state.</p>
+<h2>What the AI does</h2>
+<p>AI assists with:</p>
+<ul><li>Deciding whether an item describes a specific cyber incident rather than general security news</li><li>Grouping multiple reports that appear to describe the same incident</li><li>Producing a short neutral headline and summary</li><li>Extracting the organisation, sector, incident type and named threat actor when the source supports them</li><li>Writing a short <strong>Why it matters</strong> explanation</li></ul>
+<p>The model is instructed not to invent confirmation, victims, attackers, numbers or impact. Threat-actor material is treated as untrusted input, and embedded instructions are ignored.</p>
+<p>Keyword rules remain as a fallback when an AI service is unavailable.</p>
+<h2>What the AI does not decide alone</h2>
+<p>The incident-level evidence state is not simply whatever an AI model says.</p>
+<p>The tracker also applies deterministic rules:</p>
+<ul><li>A leak-site feed is treated as a claim source</li><li>Two independent reputable reports can produce <strong>Corroborated</strong></li><li>Explicit acknowledgement is required for <strong>Confirmed</strong></li><li>A denial can produce <strong>Disputed</strong></li><li>The source links and verification history remain visible to the reader</li></ul>
 <h2>Questions worth asking</h2>
-<ol><li>Who is the source: the organisation, an authority, a journalist, or the attacker?</li><li>Has anyone independent checked the stolen data?</li><li>Is this a new incident, or old data being sold again?</li><li>Does the report say what was taken, or only that something was?</li></ol>
-<p>The labels are produced automatically from wording in news reports, so they can be wrong. Every entry links to its sources. Read them before you rely on an entry, and <a href="/about/">tell us</a> if one needs correcting.</p>
+<ol><li>Who made the original claim?</li><li>Has the affected organisation acknowledged anything?</li><li>Are multiple reports genuinely independent, or are they repeating one source?</li><li>Is the stolen data new, recycled or unverifiable?</li><li>Which details are confirmed and which remain attribution or attacker claims?</li></ol>
+<p>Automated classification can still make mistakes. Every incident links to its evidence so you can inspect the original reporting before relying on it.</p>
     <p><a href="/blog/">All writeups</a></p>
   </div>
 </article>
