@@ -45,7 +45,6 @@ MAX_BYTES = 30 * 1024 * 1024
 
 NEWS_KEEP_DAYS = 45
 NEWS_MAX_ITEMS = 700
-INCIDENT_MAX_ITEMS = 50000
 SUMMARY_CHARS = 220
 BREACHSENSE_ARCHIVE = os.path.join(ROOT, "breachsense_2025_incidents.csv")
 BREACHSENSE_SOURCE_URL = "https://github.com/glachu87/threatintelspecialist/blob/main/breachsense_2025_incidents.csv"
@@ -996,7 +995,7 @@ def aggregate_verification(incident: dict) -> str:
         return "disputed"
     reputable = {
         src.get("name") for src in sources
-        if src.get("name") and src.get("kind", "news") != "claim"
+        if src.get("name") and src.get("kind", "news") not in ("claim", "aggregate")
         and normalise_verification(src.get("verification")) in ("reported", "corroborated")
     }
     if len(reputable) >= 2:
@@ -1031,8 +1030,12 @@ def same_incident(a: dict, title: str, org: str | None, when: datetime) -> bool:
 
 def relabel_with_ai(incidents: list[dict], ai, now: datetime) -> tuple[int, set[str]]:
     """Re-check recent rule-labelled entries when an AI provider becomes available."""
-    todo = [i for i in incidents if not i.get("ai") and not i.get("curated") and i.get("sources")
-            and (now - (parse_date(i.get("first_reported")) or now)) <= timedelta(days=7)][:32]
+    todo = [
+        i for i in incidents
+        if not i.get("ai") and not i.get("curated") and i.get("sources")
+        and i["sources"][0].get("kind", "news") not in ("claim", "aggregate")
+        and (now - (parse_date(i.get("first_reported")) or now)) <= timedelta(days=7)
+    ][:32]
     if not todo:
         return 0, set()
     verdicts = ai([{
@@ -1230,7 +1233,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
         "upgraded_in_last_scan": verification_changes,
         "ai_assisted": any(i.get("ai") for i in incidents),
         "verification_counts": counts,
-        "incidents": incidents[:INCIDENT_MAX_ITEMS],
+        "incidents": incidents,
         "scanned": scanned,
     }
 
