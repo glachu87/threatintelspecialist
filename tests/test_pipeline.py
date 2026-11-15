@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+import tempfile
 import unittest
 from datetime import timedelta
 
@@ -110,6 +111,11 @@ class Classification(unittest.TestCase):
         self.assertEqual(bd.extract_org("Ransomware attack on Wayne Enterprises halts production"), "Wayne Enterprises")
         self.assertEqual(bd.extract_org("Cyberattack at Acme disrupts services"), "Acme")
 
+    def test_incident_signal_in_summary_is_not_lost(self):
+        r = self.label("Acme issues customer update", "The company was hit by a ransomware attack and systems were taken offline.")
+        self.assertIsNotNone(r)
+        self.assertEqual(r["type"], "Ransomware")
+
 
 class Incidents(unittest.TestCase):
     def news(self, n, title, hours_ago, summary="", kind="news", source="Feed A"):
@@ -199,11 +205,35 @@ class Incidents(unittest.TestCase):
         self.assertEqual([(i["organisation"], i["type"], i["ai"], i["summary"]) for i in out["incidents"]],
                          [("Hooli Inc", "Ransomware", True, "AI summary.")])
 
-    def test_rule_change_rebuilds_automatic_entries(self):
-        old = {"rules_version": 2, "scanned": ["n1"], "incidents": [{"id": "INC-OLD", "title": "stale", "sources": [], "last_reported": ""}]}
+    def test_rule_change_preserves_historical_entries(self):
+        old = {"rules_version": 2, "scanned": [], "incidents": [{
+            "id": "INC-OLD", "title": "Historical incident", "organisation": "Legacy Co",
+            "status": "reported", "basis": "", "sources": [], "last_reported": "2024-01-01T00:00:00Z"
+        }]}
         out = bd.merge_incidents(old, [self.news(1, "Hooli confirms data breach", 2)], [], ai=lambda items: {})
-        self.assertEqual([i["organisation"] for i in out["incidents"]], ["Hooli"])
+        self.assertEqual({i.get("organisation") for i in out["incidents"]}, {"Legacy Co", "Hooli"})
         self.assertEqual(out["rules_version"], bd.RULES_VERSION)
+
+    def test_archive_backfill_is_cumulative_and_claim_only(self):
+        csv_text = (
+            "year,month,victim,threat_actor,date_discovered,description\n"
+            "2025,january,Archive Victim,DarkCrew,\"Jan 31, 2025\",Archive description\n"
+        )
+        with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False, encoding="utf-8") as fh:
+            fh.write(csv_text)
+            path = fh.name
+        try:
+            out = bd.merge_incidents({}, [], [], ai=lambda items: {}, archive_path=path)
+            self.assertEqual(out["archive_added_in_last_scan"], 1)
+            self.assertEqual(len(out["incidents"]), 1)
+            inc = out["incidents"][0]
+            self.assertEqual((inc["organisation"], inc["status"], inc["type"], inc["threat_actor"]),
+                             ("Archive Victim", "claimed", "Ransomware", "DarkCrew"))
+            again = bd.merge_incidents(out, [], [], ai=lambda items: {}, archive_path=path)
+            self.assertEqual(again["archive_added_in_last_scan"], 0)
+            self.assertEqual(len(again["incidents"]), 1)
+        finally:
+            os.unlink(path)
 
     def test_confirmed_never_downgrades(self):
         items = [self.news(1, "Globex confirms data breach affecting 3M customers", 20),
@@ -270,6 +300,28 @@ class Incidents(unittest.TestCase):
 
 
 class NewsAndVulns(unittest.TestCase):
+    def test_ransomware_live_json_sources(self):
+        attacks = [{"date": "2026-11-01", "victim": "Acme", "country": "GB",
+                    "summary": "Acme suffered a cyberattack.", "title": "Cyberattack at Acme disrupts services",
+                    "url": "https://news.example/acme"}]
+        victims = [{"victim": "Globex", "group": "DarkCrew", "country": "US",
+                    "activity": "Technology", "discovered": "2026-11-02T10:00:00Z",
+                    "description": "Listed on the leak site."}]
+        def fetch(url, **kw):
+            if "allcyberattacks" in url:
+                return json.dumps(attacks).encode()
+            if "recentvictims" in url:
+                return json.dumps({"victims": victims}).encode()
+            raise RuntimeError(url)
+        status = {"feeds": [], "apis": []}
+        rows = bd.collect_ransomware_live(status, fetch=fetch)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual({r["kind"] for r in rows}, {"aggregate", "claim"})
+        claim = next(r for r in rows if r["kind"] == "claim")
+        self.assertEqual((claim["title"], claim["country"], claim["source_sector"]),
+                         ("Globex by DarkCrew", "US", "Technology"))
+        self.assertTrue(all(a["ok"] for a in status["apis"]))
+
     def test_collect_news_survives_a_dead_feed(self):
         def fetch(url, **kw):
             if "dead" in url:

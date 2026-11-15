@@ -4,8 +4,8 @@ Builds the JSON files the website reads. Standard library only.
 
     data/news.json             headlines from the feeds in scripts/sources.json
     data/vulnerabilities.json  CISA KEV catalogue + new high/critical CVEs (NVD) + EPSS
-    data/incidents.json        incidents found in public reporting with verification states
-    data/incidents.csv         flat export of the incident database
+    data/incidents.json        cumulative incident corpus with verification states
+    data/incidents.csv         flat export of the cumulative incident corpus
     data/status.json           when each source was last read and whether it worked
 
 Every source is optional: if one fails, the previous data for it is kept.
@@ -46,6 +46,16 @@ MAX_BYTES = 30 * 1024 * 1024
 NEWS_KEEP_DAYS = 45
 NEWS_MAX_ITEMS = 700
 SUMMARY_CHARS = 220
+BREACHSENSE_ARCHIVE = os.path.join(ROOT, "breachsense_2025_incidents.csv")
+BREACHSENSE_SOURCE_URL = "https://github.com/glachu87/threatintelspecialist/blob/main/breachsense_2025_incidents.csv"
+RANSOMWARE_LIVE_ALL_URLS = (
+    "https://api.ransomware.live/v2/allcyberattacks",
+    "https://api.ransomware.live/allcyberattacks",
+)
+RANSOMWARE_LIVE_RECENT_URLS = (
+    "https://api.ransomware.live/v2/recentvictims",
+    "https://api.ransomware.live/recentvictims",
+)
 NVD_WINDOW_DAYS = 7
 NVD_MAX_ITEMS = 700
 
@@ -272,37 +282,180 @@ def collect_news(sources: list[dict], previous: dict, status: dict, fetch=http_g
     return {"updated": iso(now), "items": kept[:NEWS_MAX_ITEMS]}
 
 
-def collect_claim_items(sources: list[dict], status: dict, fetch=http_get) -> list[dict]:
-    """Read incident-only claim feeds without publishing them on the general news page."""
-    now = now_utc()
-    out = []
-    for src in sources:
-        entry = {"name": src["name"], "kind": "claim", "url": src["url"], "checked": iso(now)}
+def _json_list(doc, *keys: str) -> list[dict]:
+    """Return a list from either a bare JSON array or a common API envelope."""
+    if isinstance(doc, list):
+        return [row for row in doc if isinstance(row, dict)]
+    if isinstance(doc, dict):
+        for key in keys:
+            rows = doc.get(key)
+            if isinstance(rows, list):
+                return [row for row in rows if isinstance(row, dict)]
+    return []
+
+
+def _fetch_json_fallback(urls: tuple[str, ...], fetch=http_get) -> tuple[list[dict], str]:
+    last = None
+    for url in urls:
         try:
-            parsed = parse_feed(fetch(src["url"]))
-            for it in parsed[:100]:
-                published = it["published"] or now
-                if published > now + timedelta(hours=12):
-                    published = now
-                out.append({
-                    "id": short_hash(it["link"]),
-                    "title": truncate(it["title"], 200),
-                    "link": it["link"],
-                    "source": src["name"],
-                    "kind": "claim",
-                    "published": iso(published),
-                    "summary": truncate(tidy_summary(it["summary"]), SUMMARY_CHARS),
-                    "topics": ["Ransomware"],
-                })
-            entry.update(ok=True, items=len(parsed), new=len(parsed))
+            doc = json.loads(fetch(url, headers={"Accept": "application/json"}, timeout=75))
+            rows = _json_list(doc, "victims", "cyberattacks", "attacks", "items", "data")
+            if isinstance(doc, list) or rows:
+                return rows, url
+            last = RuntimeError("JSON response contained no records")
         except Exception as exc:  # noqa: BLE001
-            entry.update(ok=False, error=truncate(str(exc), 160))
-            print(f"  ! {src['name']}: {exc}", file=sys.stderr)
-        status["feeds"].append(entry)
+            last = exc
+    raise RuntimeError(str(last or "no ransomware.live endpoint succeeded"))
+
+
+def collect_ransomware_live(status: dict, fetch=http_get) -> list[dict]:
+    """Collect the full reported-cyberattack corpus plus recent leak-site claims.
+
+    The cyberattack corpus is treated as reported evidence. Recent victim posts are
+    threat-actor claims and can never become confirmed from this source alone.
+    """
+    now = now_utc()
+    out: list[dict] = []
+
+    try:
+        rows, used = _fetch_json_fallback(RANSOMWARE_LIVE_ALL_URLS, fetch)
+        for row in rows:
+            victim = clean_text(str(row.get("victim") or row.get("organisation") or row.get("organization") or ""))
+            title = clean_text(str(row.get("title") or ""))
+            summary = clean_text(str(row.get("summary") or row.get("description") or ""))
+            when = parse_date(str(row.get("date") or row.get("published") or row.get("added") or "")) or now
+            link = safe_url(str(row.get("url") or row.get("link") or "")) or "https://www.ransomware.live/#/recentcyberattacks"
+            if not title:
+                title = f"{victim} reported cyberattack" if victim else "Reported cyberattack"
+            country = clean_text(str(row.get("country") or ""))
+            key = f"{victim}|{title}|{iso(when)}|{link}"
+            out.append({
+                "id": "rl-a-" + short_hash(key),
+                "title": truncate(title, 200),
+                "link": link,
+                "source": "Ransomware.live cyberattacks",
+                "kind": "aggregate",
+                "published": iso(when),
+                "summary": truncate(summary, SUMMARY_CHARS),
+                "country": country,
+                "organisation": victim or None,
+                "topics": topics_for(f"{title} {summary}"),
+            })
+        status["apis"].append({
+            "name": "Ransomware.live cyberattacks", "ok": True, "items": len(rows),
+            "checked": iso(now), "url": used,
+        })
+    except Exception as exc:  # noqa: BLE001
+        status["apis"].append({
+            "name": "Ransomware.live cyberattacks", "ok": False,
+            "error": truncate(str(exc), 160), "checked": iso(now),
+        })
+        print(f"  ! Ransomware.live cyberattacks: {exc}", file=sys.stderr)
+
+    try:
+        rows, used = _fetch_json_fallback(RANSOMWARE_LIVE_RECENT_URLS, fetch)
+        for row in rows:
+            victim = clean_text(str(
+                row.get("victim") or row.get("post_title") or row.get("website")
+                or row.get("domain") or ""
+            ))
+            group = clean_text(str(row.get("group") or row.get("group_name") or "Unknown group"))
+            if not victim:
+                continue
+            when = parse_date(str(
+                row.get("discovered") or row.get("published") or row.get("attackdate")
+                or row.get("date") or ""
+            )) or now
+            desc = clean_text(str(row.get("description") or row.get("summary") or ""))
+            country = clean_text(str(row.get("country") or row.get("Country") or ""))
+            sector = clean_text(str(row.get("activity") or row.get("sector") or ""))
+            link = safe_url(str(row.get("post_url") or row.get("url") or "")) or "https://www.ransomware.live/#/recentvictims"
+            key = f"{victim}|{group}|{iso(when)}"
+            out.append({
+                "id": "rl-v-" + short_hash(key),
+                "title": truncate(f"{victim} by {group}", 200),
+                "link": link,
+                "source": "Ransomware.live victim claims",
+                "kind": "claim",
+                "published": iso(when),
+                "summary": truncate(desc or f"Ransomware leak-site claim attributed to {group}.", SUMMARY_CHARS),
+                "country": country,
+                "source_sector": sector,
+                "topics": ["Ransomware"],
+            })
+        status["apis"].append({
+            "name": "Ransomware.live victim claims", "ok": True, "items": len(rows),
+            "checked": iso(now), "url": used,
+        })
+    except Exception as exc:  # noqa: BLE001
+        status["apis"].append({
+            "name": "Ransomware.live victim claims", "ok": False,
+            "error": truncate(str(exc), 160), "checked": iso(now),
+        })
+        print(f"  ! Ransomware.live victim claims: {exc}", file=sys.stderr)
+
     return out
 
 
-# ───────────────────────── vulnerabilities ─────────────────────────
+def _archive_date(value: str) -> datetime | None:
+    dt = parse_date(value)
+    if dt:
+        return dt
+    for fmt in ("%b %d, %Y", "%B %d, %Y"):
+        try:
+            return datetime.strptime(value.strip(), fmt).replace(tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    return None
+
+
+def load_breachsense_archive(path: str) -> list[dict]:
+    """Load the repository's 2025 ransomware archive as claim-only evidence."""
+    if not path or not os.path.exists(path):
+        return []
+    out = []
+    with open(path, encoding="utf-8-sig", newline="") as fh:
+        for row in csv.DictReader(fh):
+            victim = clean_text(row.get("victim"))
+            actor = clean_text(row.get("threat_actor")) or "Unknown group"
+            when = _archive_date(row.get("date_discovered") or "")
+            if not victim or not when:
+                continue
+            description = clean_text(row.get("description"))
+            stable = f"{iso(when)}|{victim.lower()}|{actor.lower()}"
+            out.append({
+                "id": "INC-BS-" + short_hash(stable, 10).upper(),
+                "title": truncate(f"{victim} by {actor}", 200),
+                "organisation": victim,
+                "type": "Ransomware",
+                "sector": "Other",
+                "country": "",
+                "status": "claimed",
+                "basis": BASIS["claimed"] if "BASIS" in globals() else "Threat-actor or leak-site claim; not independently verified",
+                "summary": truncate(description, 260),
+                "why_it_matters": "",
+                "threat_actor": actor,
+                "first_reported": iso(when),
+                "last_reported": iso(when),
+                "sources": [{
+                    "name": "BreachSense 2025 archive",
+                    "title": f"{victim} — {actor}",
+                    "link": BREACHSENSE_SOURCE_URL,
+                    "published": iso(when),
+                    "kind": "claim",
+                    "verification": "claimed",
+                }],
+                "history": [{
+                    "date": iso(when), "status": "claimed",
+                    "note": "Imported from the repository's 2025 ransomware archive",
+                }],
+                "ai": False,
+                "archive": True,
+            })
+    return out
+
+
+# ───────────────────────── vulnerabilities────────────────────────
 
 KEV_BOILERPLATE = "apply mitigations"
 
@@ -493,7 +646,7 @@ def collect_vulnerabilities(previous: dict, status: dict, fetch=http_get) -> dic
 # Confirmation requires acknowledgement by the victim organisation or a competent
 # authority; an attacker post is never confirmation.
 
-RULES_VERSION = 3
+RULES_VERSION = 4
 VERIFICATION_STATES = ("confirmed", "corroborated", "reported", "claimed", "disputed")
 VERIFICATION_STRENGTH = {"claimed": 0, "reported": 1, "disputed": 1, "corroborated": 2, "confirmed": 3}
 
@@ -626,6 +779,8 @@ def infer_status(title: str, summary: str, source_kind: str = "news") -> tuple[s
     """Assign evidence state for one source. Corroboration is calculated after sources are merged."""
     if source_kind == "claim":
         return "claimed", BASIS["claimed"]
+    if source_kind == "aggregate":
+        return "reported", BASIS["reported"]
     text = f"{title} {summary}"
     if DENIED_RE.search(text):
         return "disputed", BASIS["disputed"]
@@ -648,9 +803,10 @@ def first_match(rules, text: str, default: str) -> str:
 def looks_like_incident(title: str, summary: str) -> bool:
     if NOT_INCIDENT_RE.search(title):
         return False
-    if not EVENT_RE.search(title):
+    text = f"{title} {summary}"
+    if not EVENT_RE.search(text):
         return False
-    if (VULN_STORY_RE.search(title) or TOOL_STORY_RE.search(title)) and not VICTIM_EVENT_RE.search(title):
+    if (VULN_STORY_RE.search(title) or TOOL_STORY_RE.search(title)) and not VICTIM_EVENT_RE.search(text):
         return False
     return True
 
@@ -658,11 +814,11 @@ def looks_like_incident(title: str, summary: str) -> bool:
 def classify_rules(item: dict) -> dict | None:
     title, summary = item["title"], item.get("summary", "")
     source_kind = item.get("kind", "news")
-    if source_kind != "claim" and not looks_like_incident(title, summary):
+    if source_kind not in ("claim", "aggregate") and not looks_like_incident(title, summary):
         return None
     text = f"{title} {summary}"
     status, basis = infer_status(title, summary, source_kind)
-    organisation = extract_org(title)
+    organisation = item.get("organisation") or extract_org(title)
     threat_actor = None
     if source_kind == "claim" and " by " in title:
         victim, actor = title.rsplit(" by ", 1)
@@ -671,7 +827,7 @@ def classify_rules(item: dict) -> dict | None:
     return {
         "organisation": organisation,
         "type": "Ransomware" if source_kind == "claim" else first_match(_TYPE_RES, text, "Cyberattack"),
-        "sector": first_match(_SECTOR_RES, text, "Other"),
+        "sector": first_match(_SECTOR_RES, text, item.get("source_sector") or "Other"),
         "status": status,
         "basis": basis,
         "headline": title,
@@ -839,7 +995,7 @@ def aggregate_verification(incident: dict) -> str:
         return "disputed"
     reputable = {
         src.get("name") for src in sources
-        if src.get("name") and src.get("kind", "news") != "claim"
+        if src.get("name") and src.get("kind", "news") not in ("claim", "aggregate")
         and normalise_verification(src.get("verification")) in ("reported", "corroborated")
     }
     if len(reputable) >= 2:
@@ -874,8 +1030,12 @@ def same_incident(a: dict, title: str, org: str | None, when: datetime) -> bool:
 
 def relabel_with_ai(incidents: list[dict], ai, now: datetime) -> tuple[int, set[str]]:
     """Re-check recent rule-labelled entries when an AI provider becomes available."""
-    todo = [i for i in incidents if not i.get("ai") and not i.get("curated") and i.get("sources")
-            and (now - (parse_date(i.get("first_reported")) or now)) <= timedelta(days=7)][:32]
+    todo = [
+        i for i in incidents
+        if not i.get("ai") and not i.get("curated") and i.get("sources")
+        and i["sources"][0].get("kind", "news") not in ("claim", "aggregate")
+        and (now - (parse_date(i.get("first_reported")) or now)) <= timedelta(days=7)
+    ][:32]
     if not todo:
         return 0, set()
     verdicts = ai([{
@@ -911,30 +1071,46 @@ def relabel_with_ai(incidents: list[dict], ai, now: datetime) -> tuple[int, set[
     return changed, removed
 
 
-def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict], ai=classify_ai) -> dict:
+def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict], ai=classify_ai,
+                    archive_path: str | None = None) -> dict:
     now = now_utc()
-    if previous.get("rules_version") != RULES_VERSION:
-        # Verification semantics changed: rebuild automatic entries from the recent source window.
-        previous = {}
+    # The incident corpus is durable. Rule changes must never erase historical rows.
     incidents = [i for i in previous.get("incidents", []) if not i.get("curated")]
+    for inc in incidents:
+        inc["status"] = normalise_verification(inc.get("status"))
+        inc["basis"] = BASIS[inc["status"]]
+        for src in inc.get("sources", []):
+            src.setdefault("verification", inc["status"])
+            src.setdefault("kind", "news")
     scanned = list(previous.get("scanned", []))
-    seen = set(scanned)
-    known_links = {src["link"] for inc in incidents for src in inc.get("sources", [])}
 
-    supported_kinds = {"news", "research", "official", "claim"}
+    archive_added = 0
+    if archive_path:
+        existing_ids = {i.get("id") for i in incidents}
+        for archived in load_breachsense_archive(archive_path):
+            if archived["id"] not in existing_ids:
+                incidents.append(archived)
+                existing_ids.add(archived["id"])
+                archive_added += 1
+    seen = set(scanned)
+    supported_kinds = {"news", "research", "official", "claim", "aggregate"}
     fresh = [n for n in news_items if n.get("kind", "news") in supported_kinds
-             and n["id"] not in seen and n["link"] not in known_links]
+             and n["id"] not in seen]
     fresh.sort(key=lambda n: n["published"])
-    candidates = [n for n in fresh if n.get("kind") == "claim"
-                  or (EVENT_RE.search(n["title"]) and not NOT_INCIDENT_RE.search(n["title"]))]
-    verdicts = ai(candidates) if candidates else {}
+    candidates = [
+        n for n in fresh
+        if n.get("kind") in ("claim", "aggregate") or looks_like_incident(n["title"], n.get("summary", ""))
+    ]
+    ai_candidates = [n for n in candidates if n.get("kind") not in ("claim", "aggregate")]
+    verdicts = ai(ai_candidates) if ai_candidates else {}
     ai_expected = ai is classify_ai and bool(ai_providers())
     deferred: set[str] = set()
 
     added = verification_changes = 0
     for item in candidates:
         verdict = verdicts.get(item["id"])
-        if verdict is None and ai_expected and (now - (parse_date(item["published"]) or now)) < timedelta(hours=6):
+        ai_eligible = item.get("kind") not in ("claim", "aggregate")
+        if verdict is None and ai_expected and ai_eligible and (now - (parse_date(item["published"]) or now)) < timedelta(hours=6):
             deferred.add(item["id"])
             continue
         if verdict is not None:
@@ -955,6 +1131,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             "published": item["published"],
             "kind": item.get("kind", "news"),
             "verification": label["status"],
+            "country": item.get("country", ""),
         }
         match = next((i for i in incidents if same_incident(i, item["title"], label.get("organisation"), when)), None)
         if match:
@@ -964,6 +1141,8 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             for field in ("organisation", "threat_actor"):
                 if not match.get(field) and label.get(field):
                     match[field] = label[field]
+            if not match.get("country") and item.get("country"):
+                match["country"] = item["country"]
 
             new_status = aggregate_verification(match)
             if new_status != old_status:
@@ -987,11 +1166,12 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
             continue
 
         incidents.append({
-            "id": "INC-" + short_hash(item["link"], 8).upper(),
+            "id": "INC-" + short_hash(f"{item['id']}|{item['link']}", 8).upper(),
             "title": label.get("headline") or item["title"],
             "organisation": label.get("organisation"),
             "type": label["type"],
             "sector": label["sector"],
+            "country": item.get("country", ""),
             "status": label["status"],
             "basis": BASIS[label["status"]],
             "summary": truncate(label.get("summary") or "", 260),
@@ -1016,7 +1196,7 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
     for item in fresh:
         if item["id"] not in deferred:
             scanned.append(item["id"])
-    scanned = scanned[-6000:]
+    scanned = scanned[-100000:]
 
     for c in curated:
         if not c.get("id") or not c.get("title"):
@@ -1048,20 +1228,21 @@ def merge_incidents(previous: dict, news_items: list[dict], curated: list[dict],
         "updated": iso(now),
         "rules_version": RULES_VERSION,
         "new_in_last_scan": added,
+        "archive_added_in_last_scan": archive_added,
         "verification_changes_in_last_scan": verification_changes,
         "upgraded_in_last_scan": verification_changes,
         "ai_assisted": any(i.get("ai") for i in incidents),
         "verification_counts": counts,
-        "incidents": incidents[:5000],
+        "incidents": incidents,
         "scanned": scanned,
     }
 
 
 def save_incidents_csv(path: str, incidents: list[dict]) -> None:
     fields = [
-        "id", "headline", "organisation", "type", "sector", "verification", "basis",
+        "id", "headline", "organisation", "type", "sector", "country", "verification", "basis",
         "summary", "why_it_matters", "threat_actor", "first_reported", "last_reported",
-        "source_count", "sources", "source_urls",
+        "source_count", "source_kinds", "sources", "source_urls",
     ]
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8", newline="") as fh:
@@ -1075,6 +1256,7 @@ def save_incidents_csv(path: str, incidents: list[dict]) -> None:
                 "organisation": inc.get("organisation") or "",
                 "type": inc.get("type", ""),
                 "sector": inc.get("sector", ""),
+                "country": inc.get("country", ""),
                 "verification": normalise_verification(inc.get("status")),
                 "basis": inc.get("basis", ""),
                 "summary": inc.get("summary", ""),
@@ -1083,6 +1265,7 @@ def save_incidents_csv(path: str, incidents: list[dict]) -> None:
                 "first_reported": inc.get("first_reported", ""),
                 "last_reported": inc.get("last_reported", ""),
                 "source_count": len(sources),
+                "source_kinds": " | ".join(sorted({src.get("kind", "") for src in sources if src.get("kind")})),
                 "sources": " | ".join(src.get("name", "") for src in sources),
                 "source_urls": " | ".join(src.get("link", "") for src in sources),
             })
@@ -1097,12 +1280,10 @@ def main() -> int:
     status = {"updated": iso(now_utc()), "feeds": [], "apis": []}
 
     print("News…")
-    claim_sources = [src for src in sources if src.get("kind") == "claim"]
-    public_sources = [src for src in sources if src.get("kind") != "claim"]
-    news = collect_news(public_sources, load_json(os.path.join(DATA, "news.json"), {}), status)
-    claims = collect_claim_items(claim_sources, status) if claim_sources else []
+    news = collect_news(sources, load_json(os.path.join(DATA, "news.json"), {}), status)
+    ransomware = collect_ransomware_live(status)
     save_json(os.path.join(DATA, "news.json"), news)
-    print(f"  {len(news['items'])} headlines, {len(claims)} ransomware claims")
+    print(f"  {len(news['items'])} headlines, {len(ransomware)} Ransomware.live records")
 
     print("Vulnerabilities…")
     vulns = collect_vulnerabilities(load_json(os.path.join(DATA, "vulnerabilities.json"), {}), status)
@@ -1113,12 +1294,14 @@ def main() -> int:
     curated = load_json(os.path.join(DATA, "incidents_curated.json"), {}).get("incidents", [])
     incidents = merge_incidents(
         load_json(os.path.join(DATA, "incidents.json"), {}),
-        news["items"] + claims,
+        news["items"] + ransomware,
         curated,
+        archive_path=BREACHSENSE_ARCHIVE,
     )
     save_json(os.path.join(DATA, "incidents.json"), incidents)
     save_incidents_csv(os.path.join(DATA, "incidents.csv"), incidents["incidents"])
     print(f"  {len(incidents['incidents'])} incidents ({incidents['new_in_last_scan']} new, "
+          f"{incidents['archive_added_in_last_scan']} archive rows, "
           f"{incidents['verification_changes_in_last_scan']} verification changes)")
 
     status["ai_enabled"] = bool(AI_USED.get("provider"))
@@ -1127,7 +1310,9 @@ def main() -> int:
         "cadence": "every 30 minutes",
         "verification_states": list(VERIFICATION_STATES),
         "new_in_last_scan": incidents["new_in_last_scan"],
+        "archive_added_in_last_scan": incidents["archive_added_in_last_scan"],
         "verification_changes_in_last_scan": incidents["verification_changes_in_last_scan"],
+        "total_incidents": len(incidents["incidents"]),
         "counts": incidents["verification_counts"],
     }
     save_json(os.path.join(DATA, "status.json"), status)

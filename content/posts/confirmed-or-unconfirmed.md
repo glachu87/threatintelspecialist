@@ -40,7 +40,7 @@ This often happens during the first few hours of a developing incident.
 
 Ransomware groups have incentives to exaggerate, recycle old data, misidentify organisations or publish misleading claims. A listing can be useful intelligence without being proof.
 
-The tracker monitors Ransomware.live for these early signals, but a Ransomware.live entry by itself can never make an incident confirmed.
+The tracker monitors Ransomware.live through its JSON API for these early signals and imports the repository’s historical 2025 ransomware archive as claim-only evidence. A leak-site or archive entry by itself can never make an incident confirmed.
 
 ## Disputed
 
@@ -50,7 +50,7 @@ A dispute does not automatically prove that nothing happened, but readers should
 
 ## How an incident changes over time
 
-The agent scans its sources every 30 minutes and keeps the evidence attached to each incident.
+The agent scans its live sources every 30 minutes and keeps the evidence attached to each incident. The incident database is cumulative: older rows are retained rather than falling out of the CSV when a news-feed retention window expires.
 
 A typical sequence could be:
 
@@ -95,3 +95,10 @@ The tracker also applies deterministic rules:
 5. Which details are confirmed and which remain attribution or attacker claims?
 
 Automated classification can still make mistakes. Every incident links to its evidence so you can inspect the original reporting before relying on it.
+
+
+## Coverage and completeness
+
+The downloadable CSV is intended to be the cumulative record of incidents found across the sources monitored by this site. It includes both verified reporting and clearly labelled unverified claims.
+
+It should not be interpreted as a list of literally every cyber incident in existence. Some incidents are never disclosed, some sources are inaccessible or delayed, and global reporting is uneven. The tracker therefore exposes source and verification fields so coverage gaps are visible rather than hidden.
