@@ -1,6 +1,6 @@
 # Threat Intel Specialist
 
-Source for [www.threatintelspecialist.com](https://www.threatintelspecialist.com/): a free cybersecurity briefing with news, vulnerabilities, an incident tracker and a blog. It is a static site on GitHub Pages. There is no server and no build tool; a GitHub Actions workflow refreshes the data every hour.
+Source for [www.threatintelspecialist.com](https://www.threatintelspecialist.com/): a free cybersecurity briefing with news, vulnerabilities, an incident tracker and a blog. It is a static site on GitHub Pages. There is no server and no build tool; a GitHub Actions workflow refreshes the data every 30 minutes.
 
 ## What is where
 
@@ -8,7 +8,7 @@ Source for [www.threatintelspecialist.com](https://www.threatintelspecialist.com
 | --- | --- |
 | `index.html`, `news/`, `vulnerabilities/`, `incidents/`, `blog/`, `learn/`, `about/`, `search/` | The pages. Plain HTML. |
 | `assets/` | One stylesheet (`site.css`) and small scripts, one per page. `site.js` draws the header and footer. |
-| `data/` | JSON the pages read. Written by the workflow; do not edit by hand, except `incidents_curated.json`. |
+| `data/` | JSON/CSV the pages read or expose for download. Written by the workflow; do not edit by hand, except `incidents_curated.json`. |
 | `content/posts/` | Blog posts in Markdown. |
 | `scripts/build_data.py` | Fetches news, vulnerabilities and incidents. |
 | `scripts/build_posts.py` | Turns Markdown posts into pages. |
@@ -34,7 +34,7 @@ Commit it to `main`. The workflow builds the page within a couple of minutes. Ad
 
 **Add or correct an incident.** Edit `data/incidents_curated.json`. Entries there override the automatic tracker. To correct an automatic entry, reuse its `id`.
 
-**Add or remove a news source.** Edit `scripts/sources.json`. Use `"kind": "news"` for press (these are also scanned for incidents), `"research"` for vendor and researcher blogs, `"official"` for government bodies.
+**Add or remove a source.** Edit `scripts/sources.json`. Use `"kind": "news"` for established press, `"research"` for vendor/researcher reporting, `"official"` for government/CERT sources, and `"claim"` only for threat-actor/leak-site aggregators. Claim sources are incident-only and never count as confirmation.
 
 **Refresh now.** Actions tab, "Update site data", "Run workflow".
 
@@ -52,9 +52,17 @@ New vulnerabilities come from NVD's "recent" download file. If that fails, the N
 
 Optional repository variables (Settings, Secrets and variables, Actions, Variables): `GITHUB_MODELS_MODEL` to pin a GitHub model (for example `openai/gpt-4.1`), `GEMINI_MODEL` to pin a Gemini model.
 
-## How incidents are labelled
+## How incidents are verified
 
-An incident is **confirmed** only when a report says the affected organisation, a regulator, a court or a government body has acknowledged it. Everything else is **unconfirmed**. A label can move from unconfirmed to confirmed automatically, never the other way. The rules are in `scripts/build_data.py` under "incidents".
+The tracker uses five evidence states:
+
+- **Confirmed** — acknowledged by the affected organisation or a competent authority.
+- **Corroborated** — at least two independent reputable sources report the same incident.
+- **Reported** — one reputable source reports the incident, without official acknowledgement yet.
+- **Claimed** — a threat actor or leak site claims the incident; this is an early-warning signal, not proof.
+- **Disputed** — the affected organisation denies or directly challenges the allegation.
+
+Every source stored against an incident has its own evidence state. The incident-level state is derived from those sources, so verification can strengthen as new reporting appears. The tracker also exports `data/incidents.csv` for analysis.
 
 ## Run it locally
 
