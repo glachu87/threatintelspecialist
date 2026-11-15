@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About and how this site works — Threat Intel Specialist</title>
-<meta name="description" content="Who runs Threat Intel Specialist, where its data comes from, how incidents are labelled confirmed or unconfirmed, and how to report a correction.">
+<meta name="description" content="Who runs Threat Intel Specialist, where its data comes from, how incidents are labelled by strength of evidence, and how to report a correction.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://www.threatintelspecialist.com/about/">
 <meta property="og:title" content="About and how this site works — Threat Intel Specialist">
-<meta property="og:description" content="Who runs Threat Intel Specialist, where its data comes from, how incidents are labelled confirmed or unconfirmed, and how to report a correction.">
+<meta property="og:description" content="Who runs Threat Intel Specialist, where its data comes from, how incidents are labelled by strength of evidence, and how to report a correction.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.threatintelspecialist.com/about/">
 <link rel="icon" href="/images/mark.svg" type="image/svg+xml">
@@ -32,12 +32,23 @@
     <h2>Who runs it</h2>
     <p>The site is run by a threat intelligence and OT cyber risk specialist (CISSP, CCSP, IEC 62443) who works on critical infrastructure protection. It carries no advertising.</p>
 
+    <h2>What is on the site</h2>
+    <ul>
+      <li><a href="/">Today</a>: a short briefing on the last day and week.</li>
+      <li><a href="/news/">News</a>: headlines from security journalists, researchers and government agencies.</li>
+      <li><a href="/vulnerabilities/">Vulnerabilities</a>: flaws attackers are using now, and the week's new serious ones.</li>
+      <li><a href="/incidents/">Incidents</a>: attacks and breaches as they are reported, with a dashboard.</li>
+      <li><a href="/incidents/history/">History</a>: the full record of tracked incidents, with trends and lessons.</li>
+      <li><a href="/blog/">Blog</a> and <a href="/learn/">Learn</a>: plain-language guides and a glossary.</li>
+    </ul>
+
     <h2>Where the data comes from</h2>
-    <p>Everything here comes from public sources and is refreshed every hour.</p>
+    <p>Everything here comes from public sources. The site checks them every 30 minutes.</p>
     <ul>
       <li><strong>News</strong> comes from the public feeds of security news sites, research teams and government agencies. Only the headline and a short excerpt are shown, with a link to the original article.</li>
+      <li><strong>Incidents</strong> come from three places: press reports found in those news feeds; Ransomware.live, a public tracker of attacks and of victims named on ransomware leak sites; and an archive of 2025 leak-site claims compiled from BreachSense listings.</li>
       <li><strong>Exploited vulnerabilities</strong> come from the Known Exploited Vulnerabilities catalogue published by CISA.</li>
-      <li><strong>New vulnerabilities</strong> come from the US National Vulnerability Database (NVD). This product uses the NVD API but is not endorsed or certified by the NVD.</li>
+      <li><strong>New vulnerabilities</strong> come from the US National Vulnerability Database (NVD). This product uses data from the NVD but is not endorsed or certified by the NVD.</li>
       <li><strong>Likelihood of attack</strong> scores come from EPSS, published by FIRST.</li>
     </ul>
     <h3>Source status</h3>
@@ -45,12 +56,21 @@
     <ul class="health" id="health"></ul>
 
     <h2>How incidents are labelled</h2>
-    <p>Every hour the site scans press headlines for reports of attacks, breaches and outages. Reports about the same event are grouped into one entry. Each entry is labelled:</p>
+    <p>Reports about the same event are grouped into one entry. Each entry carries one of five evidence labels, so a claim is never presented as a fact:</p>
     <ul>
-      <li><strong>Confirmed</strong> when a report says the affected organisation, a regulator, a court or a government body has acknowledged the incident.</li>
-      <li><strong>Unconfirmed</strong> in every other case, including attacker claims and stories with no official statement.</li>
+      <li><span class="status confirmed">Confirmed</span>: the affected organisation, a regulator, a court or a government body has acknowledged the incident.</li>
+      <li><span class="status corroborated">Corroborated</span>: at least two independent, reputable sources report it, but no official acknowledgement has been found.</li>
+      <li><span class="status reported">Reported</span>: one reputable source reports it, with no official confirmation yet.</li>
+      <li><span class="status claimed">Claimed</span>: an attacker or a leak site says it happened. This is an early warning, not proof. Most entries on this site are claims.</li>
+      <li><span class="status disputed">Disputed</span>: the organisation denies or challenges the allegation.</li>
     </ul>
-    <p>An entry moves from unconfirmed to confirmed when a later report carries an acknowledgement. It never moves the other way automatically. Labels are assigned by software reading the wording of headlines and excerpts, with help from an AI model when one is available, and entries that used AI say so. This process makes mistakes. Treat each entry as a pointer to its sources, not as a finding of fact.</p>
+    <p>A label can strengthen as better evidence appears, and each entry keeps its source trail. Labels are assigned by software reading headlines and excerpts, with help from an AI model when one is available, and entries that used AI say so. This process makes mistakes. Treat each entry as a pointer to its sources, not as a finding of fact. The <a href="/blog/confirmed-or-unconfirmed/">methodology page</a> has the detail.</p>
+
+    <h2>Lessons and summaries</h2>
+    <p>The <a href="/incidents/history/">incident history</a> shows lessons for each entry. Where an AI model has read the report, the lessons are its suggestions based on what the report says. Everywhere else they are general advice for that type of incident, and are marked as general. Neither kind is a finding about what the affected organisation did or did not do.</p>
+
+    <h2>Reading the trends</h2>
+    <p>The charts describe what this site has collected, not everything that happened. Ransomware claims are over-represented because leak sites publish them in bulk, coverage before 2025 is thin, many entries have no industry recorded, and incidents that are never made public do not appear at all.</p>
 
     <h2>Corrections</h2>
     <p>If an entry is wrong, out of date, or names your organisation unfairly, <a href="https://github.com/glachu87/threatintelspecialist/issues" rel="noopener noreferrer" target="_blank">open an issue on GitHub</a> with a link to the entry and a source. Corrections are applied by hand and take priority over the automatic labels.</p>
